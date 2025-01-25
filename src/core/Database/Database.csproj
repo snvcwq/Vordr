@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>CleanArchitecture.Database</RootNamespace>
+        <AssemblyName>CleanArchitecture.Database</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="LanguageExt.Core"/>
+        <PackageReference Include="MongoDB.Driver"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+    </ItemGroup>
+</Project>

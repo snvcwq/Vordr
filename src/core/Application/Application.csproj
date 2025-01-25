@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>CleanArchitecture.Application</RootNamespace>
+        <AssemblyName>CleanArchitecture.Application</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Common\Interfaces\" />
+      <Folder Include="Common\Mappings\" />
+      <Folder Include="Common\Models\" />
+      <Folder Include="Options\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MediatR"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions"/>
+        <PackageReference Include="FluentValidation"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+    
+</Project>
