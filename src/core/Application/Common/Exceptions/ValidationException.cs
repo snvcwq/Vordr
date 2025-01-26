@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace CleanArchitecture.Application.Common.Exceptions;
+namespace Vordr.Application.Common.Exceptions;
 
 public class ValidationException() 
     : Exception("One or more validation failures have occurred.")

@@ -19,6 +19,9 @@
         <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0" />
 
     </ItemGroup>
+    <ItemGroup>
+        <PackageVersion Include="MongoDB.Analyzer" Version="1.5.0" />
+    </ItemGroup>
 
     <!-- Manage packages for all projects-->
     <ItemGroup>

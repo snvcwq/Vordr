@@ -1,7 +1,7 @@
 ﻿using LanguageExt.Common;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Application.Common.Behaviours;
+namespace Vordr.Application.Common.Behaviours;
 
 public class UnhandledExceptionBehaviour<TRequest, TResponse>(
     ILogger<TRequest> logger

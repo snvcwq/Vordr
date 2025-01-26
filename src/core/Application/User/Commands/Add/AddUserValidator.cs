@@ -1,7 +1,7 @@
 ﻿
 // ReSharper disable UnusedType.Global
 
-namespace CleanArchitecture.Application.User.Commands.Add;
+namespace Vordr.Application.User.Commands.Add;
 
 public class AddUserValidator : AbstractValidator<AddUserCommand>
 {

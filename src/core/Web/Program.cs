@@ -1,31 +1,31 @@
-using CleanArchitecture.Application;
-using CleanArchitecture.Domain;
-using CleanArchitecture.Domain.Options;
-using CleanArchitecture.Infrastructure;
-using CleanArchitecture.ServiceDefaults;
-using Scalar.AspNetCore;
+using System.Reflection;
+using Vordr.Application;
+using Vordr.Domain;
+using Vordr.Infrastructure;
+using Vordr.Infrastructure.Extensions;
+using Vordr.ServiceDefaults;
+using Vordr.Web;
+using Vordr.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly());
 
-builder.Services.Configure<MongoDbOptions>(builder.Configuration.GetSection(nameof(MongoDbOptions)));
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
-builder.Services.Configure<MongoDbOptions>(builder.Configuration.GetSection(nameof(MongoDbOptions)));
-
+var x = builder.Configuration;
 builder
     .AddDomainServices()
     .AddApplicationServices()
     .AddInfrastructureServices()
-    .AddServiceDefaults();
+    .AddServiceDefaults()
+    .AddPresentationServices();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference(options => 
-        options.Theme = ScalarTheme.DeepSpace);
-}
+app.ConfigureScalar();
+
+await app.ExecuteMigrations();
+
 
 app.MapControllers();
 app.UseHttpsRedirection();

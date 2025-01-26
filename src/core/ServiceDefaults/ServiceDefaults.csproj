@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace>CleanArchitecture.ServiceDefaults</RootNamespace>
-        <AssemblyName>CleanArchitecture.ServiceDefaults</AssemblyName>
+        <RootNamespace>Vordr.ServiceDefaults</RootNamespace>
+        <AssemblyName>Vordr.ServiceDefaults</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

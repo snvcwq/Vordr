@@ -1,7 +1,7 @@
 ﻿using LanguageExt.Common;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitecture.Web.Controllers;
+namespace Vordr.Web.Controllers;
 
 public class BaseController : ControllerBase
 {

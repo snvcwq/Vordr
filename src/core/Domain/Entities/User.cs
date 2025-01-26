@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Domain.Common;
+﻿using Vordr.Domain.Common;
 
-namespace CleanArchitecture.Domain.Entities;
+namespace Vordr.Domain.Entities;
 
 public record User : BaseEntity
 {

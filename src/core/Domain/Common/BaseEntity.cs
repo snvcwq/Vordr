@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using System.Text.Json.Serialization;
 
-namespace CleanArchitecture.Domain.Common
+namespace Vordr.Domain.Common
 {
     public record BaseEntity
     {

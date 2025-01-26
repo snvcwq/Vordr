@@ -1,6 +1,6 @@
 ﻿using LanguageExt.Common;
 
-namespace CleanArchitecture.Application.User.Commands.Add;
+namespace Vordr.Application.User.Commands.Add;
 
 public record AddUserCommand : IRequest<Result<string>>
 {

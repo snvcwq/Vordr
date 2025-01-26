@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Application.Common.Behaviours;
+﻿using Vordr.Application.Common.Behaviours;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
 
-namespace CleanArchitecture.Application;
+namespace Vordr.Application;
 
 public static class DependencyInjection
 {

@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace>CleanArchitecture.Application</RootNamespace>
-        <AssemblyName>CleanArchitecture.Application</AssemblyName>
+        <RootNamespace>Vordr.Application</RootNamespace>
+        <AssemblyName>Vordr.Application</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-namespace CleanArchitecture.Application.Common.Behaviours;
+namespace Vordr.Application.Common.Behaviours;
 
 public class PerformanceBehaviour<TRequest, TResponse> (
     ILogger<TRequest> logger

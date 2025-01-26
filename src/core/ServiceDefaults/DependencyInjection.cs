@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-namespace CleanArchitecture.ServiceDefaults;
+namespace Vordr.ServiceDefaults;
 
 public static class DependencyInjection
 {

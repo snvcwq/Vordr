@@ -1,7 +1,6 @@
 ﻿using LanguageExt.Common;
-using ValidationException = CleanArchitecture.Application.Common.Exceptions.ValidationException;
-
-namespace CleanArchitecture.Application.Common.Behaviours;
+using ValidationException = Vordr.Application.Common.Exceptions.ValidationException;
+namespace Vordr.Application.Common.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators
