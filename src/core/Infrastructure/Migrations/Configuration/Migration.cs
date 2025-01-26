@@ -5,14 +5,12 @@ namespace Vordr.Infrastructure.Migrations.Configuration;
 
 public record Migration
 {
-    private const string CollectionName = "migrations";
+    public const string CollectionName = "migrations";
 
     [BsonId] 
     public ObjectId Id { get; init; }  
     public required Version Version { get; init; }
     public required string Name { get; init; }
     public required string Description { get; init; }
-
     public DateTime PerformedDateTimeUtc { get; set; }
-    public static string GetCollectionName() => CollectionName;
 }

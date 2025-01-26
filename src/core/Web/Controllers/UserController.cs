@@ -16,5 +16,10 @@ public class UserController(IMediator mediator) : BaseController
 
     [HttpGet]
     public  IActionResult GetUser() =>
-        Ok(new User { Name = "123", Age = 123 });
+        Ok(new User
+        {
+            Name = "123",
+            Age = 123,
+            Id = default
+        });
 }

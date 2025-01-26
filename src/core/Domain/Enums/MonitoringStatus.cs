@@ -2,6 +2,6 @@
 
 public enum MonitoringStatus
 {
-    Enabled,
-    Disabled
+    Disabled,
+    Enabled
 }

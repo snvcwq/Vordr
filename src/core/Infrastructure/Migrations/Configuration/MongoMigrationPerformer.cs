@@ -10,7 +10,7 @@ public class MongoMigrationPerformer(ILogger<MongoMigrationPerformer> logger, Mo
 {
 
     private readonly IMongoCollection<Migration> _collection =
-        client.Database().GetCollection<Migration>(Migration.GetCollectionName());
+        client.Database().GetCollection<Migration>(Migration.CollectionName);
     
     
     public async Task PerformMigrationsAsync()

@@ -1,12 +1,12 @@
-﻿using MongoDB.Bson;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Vordr.Domain.Common
 {
     public record BaseEntity
     {
         [JsonIgnore]
-        public BsonObjectId Id { get; } = new(ObjectId.GenerateNewId());
+        [BsonId]
+        public ObjectId Id { get; init; }
 
         public DateTime LastModifiedUtc { get; set; }
 
