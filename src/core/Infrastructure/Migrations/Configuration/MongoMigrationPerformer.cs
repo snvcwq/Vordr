@@ -53,7 +53,9 @@ public class MongoMigrationPerformer(ILogger<MongoMigrationPerformer> logger, Mo
                 migrationsToPerform.Add(migration);
                 break;
             }
-            logger.LogInformation($"Migration <{migration.Name}> with version {migration.Version} was already performed, it will not be executed again.");
+            logger.LogInformation("Migration <{@Name}> with version {@Version} was already performed, it will not be executed again.",
+                migration.Name,
+                migration.Version);
         }
         return migrationsToPerform;
     }
@@ -62,9 +64,9 @@ public class MongoMigrationPerformer(ILogger<MongoMigrationPerformer> logger, Mo
     {
         foreach (var migration in migrations)
         {
-            logger.LogInformation($"Started performing <{migration.Name}> with version <{migration.Version}>");
+            logger.LogInformation("Started performing <{@Name}> with version <{@Version}>", migration.Name, migration.Version);
             await PerformMigrationAsync(migration);
-            logger.LogInformation($"Finished performing <{migration.Name}>");
+            logger.LogInformation("Finished performing <{@Name}>", migration.Name);
         }
     }
 
@@ -74,7 +76,7 @@ public class MongoMigrationPerformer(ILogger<MongoMigrationPerformer> logger, Mo
 
         if (!isSuccessful)
         {
-            logger.LogError($"An Error occured when performing {migration.Name}. migration's execution will not be saved in Db.");
+            logger.LogError("An Error occured when performing {@Name}. migration's execution will not be saved in Db.", migration.Name);
             return;
         }
         await _collection.InsertOneAsync(new Migration

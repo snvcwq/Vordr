@@ -8,11 +8,11 @@ public class LoggingBehaviour<TRequest, TResponse>(ILogger<TRequest> logger)
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var requestName = typeof(TRequest).Name;
-        logger.LogInformation($"Handling request: {requestName}");
+        logger.LogInformation("Handling request: {@RequestName}.", requestName);
 
         var response = await next();
 
-        logger.LogInformation($"Request handled: {requestName}");
+        logger.LogInformation("Request handled: {@RequestName}.", requestName);
 
         return response;
     }

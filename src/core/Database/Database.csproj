@@ -10,4 +10,5 @@
         <PackageReference Include="MongoDB.Driver"/>
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
     </ItemGroup>
+
 </Project>

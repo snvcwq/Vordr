@@ -15,7 +15,11 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse>(
         }
         catch (Exception exception)
         {
-           logger.LogError($"An exception was caught when executing {typeof(TRequest).Name}. Exception: {exception.Message}. Stacktrace: {exception.StackTrace}");
+           logger.LogError("An exception was caught when executing {@RequestName}. Exception: {@Message}. Stacktrace: {@StackTrace}",
+               typeof(TRequest).Name,
+               exception.Message,
+               exception.StackTrace);
+           
            if (!typeof(TResponse).IsGenericType || typeof(TResponse).GetGenericTypeDefinition() != typeof(Result<>))
                throw;
 

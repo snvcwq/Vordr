@@ -6,4 +6,5 @@ namespace Vordr.Domain.Entities;
 public record MonitoringConfiguration : BaseEntity
 {
     public MonitoringStatus MonitoringStatus { get; set; }
+    
 }

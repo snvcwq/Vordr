@@ -21,7 +21,9 @@ public class PerformanceBehaviour<TRequest, TResponse> (
 
         var requestName = typeof(TRequest).Name;
 
-        logger.LogWarning($"Found a heavy request {requestName}. It took {elapsedMilliseconds} milliseconds.");
+        logger.LogWarning("Found a heavy request {@RequestName}. It took {@ElapsedMilliseconds} milliseconds.", 
+            requestName, 
+            elapsedMilliseconds);
         return response;
     }
 }

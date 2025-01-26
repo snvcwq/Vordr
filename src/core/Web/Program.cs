@@ -1,3 +1,4 @@
+using Serilog;
 using System.Reflection;
 using Vordr.Application;
 using Vordr.Domain;
@@ -28,6 +29,7 @@ await app.ExecuteMigrations();
 
 
 app.MapControllers();
+app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 
 app.Run();

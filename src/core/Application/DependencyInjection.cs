@@ -1,13 +1,13 @@
-﻿using Vordr.Application.Common.Behaviours;
+﻿using Microsoft.AspNetCore.Builder;
+using Vordr.Application.Common.Behaviours;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System.Reflection;
 
 namespace Vordr.Application;
 
 public static class DependencyInjection
 {
-    public static IHostApplicationBuilder AddApplicationServices(this IHostApplicationBuilder builder)
+    public static WebApplicationBuilder AddApplicationServices(this WebApplicationBuilder builder)
     {
 
         builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
