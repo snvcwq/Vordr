@@ -81,6 +81,7 @@ public class MongoMigrationPerformer(ILogger<MongoMigrationPerformer> logger, Mo
         {
             Version = migration.Version,
             Name = migration.Name,
+            Description = migration.Description,
             PerformedDateTimeUtc = DateTime.UtcNow
         });
     }
