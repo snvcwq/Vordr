@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Vordr.Domain.Enums;
 using Vordr.Infrastructure.Migrations;
 using Vordr.Infrastructure.Migrations.Configuration;
 using Vordr.Infrastructure.Options;
 using Vordr.Infrastructure.Persistence;
+using Vordr.ResourceMonitoring.Linux;
+using Vordr.ResourceMonitoring.MacOs;
 
 namespace Vordr.Infrastructure;
 
@@ -17,7 +20,8 @@ public static class DependencyInjection
         builder.Services.AddSingleton<MongoMigrationPerformer>();
 
         builder.Services.AddMigrations();
-        
+
+        builder.DefineResourceCollectors();
         return builder;
     }
 
@@ -25,6 +29,20 @@ public static class DependencyInjection
     {
         serviceCollection.AddSingleton<SeedDefaultConfigurationMigration>();
         return serviceCollection;
+    }
+    
+    
+    private static WebApplicationBuilder DefineResourceCollectors(this WebApplicationBuilder builder)
+    {
+        if (OperatingSystem.IsMacOS())
+            builder.AddMacOsResourceCollectors();
+        else if (OperatingSystem.IsLinux())
+            builder.AddLinuxResourceCollectors();
+        else if (OperatingSystem.IsWindows())
+            builder.AddWindowsResourceCollectors();
+        else
+            throw new UnsupportedOsPlatformException("Application runs on unsupported Operating System");
+        return builder;
     }
 
     

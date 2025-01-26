@@ -6,11 +6,20 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\ResourceMonitoring.Linux\ResourceMonitoring.Linux.csproj" />
+      <ProjectReference Include="..\..\ResourceMonitoring.MacOs\ResourceMonitoring.MacOs.csproj" />
+      <ProjectReference Include="..\..\ResourceMonitoring.Windows\ResourceMonitoring.Windows.csproj" />
       <ProjectReference Include="..\Application\Application.csproj" />
     </ItemGroup>
     
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="Hangfire" />
+      <PackageReference Include="Hangfire.AspNetCore" />
+      <PackageReference Include="Hangfire.Core" />
     </ItemGroup>
 
 </Project>

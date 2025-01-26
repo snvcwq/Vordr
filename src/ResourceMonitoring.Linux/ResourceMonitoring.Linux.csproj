@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>Vordr.ResourceMonitoring.Linux</RootNamespace>
+        <AssemblyName>Vordr.ResourceMonitoring.Linux</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\core\Application\Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+</Project>

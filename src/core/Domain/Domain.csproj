@@ -15,10 +15,9 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <ProjectReference Include="..\Database\Database.csproj" />
+        <PackageReference Include="LanguageExt.Core"/>
+        <PackageReference Include="MongoDB.Driver"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
     </ItemGroup>
 
     <ItemGroup>
