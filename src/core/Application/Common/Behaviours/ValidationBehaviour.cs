@@ -1,5 +1,6 @@
-﻿using LanguageExt.Common;
+﻿using Vordr.Domain.Constants;
 using ValidationException = Vordr.Application.Common.Exceptions.ValidationException;
+
 namespace Vordr.Application.Common.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse>(
@@ -23,10 +24,22 @@ public class ValidationBehaviour<TRequest, TResponse>(
         if (failures.Count == 0)
             return await next();
 
-        var exception = new ValidationException(failures);
-        if (!typeof(TResponse).IsGenericType || typeof(TResponse).GetGenericTypeDefinition() != typeof(Result<>))
-            throw exception;
-        
-        return (TResponse)Activator.CreateInstance(typeof(TResponse), exception)!;
+        if (!typeof(TResponse).IsGenericType || typeof(TResponse).GetGenericTypeDefinition() != typeof(ErrorOr<>))
+            throw new ValidationException(failures);
+
+        List<Error> errors = [];
+        foreach (var failure in failures)
+        {
+            errors.Add(
+                Error.Validation(failure.ErrorCode,
+                    failure.ErrorMessage,
+                    new Dictionary<string, object>
+                    {
+                        { ValidationConstants.AttemptedValue, failure.AttemptedValue },
+                        { ValidationConstants.Severity, failure.Severity },
+                        { ValidationConstants.PropertyName, failure.PropertyName }
+                    }));
+        }
+        return (TResponse)(object)errors;
     }
 }

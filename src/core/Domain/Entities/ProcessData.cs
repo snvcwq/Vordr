@@ -4,8 +4,6 @@ namespace Vordr.Domain.Entities;
 
 public record ProcessData : BaseEntity
 {
-    public const string CollectionName = "processes";
-    
     public required int Pid { get; set; }
     
     public required string Name { get; set; }

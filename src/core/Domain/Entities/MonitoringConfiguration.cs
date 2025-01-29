@@ -5,8 +5,6 @@ namespace Vordr.Domain.Entities;
 
 public record MonitoringConfiguration : BaseEntity
 {
-    public const string CollectionName = "monitoringConfiguration";
-    
     public required ProcessMonitoringConfig ProcessMonitoringConfig { get; set; }
     
     [BsonRepresentation(BsonType.String)]

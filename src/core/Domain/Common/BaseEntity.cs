@@ -8,10 +8,7 @@ namespace Vordr.Domain.Common
         [BsonId]
         public ObjectId Id { get; init; }
 
-        public DateTime LastModifiedUtc { get; set; }
-
-        public void UpdateLastModifiedDate() =>
-            LastModifiedUtc = DateTime.UtcNow;
+        public DateTime LastModifiedUtc { get; set; } = DateTime.UtcNow; 
 
     }
 }

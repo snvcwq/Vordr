@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using Vordr.Domain.Entities;
 using Vordr.Domain.Enums;
+using Vordr.Infrastructure.Constants;
 using Vordr.Infrastructure.Migrations.Configuration;
 using Vordr.Infrastructure.Persistence;
 using Version = Vordr.Infrastructure.Migrations.Configuration.Version;
@@ -14,7 +15,7 @@ public class SeedDefaultConfigurationMigration(
     : IMigration
 {
     
-    private readonly IMongoCollection<MonitoringConfiguration> _monitoringCollection = client.Database().GetCollection<MonitoringConfiguration>(MonitoringConfiguration.CollectionName);
+    private readonly IMongoCollection<MonitoringConfiguration> _monitoringCollection = client.Database().GetCollection<MonitoringConfiguration>(MongoCollections.MonitoringConfiguration);
     public Version Version { get; set; } = new(1, 0, 0);
     public string Name { get; set; } = nameof(SeedDefaultConfigurationMigration);
     public string Description { get; set; } ="Seed monitoring configuration collection with default configuration settings where all monitoring is disabled";

@@ -1,6 +1,8 @@
-﻿namespace Vordr.Domain.Entities
+﻿using Vordr.Domain.Common;
+
+namespace Vordr.Domain.Entities
 {
-    public record ProcessMetrics
+    public record ProcessMetrics : BaseEntity
     {
         public const string CollectionName = "processMetrics";
         

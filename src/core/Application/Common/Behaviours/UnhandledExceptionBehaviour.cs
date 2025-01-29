@@ -1,7 +1,4 @@
-﻿using LanguageExt.Common;
-using Microsoft.Extensions.Logging;
-
-namespace Vordr.Application.Common.Behaviours;
+﻿namespace Vordr.Application.Common.Behaviours;
 
 public class UnhandledExceptionBehaviour<TRequest, TResponse>(
     ILogger<TRequest> logger
@@ -19,11 +16,8 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse>(
                typeof(TRequest).Name,
                exception.Message,
                exception.StackTrace);
-           
-           if (!typeof(TResponse).IsGenericType || typeof(TResponse).GetGenericTypeDefinition() != typeof(Result<>))
-               throw;
+           throw;
 
-           return (TResponse)Activator.CreateInstance(typeof(TResponse), exception)!;
         }
     }
 }

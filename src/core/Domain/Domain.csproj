@@ -6,16 +6,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Constants\" />
       <Folder Include="Events\" />
       <Folder Include="Exceptions\" />
       <Folder Include="Models\" />
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="ErrorOr" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
-        <PackageReference Include="LanguageExt.Core"/>
         <PackageReference Include="MongoDB.Driver"/>
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
     </ItemGroup>
