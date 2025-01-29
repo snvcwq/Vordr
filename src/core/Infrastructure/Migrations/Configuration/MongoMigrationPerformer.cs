@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using System.Reflection;
 using Vordr.Infrastructure.Persistence;
@@ -9,8 +8,7 @@ namespace Vordr.Infrastructure.Migrations.Configuration;
 public class MongoMigrationPerformer(ILogger<MongoMigrationPerformer> logger, MongoDbClient client, IServiceProvider serviceProvider)
 {
 
-    private readonly IMongoCollection<Migration> _collection =
-        client.Database().GetCollection<Migration>(Migration.CollectionName);
+    private readonly IMongoCollection<Migration> _collection = client.MigrationsCollection();
     
     
     public async Task PerformMigrationsAsync()

@@ -2,6 +2,6 @@
 
 public record DashboardOptions
 {
-    public bool UseScalar { get; set; }
-    public bool UseHangfireDashboard { get; set; }
+    public bool UseScalar { get; init; }
+    public bool UseHangfireDashboard { get; init; }
 }

@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Options;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using Vordr.Domain.Entities;
 using Vordr.Infrastructure.Constants;
+using Vordr.Infrastructure.Migrations.Configuration;
 using Vordr.Infrastructure.Options;
 
 namespace Vordr.Infrastructure.Persistence;
@@ -17,6 +17,9 @@ public class MongoDbClient(IOptions<MongoDbOptions> mongoOptions)
 
     public IMongoCollection<ProcessMetrics> ProcessMetricsCollection() =>
         Database().GetCollection<ProcessMetrics>(MongoCollections.ProcessMetrics);
+
+    public IMongoCollection<Migration> MigrationsCollection() =>
+        Database().GetCollection<Migration>(MongoCollections.Migrations);
 
     public IMongoDatabase Database() =>
         Client.GetDatabase(Db);

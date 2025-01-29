@@ -4,8 +4,6 @@ namespace Vordr.Domain.Entities
 {
     public record ProcessMetrics : BaseEntity
     {
-        public const string CollectionName = "processMetrics";
-        
         public required int Pid { get; set; }
 
         public required double CpuUsage { get; set; }

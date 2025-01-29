@@ -1,4 +1,4 @@
-﻿namespace Vordr.Domain.Enums;
+﻿namespace Vordr.Domain.Exceptions;
 
 public class UnsupportedOsPlatformException : Exception
 {

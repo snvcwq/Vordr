@@ -6,6 +6,7 @@ using Vordr.Application.Common.Interfaces.Persistence;
 using Vordr.Application.Common.Interfaces.Services;
 using Vordr.Application.Services;
 using Vordr.Domain.Enums;
+using Vordr.Domain.Exceptions;
 using Vordr.Infrastructure.BackgroundJobs;
 using Vordr.Infrastructure.Migrations;
 using Vordr.Infrastructure.Migrations.Configuration;

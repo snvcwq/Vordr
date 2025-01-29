@@ -13,7 +13,6 @@ builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly());
 
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
-var x = builder.Configuration;
 builder
     .AddDomainServices()
     .AddApplicationServices()
@@ -24,6 +23,7 @@ builder
 var app = builder.Build();
 
 app.ConfigureScalar();
+app.ConfigureHangfireDashboard();
 
 await app.ExecuteMigrations();
 

@@ -5,8 +5,6 @@ namespace Vordr.Infrastructure.Migrations.Configuration;
 
 public record Migration
 {
-    public const string CollectionName = "migrations";
-
     [BsonId] 
     public ObjectId Id { get; init; }  
     public required Version Version { get; init; }
