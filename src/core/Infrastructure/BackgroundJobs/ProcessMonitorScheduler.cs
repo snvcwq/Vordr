@@ -1,24 +1,17 @@
-﻿using Hangfire;
+﻿using System.Linq.Expressions;
 using Vordr.Application.Common.Interfaces.BackgroundJobs;
+using Vordr.Application.Common.Interfaces.Services;
 
 namespace Vordr.Infrastructure.BackgroundJobs;
 
-public class ProcessMonitorScheduler(IBackgroundJobClient backgroundJobClient) : IProcessMonitorScheduler
+public class ProcessMonitorScheduler(IRecurringJobManager recurringJobManager, IProcessSyncService service) : IProcessMonitorScheduler
 {
-
-    public void ScheduleProcessMonitorJob()
+    public void ScheduleProcessMonitoring(string cronExpression)
     {
-        backgroundJobClient.Reschedule("", TimeSpan.FromHours(1));
-        throw new NotImplementedException();
+        Expression<Action> action = () => service.ExecuteProcessSynchronizationAsync();
+        recurringJobManager.AddOrUpdate(nameof(service.ExecuteProcessSynchronizationAsync), action, cronExpression);
     }
 
-    public void RescheduleProcessMonitorJob()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DisableProcessMonitorJob()
-    {
-        throw new NotImplementedException();
-    }
+    public void DisableProcessMonitoring() =>
+        recurringJobManager.RemoveIfExists(nameof(service.ExecuteProcessSynchronizationAsync));
 }

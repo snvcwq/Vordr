@@ -9,9 +9,6 @@
       <ProjectReference Include="..\..\monitoring\ResourceMonitoring.Linux\ResourceMonitoring.Linux.csproj" />
       <ProjectReference Include="..\..\monitoring\ResourceMonitoring.MacOs\ResourceMonitoring.MacOs.csproj" />
       <ProjectReference Include="..\..\monitoring\ResourceMonitoring.Windows\ResourceMonitoring.Windows.csproj" />
-      <ProjectReference Include="..\..\ResourceMonitoring.Linux\ResourceMonitoring.Linux.csproj" />
-      <ProjectReference Include="..\..\ResourceMonitoring.MacOs\ResourceMonitoring.MacOs.csproj" />
-      <ProjectReference Include="..\..\ResourceMonitoring.Windows\ResourceMonitoring.Windows.csproj" />
       <ProjectReference Include="..\Application\Application.csproj" />
     </ItemGroup>
     
@@ -23,6 +20,7 @@
       <PackageReference Include="Hangfire" />
       <PackageReference Include="Hangfire.AspNetCore" />
       <PackageReference Include="Hangfire.Core" />
+      <PackageReference Include="Hangfire.Mongo" />
     </ItemGroup>
 
 </Project>

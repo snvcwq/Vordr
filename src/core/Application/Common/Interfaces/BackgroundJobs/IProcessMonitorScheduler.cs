@@ -2,9 +2,7 @@
 
 public interface IProcessMonitorScheduler
 {
-    public void ScheduleProcessMonitorJob();
+    public void ScheduleProcessMonitoring(string cronExpression);
     
-    public void RescheduleProcessMonitorJob();
-
-    public void DisableProcessMonitorJob();
+    public void DisableProcessMonitoring();
 }

@@ -2,6 +2,8 @@
 using Vordr.Application.Common.Behaviours;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Vordr.Application.Common.Interfaces.Services;
+using Vordr.Application.Services;
 
 namespace Vordr.Application;
 
@@ -20,7 +22,19 @@ public static class DependencyInjection
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         });
         
+        builder.Services.RegisterServices();
+        
+        
         return builder;
+    }
+    
+    private static IServiceCollection RegisterServices(this IServiceCollection serviceCollection)
+    {
+
+        serviceCollection.AddScoped<IProcessSyncService, ProcessSyncService>();
+
+        
+        return serviceCollection;
     }
     
 }
