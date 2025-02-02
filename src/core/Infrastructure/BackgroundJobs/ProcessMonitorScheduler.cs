@@ -3,36 +3,91 @@ using Vordr.Application.Common.Extensions;
 using Vordr.Application.Common.Interfaces.BackgroundJobs;
 using Vordr.Application.Common.Interfaces.Persistence;
 using Vordr.Application.Common.Interfaces.Services;
+using Vordr.Domain.Entities;
+using Vordr.Domain.Enums;
 
 namespace Vordr.Infrastructure.BackgroundJobs;
 
 public class ProcessMonitorScheduler(
     IRecurringJobManager recurringJobManager, 
-    IProcessSyncService service,
+    IProcessCollectService service,
     IMonitoringConfigurationRepository monitoringConfigurationRepository,
     ILogger<ProcessMonitorScheduler> logger
     ): IProcessMonitorScheduler
 {
-    public async Task ScheduleProcessMonitoring()
+    public async Task ScheduleMonitoring(string? cronExpression = null)
     {
-        var monitoringConfiguration = await monitoringConfigurationRepository.RetrieveMonitoringConfigurationAsync();
-        monitoringConfiguration.Switch(
-            suc => ScheduleProcessMonitoring(suc.ProcessMonitoringConfig.ScanFrequency),
-            errors => logger.LogError("Error occured when retrieving monitoring configuration for scheduling process monitoring. Errors:{errors} .", errors.Print()));
-    }
-    
-    public void ScheduleProcessMonitoring(string cronExpression)
-    {
-        if (cronExpression.IsNullOrWhiteSpace())
+        var monitoringConfigurationResult = await monitoringConfigurationRepository.RetrieveMonitoringConfigurationAsync();
+        var monitoringConfiguration = monitoringConfigurationResult.Match(
+            suc =>
+            {
+                logger.LogDebug("Monitoring configuration was successfully retrieved for scheduling process monitoring ");
+                return suc;
+            },
+            errors =>
+            {
+                logger.LogError("Error occured when retrieving monitoring configuration for scheduling process monitoring. Errors:{errors} .", errors.Print());
+                return (MonitoringConfiguration?)null;
+            });
+        
+        if (monitoringConfiguration is null)
         {
-            logger.LogWarning("Cron expression is not provided. process monitoring will not be performed.");
+            logger.LogWarning("Monitoring configuration was not retrieved. process monitoring will not be performed.");
+            return;
+        }
+
+        cronExpression = !cronExpression.IsNullOrWhiteSpace()
+            ? cronExpression
+            : monitoringConfiguration.ProcessMonitoringConfig.ScanFrequency; 
+        
+        
+        if (monitoringConfiguration.ProcessMonitoringConfig.MonitoringStatus is MonitoringStatus.Disabled)
+        {
+            logger.LogWarning("Process monitoring status is disabled. Monitoring will not be performed.");
             return;
         }
         
-        Expression<Action> action = () => service.ExecuteProcessSynchronizationAsync();
-        recurringJobManager.AddOrUpdate(nameof(service.ExecuteProcessSynchronizationAsync), action, cronExpression);
+        Expression<Action> action = () => service.ExecuteProcessDataCollectingAsync();
+        recurringJobManager.AddOrUpdate(nameof(service.ExecuteProcessDataCollectingAsync), action, cronExpression);
     }
 
-    public void DisableProcessMonitoring() =>
-        recurringJobManager.RemoveIfExists(nameof(service.ExecuteProcessSynchronizationAsync));
+    public void DisableMonitoring()
+    {
+        recurringJobManager.RemoveIfExists(nameof(service.ExecuteProcessDataCollectingAsync));
+    }
+
+    public async Task ConfigureMonitoring()
+    {
+
+        var monitoringConfigurationResult = await monitoringConfigurationRepository.RetrieveMonitoringConfigurationAsync();
+        var monitoringConfiguration = monitoringConfigurationResult.Match(
+            suc =>
+            {
+                logger.LogDebug("Monitoring configuration was successfully retrieved for configuring process monitoring ");
+                return suc;
+            },
+            errors =>
+            {
+                logger.LogError("Error occured when retrieving monitoring configuration for configuring process monitoring. Errors:{errors} .", errors.Print());
+                return (MonitoringConfiguration?)null;
+            });
+        
+        if (monitoringConfiguration is null)
+        {
+            logger.LogWarning("Monitoring configuration was not retrieved. process monitoring configuration will not be performed.");
+            return;
+        }
+
+        switch (monitoringConfiguration.ProcessMonitoringConfig.MonitoringStatus)
+        {
+            case MonitoringStatus.Enabled:
+                await ScheduleMonitoring();
+                break;
+            case MonitoringStatus.Disabled:
+                DisableMonitoring();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
 }

@@ -6,7 +6,8 @@ public class CpuMetric
 {
     
 }
-public class UpdateVisitor : IVisitor
+/*
+public class UpdateVisitor : IVisitor, OpenHardwareMonitor.Hardware.IVisitor
 {
     public void VisitComputer(IComputer computer)
     {
@@ -21,3 +22,4 @@ public class UpdateVisitor : IVisitor
     public void VisitParameter(IParameter parameter) { }
 }
 
+*/

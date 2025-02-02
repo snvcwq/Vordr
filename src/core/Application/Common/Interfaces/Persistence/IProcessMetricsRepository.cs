@@ -1,5 +1,5 @@
 ﻿using MongoDB.Bson;
-using Vordr.Application.Common.Models.Process;
+using Vordr.Application.Models.Process;
 using Vordr.Domain.Entities;
 
 namespace Vordr.Application.Common.Interfaces.Persistence;

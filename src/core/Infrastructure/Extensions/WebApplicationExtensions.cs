@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Vordr.Application.Common.Interfaces.BackgroundJobs;
+using Vordr.Application.Common.Interfaces.Resources;
 using Vordr.Infrastructure.Migrations.Configuration;
 
 namespace Vordr.Infrastructure.Extensions;
@@ -20,7 +21,13 @@ public static class WebApplicationExtensions
     {
         using var scope = app.Services.CreateScope();
         var processMonitorScheduler = scope.ServiceProvider.GetRequiredService<IProcessMonitorScheduler>();
-        await processMonitorScheduler.ScheduleProcessMonitoring();
+        var ramUsageMonitorScheduler = scope.ServiceProvider.GetRequiredService<IRamUsageMonitoringScheduler>();
+        var cpuLoadMonitoringScheduler = scope.ServiceProvider.GetRequiredService<ICpuLoadMonitoringScheduler>();
+
+        
+        await processMonitorScheduler.ConfigureMonitoring();
+        await ramUsageMonitorScheduler.ConfigureCollecting();
+        await cpuLoadMonitoringScheduler.ConfigureCollecting();
         return app;
     }
 }

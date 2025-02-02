@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Cronos;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Vordr.Domain.Entities;
 using Vordr.Domain.Enums;
@@ -29,7 +30,8 @@ public class SeedDefaultConfigurationMigration(
 
             if (monitoringConfigurations.Count > 0)
                 DeleteConfigurations(monitoringConfigurations);
-            
+            var expression = CronExpression.Parse("*/20 * * * * *", CronFormat.IncludeSeconds);
+
             await _monitoringCollection.InsertOneAsync( new MonitoringConfiguration
             {
                 ProcessMonitoringConfig = new ProcessMonitoringConfig
@@ -38,7 +40,7 @@ public class SeedDefaultConfigurationMigration(
                     ScanFrequency = "*/1 * * * *",
                     MaxProcessesToScan = 100
                 },
-                MonitorCpu = MonitoringStatus.Disabled,
+                MonitorCpu = MonitoringStatus.Enabled,
                 MonitorDrives = MonitoringStatus.Disabled,
                 MonitorGpu = MonitoringStatus.Disabled,
                 MonitorRam = MonitoringStatus.Disabled,
@@ -47,7 +49,8 @@ public class SeedDefaultConfigurationMigration(
                 MonitorNetwork = MonitoringStatus.Disabled,
                 MonitorPeripherals = MonitoringStatus.Disabled,
                 MonitorTemperature = MonitoringStatus.Disabled,
-                MonitorPowerSupply = MonitoringStatus.Disabled
+                MonitorPowerSupply = MonitoringStatus.Disabled,
+                ScanFrequency = expression.ToString()
             });
         }
         catch (Exception e)

@@ -5,6 +5,7 @@
   </PropertyGroup>
   <!-- Manage package versions-->
   <ItemGroup>
+    <PackageVersion Include="Cronos" Version="0.9.0" />
     <PackageVersion Include="ErrorOr" Version="2.0.1" />
     <PackageVersion Include="Hangfire" Version="1.8.17" />
     <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.17" />
@@ -18,7 +19,6 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
     <PackageVersion Include="MongoDB.Driver" Version="3.1.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.0" />
-    <PackageVersion Include="OpenHardwareMonitorLibNet" Version="2023.11.10.1755" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.0.4" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0" />

@@ -1,4 +1,4 @@
-﻿namespace Vordr.Application.Common.Models.Process;
+﻿namespace Vordr.Application.Models.Process;
 
 public record UpdateProcessesRequest(
     UpdateProcessesDataRequest UpdateProcessesDataRequest,

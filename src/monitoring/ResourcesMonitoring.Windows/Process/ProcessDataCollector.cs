@@ -1,5 +1,5 @@
 ﻿using Vordr.Application.Common.Interfaces.Resources;
-using Vordr.Application.Common.Models.Process;
+using Vordr.Application.Models.Process;
 using Vordr.ResourcesMonitoring.Windows.Convertors;
 using Vordr.ResourcesMonitoring.Windows.Process.Extensions;
 using Vordr.ResourcesMonitoring.Windows.Process.Properties;

@@ -31,9 +31,10 @@ public static class DependencyInjection
     private static IServiceCollection RegisterServices(this IServiceCollection serviceCollection)
     {
 
-        serviceCollection.AddScoped<IProcessSyncService, ProcessSyncService>();
+        serviceCollection.AddScoped<IProcessCollectService, ProcessCollectService>();
+        serviceCollection.AddScoped<IRamUsageCollectService, RamUsageCollectService>();
+        serviceCollection.AddScoped<ICpuLoadCollectService, CpuLoadCollectService>();
 
-        
         return serviceCollection;
     }
     

@@ -1,9 +1,9 @@
 ﻿using Vordr.Application.Common.Extensions;
 using Vordr.Application.Common.Interfaces.Persistence;
-using Vordr.Application.Common.Models.Process;
+using Vordr.Application.Models.Process;
 using Vordr.Domain.Entities;
 
-namespace Vordr.Application.Process.Commands;
+namespace Vordr.Application.Process.Commands.Upload;
 
 // ReSharper disable once UnusedType.Global
 public class UploadCollectedProcessesCommandHandler(

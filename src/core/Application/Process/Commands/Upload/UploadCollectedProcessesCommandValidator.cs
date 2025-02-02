@@ -1,4 +1,4 @@
-﻿namespace Vordr.Application.Process.Commands;
+﻿namespace Vordr.Application.Process.Commands.Upload;
 
 public class UploadCollectedProcessesCommandValidator : AbstractValidator<UploadCollectedProcessesCommand>
 {

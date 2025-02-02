@@ -16,7 +16,6 @@
 
     <ItemGroup>
       <PackageReference Include="LibreHardwareMonitorLib" />
-      <PackageReference Include="OpenHardwareMonitorLibNet" />
       <PackageReference Include="System.Diagnostics.PerformanceCounter" />
       <PackageReference Include="System.Drawing.Common" />
       <PackageReference Include="System.Management" />

@@ -1,7 +1,7 @@
-﻿using OpenHardwareMonitor.Hardware;
-
+﻿
 namespace Vordr.ResourcesMonitoring.Windows.Process;
 
+/*
 internal static class GpuUsage
 {
     private static readonly List<IHardware> Gpus = [];
@@ -58,3 +58,4 @@ internal static class GpuUsage
         return 0;
     }
 }
+*/

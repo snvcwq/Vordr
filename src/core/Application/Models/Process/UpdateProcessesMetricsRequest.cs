@@ -1,5 +1,5 @@
 ﻿using Vordr.Domain.Entities;
 
-namespace Vordr.Application.Common.Models.Process;
+namespace Vordr.Application.Models.Process;
 
 public record UpdateProcessesMetricsRequest(IList<ProcessMetrics> NewProcesses);

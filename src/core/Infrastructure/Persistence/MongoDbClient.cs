@@ -23,6 +23,12 @@ public class MongoDbClient(IOptions<MongoDbOptions> mongoOptions)
     public IMongoCollection<MonitoringConfiguration> MonitoringConfigurationCollection() =>
         Database().GetCollection<MonitoringConfiguration>(MongoCollections.MonitoringConfiguration);
 
+    public IMongoCollection<RamUsage> RamUsagesCollection() =>
+        Database().GetCollection<RamUsage>(MongoCollections.RamUsage);
+    
+    public IMongoCollection<CpuLoad> CpuLoadsCollection() =>
+        Database().GetCollection<CpuLoad>(MongoCollections.CpuLoad);
+    
     public IMongoDatabase Database() =>
         Client.GetDatabase(Db);
 }

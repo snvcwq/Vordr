@@ -65,6 +65,8 @@ public static class DependencyInjection
         serviceCollection.AddScoped<IProcessDataRepository, ProcessDataRepository>();
         serviceCollection.AddScoped<IProcessMetricsRepository, ProcessMetricsRepository>();
         serviceCollection.AddScoped<IMonitoringConfigurationRepository, MonitoringConfigurationRepository>();
+        serviceCollection.AddScoped<IRamUsagesRepository, RamUsagesRepository>();
+        serviceCollection.AddScoped<ICpuLoadRepository, CpuLoadRepository>();
 
         
         return serviceCollection;
@@ -98,7 +100,9 @@ public static class DependencyInjection
     private static IServiceCollection DefineSchedulers(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddScoped<IProcessMonitorScheduler, ProcessMonitorScheduler>();
-        
+        serviceCollection.AddScoped<IRamUsageMonitoringScheduler, RamUsageMonitoringScheduler>();
+        serviceCollection.AddScoped<ICpuLoadMonitoringScheduler, CpuLoadMonitorScheduler>();
+
         return serviceCollection;
     }
 

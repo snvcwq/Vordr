@@ -2,8 +2,10 @@
 
 public interface IProcessMonitorScheduler
 {
-    public Task ScheduleProcessMonitoring();
-    public void ScheduleProcessMonitoring(string cronExpression);
+    public Task ScheduleMonitoring(string? cronExpression = null);
 
-    public void DisableProcessMonitoring();
+    public void DisableMonitoring();
+    
+    public Task ConfigureMonitoring();
+
 }

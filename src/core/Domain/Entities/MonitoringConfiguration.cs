@@ -36,4 +36,6 @@ public record MonitoringConfiguration : BaseEntity
     
     [BsonRepresentation(BsonType.String)]
     public MonitoringStatus MonitorPowerSupply { get; set; }
+    
+    public required string? ScanFrequency { get; set; }
 }

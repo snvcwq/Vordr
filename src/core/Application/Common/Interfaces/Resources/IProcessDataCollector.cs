@@ -1,4 +1,4 @@
-﻿using Vordr.Application.Common.Models.Process;
+﻿using Vordr.Application.Models.Process;
 
 namespace Vordr.Application.Common.Interfaces.Resources;
 
