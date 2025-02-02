@@ -135,7 +135,8 @@ public class ProcessDataRepository(MongoDbClient client, ILogger<ProcessDataRepo
             var filters = identifiers.Select(id =>
                 Builders<ProcessData>.Filter.And(
                     Builders<ProcessData>.Filter.Eq(pd => pd.Name, id.Name),
-                    Builders<ProcessData>.Filter.Eq(pd => pd.Path, id.RootPath)
+                    Builders<ProcessData>.Filter.Eq(pd => pd.Path, id.RootPath),
+                    Builders<ProcessData>.Filter.Eq(pd => pd.Version, id.version)
                 )
             );
             var filter = Builders<ProcessData>.Filter.Or(filters);

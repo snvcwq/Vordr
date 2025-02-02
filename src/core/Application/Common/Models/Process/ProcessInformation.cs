@@ -14,7 +14,7 @@ public record ProcessInformation
     
     public required int Priority { get; set; }
 
-    public required string Manufacturer { get; set; }
+    public required string Company { get; set; }
 
     public required string Version { get; set; }
 
@@ -26,7 +26,7 @@ public record ProcessInformation
         
     public required long RamUsage { get; set; }
         
-    public required long MaxWorkingSet { get; set; }
+    public required double MaxWorkingSetMb { get; set; }
 
     public double GpuUsage { get; set; }
         
@@ -34,9 +34,9 @@ public record ProcessInformation
         
     public int HandleCount { get; set; }
 
-    public long DiskReadBytes { get; set; }
+    public double DiskReadMb { get; set; }
     
-    public long DiskWriteBytes { get; set; }
+    public double DiskWriteMb { get; set; }
 
     public long NetworkSentBytes { get; set; }
     

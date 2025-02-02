@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <RootNamespace>Vordr.ResourcesMonitoring.Windows</RootNamespace>
+        <AssemblyName>Vordr.ResourcesMonitoring.Windows</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+
+        <ProjectReference Include="..\..\core\Application\Application.csproj" />
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="LibreHardwareMonitorLib" />
+      <PackageReference Include="OpenHardwareMonitorLibNet" />
+      <PackageReference Include="System.Diagnostics.PerformanceCounter" />
+      <PackageReference Include="System.Drawing.Common" />
+      <PackageReference Include="System.Management" />
+    </ItemGroup>
+
+</Project>

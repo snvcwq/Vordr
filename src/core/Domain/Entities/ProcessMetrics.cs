@@ -10,7 +10,7 @@ namespace Vordr.Domain.Entities
         
         public required long RamUsage { get; set; }
         
-        public required long MaxWorkingSet { get; set; }
+        public required double MaxWorkingSet { get; set; }
 
         public double GpuUsage { get; set; }
         
@@ -18,8 +18,9 @@ namespace Vordr.Domain.Entities
         
         public int HandleCount { get; set; }
 
-        public long DiskReadBytes { get; set; }
-        public long DiskWriteBytes { get; set; }
+        public double DiskReadMb { get; set; }
+        
+        public double DiskWriteMb { get; set; }
 
         public long NetworkSentBytes { get; set; }
         public long NetworkReceivedBytes { get; set; }

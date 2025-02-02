@@ -26,6 +26,7 @@ app.ConfigureScalar();
 app.ConfigureHangfireDashboard();
 
 await app.ExecuteMigrations();
+await app.ScheduleMonitoring();
 
 
 app.MapControllers();

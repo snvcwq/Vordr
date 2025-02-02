@@ -1,11 +1,10 @@
 ﻿using Hangfire.Mongo;
+using Hangfire.Mongo.Migration.Strategies;
+using Hangfire.Mongo.Migration.Strategies.Backup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Vordr.Application.Common.Interfaces.BackgroundJobs;
 using Vordr.Application.Common.Interfaces.Persistence;
-using Vordr.Application.Common.Interfaces.Services;
-using Vordr.Application.Services;
-using Vordr.Domain.Enums;
 using Vordr.Domain.Exceptions;
 using Vordr.Infrastructure.BackgroundJobs;
 using Vordr.Infrastructure.Migrations;
@@ -13,8 +12,7 @@ using Vordr.Infrastructure.Migrations.Configuration;
 using Vordr.Infrastructure.Options;
 using Vordr.Infrastructure.Persistence;
 using Vordr.Infrastructure.Persistence.Repositories;
-using Vordr.ResourceMonitoring.Linux;
-using Vordr.ResourceMonitoring.MacOs;
+using Vordr.ResourcesMonitoring.Windows;
 
 namespace Vordr.Infrastructure;
 
@@ -22,20 +20,28 @@ public static class DependencyInjection
 {
     public static WebApplicationBuilder AddInfrastructureServices(this WebApplicationBuilder builder)
     {
-        builder.Services.Configure<MongoDbOptions>(builder.Configuration.GetSection(nameof(MongoDbOptions)));
-
+        builder.AddOptions();
+        
         builder.Services.AddSingleton<MongoDbClient>();
         builder.Services.AddSingleton<MongoMigrationPerformer>();
 
         builder.Services.AddMigrations();
         builder.Services.RegisterRepositories();
-        builder.Services.InitHangfire();
+        builder.InitHangfire();
         
         builder.Services.DefineSchedulers();
         builder.DefineResourceCollectors();
         return builder;
     }
 
+    private static WebApplicationBuilder AddOptions(this WebApplicationBuilder builder)
+    {
+        builder.Services.Configure<HangfireOptions>(builder.Configuration.GetSection(nameof(HangfireOptions)));
+        builder.Services.Configure<MongoDbOptions>(builder.Configuration.GetSection(nameof(MongoDbOptions)));
+        return builder;
+    }
+
+    
     private static IServiceCollection AddMigrations(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddSingleton<SeedDefaultConfigurationMigration>();
@@ -45,11 +51,7 @@ public static class DependencyInjection
     
     private static WebApplicationBuilder DefineResourceCollectors(this WebApplicationBuilder builder)
     {
-        if (OperatingSystem.IsMacOS())
-            builder.AddMacOsResourceCollectors();
-        else if (OperatingSystem.IsLinux())
-            builder.AddLinuxResourceCollectors();
-        else if (OperatingSystem.IsWindows())
+        if (OperatingSystem.IsWindows())
             builder.AddWindowsResourceCollectors();
         else
             throw new UnsupportedOsPlatformException("Application runs on unsupported Operating System");
@@ -68,20 +70,29 @@ public static class DependencyInjection
         return serviceCollection;
     }
     
-    private static IServiceCollection InitHangfire(this IServiceCollection serviceCollection)
+    private static WebApplicationBuilder InitHangfire(this WebApplicationBuilder builder)
     {
-        using var serviceProvider = serviceCollection.BuildServiceProvider();
-
-        var mongoDbOptions = serviceProvider.GetRequiredService<IOptions<MongoDbOptions>>();
-        var hangfireOptions = serviceProvider.GetRequiredService<IOptions<HangfireOptions>>();
-        
-        GlobalConfiguration.Configuration
-            .UseMongoStorage(mongoDbOptions.Value.ConnectionString, hangfireOptions.Value.DatabaseName);
-
-        serviceCollection.AddHangfireServer();
+        using var serviceProvider = builder.Services.BuildServiceProvider();
 
         
-        return serviceCollection;
+        builder.Services.AddHangfire((sp, config) =>
+        {
+            var migrationOptions = new MongoMigrationOptions
+            {
+                MigrationStrategy = new MigrateMongoMigrationStrategy(),
+                BackupStrategy = new CollectionMongoBackupStrategy()
+            };
+            var mongoStorageOptions = new MongoStorageOptions { MigrationOptions = migrationOptions, CheckConnection = false };
+
+            var mongoDbOptions = sp.GetRequiredService<IOptions<MongoDbOptions>>().Value;
+            var hangfireOptions = sp.GetRequiredService<IOptions<HangfireOptions>>().Value;
+            config.UseMongoStorage(mongoDbOptions.ConnectionString, hangfireOptions.DatabaseName, mongoStorageOptions);
+
+        });
+        builder.Services.AddHangfireServer();
+
+        
+        return builder;
     }
     
     private static IServiceCollection DefineSchedulers(this IServiceCollection serviceCollection)

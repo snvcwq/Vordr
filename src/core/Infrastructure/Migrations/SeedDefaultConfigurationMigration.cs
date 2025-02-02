@@ -18,7 +18,7 @@ public class SeedDefaultConfigurationMigration(
     private readonly IMongoCollection<MonitoringConfiguration> _monitoringCollection = client.Database().GetCollection<MonitoringConfiguration>(MongoCollections.MonitoringConfiguration);
     public Version Version { get; set; } = new(1, 0, 0);
     public string Name { get; set; } = nameof(SeedDefaultConfigurationMigration);
-    public string Description { get; set; } ="Seed monitoring configuration collection with default configuration settings where all monitoring is disabled";
+    public string Description { get; set; } = "Seed monitoring configuration collection with default configuration settings where all monitoring is disabled";
 
     public async Task<bool> ExecuteAsync()
     {
@@ -35,7 +35,7 @@ public class SeedDefaultConfigurationMigration(
                 ProcessMonitoringConfig = new ProcessMonitoringConfig
                 {
                     MonitoringStatus = MonitoringStatus.Disabled,
-                    ScanSchedule = "",
+                    ScanFrequency = "*/1 * * * *",
                     MaxProcessesToScan = 100
                 },
                 MonitorCpu = MonitoringStatus.Disabled,

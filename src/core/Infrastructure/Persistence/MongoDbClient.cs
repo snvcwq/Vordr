@@ -20,6 +20,8 @@ public class MongoDbClient(IOptions<MongoDbOptions> mongoOptions)
 
     public IMongoCollection<Migration> MigrationsCollection() =>
         Database().GetCollection<Migration>(MongoCollections.Migrations);
+    public IMongoCollection<MonitoringConfiguration> MonitoringConfigurationCollection() =>
+        Database().GetCollection<MonitoringConfiguration>(MongoCollections.MonitoringConfiguration);
 
     public IMongoDatabase Database() =>
         Client.GetDatabase(Db);

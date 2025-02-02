@@ -15,7 +15,7 @@ public class UploadCollectedProcessesCommandHandler(
     public async Task Handle(UploadCollectedProcessesCommand request, CancellationToken cancellationToken)
     {
         var retrievedProcesses = request.ProcessList.ToList();
-        var processOsIdentifiers = retrievedProcesses.Select(p => new ProcessOsIdentifier(p.Name, p.Path));
+        var processOsIdentifiers = retrievedProcesses.Select(p => new ProcessOsIdentifier(p.Name, p.Path, p.Version));
         var storedProcessesResult = await processDataRepository.RetrieveAsync(processOsIdentifiers);
 
         var updatedPidRequests = new List<UpdatePidRequest>();
@@ -127,7 +127,7 @@ public class UploadCollectedProcessesCommandHandler(
         storedData.Architecture = retrievedData.Architecture;
         storedData.Path = retrievedData.Path;
         storedData.Icon = retrievedData.Icon;
-        storedData.Manufacturer = retrievedData.Manufacturer;
+        storedData.Manufacturer = retrievedData.Company;
         storedData.Priority = retrievedData.Priority;
         storedData.User = retrievedData.User;
         storedData.Version = retrievedData.Version;
@@ -144,7 +144,7 @@ public class UploadCollectedProcessesCommandHandler(
             Architecture = retrievedData.Architecture,
             Path = retrievedData.Path,
             Icon = retrievedData.Icon,
-            Manufacturer = retrievedData.Manufacturer,
+            Manufacturer = retrievedData.Company,
             Priority = retrievedData.Priority,
             User = retrievedData.User,
             Version = retrievedData.Version,
@@ -159,12 +159,12 @@ public class UploadCollectedProcessesCommandHandler(
             Pid = retrievedData.Pid,
             CpuUsage = retrievedData.CpuUsage,
             RamUsage = retrievedData.RamUsage,
-            MaxWorkingSet = retrievedData.MaxWorkingSet,
+            MaxWorkingSet = retrievedData.MaxWorkingSetMb,
             GpuUsage = retrievedData.GpuUsage,
             ThreadCount = retrievedData.ThreadCount,
             HandleCount = retrievedData.HandleCount,
-            DiskReadBytes = retrievedData.DiskReadBytes,
-            DiskWriteBytes = retrievedData.DiskWriteBytes,
+            DiskReadMb = retrievedData.DiskReadMb,
+            DiskWriteMb = retrievedData.DiskWriteMb,
             NetworkSentBytes = retrievedData.NetworkSentBytes,
             NetworkReceivedBytes = retrievedData.NetworkReceivedBytes
         };
@@ -173,13 +173,13 @@ public class UploadCollectedProcessesCommandHandler(
     private List<UpdatePidRequest> DefineProcessesThatChangedPid(IEnumerable<ProcessData> storedProcesses,
         IEnumerable<ProcessInformation> retrievedProcesses)
     {
-        var storedProcessesDictionary = storedProcesses.ToDictionary(pd => (pd.Name, pd.Path));
+        var storedProcessesDictionary = storedProcesses.ToDictionary(pd => (pd.Name, pd.Path, pd.Version));
 
         List<UpdatePidRequest> updateProcessRequests = [];
 
         foreach (var retrievedProcess in retrievedProcesses)
         {
-            if (!storedProcessesDictionary.TryGetValue((retrievedProcess.Name, retrievedProcess.Path),
+            if (!storedProcessesDictionary.TryGetValue((retrievedProcess.Name, retrievedProcess.Path, retrievedProcess.Version),
                     out var storedProcess))
                 continue;
 

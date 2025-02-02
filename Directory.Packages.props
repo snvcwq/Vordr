@@ -10,6 +10,7 @@
     <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.17" />
     <PackageVersion Include="Hangfire.Core" Version="1.8.17" />
     <PackageVersion Include="Hangfire.Mongo" Version="1.11.2" />
+    <PackageVersion Include="LibreHardwareMonitorLib" Version="0.9.5-pre380" />
     <PackageVersion Include="MediatR" Version="12.4.1" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0-preview1" />
     <PackageVersion Include="FluentValidation" Version="12.0.0-preview1" />
@@ -17,12 +18,16 @@
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
     <PackageVersion Include="MongoDB.Driver" Version="3.1.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.0" />
+    <PackageVersion Include="OpenHardwareMonitorLibNet" Version="2023.11.10.1755" />
     <PackageVersion Include="Scalar.AspNetCore" Version="2.0.4" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0" />
     <PackageVersion Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageVersion Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageVersion Include="System.Diagnostics.PerformanceCounter" Version="9.0.1" />
+    <PackageVersion Include="System.Drawing.Common" Version="9.0.1" />
+    <PackageVersion Include="System.Management" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup>
     <PackageVersion Include="MongoDB.Analyzer" Version="1.5.0" />

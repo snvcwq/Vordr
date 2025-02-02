@@ -6,6 +6,10 @@
         <UserSecretsId>a7778629-d13d-46c8-9ff1-8fc70f9efd4f</UserSecretsId>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <Optimize>true</Optimize>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
         <PackageReference Include="Scalar.AspNetCore" />

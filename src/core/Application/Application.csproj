@@ -7,6 +7,8 @@
 
     <ItemGroup>
       <Folder Include="Common\Mappings\" />
+      <Folder Include="MonitoringConfiguration\Commands\" />
+      <Folder Include="MonitoringConfiguration\Queries\" />
       <Folder Include="Options\" />
     </ItemGroup>
 
