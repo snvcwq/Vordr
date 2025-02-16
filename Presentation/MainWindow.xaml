@@ -1,0 +1,51 @@
+﻿<Window x:Class="Presentation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uc="clr-namespace:Presentation.UserControls"
+        xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        Height="760" Width="1280" ResizeMode="NoResize" AllowsTransparency="True"
+        WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent">
+    <Border CornerRadius="25" Background="#151f2d" MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <!-- left menu -->
+            <Border Grid.RowSpan="3" Background="#1e2e44" CornerRadius="25 0 0 25">
+                <Grid>
+                    <StackPanel VerticalAlignment="Top">
+                        <!--Ellipses-->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 40">
+                            <Ellipse Width="8" Height="8" Fill="#eb1700"></Ellipse>
+                            <Ellipse Width="8" Height="8" Fill="#ffaf01" Margin=" 7 0"></Ellipse>
+                            <Ellipse Width="8" Height="8" Fill="#009d00"></Ellipse>
+                        </StackPanel>
+
+                            <!-- menu buttons -->
+                    
+                            <uc:Menubutton Icon="HomeVariant" IsActive="True"></uc:Menubutton>
+                            <uc:Menubutton Icon="Finance"></uc:Menubutton>
+                            <uc:Menubutton Icon="CommentMultipleOutline"></uc:Menubutton>
+                            <uc:Menubutton Icon="AccountSearchOutline"></uc:Menubutton>
+                            <uc:Menubutton Icon="BookSyncOutline"></uc:Menubutton>
+                            <uc:Menubutton Icon="AlertCircleCheckOutline"></uc:Menubutton>
+                            <uc:Menubutton Icon="CogOutline"></uc:Menubutton>
+                       
+                    </StackPanel>
+                    <uc:Menubutton Icon="Power" VerticalAlignment="Bottom" Margin="0 0 0 15"></uc:Menubutton>
+
+                </Grid>
+
+            </Border>
+            
+        </Grid>
+    </Border>
+</Window>

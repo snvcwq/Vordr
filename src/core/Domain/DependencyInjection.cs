@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Vordr.Domain;
 
 public static class DependencyInjection
 {
-    public static WebApplicationBuilder AddDomainServices(this WebApplicationBuilder builder)
+    public static IServiceCollection AddDomainServices(this IServiceCollection services)
     {
-        return builder;
+        return services;
     }
 }

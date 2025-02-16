@@ -12,7 +12,7 @@ public class UploadCpuLoadCommandHandler(
     {
         var result = await repository.UploadAsync(request.ToCpuLoad());
         result.Switch(
-            _ => logger.LogDebug("Ram usage was successfully uploaded"),
+            _ => logger.LogDebug("Cpu usage was successfully uploaded"),
             errors => logger.LogError("Error occurred when uploading cpu load. Errors: {errors}.", errors.Print()));
     }
 }

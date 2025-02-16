@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Vordr.Application.Common.Interfaces.Resources;
 using Vordr.ResourcesMonitoring.Windows.Cpu;
 using Vordr.ResourcesMonitoring.Windows.Process;
@@ -9,12 +8,12 @@ namespace Vordr.ResourcesMonitoring.Windows;
 
 public static class DependencyInjection
 {
-    public static WebApplicationBuilder AddWindowsResourceCollectors(this WebApplicationBuilder builder)
+    public static IServiceCollection AddWindowsResourceCollectors(this IServiceCollection serviceCollection)
     {
-        builder.Services.AddScoped< IProcessDataCollector, ProcessDataCollector>();
-        builder.Services.AddScoped< IRamUsageCollector, RamUsageCollector>();
-        builder.Services.AddScoped< ICpuUsageCollector, CpuUsageCollector>();
+        serviceCollection.AddScoped< IProcessDataCollector, ProcessDataCollector>();
+        serviceCollection.AddScoped< IRamUsageCollector, RamUsageCollector>();
+        serviceCollection.AddScoped< ICpuUsageCollector, CpuUsageCollector>();
         
-        return builder;
+        return serviceCollection;
     }
 }

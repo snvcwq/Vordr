@@ -1,4 +1,5 @@
 ﻿using LibreHardwareMonitor.Hardware;
+using Serilog;
 using Vordr.Application.Common.Interfaces.Resources;
 using Vordr.Application.Models.Cpu;
 using Vordr.ResourcesMonitoring.Windows.Ram;
@@ -24,7 +25,7 @@ public class CpuUsageCollector : ICpuUsageCollector
         var cpuHardware = Computer.Hardware.First(hardware => hardware.HardwareType == HardwareType.Cpu);
         foreach(var sensor in cpuHardware.Sensors)
         {
-            
+            Log.Debug($"Sensor {sensor.Name} with type:{sensor.SensorType.ToString()} has value:{sensor.Value}");
             switch (sensor.Name)
             {
                 case CpuUsageConstants.TotalLoadSensor when sensor.SensorType is SensorType.Load:

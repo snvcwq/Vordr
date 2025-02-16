@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Vordr.Application.Common.Behaviours;
+﻿using Vordr.Application.Common.Behaviours;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Vordr.Application.Common.Interfaces.Services;
@@ -9,12 +8,12 @@ namespace Vordr.Application;
 
 public static class DependencyInjection
 {
-    public static WebApplicationBuilder AddApplicationServices(this WebApplicationBuilder builder)
+    public static IServiceCollection AddApplicationServices(this IServiceCollection serviceCollection)
     {
 
-        builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        serviceCollection.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-        builder.Services.AddMediatR(cfg => {
+        serviceCollection.AddMediatR(cfg => {
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
@@ -22,10 +21,10 @@ public static class DependencyInjection
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         });
         
-        builder.Services.RegisterServices();
+        serviceCollection.RegisterServices();
         
         
-        return builder;
+        return serviceCollection;
     }
     
     private static IServiceCollection RegisterServices(this IServiceCollection serviceCollection)

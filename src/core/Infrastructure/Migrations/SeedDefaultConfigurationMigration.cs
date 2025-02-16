@@ -43,7 +43,7 @@ public class SeedDefaultConfigurationMigration(
                 MonitorCpu = MonitoringStatus.Enabled,
                 MonitorDrives = MonitoringStatus.Disabled,
                 MonitorGpu = MonitoringStatus.Disabled,
-                MonitorRam = MonitoringStatus.Disabled,
+                MonitorRam = MonitoringStatus.Enabled,
                 MonitorStorageDevices = MonitoringStatus.Disabled,
                 MonitorMotherBoard = MonitoringStatus.Disabled,
                 MonitorNetwork = MonitoringStatus.Disabled,

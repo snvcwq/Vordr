@@ -1,4 +1,6 @@
 ﻿using LibreHardwareMonitor.Hardware;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using Vordr.Application.Common.Interfaces.Resources;
 using Vordr.Application.Models.Ram;
 

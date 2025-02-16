@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        <XamlFileGeneration>Off</XamlFileGeneration>
+        <NoWarn>$(NoWarn);WMC0010</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MahApps.Metro.IconPacks.Material" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+      <PackageReference Include="Serilog" />
+      <PackageReference Include="Serilog.Sinks.Console" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Hosting">
+        <HintPath>..\..\..\.dotnet\shared\Microsoft.AspNetCore.App\9.0.0\Microsoft.Extensions.Hosting.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
+        <HintPath>..\..\..\.dotnet\shared\Microsoft.AspNetCore.App\9.0.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\src\core\Infrastructure\Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>
