@@ -1,0 +1,41 @@
+﻿using Vordr.Application.Common.Interfaces.Persistence;
+using Vordr.Application.Common.Mappings.HardwareMetrics;
+
+namespace Vordr.Application.Hardware.Commands.UploadHardwareMetrics;
+
+public class UploadHardwareMetricsCommandHandler(
+    ICpuLoadRepository cpuRepository,
+    IGpuLoadRepository gpuRepository,
+    IRamUsagesRepository ramRepository,
+    IPowerSupplyRepository powerSupplyRepository,
+    INetworkRepository networkRepository,
+    IDriveInfoRepository driveRepository
+    ) : IRequestHandler<UploadHardwareMetricsCommand>
+{
+    public async Task Handle(UploadHardwareMetricsCommand request, CancellationToken cancellationToken)
+    {
+        var report = request.HardwareReport;
+        var tasks = new List<Task>();
+
+        if (report.Cpu is not null)
+            tasks.Add(cpuRepository.UploadAsync(report.Cpu.ToCpuLoad()));
+
+        if (report.Ram is not null)
+            tasks.Add(ramRepository.UploadAsync(report.Ram.ToRamUsage()));
+
+        if (report.Drives.Count != 0)
+            tasks.AddRange(report.Drives.Select(driveReport => driveRepository.UploadAsync(driveReport.ToDriveInformation())).Cast<Task>());
+
+        if (report.Gpu is not null)
+            tasks.Add(gpuRepository.UploadAsync(report.Gpu.ToGpuLoad()));
+
+        if (report.Battery is not null)
+            tasks.Add(powerSupplyRepository.UploadAsync(report.Battery.ToPowerSupply()));
+
+        if (report.Networks.Count != 0)
+            tasks.AddRange(report.Networks.Select(networkReport => networkRepository.UploadAsync(networkReport.ToNetworkInformation())));
+
+        await Task.WhenAll(tasks);
+    }
+
+}

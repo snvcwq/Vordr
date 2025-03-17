@@ -8,22 +8,33 @@
         <UseWPF>true</UseWPF>
         <XamlFileGeneration>Off</XamlFileGeneration>
         <NoWarn>$(NoWarn);WMC0010</NoWarn>
+        <UserSecretsId>a7778629-d13d-46c8-9ff1-8fc70f9efd4f</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" />
       <PackageReference Include="MahApps.Metro.IconPacks.Material" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" />
       <PackageReference Include="Serilog" />
       <PackageReference Include="Serilog.Sinks.Console" />
     </ItemGroup>
 
     <ItemGroup>
       <Reference Include="Microsoft.Extensions.Hosting">
-        <HintPath>..\..\..\.dotnet\shared\Microsoft.AspNetCore.App\9.0.0\Microsoft.Extensions.Hosting.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
-        <HintPath>..\..\..\.dotnet\shared\Microsoft.AspNetCore.App\9.0.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>

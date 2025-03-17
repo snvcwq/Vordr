@@ -10,6 +10,4 @@ public interface IProcessMetricsRepository
 
     public Task<ErrorOr<Created>> UploadAsync(IEnumerable<ProcessMetrics> processes);
 
-    public Task<ErrorOr<Updated>> ChangePidAsync(IEnumerable<UpdatePidRequest> requests);
-    
 }

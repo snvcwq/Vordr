@@ -4,6 +4,6 @@ namespace Vordr.Domain.Entities;
 
 public record RamUsage : BaseMetric
 {
-    public required double TotalMemory { get; set; } 
+    public required double AvailableMemory { get; set; } 
     public required double UsedMemory { get; set; } 
 }

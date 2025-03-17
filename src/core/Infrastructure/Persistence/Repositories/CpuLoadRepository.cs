@@ -5,7 +5,7 @@ using Vordr.Domain.Entities;
 
 namespace Vordr.Infrastructure.Persistence.Repositories;
 
-public class CpuLoadRepository(MongoDbClient client, ILogger<RamUsagesRepository> logger) : ICpuLoadRepository
+public class CpuLoadRepository(MongoDbClient client, ILogger<CpuLoadRepository> logger) : ICpuLoadRepository
 {
     private readonly IMongoCollection<CpuLoad> _collection = client.CpuLoadsCollection();
 

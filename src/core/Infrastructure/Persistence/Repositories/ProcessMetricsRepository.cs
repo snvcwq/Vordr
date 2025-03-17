@@ -38,41 +38,12 @@ public class ProcessMetricsRepository(MongoDbClient client, ILogger<ProcessMetri
             if (updateResult.IsError)
             {
                 errors.Add(Error.Failure(
-                    $"Error occured when uploading process data for {process.Pid}. Errors: {updateResult.Errors.Print()}"));
+                    $"Error occured when uploading process data for {process.ProcessObjectId}. Errors: {updateResult.Errors.Print()}"));
             }
         }
 
         return errors.Count > 0
             ? errors
             : Result.Created;
-    }
-
-
-    public async Task<ErrorOr<Updated>> ChangePidAsync(IEnumerable<UpdatePidRequest> requests)
-    {
-        try
-        {
-            var requestData = requests.ToArray();
-            var updateTasks = new List<Task<UpdateResult>>();
-
-            foreach (var request in requestData.ToArray())
-            {
-                var filter = Builders<ProcessMetrics>.Filter.Eq(pd => pd.Pid, request.OldPid);
-                var update = Builders<ProcessMetrics>.Update.Set(pd => pd.Pid, request.NewPid);
-
-                var updateTask = _collection.UpdateManyAsync(filter, update);
-                updateTasks.Add(updateTask);
-            }
-
-            await Task.WhenAll(updateTasks);
-
-            return Result.Updated;
-        }
-        catch (Exception ex)
-        {
-            logger.LogError("An error occurred while updating PIDs. Message: {Message}, Stack Trace: {StackTrace}",
-                ex.Message, ex.StackTrace);
-            return Error.Failure(ex.Message);
-        }
     }
 }

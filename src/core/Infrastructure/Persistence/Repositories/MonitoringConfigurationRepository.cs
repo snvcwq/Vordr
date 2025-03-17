@@ -141,13 +141,6 @@ public class MonitoringConfigurationRepository(MongoDbClient client, ILogger<Mon
         return await UpdateComponentMonitoringAsync(update, "storage devices", status);
     }
 
-    public async Task<ErrorOr<Updated>> UpdateMotherBoardMonitoringAsync(MonitoringStatus status)
-    {
-        var update = Builders<MonitoringConfiguration>.Update
-            .Set(mc => mc.MonitorMotherBoard, status);
-        return await UpdateComponentMonitoringAsync(update, "motherboard", status);
-    }
-
     public async Task<ErrorOr<Updated>> UpdateNetworkMonitoringAsync(MonitoringStatus status)
     {
         var update = Builders<MonitoringConfiguration>.Update
@@ -160,13 +153,6 @@ public class MonitoringConfigurationRepository(MongoDbClient client, ILogger<Mon
         var update = Builders<MonitoringConfiguration>.Update
             .Set(mc => mc.MonitorPeripherals, status);
         return await UpdateComponentMonitoringAsync(update, "peripherals", status);
-    }
-
-    public async Task<ErrorOr<Updated>> UpdateTemperatureMonitoringAsync(MonitoringStatus status)
-    {
-        var update = Builders<MonitoringConfiguration>.Update
-            .Set(mc => mc.MonitorTemperature, status);
-        return await UpdateComponentMonitoringAsync(update, "temperature", status);
     }
 
     public async Task<ErrorOr<Updated>> UpdatePowerSupplyMonitoringAsync(MonitoringStatus status)

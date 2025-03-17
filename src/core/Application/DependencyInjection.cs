@@ -31,8 +31,7 @@ public static class DependencyInjection
     {
 
         serviceCollection.AddScoped<IProcessCollectService, ProcessCollectService>();
-        serviceCollection.AddScoped<IRamUsageCollectService, RamUsageCollectService>();
-        serviceCollection.AddScoped<ICpuLoadCollectService, CpuLoadCollectService>();
+        serviceCollection.AddScoped<IHardwareMetricsCollectService, HardwareMetricsCollectService>();
 
         return serviceCollection;
     }

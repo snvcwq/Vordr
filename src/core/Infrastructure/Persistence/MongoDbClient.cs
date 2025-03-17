@@ -29,6 +29,18 @@ public class MongoDbClient(IOptions<MongoDbOptions> mongoOptions)
     public IMongoCollection<CpuLoad> CpuLoadsCollection() =>
         Database().GetCollection<CpuLoad>(MongoCollections.CpuLoad);
     
+    public IMongoCollection<PowerSupply> PowerSupplyCollection() =>
+        Database().GetCollection<PowerSupply>(MongoCollections.PowerSupplyInfo);
+    
+    public IMongoCollection<GpuLoad> GpuLoadsCollection() =>
+        Database().GetCollection<GpuLoad>(MongoCollections.GpuLoad);
+    
+    public IMongoCollection<DriveInformation> DriveInfoCollection() =>
+        Database().GetCollection<DriveInformation>(MongoCollections.DriveInfo);
+    
+    public IMongoCollection<NetworkInformation> NetworkInfoCollection() =>
+        Database().GetCollection<NetworkInformation>(MongoCollections.NetworkInfo);
+    
     public IMongoDatabase Database() =>
         Client.GetDatabase(Db);
 }

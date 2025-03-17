@@ -1,0 +1,11 @@
+﻿namespace Vordr.Application.Models.Hardware.Components;
+
+public record NetworkReport
+{
+    public string Network {get; set; } = string.Empty;
+    public double DataUploaded {get; set; }
+    public double DataDownloaded{  get; set; }
+    public double DownloadSpeed {get; set; }
+    public double UploadSpeed { get; set; }
+    public DateTime CapturedAtUtc { get; set; }
+};

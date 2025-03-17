@@ -22,6 +22,4 @@ public record ProcessData : BaseEntity
 
     public required string Architecture { get; set; }
 
-    public required string User { get; set; }
-
-};
+}

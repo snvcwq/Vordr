@@ -8,5 +8,9 @@ public static class MongoCollections
     public const string Migrations = "migrations";
     public const string RamUsage = "ramUsages";
     public const string CpuLoad = "cpuLoads";
+    public const string PowerSupplyInfo = "powerSupplyInfo";
+    public const string GpuLoad = "gpuLoads";
+    public const string DriveInfo = "drivesInfo";
+    public const string NetworkInfo = "networksInfo";
 
 }

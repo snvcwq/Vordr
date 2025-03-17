@@ -1,6 +1,7 @@
 ﻿using Hangfire.Mongo;
 using Hangfire.Mongo.Migration.Strategies;
 using Hangfire.Mongo.Migration.Strategies.Backup;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Vordr.Application.Common.Interfaces.BackgroundJobs;
 using Vordr.Application.Common.Interfaces.Persistence;
@@ -16,9 +17,9 @@ namespace Vordr.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddOptions();
+        services.AddOptions(configuration);
         
         services.AddSingleton<MongoDbClient>();
         services.AddSingleton<MongoMigrationPerformer>();
@@ -30,6 +31,13 @@ public static class DependencyInjection
         services.DefineSchedulers();
         services.DefineResourceCollectors();
         return services;
+    }
+    
+    private static IServiceCollection AddOptions(this IServiceCollection serviceCollection, IConfiguration configuration)
+    {
+        serviceCollection.Configure<MongoDbOptions>(configuration.GetSection(nameof(MongoDbOptions)));
+        serviceCollection.Configure<HangfireOptions>(configuration.GetSection(nameof(HangfireOptions)));
+        return serviceCollection;
     }
 
     private static IServiceCollection AddMigrations(this IServiceCollection serviceCollection)
@@ -51,12 +59,15 @@ public static class DependencyInjection
 
     private static IServiceCollection RegisterRepositories(this IServiceCollection serviceCollection)
     {
-
         serviceCollection.AddScoped<IProcessDataRepository, ProcessDataRepository>();
         serviceCollection.AddScoped<IProcessMetricsRepository, ProcessMetricsRepository>();
         serviceCollection.AddScoped<IMonitoringConfigurationRepository, MonitoringConfigurationRepository>();
         serviceCollection.AddScoped<IRamUsagesRepository, RamUsagesRepository>();
+        serviceCollection.AddScoped<IDriveInfoRepository, DriveInfoRepository>();
+        serviceCollection.AddScoped<IGpuLoadRepository, GpuLoadRepository>();
         serviceCollection.AddScoped<ICpuLoadRepository, CpuLoadRepository>();
+        serviceCollection.AddScoped<INetworkRepository, NetworkInfoRepository>();
+        serviceCollection.AddScoped<IPowerSupplyRepository, PowerSupplyRepository>();
 
         
         return serviceCollection;
@@ -90,8 +101,7 @@ public static class DependencyInjection
     private static IServiceCollection DefineSchedulers(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddScoped<IProcessMonitorScheduler, ProcessMonitorScheduler>();
-        serviceCollection.AddScoped<IRamUsageMonitoringScheduler, RamUsageMonitoringScheduler>();
-        serviceCollection.AddScoped<ICpuLoadMonitoringScheduler, CpuLoadMonitorScheduler>();
+        serviceCollection.AddScoped<IHardwareMonitorScheduler, HardwareMonitorScheduler>();
 
         return serviceCollection;
     }

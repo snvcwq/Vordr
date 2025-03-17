@@ -1,5 +1,6 @@
 ﻿using Vordr.Application.Common.Extensions;
 using Vordr.Application.Common.Interfaces.Persistence;
+using Vordr.Application.Common.Mappings.Process;
 using Vordr.Application.Models.Process;
 using Vordr.Domain.Entities;
 
@@ -15,7 +16,7 @@ public class UploadCollectedProcessesCommandHandler(
     public async Task Handle(UploadCollectedProcessesCommand request, CancellationToken cancellationToken)
     {
         var retrievedProcesses = request.ProcessList.ToList();
-        var processOsIdentifiers = retrievedProcesses.Select(p => new ProcessOsIdentifier(p.Name, p.Path, p.Version));
+        var processOsIdentifiers = retrievedProcesses.Select(p => new ProcessOsIdentifier(p.Name, p.Path, p.Version, p.Company));
         var storedProcessesResult = await processDataRepository.RetrieveAsync(processOsIdentifiers);
 
         var updatedPidRequests = new List<UpdatePidRequest>();
@@ -35,7 +36,7 @@ public class UploadCollectedProcessesCommandHandler(
             await UpdatePidForProcessesAsync(updatedPidRequests);
         }
 
-        var processMetricsResult = await processDataRepository.RetrieveAsync(retrievedProcesses.Select(rp => rp.Pid));
+        var processMetricsResult = await processDataRepository.RetrieveAsync(retrievedProcesses.Select(p => new ProcessOsIdentifier(p.Name, p.Path, p.Version, p.Company)));
 
         var storedProcessData = new List<ProcessData>();
 
@@ -49,44 +50,55 @@ public class UploadCollectedProcessesCommandHandler(
                     errors.Print());
             });
 
-        var updateProcessesRequest = DefineUpdateProcessesRequest(retrievedProcesses, storedProcessData);
+        
+
+        var updateProcessesRequest =  DefineUpdateProcessesRequest(retrievedProcesses, storedProcessData);
 
         await PerformUpdateProcessesRequestsAsync(updateProcessesRequest);
     }
 
     private async Task PerformUpdateProcessesRequestsAsync(UpdateProcessesRequest request)
     {
-        var updateProcessDataResult =
-            await processDataRepository.UpdateAsync(request.UpdateProcessesDataRequest.UpdatedProcesses);
-        updateProcessDataResult.Switch(
-            _ => logger.LogInformation("Process Data was successfully updated"),
-            errors => logger.LogError("Error occured when trying to update processes data. Errors: {errors}",
-                errors.Print()));
+                foreach (var updateRequest in request.CreateProcesses)
+        {
+            var result = await processDataRepository.UploadAsync(updateRequest.Process);
+            result.Switch(async void (objectId) =>
+                {
+                    try
+                    {
+                        await processMetricsRepository.UploadAsync(updateRequest.Stats.ToProcessMetrics(objectId));
+                    }
+                    catch (Exception)
+                    {
+                        logger.LogError("Error occured when trying to update processes data");
+                    }
+                },
+                errors => logger.LogError("Error occured when trying to update processes data. Errors: {errors}",
+                    errors.Print()));
+        }
 
-        var uploadProcessDataResult =
-            await processDataRepository.UploadAsync(request.UpdateProcessesDataRequest.NewProcesses);
-        uploadProcessDataResult.Switch(
-            _ => logger.LogInformation("New process Data was successfully uploaded"),
-            errors => logger.LogError("Error occured when trying to upload new  process data. Errors: {errors}",
-                errors.Print()));
-
-        var uploadProcessMetricsResult =
-            await processMetricsRepository.UploadAsync(request.UpdateProcessesMetricsRequest.NewProcesses);
-        uploadProcessMetricsResult.Switch(
-            _ => logger.LogInformation("New process metrics was successfully uploaded"),
-            errors => logger.LogError("Error occured when trying to upload new process metrics. Errors: {errors}",
-                errors.Print()));
+        foreach (var updateRequest in request.UpdateProcesses)
+        {
+            var result = await processDataRepository.UpdateAsync(updateRequest.Process);
+            result.Switch(async void (objectId) =>
+                {
+                    try
+                    {
+                        await processMetricsRepository.UploadAsync(updateRequest.Stats.ToProcessMetrics(objectId));
+                    }
+                    catch (Exception)
+                    {
+                        logger.LogError("Error occured when trying to update processes data");
+                    }
+                },
+                errors => logger.LogError("Error occured when trying to update processes data. Errors: {errors}",
+                    errors.Print()));
+        }
     }
 
     private async Task UpdatePidForProcessesAsync(IEnumerable<UpdatePidRequest> request)
     {
         var updatePidRequests = request.ToList();
-        var metricsUpdatePidResult = await processMetricsRepository.ChangePidAsync(updatePidRequests);
-
-        metricsUpdatePidResult.Switch(
-            _ => { logger.LogInformation("Pid list for metrics was successfully updated."); },
-            error => logger.LogError("Error occured when updating pid for metrics. Errors: {errors}.", error.Print())
-        );
         var dataUpdatePidResult = await processDataRepository.ChangePidAsync(updatePidRequests);
 
         dataUpdatePidResult.Switch(
@@ -98,29 +110,24 @@ public class UploadCollectedProcessesCommandHandler(
     private static UpdateProcessesRequest DefineUpdateProcessesRequest(IList<ProcessInformation> retrievedProcesses,
         IList<ProcessData> storedProcesses)
     {
-        var storedProcessesDictionary = storedProcesses.ToDictionary(pd => pd.Pid);
+            var storedProcessesDictionary = storedProcesses.ToDictionary(pd => (pd.Name, pd.Path, pd.Manufacturer, pd.Version));
 
-        var newProcessesData = new List<ProcessData>();
-        var updateProcessesData = new List<ProcessData>();
-        var processesMetrics = new List<ProcessMetrics>();
+        var newProcessesData = new List<CreateProcessDataRequest>();
+        var updateProcessesData = new List<UpdateProcessDataRequest>();
         foreach (var retrievedProcess in retrievedProcesses)
         {
-            storedProcessesDictionary.TryGetValue(retrievedProcess.Pid, out var storedProcess);
+            storedProcessesDictionary.TryGetValue((retrievedProcess.Name, retrievedProcess.Path, retrievedProcess.Company, retrievedProcess.Version), out var storedProcess);
 
             if (storedProcess is null)
                 newProcessesData.Add(CreateProcessData(retrievedProcess));
             else
                 updateProcessesData.Add(UpdateProcessData(storedProcess, retrievedProcess));
-
-            processesMetrics.Add(CreateProcessMetrics(retrievedProcess));
         }
 
-        return new UpdateProcessesRequest(
-            new UpdateProcessesDataRequest(newProcessesData, updateProcessesData),
-            new UpdateProcessesMetricsRequest(processesMetrics));
+        return new UpdateProcessesRequest(newProcessesData, updateProcessesData);
     }
 
-    private static ProcessData UpdateProcessData(ProcessData storedData, ProcessInformation retrievedData)
+    private static UpdateProcessDataRequest UpdateProcessData(ProcessData storedData, ProcessInformation retrievedData)
     {
         storedData.Pid = retrievedData.Pid;
         storedData.Name = retrievedData.Name;
@@ -129,15 +136,15 @@ public class UploadCollectedProcessesCommandHandler(
         storedData.Icon = retrievedData.Icon;
         storedData.Manufacturer = retrievedData.Company;
         storedData.Priority = retrievedData.Priority;
-        storedData.User = retrievedData.User;
         storedData.Version = retrievedData.Version;
         storedData.StartTime = retrievedData.StartTime;
-        return storedData;
+        var stats = CreateProcessStats(retrievedData);
+        return new UpdateProcessDataRequest(storedData, stats);
     }
 
-    private static ProcessData CreateProcessData(ProcessInformation retrievedData)
+    private static CreateProcessDataRequest CreateProcessData(ProcessInformation retrievedData)
     {
-        return new ProcessData
+        var data = new ProcessData
         {
             Pid = retrievedData.Pid,
             Name = retrievedData.Name,
@@ -146,49 +153,54 @@ public class UploadCollectedProcessesCommandHandler(
             Icon = retrievedData.Icon,
             Manufacturer = retrievedData.Company,
             Priority = retrievedData.Priority,
-            User = retrievedData.User,
             Version = retrievedData.Version,
             StartTime = retrievedData.StartTime
         };
+        var stats = CreateProcessStats(retrievedData);
+        return new CreateProcessDataRequest(data, stats);
     }
 
-    private static ProcessMetrics CreateProcessMetrics(ProcessInformation retrievedData)
+    private static ProcessStats CreateProcessStats(ProcessInformation retrievedData)
     {
-        return new ProcessMetrics
+        return new ProcessStats
         {
-            Pid = retrievedData.Pid,
             CpuUsage = retrievedData.CpuUsage,
             RamUsage = retrievedData.RamUsage,
-            MaxWorkingSet = retrievedData.MaxWorkingSetMb,
-            GpuUsage = retrievedData.GpuUsage,
             ThreadCount = retrievedData.ThreadCount,
             HandleCount = retrievedData.HandleCount,
-            DiskReadMb = retrievedData.DiskReadMb,
-            DiskWriteMb = retrievedData.DiskWriteMb,
-            NetworkSentBytes = retrievedData.NetworkSentBytes,
-            NetworkReceivedBytes = retrievedData.NetworkReceivedBytes
         };
     }
 
-    private List<UpdatePidRequest> DefineProcessesThatChangedPid(IEnumerable<ProcessData> storedProcesses,
+    private List<UpdatePidRequest> DefineProcessesThatChangedPid(
+        IEnumerable<ProcessData> storedProcesses, 
         IEnumerable<ProcessInformation> retrievedProcesses)
     {
-        var storedProcessesDictionary = storedProcesses.ToDictionary(pd => (pd.Name, pd.Path, pd.Version));
+        var storedProcessesDictionary = storedProcesses
+            .GroupBy(pd => (pd.Name, pd.Path, pd.Manufacturer, pd.Version))
+            .ToDictionary(g => g.Key, g => g.ToList());
 
         List<UpdatePidRequest> updateProcessRequests = [];
 
         foreach (var retrievedProcess in retrievedProcesses)
         {
-            if (!storedProcessesDictionary.TryGetValue((retrievedProcess.Name, retrievedProcess.Path, retrievedProcess.Version),
-                    out var storedProcess))
+            var key = (retrievedProcess.Name, retrievedProcess.Path, retrievedProcess.Company, retrievedProcess.Version);
+
+            // Check if there are any stored processes with the same key
+            if (!storedProcessesDictionary.TryGetValue(key, out var storedProcessesList))
                 continue;
 
-            if (retrievedProcess.Pid == storedProcess.Pid)
-                continue;
+            
+            foreach (var storedProcess in storedProcessesList)
+            {
+                // Compare the PIDs
+                if (retrievedProcess.Pid == storedProcess.Pid)
+                    continue;
 
-            updateProcessRequests.Add(new UpdatePidRequest(storedProcess.Pid, retrievedProcess.Pid));
-            logger.LogWarning("Will change Pid from <{oldPid}> to <{newPid}> for process with name {processName}",
-                storedProcess.Pid, retrievedProcess.Pid, retrievedProcess.Name);
+                // Add to the update requests
+                updateProcessRequests.Add(new UpdatePidRequest(storedProcess.Pid, retrievedProcess.Pid));
+                logger.LogWarning("Will change Pid from <{oldPid}> to <{newPid}> for process with name {processName}",
+                    storedProcess.Pid, retrievedProcess.Pid, retrievedProcess.Name);
+            }
         }
 
         return updateProcessRequests;

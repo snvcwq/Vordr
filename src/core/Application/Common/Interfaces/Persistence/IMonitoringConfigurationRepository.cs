@@ -15,10 +15,8 @@ public interface IMonitoringConfigurationRepository
     public Task<ErrorOr<Updated>> UpdateGpuMonitoringAsync(MonitoringStatus status);
     public Task<ErrorOr<Updated>> UpdateRamMonitoringAsync(MonitoringStatus status);
     public Task<ErrorOr<Updated>> UpdateStorageDevicesMonitoringAsync(MonitoringStatus status);
-    public Task<ErrorOr<Updated>> UpdateMotherBoardMonitoringAsync(MonitoringStatus status);
     public Task<ErrorOr<Updated>> UpdateNetworkMonitoringAsync(MonitoringStatus status);
     public Task<ErrorOr<Updated>> UpdatePeripheralsMonitoringAsync(MonitoringStatus status);
-    public Task<ErrorOr<Updated>> UpdateTemperatureMonitoringAsync(MonitoringStatus status);
     public Task<ErrorOr<Updated>> UpdatePowerSupplyMonitoringAsync(MonitoringStatus status);
     
     public Task<ErrorOr<MonitoringConfiguration>> RetrieveMonitoringConfigurationAsync();

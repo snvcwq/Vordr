@@ -30,26 +30,24 @@ public class SeedDefaultConfigurationMigration(
 
             if (monitoringConfigurations.Count > 0)
                 DeleteConfigurations(monitoringConfigurations);
-            var expression = CronExpression.Parse("*/20 * * * * *", CronFormat.IncludeSeconds);
+            var expression = "*/1 * * * *";
 
             await _monitoringCollection.InsertOneAsync( new MonitoringConfiguration
             {
                 ProcessMonitoringConfig = new ProcessMonitoringConfig
                 {
-                    MonitoringStatus = MonitoringStatus.Disabled,
+                    MonitoringStatus = MonitoringStatus.Enabled,
                     ScanFrequency = "*/1 * * * *",
                     MaxProcessesToScan = 100
                 },
                 MonitorCpu = MonitoringStatus.Enabled,
-                MonitorDrives = MonitoringStatus.Disabled,
-                MonitorGpu = MonitoringStatus.Disabled,
+                MonitorDrives = MonitoringStatus.Enabled,
+                MonitorGpu = MonitoringStatus.Enabled,
                 MonitorRam = MonitoringStatus.Enabled,
-                MonitorStorageDevices = MonitoringStatus.Disabled,
-                MonitorMotherBoard = MonitoringStatus.Disabled,
-                MonitorNetwork = MonitoringStatus.Disabled,
-                MonitorPeripherals = MonitoringStatus.Disabled,
-                MonitorTemperature = MonitoringStatus.Disabled,
-                MonitorPowerSupply = MonitoringStatus.Disabled,
+                MonitorStorageDevices = MonitoringStatus.Enabled,
+                MonitorNetwork = MonitoringStatus.Enabled,
+                MonitorPeripherals = MonitoringStatus.Enabled,
+                MonitorPowerSupply = MonitoringStatus.Enabled,
                 ScanFrequency = expression.ToString()
             });
         }

@@ -7,7 +7,6 @@ using Vordr.Domain.Entities;
 using Vordr.Domain.Enums;
 
 namespace Vordr.Infrastructure.BackgroundJobs;
-
 public class ProcessMonitorScheduler(
     IRecurringJobManager recurringJobManager, 
     IProcessCollectService service,

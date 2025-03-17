@@ -6,12 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="MonitoringConfiguration\Commands\" />
-      <Folder Include="MonitoringConfiguration\Queries\" />
-      <Folder Include="Options\" />
-    </ItemGroup>
-
-    <ItemGroup>
+        <PackageReference Include="Hangfire" />
         <PackageReference Include="MediatR"/>
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions"/>
         <PackageReference Include="FluentValidation"/>
@@ -24,6 +19,11 @@
     
     <ItemGroup>
       <ProjectReference Include="..\Domain\Domain.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="CpuUsage\Commands\" />
+      <Folder Include="RamUsage\Commands\" />
     </ItemGroup>
     
 </Project>

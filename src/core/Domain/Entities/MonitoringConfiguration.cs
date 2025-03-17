@@ -23,16 +23,10 @@ public record MonitoringConfiguration : BaseEntity
     public MonitoringStatus MonitorStorageDevices { get; set; }
     
     [BsonRepresentation(BsonType.String)]
-    public MonitoringStatus MonitorMotherBoard { get; set; }
-    
-    [BsonRepresentation(BsonType.String)]
     public MonitoringStatus MonitorNetwork { get; set; }
     
     [BsonRepresentation(BsonType.String)]
     public MonitoringStatus MonitorPeripherals{ get; set; }
-    
-    [BsonRepresentation(BsonType.String)]
-    public MonitoringStatus MonitorTemperature { get; set; }
     
     [BsonRepresentation(BsonType.String)]
     public MonitoringStatus MonitorPowerSupply { get; set; }

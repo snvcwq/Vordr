@@ -79,8 +79,12 @@ public class ProcessDataRepository(MongoDbClient client, ILogger<ProcessDataRepo
     {
         try
         {
-            var filter = Builders<ProcessData>.Filter.Eq(pd => pd.Pid, processData.Pid);
-
+            var filter = Builders<ProcessData>.Filter.And(
+                Builders<ProcessData>.Filter.Eq(pd => pd.Name, processData.Name),
+                Builders<ProcessData>.Filter.Eq(pd => pd.Path, processData.Path),
+                Builders<ProcessData>.Filter.Eq(pd => pd.Version, processData.Version),
+                Builders<ProcessData>.Filter.Eq(pd => pd.Manufacturer, processData.Manufacturer)
+            );
             var options = new FindOneAndUpdateOptions<ProcessData>
             {
                 ReturnDocument = ReturnDocument.After, IsUpsert = true
@@ -94,8 +98,7 @@ public class ProcessDataRepository(MongoDbClient client, ILogger<ProcessDataRepo
                 .Set(pd => pd.Priority, processData.Priority)
                 .Set(pd => pd.Manufacturer, processData.Manufacturer)
                 .Set(pd => pd.Version, processData.Version)
-                .Set(pd => pd.Architecture, processData.Architecture)
-                .Set(pd => pd.User, processData.User);
+                .Set(pd => pd.Architecture, processData.Architecture);
             var updatedProcess = await _collection.FindOneAndUpdateAsync(filter, update, options);
 
             return updatedProcess.Id;
@@ -136,7 +139,8 @@ public class ProcessDataRepository(MongoDbClient client, ILogger<ProcessDataRepo
                 Builders<ProcessData>.Filter.And(
                     Builders<ProcessData>.Filter.Eq(pd => pd.Name, id.Name),
                     Builders<ProcessData>.Filter.Eq(pd => pd.Path, id.RootPath),
-                    Builders<ProcessData>.Filter.Eq(pd => pd.Version, id.version)
+                    Builders<ProcessData>.Filter.Eq(pd => pd.Version, id.Version),
+                    Builders<ProcessData>.Filter.Eq(pd => pd.Manufacturer, id.Manufacturer)
                 )
             );
             var filter = Builders<ProcessData>.Filter.Or(filters);

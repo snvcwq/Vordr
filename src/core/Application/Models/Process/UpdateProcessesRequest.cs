@@ -1,5 +1,6 @@
 ﻿namespace Vordr.Application.Models.Process;
 
 public record UpdateProcessesRequest(
-    UpdateProcessesDataRequest UpdateProcessesDataRequest,
-    UpdateProcessesMetricsRequest UpdateProcessesMetricsRequest);
+    List<CreateProcessDataRequest> CreateProcesses,
+    List<UpdateProcessDataRequest> UpdateProcesses
+    );
