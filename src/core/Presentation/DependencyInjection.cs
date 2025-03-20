@@ -6,7 +6,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddPresentation(this IServiceCollection services)
     {
-        services.AddSingleton<Form1>();
+        services.AddSingleton<Slices.MainForm>();
         
         return services;
     }

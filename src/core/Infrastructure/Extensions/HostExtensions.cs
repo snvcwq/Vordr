@@ -8,24 +8,24 @@ namespace Vordr.Infrastructure.Extensions;
 
 public static class HostExtensions
 {
-    public static async Task<IHost> ExecuteMigrations(this IHost app)
+    public static IHost ExecuteMigrations(this IHost app)
     {
         using var scope = app.Services.CreateScope();
         var mongoMigrationPerformer = scope.ServiceProvider.GetRequiredService<MongoMigrationPerformer>();
-        await mongoMigrationPerformer.PerformMigrationsAsync();
-        
+        //await mongoMigrationPerformer.PerformMigrationsAsync();
+
         return app;
     }
-    
-    public static async Task<IHost> ScheduleMonitoring(this IHost app)
+
+    public static IHost ScheduleMonitoring(this IHost app)
     {
         using var scope = app.Services.CreateScope();
         var processMonitorScheduler = scope.ServiceProvider.GetRequiredService<IProcessMonitorScheduler>();
         var cpuLoadMonitoringScheduler = scope.ServiceProvider.GetRequiredService<IHardwareMonitorScheduler>();
 
-        
-        await processMonitorScheduler.ConfigureMonitoring();
-        await cpuLoadMonitoringScheduler.ConfigureCollecting();
+
+        //await processMonitorScheduler.ConfigureMonitoring();
+        //await cpuLoadMonitoringScheduler.ConfigureCollecting();
         return app;
     }
 }
