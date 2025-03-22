@@ -7,5 +7,5 @@ public record NetworkReport
     public double DataDownloaded{  get; set; }
     public double DownloadSpeed {get; set; }
     public double UploadSpeed { get; set; }
-    public DateTime CapturedAtUtc { get; set; }
+    public System.DateTime CapturedAtUtc { get; set; }
 };

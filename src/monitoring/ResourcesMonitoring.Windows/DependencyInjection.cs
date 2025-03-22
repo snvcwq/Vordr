@@ -11,6 +11,7 @@ public static class DependencyInjection
     {
         serviceCollection.AddScoped< IProcessDataCollector, ProcessDataCollector>();
         serviceCollection.AddScoped< IHardwareCollector, HardwareCollector>();
+        serviceCollection.AddScoped< IHardwareComponentsCollector, HardwareComponentsCollector>();
         
         return serviceCollection;
     }

@@ -1,11 +1,14 @@
+using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.InteropServices;
 
 namespace Presentation.Slices;
 
 public partial class MainForm : Form
 {
-    public MainForm()
+    private IServiceProvider _serviceProvider;
+    public MainForm(IServiceProvider serviceProvider)
     {
+        this._serviceProvider = serviceProvider;
         InitializeComponent();
     }
 
@@ -133,10 +136,51 @@ public partial class MainForm : Form
 
     private void MaximizeButton_Click(object sender, EventArgs e)
     {
-        if(WindowState == FormWindowState.Normal)
+        if (WindowState == FormWindowState.Normal)
             WindowState = FormWindowState.Maximized;
-        else if(WindowState == FormWindowState.Maximized)
+        else if (WindowState == FormWindowState.Maximized)
             WindowState = FormWindowState.Normal;
+
+    }
+
+    private void SettingsButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(new Monitoring());
+    }
+
+    private void ProcessButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(new Processes());
+    }
+
+    private void DrivesButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(new Drives());
+
+    }
+
+    private void BatteryButton_Click(object sender, EventArgs e)
+    {
+        var battery = _serviceProvider.GetRequiredService<Battery>();
+        LoadForm(battery);
+
+    }
+
+    private void CpuButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(new Cpu());
+
+    }
+
+    private void GpuButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(new Gpu());
+
+    }
+
+    private void RamButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(new Ram());
 
     }
 }

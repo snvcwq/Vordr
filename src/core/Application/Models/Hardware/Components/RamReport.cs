@@ -4,5 +4,5 @@ public record RamReport
 {
     public double AvailableMemory { get; init; }
     public double UsedMemory { get; init; }
-    public DateTime CapturedAtUtc { get; init; }
+    public System.DateTime CapturedAtUtc { get; init; }
 };

@@ -26,7 +26,7 @@ public static class DependencyInjection
 
         services.AddMigrations();
         services.RegisterRepositories();
-        //services.InitHangfire();
+        services.InitHangfire();
         
         services.DefineSchedulers();
         services.DefineResourceCollectors();
@@ -43,6 +43,7 @@ public static class DependencyInjection
     private static IServiceCollection AddMigrations(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddSingleton<SeedDefaultConfigurationMigration>();
+        serviceCollection.AddSingleton<AddIndexesToBatteryMigration>();
         return serviceCollection;
     }
     

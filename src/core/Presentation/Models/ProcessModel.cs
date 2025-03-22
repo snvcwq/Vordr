@@ -1,12 +1,12 @@
-﻿namespace Vordr.Application.Models.Process;
+﻿namespace Presentation.Models;
 
-public record ProcessInformation
+public class ProcessModel
 {
     public required int Pid { get; set; }
     
     public required string Name { get; set; }
 
-    public required System.DateTime StartTime { get; set; }
+    public required DateTime StartTime { get; set; }
     
     public byte[]? Icon { get; set; }
     
@@ -14,12 +14,12 @@ public record ProcessInformation
     
     public required int Priority { get; set; }
 
-    public required string Company { get; set; }
+    public required string Manufacturer { get; set; }
 
     public required string Version { get; set; }
 
     public required string Architecture { get; set; }
-
+    
     public required double CpuUsage { get; set; }
         
     public required double RamUsage { get; set; }
@@ -27,5 +27,4 @@ public record ProcessInformation
     public int ThreadCount { get; set; }
         
     public int HandleCount { get; set; }
-
 }

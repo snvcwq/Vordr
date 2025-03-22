@@ -4,5 +4,5 @@ public record CpuReport
 {
     public double AvgUsage { get; init; }
     public double Temperature { get; init; }
-    public DateTime CapturedAtUtc { get; init; }
+    public System.DateTime CapturedAtUtc { get; init; }
 };

@@ -31,7 +31,9 @@ partial class MainForm
         panel2 = new Panel();
         BatteryButton = new CuoreUI.Controls.cuiButtonGroup();
         DrivesButton = new CuoreUI.Controls.cuiButtonGroup();
+        NotificationButton = new CuoreUI.Controls.cuiButtonGroup();
         NetworkButton = new CuoreUI.Controls.cuiButtonGroup();
+        SettingsButton = new CuoreUI.Controls.cuiButtonGroup();
         GpuButton = new CuoreUI.Controls.cuiButtonGroup();
         CpuButton = new CuoreUI.Controls.cuiButtonGroup();
         RamButton = new CuoreUI.Controls.cuiButtonGroup();
@@ -46,12 +48,9 @@ partial class MainForm
         panel1 = new Panel();
         MaximizeButton = new CuoreUI.Controls.cuiButtonGroup();
         MainPannel = new Panel();
-        NotificationButton = new CuoreUI.Controls.cuiButtonGroup();
-        SettingsButton = new CuoreUI.Controls.cuiButtonGroup();
         MinimizeButton = new CuoreUI.Controls.cuiButtonGroup();
         CloseButton = new CuoreUI.Controls.cuiButtonGroup();
         MainPanel = new Panel();
-        cuiControlAnimator1 = new CuoreUI.Components.cuiControlAnimator();
         panel2.SuspendLayout();
         panel1.SuspendLayout();
         SuspendLayout();
@@ -74,7 +73,7 @@ partial class MainForm
         panel2.Dock = DockStyle.Left;
         panel2.Location = new Point(0, 22);
         panel2.Name = "panel2";
-        panel2.Size = new Size(204, 653);
+        panel2.Size = new Size(204, 774);
         panel2.TabIndex = 2;
         // 
         // BatteryButton
@@ -113,6 +112,7 @@ partial class MainForm
         BatteryButton.Size = new Size(191, 56);
         BatteryButton.TabIndex = 30;
         BatteryButton.TextOffset = new Point(-20, 0);
+        BatteryButton.Click += BatteryButton_Click;
         // 
         // DrivesButton
         // 
@@ -150,6 +150,43 @@ partial class MainForm
         DrivesButton.Size = new Size(191, 56);
         DrivesButton.TabIndex = 29;
         DrivesButton.TextOffset = new Point(-20, 0);
+        DrivesButton.Click += DrivesButton_Click;
+        // 
+        // NotificationButton
+        // 
+        NotificationButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        NotificationButton.Checked = false;
+        NotificationButton.CheckedBackground = Color.FromArgb(241, 244, 254);
+        NotificationButton.CheckedForeColor = Color.FromArgb(241, 244, 254);
+        NotificationButton.CheckedImageTint = Color.FromArgb(241, 244, 254);
+        NotificationButton.CheckedOutline = Color.FromArgb(241, 244, 254);
+        NotificationButton.Content = "";
+        NotificationButton.Font = new Font("Microsoft Sans Serif", 9.75F);
+        NotificationButton.ForeColor = Color.White;
+        NotificationButton.Group = 0;
+        NotificationButton.HoverBackground = Color.FromArgb(241, 244, 254);
+        NotificationButton.HoveredImageTint = Color.FromArgb(241, 244, 254);
+        NotificationButton.HoverForeColor = Color.FromArgb(241, 244, 254);
+        NotificationButton.HoverOutline = Color.Empty;
+        NotificationButton.Image = Resources.notification_bell;
+        NotificationButton.ImageAutoCenter = true;
+        NotificationButton.ImageExpand = new Point(3, 3);
+        NotificationButton.ImageOffset = new Point(0, 0);
+        NotificationButton.ImageTint = Color.White;
+        NotificationButton.Location = new Point(113, 9);
+        NotificationButton.Margin = new Padding(9);
+        NotificationButton.Name = "NotificationButton";
+        NotificationButton.NormalBackground = Color.FromArgb(241, 244, 254);
+        NotificationButton.NormalOutline = Color.Empty;
+        NotificationButton.OutlineThickness = 1.6F;
+        NotificationButton.PressedBackground = Color.FromArgb(241, 244, 254);
+        NotificationButton.PressedForeColor = Color.FromArgb(241, 244, 254);
+        NotificationButton.PressedImageTint = Color.FromArgb(241, 244, 254);
+        NotificationButton.PressedOutline = Color.Empty;
+        NotificationButton.Rounding = new Padding(8);
+        NotificationButton.Size = new Size(34, 34);
+        NotificationButton.TabIndex = 23;
+        NotificationButton.TextOffset = new Point(0, 0);
         // 
         // NetworkButton
         // 
@@ -189,6 +226,43 @@ partial class MainForm
         NetworkButton.TextOffset = new Point(-20, 0);
         NetworkButton.Click += NetworkButton_Click;
         // 
+        // SettingsButton
+        // 
+        SettingsButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        SettingsButton.Checked = false;
+        SettingsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
+        SettingsButton.CheckedForeColor = Color.FromArgb(241, 244, 254);
+        SettingsButton.CheckedImageTint = Color.FromArgb(241, 244, 254);
+        SettingsButton.CheckedOutline = Color.FromArgb(241, 244, 254);
+        SettingsButton.Content = "";
+        SettingsButton.Font = new Font("Microsoft Sans Serif", 9.75F);
+        SettingsButton.ForeColor = Color.White;
+        SettingsButton.Group = 0;
+        SettingsButton.HoverBackground = Color.FromArgb(241, 244, 254);
+        SettingsButton.HoveredImageTint = Color.FromArgb(241, 244, 254);
+        SettingsButton.HoverForeColor = Color.FromArgb(241, 244, 254);
+        SettingsButton.HoverOutline = Color.Empty;
+        SettingsButton.Image = Resources.setting;
+        SettingsButton.ImageAutoCenter = true;
+        SettingsButton.ImageExpand = new Point(3, 3);
+        SettingsButton.ImageOffset = new Point(0, 0);
+        SettingsButton.ImageTint = Color.White;
+        SettingsButton.Location = new Point(165, 9);
+        SettingsButton.Margin = new Padding(9);
+        SettingsButton.Name = "SettingsButton";
+        SettingsButton.NormalBackground = Color.FromArgb(241, 244, 254);
+        SettingsButton.NormalOutline = Color.Empty;
+        SettingsButton.OutlineThickness = 1.6F;
+        SettingsButton.PressedBackground = Color.FromArgb(241, 244, 254);
+        SettingsButton.PressedForeColor = Color.FromArgb(241, 244, 254);
+        SettingsButton.PressedImageTint = Color.FromArgb(241, 244, 254);
+        SettingsButton.PressedOutline = Color.Empty;
+        SettingsButton.Rounding = new Padding(8);
+        SettingsButton.Size = new Size(33, 34);
+        SettingsButton.TabIndex = 22;
+        SettingsButton.TextOffset = new Point(0, 0);
+        SettingsButton.Click += SettingsButton_Click;
+        // 
         // GpuButton
         // 
         GpuButton.BackColor = Color.Transparent;
@@ -225,6 +299,7 @@ partial class MainForm
         GpuButton.Size = new Size(191, 56);
         GpuButton.TabIndex = 27;
         GpuButton.TextOffset = new Point(-20, 0);
+        GpuButton.Click += GpuButton_Click;
         // 
         // CpuButton
         // 
@@ -262,6 +337,7 @@ partial class MainForm
         CpuButton.Size = new Size(191, 56);
         CpuButton.TabIndex = 26;
         CpuButton.TextOffset = new Point(-20, 0);
+        CpuButton.Click += CpuButton_Click;
         // 
         // RamButton
         // 
@@ -299,6 +375,7 @@ partial class MainForm
         RamButton.Size = new Size(191, 56);
         RamButton.TabIndex = 25;
         RamButton.TextOffset = new Point(-20, 0);
+        RamButton.Click += RamButton_Click;
         // 
         // DashboardButton
         // 
@@ -374,6 +451,7 @@ partial class MainForm
         ProcessButton.Size = new Size(191, 56);
         ProcessButton.TabIndex = 23;
         ProcessButton.TextOffset = new Point(-20, 0);
+        ProcessButton.Click += ProcessButton_Click;
         // 
         // AppName
         // 
@@ -464,7 +542,7 @@ partial class MainForm
         // 
         // panel1
         // 
-        panel1.BackColor = Color.FromArgb(241, 244, 254);
+        panel1.BackColor = Color.FromArgb(108, 124, 204);
         panel1.Controls.Add(MaximizeButton);
         panel1.Controls.Add(MainPannel);
         panel1.Controls.Add(MinimizeButton);
@@ -472,7 +550,7 @@ partial class MainForm
         panel1.Dock = DockStyle.Top;
         panel1.Location = new Point(0, 0);
         panel1.Name = "panel1";
-        panel1.Size = new Size(1145, 22);
+        panel1.Size = new Size(1500, 22);
         panel1.TabIndex = 1;
         panel1.Paint += panel1_Paint;
         panel1.MouseDown += panel1_MouseDown;
@@ -480,28 +558,29 @@ partial class MainForm
         // MaximizeButton
         // 
         MaximizeButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        MaximizeButton.BackColor = Color.FromArgb(108, 124, 204);
         MaximizeButton.Checked = false;
-        MaximizeButton.CheckedBackground = Color.FromArgb(241, 244, 254);
-        MaximizeButton.CheckedForeColor = Color.FromArgb(241, 244, 254);
-        MaximizeButton.CheckedImageTint = Color.FromArgb(241, 244, 254);
-        MaximizeButton.CheckedOutline = Color.FromArgb(241, 244, 254);
+        MaximizeButton.CheckedBackground = Color.FromArgb(108, 124, 204);
+        MaximizeButton.CheckedForeColor = Color.FromArgb(108, 124, 204);
+        MaximizeButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
+        MaximizeButton.CheckedOutline = Color.FromArgb(108, 124, 204);
         MaximizeButton.Content = "";
         MaximizeButton.Font = new Font("Microsoft Sans Serif", 9.75F);
-        MaximizeButton.ForeColor = Color.White;
+        MaximizeButton.ForeColor = Color.FromArgb(108, 124, 204);
         MaximizeButton.Group = 0;
-        MaximizeButton.HoverBackground = Color.FromArgb(241, 244, 254);
-        MaximizeButton.HoveredImageTint = Color.FromArgb(241, 244, 254);
-        MaximizeButton.HoverForeColor = Color.FromArgb(241, 244, 254);
+        MaximizeButton.HoverBackground = Color.FromArgb(108, 124, 204);
+        MaximizeButton.HoveredImageTint = Color.FromArgb(108, 124, 204);
+        MaximizeButton.HoverForeColor = Color.FromArgb(108, 124, 204);
         MaximizeButton.HoverOutline = Color.Empty;
         MaximizeButton.Image = Resources.maximize;
         MaximizeButton.ImageAutoCenter = true;
         MaximizeButton.ImageExpand = new Point(3, 3);
         MaximizeButton.ImageOffset = new Point(0, 0);
         MaximizeButton.ImageTint = Color.White;
-        MaximizeButton.Location = new Point(1099, 0);
+        MaximizeButton.Location = new Point(1454, 0);
         MaximizeButton.Margin = new Padding(9);
         MaximizeButton.Name = "MaximizeButton";
-        MaximizeButton.NormalBackground = Color.FromArgb(241, 244, 254);
+        MaximizeButton.NormalBackground = Color.FromArgb(108, 124, 204);
         MaximizeButton.NormalOutline = Color.Empty;
         MaximizeButton.OutlineThickness = 1.6F;
         MaximizeButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -521,103 +600,32 @@ partial class MainForm
         MainPannel.Size = new Size(945, 842);
         MainPannel.TabIndex = 3;
         // 
-        // NotificationButton
-        // 
-        NotificationButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        NotificationButton.Checked = false;
-        NotificationButton.CheckedBackground = Color.FromArgb(241, 244, 254);
-        NotificationButton.CheckedForeColor = Color.FromArgb(241, 244, 254);
-        NotificationButton.CheckedImageTint = Color.FromArgb(241, 244, 254);
-        NotificationButton.CheckedOutline = Color.FromArgb(241, 244, 254);
-        NotificationButton.Content = "";
-        NotificationButton.Font = new Font("Microsoft Sans Serif", 9.75F);
-        NotificationButton.ForeColor = Color.White;
-        NotificationButton.Group = 0;
-        NotificationButton.HoverBackground = Color.FromArgb(241, 244, 254);
-        NotificationButton.HoveredImageTint = Color.FromArgb(241, 244, 254);
-        NotificationButton.HoverForeColor = Color.FromArgb(241, 244, 254);
-        NotificationButton.HoverOutline = Color.Empty;
-        NotificationButton.Image = Resources.notification_bell;
-        NotificationButton.ImageAutoCenter = true;
-        NotificationButton.ImageExpand = new Point(3, 3);
-        NotificationButton.ImageOffset = new Point(0, 0);
-        NotificationButton.ImageTint = Color.White;
-        NotificationButton.Location = new Point(128, 0);
-        NotificationButton.Margin = new Padding(9);
-        NotificationButton.Name = "NotificationButton";
-        NotificationButton.NormalBackground = Color.FromArgb(241, 244, 254);
-        NotificationButton.NormalOutline = Color.Empty;
-        NotificationButton.OutlineThickness = 1.6F;
-        NotificationButton.PressedBackground = Color.FromArgb(241, 244, 254);
-        NotificationButton.PressedForeColor = Color.FromArgb(241, 244, 254);
-        NotificationButton.PressedImageTint = Color.FromArgb(241, 244, 254);
-        NotificationButton.PressedOutline = Color.Empty;
-        NotificationButton.Rounding = new Padding(8);
-        NotificationButton.Size = new Size(34, 34);
-        NotificationButton.TabIndex = 23;
-        NotificationButton.TextOffset = new Point(0, 0);
-        // 
-        // SettingsButton
-        // 
-        SettingsButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        SettingsButton.Checked = false;
-        SettingsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
-        SettingsButton.CheckedForeColor = Color.FromArgb(241, 244, 254);
-        SettingsButton.CheckedImageTint = Color.FromArgb(241, 244, 254);
-        SettingsButton.CheckedOutline = Color.FromArgb(241, 244, 254);
-        SettingsButton.Content = "";
-        SettingsButton.Font = new Font("Microsoft Sans Serif", 9.75F);
-        SettingsButton.ForeColor = Color.White;
-        SettingsButton.Group = 0;
-        SettingsButton.HoverBackground = Color.FromArgb(241, 244, 254);
-        SettingsButton.HoveredImageTint = Color.FromArgb(241, 244, 254);
-        SettingsButton.HoverForeColor = Color.FromArgb(241, 244, 254);
-        SettingsButton.HoverOutline = Color.Empty;
-        SettingsButton.Image = Resources.setting;
-        SettingsButton.ImageAutoCenter = true;
-        SettingsButton.ImageExpand = new Point(3, 3);
-        SettingsButton.ImageOffset = new Point(0, 0);
-        SettingsButton.ImageTint = Color.White;
-        SettingsButton.Location = new Point(165, 0);
-        SettingsButton.Margin = new Padding(9);
-        SettingsButton.Name = "SettingsButton";
-        SettingsButton.NormalBackground = Color.FromArgb(241, 244, 254);
-        SettingsButton.NormalOutline = Color.Empty;
-        SettingsButton.OutlineThickness = 1.6F;
-        SettingsButton.PressedBackground = Color.FromArgb(241, 244, 254);
-        SettingsButton.PressedForeColor = Color.FromArgb(241, 244, 254);
-        SettingsButton.PressedImageTint = Color.FromArgb(241, 244, 254);
-        SettingsButton.PressedOutline = Color.Empty;
-        SettingsButton.Rounding = new Padding(8);
-        SettingsButton.Size = new Size(33, 34);
-        SettingsButton.TabIndex = 22;
-        SettingsButton.TextOffset = new Point(0, 0);
-        // 
         // MinimizeButton
         // 
         MinimizeButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        MinimizeButton.BackColor = Color.FromArgb(108, 124, 204);
         MinimizeButton.Checked = false;
-        MinimizeButton.CheckedBackground = Color.FromArgb(241, 244, 254);
-        MinimizeButton.CheckedForeColor = Color.FromArgb(241, 244, 254);
-        MinimizeButton.CheckedImageTint = Color.FromArgb(241, 244, 254);
-        MinimizeButton.CheckedOutline = Color.FromArgb(241, 244, 254);
+        MinimizeButton.CheckedBackground = Color.FromArgb(108, 124, 204);
+        MinimizeButton.CheckedForeColor = Color.FromArgb(108, 124, 204);
+        MinimizeButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
+        MinimizeButton.CheckedOutline = Color.FromArgb(108, 124, 204);
         MinimizeButton.Content = "";
         MinimizeButton.Font = new Font("Microsoft Sans Serif", 9.75F);
-        MinimizeButton.ForeColor = Color.White;
+        MinimizeButton.ForeColor = Color.FromArgb(108, 124, 204);
         MinimizeButton.Group = 0;
-        MinimizeButton.HoverBackground = Color.FromArgb(241, 244, 254);
-        MinimizeButton.HoveredImageTint = Color.FromArgb(241, 244, 254);
-        MinimizeButton.HoverForeColor = Color.FromArgb(241, 244, 254);
+        MinimizeButton.HoverBackground = Color.FromArgb(108, 124, 204);
+        MinimizeButton.HoveredImageTint = Color.FromArgb(108, 124, 204);
+        MinimizeButton.HoverForeColor = Color.FromArgb(108, 124, 204);
         MinimizeButton.HoverOutline = Color.Empty;
         MinimizeButton.Image = Resources.minus;
         MinimizeButton.ImageAutoCenter = true;
         MinimizeButton.ImageExpand = new Point(3, 3);
         MinimizeButton.ImageOffset = new Point(0, 0);
         MinimizeButton.ImageTint = Color.White;
-        MinimizeButton.Location = new Point(1075, 0);
+        MinimizeButton.Location = new Point(1430, 0);
         MinimizeButton.Margin = new Padding(9);
         MinimizeButton.Name = "MinimizeButton";
-        MinimizeButton.NormalBackground = Color.FromArgb(241, 244, 254);
+        MinimizeButton.NormalBackground = Color.FromArgb(108, 124, 204);
         MinimizeButton.NormalOutline = Color.Empty;
         MinimizeButton.OutlineThickness = 1.6F;
         MinimizeButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -633,28 +641,29 @@ partial class MainForm
         // CloseButton
         // 
         CloseButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        CloseButton.BackColor = Color.FromArgb(108, 124, 204);
         CloseButton.Checked = false;
-        CloseButton.CheckedBackground = Color.FromArgb(241, 244, 254);
-        CloseButton.CheckedForeColor = Color.FromArgb(241, 244, 254);
-        CloseButton.CheckedImageTint = Color.FromArgb(241, 244, 254);
-        CloseButton.CheckedOutline = Color.FromArgb(241, 244, 254);
+        CloseButton.CheckedBackground = Color.FromArgb(108, 124, 204);
+        CloseButton.CheckedForeColor = Color.FromArgb(108, 124, 204);
+        CloseButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
+        CloseButton.CheckedOutline = Color.FromArgb(108, 124, 204);
         CloseButton.Content = "";
         CloseButton.Font = new Font("Microsoft Sans Serif", 9.75F);
-        CloseButton.ForeColor = Color.White;
+        CloseButton.ForeColor = Color.FromArgb(108, 124, 204);
         CloseButton.Group = 0;
-        CloseButton.HoverBackground = Color.FromArgb(241, 244, 254);
-        CloseButton.HoveredImageTint = Color.FromArgb(241, 244, 254);
-        CloseButton.HoverForeColor = Color.FromArgb(241, 244, 254);
+        CloseButton.HoverBackground = Color.FromArgb(108, 124, 204);
+        CloseButton.HoveredImageTint = Color.FromArgb(108, 124, 204);
+        CloseButton.HoverForeColor = Color.FromArgb(108, 124, 204);
         CloseButton.HoverOutline = Color.Empty;
         CloseButton.Image = Resources.delete__1_;
         CloseButton.ImageAutoCenter = true;
         CloseButton.ImageExpand = new Point(3, 3);
         CloseButton.ImageOffset = new Point(0, 0);
         CloseButton.ImageTint = Color.White;
-        CloseButton.Location = new Point(1118, 0);
+        CloseButton.Location = new Point(1473, 0);
         CloseButton.Margin = new Padding(9);
         CloseButton.Name = "CloseButton";
-        CloseButton.NormalBackground = Color.FromArgb(241, 244, 254);
+        CloseButton.NormalBackground = Color.FromArgb(108, 124, 204);
         CloseButton.NormalOutline = Color.Empty;
         CloseButton.OutlineThickness = 1.6F;
         CloseButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -671,18 +680,8 @@ partial class MainForm
         // 
         MainPanel.Location = new Point(210, 34);
         MainPanel.Name = "MainPanel";
-        MainPanel.Size = new Size(913, 628);
+        MainPanel.Size = new Size(1227, 750);
         MainPanel.TabIndex = 3;
-        // 
-        // cuiControlAnimator1
-        // 
-        cuiControlAnimator1.AnimateLocation = true;
-        cuiControlAnimator1.AnimateOnStart = true;
-        cuiControlAnimator1.AnimateOpacity = false;
-        cuiControlAnimator1.Duration = 1000;
-        cuiControlAnimator1.EasingType = CuoreUI.Drawing.EasingTypes.QuadInOut;
-        cuiControlAnimator1.TargetControl = null;
-        cuiControlAnimator1.TargetLocation = new Point(0, 0);
         // 
         // MainForm
         // 
@@ -690,7 +689,7 @@ partial class MainForm
         AutoScaleMode = AutoScaleMode.Font;
         AutoSizeMode = AutoSizeMode.GrowAndShrink;
         BackColor = Color.FromArgb(241, 244, 254);
-        ClientSize = new Size(1145, 675);
+        ClientSize = new Size(1500, 796);
         Controls.Add(MainPanel);
         Controls.Add(panel2);
         Controls.Add(panel1);
@@ -730,6 +729,5 @@ partial class MainForm
     private CuoreUI.Controls.cuiButtonGroup MinimizeButton;
     private Panel MainPannel;
     private Panel MainPanel;
-    private CuoreUI.Components.cuiControlAnimator cuiControlAnimator1;
     private CuoreUI.Controls.cuiButtonGroup MaximizeButton;
 }

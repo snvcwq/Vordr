@@ -14,5 +14,14 @@ public partial class Dashboard : Form
     public Dashboard()
     {
         InitializeComponent();
+        DiskDPie.ChartPadding = 2;
+        DiskCPie.ChartPadding = 2;
+        DiskCPie.DataPoints = ["ocuppied_60", "free_140"];
+        DiskDPie.DataPoints = ["ocuppied_90", "free_110"];
+    }
+
+    private void cuiLabel7_Load(object sender, EventArgs e)
+    {
+
     }
 }
