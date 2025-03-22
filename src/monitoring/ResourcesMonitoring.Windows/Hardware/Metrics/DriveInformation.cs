@@ -1,4 +1,5 @@
-﻿namespace Vordr.Application.Models.Hardware.Components;
+﻿
+namespace Vordr.ResourcesMonitoring.Windows.Hardware.Metrics;
 
 public class DriveInformation(string name)
 {

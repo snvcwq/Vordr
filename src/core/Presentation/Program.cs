@@ -18,9 +18,9 @@ internal static class Program
 
         Application.SetCompatibleTextRenderingDefault(false);
         ConfigureLogging();
-        var host = CreateHostBuilder().Build();
-            //.ExecuteMigrations().GetAwaiter().GetResult()
-            //.ScheduleMonitoring().GetAwaiter().GetResult();
+        var host = CreateHostBuilder().Build()
+            .ExecuteMigrations().GetAwaiter().GetResult()
+            .ScheduleMonitoring().GetAwaiter().GetResult();
 
         var fromStartService = host.Services.GetRequiredService<Slices.MainForm>();
         Task.Run(() =>

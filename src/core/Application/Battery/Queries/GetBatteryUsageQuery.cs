@@ -1,5 +1,6 @@
 ﻿using Vordr.Application.Models;
 using Vordr.Domain.Entities;
+using Vordr.Domain.Entities.Components;
 
 namespace Vordr.Application.Battery.Queries;
 

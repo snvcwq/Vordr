@@ -44,6 +44,7 @@ public static class DependencyInjection
     {
         serviceCollection.AddSingleton<SeedDefaultConfigurationMigration>();
         serviceCollection.AddSingleton<AddIndexesToBatteryMigration>();
+        serviceCollection.AddSingleton<AddInitialHardwareComponents>();
         return serviceCollection;
     }
     
@@ -69,6 +70,7 @@ public static class DependencyInjection
         serviceCollection.AddScoped<ICpuLoadRepository, CpuLoadRepository>();
         serviceCollection.AddScoped<INetworkRepository, NetworkInfoRepository>();
         serviceCollection.AddScoped<IPowerSupplyRepository, PowerSupplyRepository>();
+        serviceCollection.AddScoped<IHardwareComponentsRepository, HardwareComponentsRepository>();
 
         
         return serviceCollection;

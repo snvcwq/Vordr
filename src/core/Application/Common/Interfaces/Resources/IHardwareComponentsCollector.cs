@@ -1,9 +1,8 @@
-﻿using Vordr.Application.Models.Hardware;
-using Vordr.Domain.Entities;
+﻿using Vordr.Domain.Entities;
 
 namespace Vordr.Application.Common.Interfaces.Resources;
 
 public interface IHardwareComponentsCollector
 {
-    public HardwareReport Collect();
+    public HardwareComponents Collect();
 }

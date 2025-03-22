@@ -1,192 +1,120 @@
 ﻿using LibreHardwareMonitor.Hardware;
+using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using Vordr.Application.Common.Interfaces.Resources;
 using Vordr.Application.Models.Hardware;
 using Vordr.Application.Models.Hardware.Components;
-using Vordr.ResourcesMonitoring.Windows.Hardware.Constants;
+using Vordr.Domain.Entities;
+using Vordr.Domain.Entities.Components;
 
 namespace Vordr.ResourcesMonitoring.Windows.Hardware;
 
 public partial class HardwareComponentsCollector : IHardwareComponentsCollector
 {
     private static Computer _computer = new();
-    public HardwareReport Collect()
+    public HardwareComponents Collect()
     {
-        var hardwareReport = new HardwareReport();
-
+        BatteryInfo battery= new BatteryInfo(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+        CpuInfo cpu = new CpuInfo(string.Empty, 0);
+        List<InfoDrive> drive = [];
+        List<GpuInfo> gpu = [];
+        List<NetworkInfo> network = [];
         ReloadComputer();
-        
+
         RetryPolicy.ExecuteWithRetry(() =>
         {
             _computer.Open();
             _computer.Accept(new HardwareMonitorVisitor());
-            
-            object lockObject = new object();
 
-Parallel.ForEach(_computer.Hardware, hardware =>
-{
-    switch (hardware.HardwareType)
-    {
-        case HardwareType.Cpu:
+
+            Parallel.ForEach(_computer.Hardware, hardware =>
             {
-                    var cpuResult = HandleCpuHardware(hardware);
-                    lock (lockObject)
-                        hardwareReport.Cpu = cpuResult;
-            }
-            break;
-        case HardwareType.GpuAmd or HardwareType.GpuNvidia or HardwareType.GpuIntel:
-            {
-                    var gpuResult = HandleGpuHardware(hardware);
-                    lock (lockObject)
-                        hardwareReport.Gpu = gpuResult;
-            }
-            break;
-        case HardwareType.Memory:
-            {
-                    var ramResult = HandleRamHardware(hardware);
-                    lock (lockObject)
-                        hardwareReport.Ram = ramResult;
-            }
-            break;
-        case HardwareType.Network:
-            {
-                    var result = HandleNetworkHardware(hardware);
-                    if (result != null)
-                    {
-                        lock (lockObject)
-                            hardwareReport.Networks.Add(result);
-                    }
-            }
-            break;
-        case HardwareType.Battery:
-            {
-                    var batteryResult = HandlePowerSupplyHardware(hardware);
-                    lock (lockObject)
-                        hardwareReport.Battery = batteryResult;
-            }
-            break;
-    }
-});
+                switch (hardware.HardwareType)
+                {
+                    case HardwareType.Cpu:
+                        cpu = HandleCpuHardware(hardware);
+                        break;
+                    case HardwareType.GpuAmd or HardwareType.GpuNvidia or HardwareType.GpuIntel:
+                        gpu.Add(HandleGpuHardware(hardware));
+                        break;
+                    case HardwareType.Network:
+                        {
+                            var networkInfo = HandleNetworkHardware(hardware);
+                            if(networkInfo is not null)
+                                network.Add(networkInfo);
+                        }
+                        break;
+                    case HardwareType.Battery:
+                        battery = HandlePowerSupplyHardware(hardware);
+                        break;
+                }
+            });
             _computer.Reset();
-            _computer.Close();    
-            
-        },  maxRetries: 10);
-        
-        return hardwareReport;
+            _computer.Close();
+
+        }, 10);
+
+
+        drive = RetrieveDrivesInformation();
+
+
+        return new HardwareComponents(battery, cpu, drive, gpu, network);
     }
 
-    private static CpuReport HandleCpuHardware(IHardware hardware)
+    private static CpuInfo HandleCpuHardware(IHardware hardware)
     {
-        double totalCpuLoad = 0;
-        double temperature = 0;
-        var coresLoad = new List<double>();
-        
-        
-        
+        var name = hardware.Name;
+        var cores = 0;
+
         foreach (var sensor in hardware.Sensors)
         {
             switch (sensor.SensorType)
             {
-                case SensorType.Load when sensor.Name.Contains("total", StringComparison.OrdinalIgnoreCase):
-                    {
-                        if(sensor.Value.HasValue)
-                            totalCpuLoad = sensor.Value.GetValueOrDefault();
-                        break;
-                    }
                 case SensorType.Load:
                     {
                         if (ContainsNumberRegex().IsMatch(sensor.Name))
                         {
-                            if(sensor.Value.HasValue)
-                                coresLoad.Add(sensor.Value.GetValueOrDefault());
-                        
+                            if (sensor.Value.HasValue)
+                            {
+                                cores++;
+                            }
+
                         }
                         break;
                     }
-                case SensorType.Temperature:
-                    temperature = sensor.Value.GetValueOrDefault();
-                    break;
             }
-            if(totalCpuLoad > 0 && temperature > 0)
-                break;
         }
-        if (totalCpuLoad is 0)
-            totalCpuLoad = coresLoad.Sum() / coresLoad.Count;
-
-        return new CpuReport
-        {
-            AvgUsage = totalCpuLoad.RoundUp(),
-            Temperature = temperature,
-            CapturedAtUtc = DateTime.UtcNow
-        };
+        return new CpuInfo(name, cores);
 
     }
-    private static GpuReport HandleGpuHardware(IHardware hardware)
+    private static GpuInfo HandleGpuHardware(IHardware hardware)
     {
-        double load = 0;
-        double temperature = 0;
-        double clock = 0;
-        foreach (var sensor in hardware.Sensors)
+        var name = hardware.Name;
+        var id = string.Empty;
+        try
         {
-            if(sensor.SensorType == SensorType.Load && sensor.Name.Contains("core", StringComparison.OrdinalIgnoreCase))
-                load = sensor.Value.GetValueOrDefault();
-            if(sensor.SensorType == SensorType.Temperature && sensor.Name.Contains("core", StringComparison.OrdinalIgnoreCase))
-                temperature = sensor.Value.GetValueOrDefault();
-            if(sensor.SensorType == SensorType.Clock && sensor.Name.Contains("core", StringComparison.OrdinalIgnoreCase))
-                clock = sensor.Value.GetValueOrDefault();
-        
-            if(load != 0 && temperature != 0 && clock != 0)
-                break;
-                
+            id = hardware.GetType().GetProperty("DeviceId")?.GetValue(hardware)?.ToString();
+
         }
-
-        return new GpuReport
+        catch (Exception)
         {
-            AvgLoad = load.RoundUp(), Temperature = temperature, Clock = clock, CapturedAtUtc = DateTime.UtcNow
-        };
-
-    }
-    private static RamReport HandleRamHardware(IHardware hardware)
-    {
-        double availableMemory = 0;
-        double usedMemory = 0;
-
-        foreach (var sensor in hardware.Sensors)
-        {
-            if(sensor.SensorType == SensorType.Data && sensor.Name.Contains("used", StringComparison.OrdinalIgnoreCase)
-                                                    && !sensor.Name.Contains("virtual", StringComparison.OrdinalIgnoreCase))
-                usedMemory = sensor.Value.GetValueOrDefault();
-            if(sensor.SensorType == SensorType.Data && sensor.Name.Contains("Available", StringComparison.OrdinalIgnoreCase)
-                                                    && !sensor.Name.Contains("virtual", StringComparison.OrdinalIgnoreCase))
-                availableMemory = sensor.Value.GetValueOrDefault();
-            if(availableMemory != 0 && usedMemory != 0)
-                break;
+            // ignored
         }
-
-        return new RamReport
-        {
-            AvailableMemory = availableMemory.RoundUp(),
-            UsedMemory = usedMemory.RoundUp(),
-            CapturedAtUtc = DateTime.UtcNow
-        };
+        return new GpuInfo(name, id ?? string.Empty);
     }
-    private static List<DriveReport> RetrieveDrivesInformation()
+    private static List<InfoDrive> RetrieveDrivesInformation()
     {
         string[] possibleDrives = ["C:", "D:", "E:", "F:", "G:", "H:", "I:", "J:"];
-        return possibleDrives.Select(RetrieveDriveInformation).OfType<DriveReport>().ToList();
+        return possibleDrives.Select(RetrieveDriveInformation).OfType<InfoDrive>().ToList();
     }
 
-    private static DriveReport? RetrieveDriveInformation(string name)
+    private static InfoDrive? RetrieveDriveInformation(string name)
     {
         try
         {
             var drive = new DriveInformation(name);
-            return new DriveReport(
-                drive.Name, 
-                drive.FreeSpace.ToGb().RoundUp(), 
-                drive.TotalSize.ToGb().RoundUp(),
-                DateTime.UtcNow
-            );
+            return new InfoDrive(drive.Format, drive.Label, drive.Type, drive.RootDirectory);
         }
         catch (Exception)
         {
@@ -195,61 +123,45 @@ Parallel.ForEach(_computer.Hardware, hardware =>
         }
         return null;
     }
-    private static NetworkReport? HandleNetworkHardware(IHardware hardware)
+    private static NetworkInfo? HandleNetworkHardware(IHardware hardware)
     {
-        double dataUploaded = 0; 
-        double dataDownloaded = 0; 
-        double downloadSpeed = 0; 
-        double uploadSpeed = 0; 
-        foreach (var sensor in hardware.Sensors)
-        {
-            if(sensor.SensorType == SensorType.Data && sensor.Name.Contains(NetworkConstants.DataUploaded, StringComparison.OrdinalIgnoreCase))
-                dataUploaded = sensor.Value.GetValueOrDefault();
-            
-            if(sensor.SensorType == SensorType.Data && sensor.Name.Contains(NetworkConstants.DataDownloaded, StringComparison.OrdinalIgnoreCase))
-                dataDownloaded = sensor.Value.GetValueOrDefault();
-            
-            if(sensor.SensorType == SensorType.Throughput && sensor.Name.Contains(NetworkConstants.DownloadSpeed, StringComparison.OrdinalIgnoreCase))
-                downloadSpeed = sensor.Value.GetValueOrDefault();
-            
-            if(sensor.SensorType == SensorType.Throughput && sensor.Name.Contains(NetworkConstants.UploadSpeed, StringComparison.OrdinalIgnoreCase))
-                uploadSpeed = sensor.Value.GetValueOrDefault();
-            if (dataUploaded != 0 && dataDownloaded != 0 && downloadSpeed != 0 && uploadSpeed != 0)
-                break;
-        }
-        if (dataUploaded != 0 || dataDownloaded != 0 || downloadSpeed != 0 || uploadSpeed != 0)
-            return new NetworkReport
-            {
-                Network = hardware.Name,
-                DataUploaded = dataUploaded,
-                DataDownloaded = dataDownloaded,
-                DownloadSpeed = downloadSpeed,
-                UploadSpeed = uploadSpeed,
-                CapturedAtUtc = DateTime.UtcNow
-            };
-        return null;
+        var networkInterface = (NetworkInterface?)GetSafeProperty(hardware, "NetworkInterface");
+        if (networkInterface is null)
+            return null;
+        var name = hardware.Name;
+        var description = networkInterface.Description;
+        var isReceiveOnly = networkInterface.IsReceiveOnly;
+        var interfaceType = networkInterface.NetworkInterfaceType.ToString();
+        var supportMulticast =  networkInterface.SupportsMulticast;
+        return new NetworkInfo(name, description ,isReceiveOnly, interfaceType, supportMulticast);
     }
-    private static PowerSupplyReport HandlePowerSupplyHardware(IHardware hardware)
+    private static object? GetSafeProperty(object obj, string propertyName)
     {
-        double degradationLevel = 0; 
-        double chargeLevel = 0; 
-        foreach (var sensor in hardware.Sensors)
+        try
         {
-            if(sensor.SensorType == SensorType.Level && sensor.Name.Contains("Degradation", StringComparison.OrdinalIgnoreCase))
-                degradationLevel =  sensor.Value.GetValueOrDefault().RoundUp();
-            
-            if(sensor.SensorType == SensorType.Level && sensor.Name.Contains("charge", StringComparison.OrdinalIgnoreCase)&& sensor.Name.Contains("level", StringComparison.OrdinalIgnoreCase))
-                chargeLevel = sensor.Value.GetValueOrDefault();
-            
-            if (degradationLevel != 0 && chargeLevel != 0 )
-                break;
+            // Use BindingFlags to specify that you want to access non-public properties (private, protected, internal)
+            var propertyInfo = obj.GetType().GetProperty(propertyName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        
+            // If the property exists, get its value
+            return propertyInfo?.GetValue(obj);
         }
-        return new PowerSupplyReport
+        catch (Exception)
         {
-            DegradationLevel = degradationLevel,
-            ChargeLevel = chargeLevel,
-            CapturedAtUtc = DateTime.UtcNow
-        };
+            // ignored
+            return null;
+        }
+    }
+    private static BatteryInfo HandlePowerSupplyHardware(IHardware hardware)
+    {
+        var name = hardware.Name;
+        var designedCapacity = GetSafeProperty(hardware, "DesignedCapacity")?.ToString() ?? string.Empty;
+        var manufacturer = GetSafeProperty(hardware, "Manufacturer")?.ToString() ?? string.Empty;;
+        var fullChargedCapacity = GetSafeProperty(hardware, "FullChargedCapacity")?.ToString() ?? string.Empty;
+        var chemistry = GetSafeProperty(hardware, "Chemistry");
+        var finalChemistry = string.Empty;
+        if (chemistry is not null)
+            finalChemistry = chemistry.ToString() ?? string.Empty;
+        return new BatteryInfo(name, designedCapacity, manufacturer, fullChargedCapacity, finalChemistry);
     }
 
     private static void ReloadComputer()
@@ -264,11 +176,11 @@ Parallel.ForEach(_computer.Hardware, hardware =>
             IsPsuEnabled = true
         };
         _computer.IsPsuEnabled = true;
-            _computer.IsBatteryEnabled = true;
+        _computer.IsBatteryEnabled = true;
         _computer.Reset();
     }
 
     [GeneratedRegex(@"\d")]
     private static partial Regex ContainsNumberRegex();
-    
+
 }

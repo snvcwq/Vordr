@@ -1,4 +1,4 @@
-﻿namespace Vordr.Application.Models;
+﻿namespace Vordr.Domain.Entities.Components;
 
 public class DayTime
 {

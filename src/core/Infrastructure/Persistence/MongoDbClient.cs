@@ -25,6 +25,8 @@ public class MongoDbClient(IOptions<MongoDbOptions> mongoOptions)
 
     public IMongoCollection<RamUsage> RamUsagesCollection() =>
         Database().GetCollection<RamUsage>(MongoCollections.RamUsage);
+    public IMongoCollection<HardwareComponents> HardwareComponentsCollection() =>
+        Database().GetCollection<HardwareComponents>(MongoCollections.HardwareComponents);
     
     public IMongoCollection<CpuLoad> CpuLoadsCollection() =>
         Database().GetCollection<CpuLoad>(MongoCollections.CpuLoad);

@@ -2,6 +2,7 @@
 using MediatR;
 using Vordr.Application.Battery.Queries;
 using Vordr.Application.Models;
+using Vordr.Domain.Entities.Components;
 
 namespace Presentation.Slices;
 public partial class Battery : Form

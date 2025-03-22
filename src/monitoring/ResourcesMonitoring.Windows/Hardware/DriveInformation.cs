@@ -8,4 +8,8 @@ public class DriveInformation(string name)
     public string Name => Drive.Name;
     public double TotalSize => Drive.TotalSize;
     public double FreeSpace => Drive.AvailableFreeSpace;
+    public string Format => Drive.DriveFormat;
+    public string Label => Drive.VolumeLabel;
+    public string Type => Drive.DriveType.ToString();
+    public string RootDirectory => Drive.RootDirectory.FullName;
 }

@@ -9,7 +9,6 @@ namespace Vordr.Application.Services;
 
 public class HardwareMetricsCollectService(
     IHardwareCollector collector,
-    IHardwareComponentsCollector componentsCollector,
     IMediator mediator,
     IMonitoringConfigurationRepository monitoringConfigurationRepository,
     ILogger<HardwareMetricsCollectService> logger
@@ -18,7 +17,6 @@ public class HardwareMetricsCollectService(
     public async Task CollectHardwareAsync(CancellationToken cancellationToken)
     {
 
-        componentsCollector.Collect();
         var monitoringConfigResult = await monitoringConfigurationRepository.RetrieveMonitoringConfigurationAsync();
         var monitoringConfiguration = monitoringConfigResult.Match(
             suc =>

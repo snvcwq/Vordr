@@ -12,5 +12,6 @@ public static class MongoCollections
     public const string GpuLoad = "gpuLoads";
     public const string DriveInfo = "drivesInfo";
     public const string NetworkInfo = "networksInfo";
+    public const string HardwareComponents = "hardwareComponents";
 
 }
