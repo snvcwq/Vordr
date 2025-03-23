@@ -1,8 +1,12 @@
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Presentation.Slices;
 using Serilog;
 using Vordr.Application;
+using Vordr.Application.HardwareComponent.Queries;
+using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 using Vordr.Domain;
 using Vordr.Infrastructure;
 using Vordr.Infrastructure.Extensions;
@@ -22,12 +26,14 @@ internal static class Program
             .ExecuteMigrations().GetAwaiter().GetResult()
             .ScheduleMonitoring().GetAwaiter().GetResult();
 
-        var fromStartService = host.Services.GetRequiredService<Slices.MainForm>();
+        var sender = host.Services.GetRequiredService<ISender>();
+        var t  = sender.Send(new RetrieveHardwareComponentQueryAsync()).GetAwaiter().GetResult();
+
         Task.Run(() =>
         {
             host.Run();
         });
-        Application.Run(fromStartService);
+        Application.Run(new MainForm(host.Services, sender));
 
     }
     private static IHostBuilder CreateHostBuilder()

@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using Vordr.Application.Common.Extensions;
 using Vordr.Application.Common.Interfaces.Persistence;
-using Vordr.Application.Models.Process;
+using Vordr.Application.CpuUsage.Queries.ProcessUsage;
 using Vordr.Domain.Entities;
 
 namespace Vordr.Infrastructure.Persistence.Repositories;
@@ -45,5 +45,13 @@ public class ProcessMetricsRepository(MongoDbClient client, ILogger<ProcessMetri
         return errors.Count > 0
             ? errors
             : Result.Created;
+    }
+    public async Task<IEnumerable<ProcessMetrics>> GetTopUsage(GetTopCpuUsageQuery query)
+    {
+            var filterBuilder = Builders<ProcessMetrics>.Filter;
+            var filter = filterBuilder.Gte(x => x.LastModifiedUtc, query.StartDate) &
+                         filterBuilder.Lte(x => x.LastModifiedUtc, query.EndDate);
+        
+            return await (await _collection.FindAsync(filter)).ToListAsync();
     }
 }

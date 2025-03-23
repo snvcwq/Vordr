@@ -1,15 +1,30 @@
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.InteropServices;
+using Vordr.Application.HardwareComponent.Queries;
+using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
+using Vordr.Domain.Entities;
 
 namespace Presentation.Slices;
 
 public partial class MainForm : Form
 {
-    private IServiceProvider _serviceProvider;
-    public MainForm(IServiceProvider serviceProvider)
+    private readonly IServiceProvider _serviceProvider;
+    private readonly ISender _sender;
+    private HardwareComponents _hardwareComponents;
+    public MainForm(IServiceProvider serviceProvider, ISender sender)
     {
+        _sender = sender;
         this._serviceProvider = serviceProvider;
         InitializeComponent();
+    }
+    
+    override async protected void OnLoad(EventArgs e)
+    {
+        
+        _hardwareComponents = await _sender.Send(new RetrieveHardwareComponentQueryAsync());
+
+        base.OnLoad(e);
     }
 
     private void panel1_Paint(object sender, PaintEventArgs e)
@@ -155,32 +170,31 @@ public partial class MainForm : Form
 
     private void DrivesButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Drives());
+        LoadForm(new Drives(_hardwareComponents.Drives, _sender));
 
     }
 
     private void BatteryButton_Click(object sender, EventArgs e)
     {
-        var battery = _serviceProvider.GetRequiredService<Battery>();
-        LoadForm(battery);
+        LoadForm(new Battery(_sender, _hardwareComponents.Battery));
 
     }
 
     private void CpuButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Cpu());
+        LoadForm(new Cpu(_hardwareComponents.Cpu, _sender));
 
     }
 
     private void GpuButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Gpu());
+        LoadForm(new Gpu(_hardwareComponents.Gpu.ToArray(), _sender));
 
     }
 
     private void RamButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Ram());
+        LoadForm(new Ram(_sender));
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using Vordr.Application.CpuUsage.Queries.ProcessUsage;
 using Vordr.Application.Models.Process;
 using Vordr.Domain.Entities;
 
@@ -9,5 +10,6 @@ public interface IProcessMetricsRepository
     public Task<ErrorOr<ObjectId>> UploadAsync(ProcessMetrics process);
 
     public Task<ErrorOr<Created>> UploadAsync(IEnumerable<ProcessMetrics> processes);
+    public Task<IEnumerable<ProcessMetrics>> GetTopUsage(GetTopCpuUsageQuery query);
 
 }

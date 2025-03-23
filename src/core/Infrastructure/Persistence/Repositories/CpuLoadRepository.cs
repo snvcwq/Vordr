@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Vordr.Application.Common.Interfaces.Persistence;
+using Vordr.Application.CpuUsage.Queries;
 using Vordr.Domain.Entities;
 
 namespace Vordr.Infrastructure.Persistence.Repositories;
@@ -24,5 +25,13 @@ public class CpuLoadRepository(MongoDbClient client, ILogger<CpuLoadRepository> 
                 ex.Message, ex.StackTrace);
             return Error.Failure(ex.Message);
         }
+    }
+    public async Task<IEnumerable<CpuLoad>> RetrieveAsync(GetCpuUsageQuery usageQuery)
+    {
+        var filterBuilder = Builders<CpuLoad>.Filter;
+        var filter = filterBuilder.Gte(x => x.CapturedAtUtc, usageQuery.StartDate) &
+                     filterBuilder.Lte(x => x.CapturedAtUtc, usageQuery.EndDate);
+        
+        return await (await _collection.FindAsync(filter)).ToListAsync();
     }
 }

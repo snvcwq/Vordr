@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Vordr.Application.Common.Interfaces.Persistence;
+using Vordr.Application.Drives.Queries.Get;
 using Vordr.Domain.Entities;
 
 namespace Vordr.Infrastructure.Persistence.Repositories;
@@ -25,4 +26,11 @@ public class DriveInfoRepository(MongoDbClient client, ILogger<DriveInfoReposito
             return Error.Failure(ex.Message);
         }
     }
+    public async Task<IEnumerable<DriveInformation>> RetrieveAsync(GetDriveUsageQuery query)
+    {
+        var filterBuilder = Builders<DriveInformation>.Filter;
+        var filter = filterBuilder.Gte(x => x.CapturedAtUtc, query.StartDate) &
+                     filterBuilder.Lte(x => x.CapturedAtUtc, query.EndDate);
+        
+        return await (await _collection.FindAsync(filter)).ToListAsync();    }
 }

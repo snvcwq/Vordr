@@ -172,6 +172,23 @@ public class ProcessDataRepository(MongoDbClient client, ILogger<ProcessDataRepo
             return Error.Failure(ex.Message);
         }
     }
+    public async Task<ProcessData?> RetrieveAsync(ObjectId objectId)
+    {
+        try
+        {
+            var filter = Builders<ProcessData>.Filter.Eq(pd => pd.Id, objectId);
+
+            var processDataList = await _collection.FindAsync(filter);
+            return processDataList.FirstOrDefault();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(
+                "An error occured when retrieving ProcessData by pid list from db. Message: {message}, Stack Trace: {stacktrace}",
+                ex.Message, ex.StackTrace);
+        }
+        return null;
+    }
 
     public async Task<ErrorOr<IEnumerable<ProcessData>>> RetrieveAsync(IEnumerable<int> pidLIst)
     {

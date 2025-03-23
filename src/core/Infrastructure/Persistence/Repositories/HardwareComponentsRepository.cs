@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using Vordr.Application.Common.Interfaces.Persistence;
 using Vordr.Domain.Entities;
 
@@ -17,5 +16,9 @@ public class HardwareComponentsRepository(MongoDbClient client) : IHardwareCompo
     public async Task<HardwareComponents> RetrieveAsync()
     {
         return (await _collection.FindAsync(FilterDefinition<HardwareComponents>.Empty)).SingleOrDefault();
+    }
+    public HardwareComponents Retrieve()
+    {
+        return (_collection.FindSync(FilterDefinition<HardwareComponents>.Empty)).SingleOrDefault();
     }
 }

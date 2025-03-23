@@ -1,4 +1,5 @@
-﻿using Vordr.Domain.Entities.Components;
+﻿using Vordr.Domain.Common;
+using Vordr.Domain.Entities.Components;
 
 namespace Vordr.Domain.Entities;
 
@@ -8,4 +9,4 @@ public record HardwareComponents(
     IEnumerable<InfoDrive> Drives,
     IEnumerable<GpuInfo> Gpu,
     IEnumerable<NetworkInfo> Network
-    );
+    ) : BaseEntity;

@@ -1,5 +1,4 @@
-﻿using ErrorOr;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using Vordr.Application.Models.Process;
 using Vordr.Domain.Entities;
 
@@ -20,5 +19,6 @@ public interface IProcessDataRepository
     public Task<ErrorOr<IEnumerable<ProcessData>>> RetrieveAsync(IEnumerable<ProcessOsIdentifier> identifiers);
     
     public Task<ErrorOr<IEnumerable<ProcessData>>> RetrieveAsync();
+    public Task<ProcessData?> RetrieveAsync(ObjectId objectId);
     
 }

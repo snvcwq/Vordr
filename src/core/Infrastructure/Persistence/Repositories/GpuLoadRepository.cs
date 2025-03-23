@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using Vordr.Application.Common.Interfaces.Persistence;
+using Vordr.Application.GpuUsage.Get;
 using Vordr.Domain.Entities;
 
 namespace Vordr.Infrastructure.Persistence.Repositories;
@@ -24,5 +25,13 @@ public class GpuLoadRepository(MongoDbClient client, ILogger<GpuLoadRepository> 
                 ex.Message, ex.StackTrace);
             return Error.Failure(ex.Message);
         }
+    }
+    public async Task<IEnumerable<GpuLoad>> RetrieveAsync(GetGpuUsageQuery query)
+    {
+        var filterBuilder = Builders<GpuLoad>.Filter;
+        var filter = filterBuilder.Gte(x => x.CapturedAtUtc, query.StartDate) &
+                     filterBuilder.Lte(x => x.CapturedAtUtc, query.EndDate);
+        
+        return await (await _collection.FindAsync(filter)).ToListAsync();
     }
 }

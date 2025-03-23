@@ -1,15 +1,16 @@
 ﻿using Vordr.Application.Common.Interfaces.Persistence;
 using Vordr.Domain.Entities;
 
-namespace Vordr.Application.HardwareComponent.Queries;
+namespace Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 
 public class RetrieveHardwareComponentQueryHandler(
     IHardwareComponentsRepository repository
     ) : IRequestHandler<RetrieveHardwareComponentQuery, HardwareComponents>
 {
 
-    public async Task<HardwareComponents> Handle(RetrieveHardwareComponentQuery request, CancellationToken cancellationToken)
+    public Task<HardwareComponents> Handle(RetrieveHardwareComponentQuery request, CancellationToken cancellationToken)
     {
-        return await repository.RetrieveAsync();
+        var x = repository.Retrieve();
+        return Task.FromResult(x);
     }
 }
