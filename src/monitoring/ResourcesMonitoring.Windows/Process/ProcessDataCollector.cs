@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Management;
 using Vordr.Application.Common.Interfaces.Resources;
 using Vordr.Application.Models.Process;
@@ -12,15 +13,35 @@ public class ProcessDataCollector : IProcessDataCollector
 {
     public async Task<IEnumerable<ProcessInformation>> GetCurrentProcesses()
     {
-       
+
         var processes = System.Diagnostics.Process.GetProcesses();
 
         var processInfoList = new List<ProcessInformation>();
 
         var options = new ParallelOptions
         {
-            MaxDegreeOfParallelism = 20
+            MaxDegreeOfParallelism = 5
         };
+        /*
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
+       foreach(var process in processes)
+        {
+            try
+            {
+                var processInfo = GetProcessInfoAsync(process, CancellationToken.None);
+                if (processInfo != null)
+                    processInfoList.Add(processInfo);
+                Console.WriteLine($"finished process {process.ProcessName}. it took {stopwatch.ElapsedMilliseconds} milliseconds.");
+                stopwatch.Restart();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+        }
+        return GroupProcesses(processInfoList);*/
         await Parallel.ForEachAsync(processes, options, (process, cancellationToken) =>
         {
             try
@@ -36,7 +57,6 @@ public class ProcessDataCollector : IProcessDataCollector
 
             return ValueTask.CompletedTask;
         });
-
         return GroupProcesses(processInfoList);
     }
 
@@ -54,7 +74,7 @@ public class ProcessDataCollector : IProcessDataCollector
                 Company = process.GetCompany(),
                 Version = process.GetVersion(),
                 Architecture = process.GetProcessArchitecture(),
-                CpuUsage = process.GetCpuUsage().GetAwaiter().GetResult(),
+                CpuUsage = process.GetCpuUsage().ConfigureAwait(false).GetAwaiter().GetResult(),
                 RamUsage = process.GetRamUsage(),
                 ThreadCount = process.GetThreadsCount(),
                 HandleCount = process.GetHandleCount(),
