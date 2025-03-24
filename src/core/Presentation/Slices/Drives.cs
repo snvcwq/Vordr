@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using LiveChartsCore.Defaults;
+using LiveChartsCore.Measure;
+using MediatR;
 using Presentation.Helpers;
 using Vordr.Application.CpuUsage.Queries.ProcessUsage;
 using Vordr.Application.CpuUsage.Queries;
@@ -82,19 +84,30 @@ public partial class Drives : Form
                     break;
             }
         }
-        
-        var diskCLoad = diskCInfo.Select(d =>(float) (d.DriveTotalSizeGb - d.DriveFreeSpaceGb)).ToArray();
-        var diskDLoad = diskDInfo.Select(d =>(float) (d.DriveTotalSizeGb - d.DriveFreeSpaceGb)).ToArray();
-        var xAxisDiskC = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), diskCInfo.Count);
-        var xAxisDiskD = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), diskDInfo.Count);
-        DriveCChart.CustomXAxis = xAxisDiskC.ToArray();
-        DriveDChart.CustomXAxis = xAxisDiskD.ToArray();
-        DriveCChart.DataPoints = diskCLoad.ToArray();
-        DriveDChart.DataPoints = diskDLoad.ToArray();
-        DriveCChart.MaxValue = (float)diskCInfo.Max(x => x.DriveTotalSizeGb);
-        DriveDChart.MaxValue = (float)diskDInfo.Max(x => x.DriveTotalSizeGb);
+        SetCChart(diskCInfo);
+        SetDChart(diskDInfo);
     }
 
+    private void SetCChart(IEnumerable<DriveInformation> driveInfo)
+    {
+        var data = driveInfo.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(), b.DriveTotalSizeGb - b.DriveFreeSpaceGb)).ToList();
+        CChart.Series = ChartHelper.DefineChart(data);
+        CChart.XAxes = ChartHelper.DefineChartX("time",
+            driveInfo.Select(x => x.CapturedAtUtc).Max(), driveInfo.Select(x => x.CapturedAtUtc).Min() );
+        CChart.YAxes = ChartHelper.DefineChartY("usage (GB)");
+        CChart.ZoomMode = ZoomAndPanMode.Both;
+    }
+    
+    private void SetDChart(IEnumerable<DriveInformation> driveInfo)
+    {
+        var data = driveInfo.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(), b.DriveTotalSizeGb - b.DriveFreeSpaceGb)).ToList();
+        DChart.Series = ChartHelper.DefineChart(data);
+        DChart.XAxes = ChartHelper.DefineChartX("time",
+            driveInfo.Select(x => x.CapturedAtUtc).Max(), driveInfo.Select(x => x.CapturedAtUtc).Min() );
+        DChart.YAxes = ChartHelper.DefineChartY("usage (GB)");
+        DChart.ZoomMode = ZoomAndPanMode.Both;
+    }
+    
     private async void DisplayResults_Click(object sender, EventArgs e)
     {
         try

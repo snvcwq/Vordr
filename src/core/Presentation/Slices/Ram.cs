@@ -1,16 +1,9 @@
-﻿using MediatR;
+﻿using LiveChartsCore.Defaults;
+using LiveChartsCore.Measure;
+using MediatR;
 using Presentation.Helpers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Vordr.Application.CpuUsage.Queries;
 using Vordr.Application.Ram.Queries.Get;
+using Vordr.Domain.Entities;
 
 namespace Presentation.Slices;
 public partial class Ram : Form
@@ -91,10 +84,17 @@ public partial class Ram : Form
     {
         var result = await _sender.Send(query);
         var resultArray = result.ToArray();
-        var useMemory = resultArray.Select(x => (float)x.UsedMemory).ToArray();
-        var xAxisLoad = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), useMemory.Length);
-        RamChart.CustomXAxis = xAxisLoad.ToArray();
-        RamChart.DataPoints = useMemory;
-        RamChart.MaxValue = (float)result.Max(x => x.UsedMemory + x.AvailableMemory);
+        SetTempChart(resultArray);
     }
+    
+    private void SetTempChart(IEnumerable<RamUsage> usage)
+    {
+        var data = usage.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(),b.UsedMemory)).ToList();
+        RamUsage.Series = ChartHelper.DefineChart(data);
+        RamUsage.XAxes = ChartHelper.DefineChartX("time",
+            usage.Select(x => x.CapturedAtUtc).Max(), usage.Select(x => x.CapturedAtUtc).Min() );
+        RamUsage.YAxes = ChartHelper.DefineChartY("usage (GB)");
+        RamUsage.ZoomMode = ZoomAndPanMode.Both;
+    }
+    
 }

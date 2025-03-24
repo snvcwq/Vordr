@@ -1,8 +1,10 @@
-﻿
+﻿using LiveChartsCore.Defaults;
+using LiveChartsCore.Measure;
 using MediatR;
 using Presentation.Helpers;
 using Vordr.Application.Battery.Queries;
 using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
+using Vordr.Domain.Entities;
 
 namespace Presentation.Slices;
 public partial class Battery : Form
@@ -24,7 +26,7 @@ public partial class Battery : Form
         DesignedCapacityLabel.Content = hc.DesignedCapacity.AppendmWh();
         FullChargedCapacityLabel.Content = hc.FullChargedCapacity.AppendmWh();
     }
-    override async protected void OnLoad(EventArgs e)
+    protected override async void OnLoad(EventArgs e)
     {
         try
         {
@@ -105,18 +107,31 @@ public partial class Battery : Form
         }
     }
 
+    private void SetChargeChart(IEnumerable<PowerSupply> batteryData)
+    {
+        var data = batteryData.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(), b.ChargeLevel)).ToList();
+        ChargeLevelChart.Series = ChartHelper.DefineChart(data);
+        ChargeLevelChart.XAxes = ChartHelper.DefineChartX("time",
+            batteryData.Select(x => x.CapturedAtUtc).Max(), batteryData.Select(x => x.CapturedAtUtc).Min() );
+        ChargeLevelChart.YAxes = ChartHelper.DefineChartY("charge level");
+        ChargeLevelChart.ZoomMode = ZoomAndPanMode.Both;
+    }
+    
+    private void SetDegradationChart(IEnumerable<PowerSupply> batteryData)
+    {
+        var data = batteryData.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(), b.DegradationLevel)).ToList();
+        DegradationLevelChart.Series = ChartHelper.DefineChart(data);
+        DegradationLevelChart.XAxes = ChartHelper.DefineChartX("time",
+            batteryData.Select(x => x.CapturedAtUtc).Max(), batteryData.Select(x => x.CapturedAtUtc).Min() );
+        DegradationLevelChart.YAxes = ChartHelper.DefineChartY("degradation level");
+        DegradationLevelChart.ZoomMode = ZoomAndPanMode.Both;
+    }
+
     private async Task DefineCharts(GetBatteryUsageQuery query)
     {
         var result = await _sender.Send(query);
-        var resultArray = result.ToArray();
-        var batteryStatus = resultArray.Select(x => (float)x.ChargeLevel).ToArray();
-        var degradationLevel = resultArray.Select(x => (float)x.DegradationLevel).ToArray();
-        var xAxisBatteryStatus = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), batteryStatus.Length);
-        var xAxisBatteryDegradation = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), degradationLevel.Length);
-        BatteryStatusChart.CustomXAxis = xAxisBatteryStatus.ToArray();
-        BatteryDegradationStatus.CustomXAxis = xAxisBatteryDegradation.ToArray();
-        BatteryStatusChart.DataPoints = batteryStatus;
-        BatteryDegradationStatus.DataPoints = degradationLevel;
+        SetChargeChart(result);
+        SetDegradationChart(result);
     }
 
     private void FromLabel_Load(object sender, EventArgs e)

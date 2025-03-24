@@ -451,7 +451,7 @@ partial class Monitoring
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackColor = Color.FromArgb(241, 244, 254);
+        BackColor = Color.WhiteSmoke;
         ClientSize = new Size(1227, 692);
         Controls.Add(cuiLabel13);
         Controls.Add(cuiBorder6);

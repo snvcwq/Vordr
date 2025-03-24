@@ -56,7 +56,7 @@ internal static class SystemProcessExtensions
         {
             var startTime = DateTime.UtcNow;
             var startCpuUsage = process.TotalProcessorTime;
-            await Task.Delay(500);
+            await Task.Delay(50);
     
             var endTime = DateTime.UtcNow;
             var endCpuUsage = System.Diagnostics.Process.GetProcessById(process.Id).TotalProcessorTime;

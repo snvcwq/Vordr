@@ -85,7 +85,7 @@ partial class Processes
         cuiBorder6.OutlineThickness = 1F;
         cuiBorder6.PanelColor = Color.White;
         cuiBorder6.PanelOutlineColor = Color.White;
-        cuiBorder6.Rounding = new Padding(10);
+        cuiBorder6.Rounding = new Padding(11);
         cuiBorder6.Size = new Size(543, 162);
         cuiBorder6.TabIndex = 25;
         // 
@@ -93,7 +93,7 @@ partial class Processes
         // 
         cuiLabel4.BackColor = Color.Transparent;
         cuiLabel4.Content = "Get\\ a\\ real-time\\ overview\\ of\\ all\\ active\\ processes\\ on\\ your\\ computer\\.\\ Analyze\\ resource\\ consumption\\ and\\ identify\\ potential\\ performance\\ issues\\.";
-        cuiLabel4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel4.Location = new Point(0, 85);
@@ -104,7 +104,7 @@ partial class Processes
         // 
         // cuiSeparator1
         // 
-        cuiSeparator1.ForeColor = Color.FromArgb(40, 53, 147);
+        cuiSeparator1.ForeColor = Color.FromArgb(20, 39, 78);
         cuiSeparator1.Location = new Point(0, 48);
         cuiSeparator1.Margin = new Padding(4, 3, 4, 3);
         cuiSeparator1.Name = "cuiSeparator1";
@@ -118,13 +118,13 @@ partial class Processes
         // 
         cuiLabel13.BackColor = Color.White;
         cuiLabel13.Content = "Current\\ processes";
-        cuiLabel13.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel13.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
         cuiLabel13.ForeColor = Color.Black;
         cuiLabel13.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel13.Location = new Point(4, 3);
         cuiLabel13.Margin = new Padding(4, 3, 4, 3);
         cuiLabel13.Name = "cuiLabel13";
-        cuiLabel13.Size = new Size(308, 39);
+        cuiLabel13.Size = new Size(350, 39);
         cuiLabel13.TabIndex = 16;
         // 
         // cuiBorder2
@@ -142,7 +142,7 @@ partial class Processes
         cuiBorder2.OutlineThickness = 1F;
         cuiBorder2.PanelColor = Color.White;
         cuiBorder2.PanelOutlineColor = Color.White;
-        cuiBorder2.Rounding = new Padding(10);
+        cuiBorder2.Rounding = new Padding(11);
         cuiBorder2.Size = new Size(682, 162);
         cuiBorder2.TabIndex = 26;
         // 
@@ -154,7 +154,7 @@ partial class Processes
         NonSystemProcessSwitch.CheckedForeground = Color.FromArgb(20, 52, 39);
         NonSystemProcessSwitch.CheckedOutlineColor = Color.FromArgb(20, 52, 39);
         NonSystemProcessSwitch.ForeColor = Color.White;
-        NonSystemProcessSwitch.Location = new Point(205, 122);
+        NonSystemProcessSwitch.Location = new Point(224, 122);
         NonSystemProcessSwitch.Name = "NonSystemProcessSwitch";
         NonSystemProcessSwitch.OutlineStyle = true;
         NonSystemProcessSwitch.OutlineThickness = 1F;
@@ -174,7 +174,7 @@ partial class Processes
         SystemProcessSwitch.CheckedForeground = Color.FromArgb(20, 52, 69);
         SystemProcessSwitch.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
         SystemProcessSwitch.ForeColor = Color.White;
-        SystemProcessSwitch.Location = new Point(205, 82);
+        SystemProcessSwitch.Location = new Point(224, 82);
         SystemProcessSwitch.Name = "SystemProcessSwitch";
         SystemProcessSwitch.OutlineStyle = true;
         SystemProcessSwitch.OutlineThickness = 1F;
@@ -190,36 +190,36 @@ partial class Processes
         // 
         cuiLabel3.BackColor = Color.Transparent;
         cuiLabel3.Content = "Non-System\\ processes";
-        cuiLabel3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel3.Font = new Font("Verdana", 12F);
         cuiLabel3.ForeColor = Color.Black;
         cuiLabel3.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel3.Location = new Point(4, 125);
         cuiLabel3.Margin = new Padding(4, 3, 4, 3);
         cuiLabel3.Name = "cuiLabel3";
-        cuiLabel3.Size = new Size(194, 24);
+        cuiLabel3.Size = new Size(220, 24);
         cuiLabel3.TabIndex = 25;
         // 
         // cuiLabel1
         // 
         cuiLabel1.BackColor = Color.Transparent;
         cuiLabel1.Content = "System\\ processes";
-        cuiLabel1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel1.Font = new Font("Verdana", 12F);
         cuiLabel1.ForeColor = Color.Black;
         cuiLabel1.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel1.Location = new Point(4, 85);
         cuiLabel1.Margin = new Padding(4, 3, 4, 3);
         cuiLabel1.Name = "cuiLabel1";
-        cuiLabel1.Size = new Size(168, 24);
+        cuiLabel1.Size = new Size(194, 24);
         cuiLabel1.TabIndex = 22;
         // 
         // cuiSeparator2
         // 
-        cuiSeparator2.ForeColor = Color.FromArgb(40, 53, 147);
-        cuiSeparator2.Location = new Point(0, 48);
+        cuiSeparator2.ForeColor = Color.FromArgb(20, 39, 78);
+        cuiSeparator2.Location = new Point(0, 45);
         cuiSeparator2.Margin = new Padding(4, 3, 4, 3);
         cuiSeparator2.Name = "cuiSeparator2";
         cuiSeparator2.SeparatorMargin = 8;
-        cuiSeparator2.Size = new Size(678, 31);
+        cuiSeparator2.Size = new Size(678, 19);
         cuiSeparator2.TabIndex = 23;
         cuiSeparator2.Thickness = 1F;
         cuiSeparator2.Vertical = false;
@@ -228,7 +228,7 @@ partial class Processes
         // 
         cuiLabel2.BackColor = Color.White;
         cuiLabel2.Content = "settings";
-        cuiLabel2.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel2.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
         cuiLabel2.ForeColor = Color.Black;
         cuiLabel2.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel2.Location = new Point(4, 3);
@@ -262,7 +262,7 @@ partial class Processes
         ProcessesTable.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
         dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle1.BackColor = Color.IndianRed;
-        dataGridViewCellStyle1.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        dataGridViewCellStyle1.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         dataGridViewCellStyle1.ForeColor = SystemColors.WindowFrame;
         dataGridViewCellStyle1.SelectionBackColor = Color.Black;
         dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlDarkDark;
@@ -273,8 +273,8 @@ partial class Processes
         ProcessesTable.DataSource = processModelBindingSource1;
         dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
         dataGridViewCellStyle2.BackColor = Color.White;
-        dataGridViewCellStyle2.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        dataGridViewCellStyle2.ForeColor = Color.Black;
+        dataGridViewCellStyle2.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        dataGridViewCellStyle2.ForeColor = Color.FromArgb(40, 53, 147);
         dataGridViewCellStyle2.SelectionBackColor = Color.Gainsboro;
         dataGridViewCellStyle2.SelectionForeColor = Color.Black;
         dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -307,7 +307,7 @@ partial class Processes
         pidDataGridViewTextBoxColumn1.HeaderText = "Pid";
         pidDataGridViewTextBoxColumn1.Name = "pidDataGridViewTextBoxColumn1";
         pidDataGridViewTextBoxColumn1.ReadOnly = true;
-        pidDataGridViewTextBoxColumn1.Width = 55;
+        pidDataGridViewTextBoxColumn1.Width = 54;
         // 
         // iconDataGridViewImageColumn1
         // 
@@ -439,7 +439,7 @@ partial class Processes
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackColor = Color.FromArgb(241, 244, 254);
+        BackColor = Color.FromArgb(155, 164, 180);
         ClientSize = new Size(1258, 692);
         Controls.Add(cuiBorder2);
         Controls.Add(cuiBorder1);

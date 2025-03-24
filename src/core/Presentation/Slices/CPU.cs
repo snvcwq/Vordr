@@ -1,10 +1,13 @@
-﻿using MediatR;
+﻿using LiveChartsCore.Defaults;
+using LiveChartsCore.Measure;
+using MediatR;
 using Presentation.Helpers;
 using Vordr.Application.Battery.Queries;
 using Vordr.Application.CpuUsage.Queries;
 using Vordr.Application.CpuUsage.Queries.ProcessUsage;
 using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 using Vordr.Application.Models;
+using Vordr.Domain.Entities;
 using Vordr.Domain.Entities.Components;
 
 namespace Presentation.Slices;
@@ -103,18 +106,30 @@ public partial class Cpu : Form
         return $"{number}. {cpu.Name} at {cpu.Time.ToString("h:mm:ss")}. load: {Math.Round(cpu.Load,3)}%.";
     }
     
+    private void SetLoadChart(IEnumerable<CpuLoad> batteryData)
+    {
+        var data = batteryData.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(), b.LoadPercents)).ToList();
+        TopUsageChart.Series = ChartHelper.DefineChart(data);
+        TopUsageChart.XAxes = ChartHelper.DefineChartX("time",
+            batteryData.Select(x => x.CapturedAtUtc).Max(), batteryData.Select(x => x.CapturedAtUtc).Min() );
+        TopUsageChart.YAxes = ChartHelper.DefineChartY("usage");
+        TopUsageChart.ZoomMode = ZoomAndPanMode.Both;
+    }
+    
+    private void SetTemperatureChart(IEnumerable<CpuLoad> batteryData)
+    {
+        var data = batteryData.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(), b.Temperature)).ToList();
+        TemperatureChart.Series = ChartHelper.DefineChart(data);
+        TemperatureChart.XAxes = ChartHelper.DefineChartX("time",
+            batteryData.Select(x => x.CapturedAtUtc).Max(), batteryData.Select(x => x.CapturedAtUtc).Min() );
+        TemperatureChart.YAxes = ChartHelper.DefineChartY("temperature (°C)");
+        TemperatureChart.ZoomMode = ZoomAndPanMode.Both;
+    }
     private async Task DefineCharts(GetCpuUsageQuery query)
     {
         var result = await _sender.Send(query);
-        var resultArray = result.ToArray();
-        var temperature = resultArray.Select(x => (float)x.Temperature).ToArray();
-        var load = resultArray.Select(x => (float)x.LoadPercents).ToArray();
-        var xAxisTemperature = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), temperature.Length);
-        var xAxisLoad = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), load.Length);
-        TemperatureChart.CustomXAxis = xAxisTemperature.ToArray();
-        LoadChart.CustomXAxis = xAxisLoad.ToArray();
-        TemperatureChart.DataPoints = temperature;
-        LoadChart.DataPoints = load;
+        SetLoadChart(result);
+        SetTemperatureChart(result);
     }
 
     private void OneDayCheckbox_Click(object sender, EventArgs e)

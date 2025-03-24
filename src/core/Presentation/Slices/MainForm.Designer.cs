@@ -680,9 +680,10 @@ partial class MainForm
         // 
         // MainPanel
         // 
-        MainPanel.Location = new Point(210, 34);
+        MainPanel.BackColor = Color.FromArgb(155, 164, 180);
+        MainPanel.Location = new Point(203, 22);
         MainPanel.Name = "MainPanel";
-        MainPanel.Size = new Size(1227, 750);
+        MainPanel.Size = new Size(1297, 774);
         MainPanel.TabIndex = 3;
         // 
         // CollectProcessesWorker

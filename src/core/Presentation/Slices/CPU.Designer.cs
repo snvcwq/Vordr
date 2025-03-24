@@ -37,11 +37,9 @@ partial class Cpu
         TopLoadUsageLabel = new CuoreUI.Controls.cuiLabel();
         cuiSeparator2 = new CuoreUI.Controls.cuiSeparator();
         cuiLabel2 = new CuoreUI.Controls.cuiLabel();
-        LoadChart = new CuoreUI.Controls.Charts.cuiChartLine();
         cuiLabel3 = new CuoreUI.Controls.cuiLabel();
         cuiBorder3 = new CuoreUI.Controls.cuiBorder();
         cuiSeparator3 = new CuoreUI.Controls.cuiSeparator();
-        TemperatureChart = new CuoreUI.Controls.Charts.cuiChartLine();
         cuiBorder6 = new CuoreUI.Controls.cuiBorder();
         ModelLabel = new CuoreUI.Controls.cuiLabel();
         CoresLabel = new CuoreUI.Controls.cuiLabel();
@@ -65,6 +63,8 @@ partial class Cpu
         StartHourLabel = new CuoreUI.Controls.cuiLabel();
         StartDate = new CuoreUI.Controls.cuiCalendarDatePicker();
         cuiGradientBorder1 = new CuoreUI.Controls.cuiGradientBorder();
+        TopUsageChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
+        TemperatureChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
         cuiBorder1.SuspendLayout();
         cuiBorder3.SuspendLayout();
         cuiBorder6.SuspendLayout();
@@ -74,6 +74,7 @@ partial class Cpu
         // 
         // cuiBorder1
         // 
+        cuiBorder1.Controls.Add(TopUsageChart);
         cuiBorder1.Controls.Add(TopUsageSeparator);
         cuiBorder1.Controls.Add(Top3LoadUsage);
         cuiBorder1.Controls.Add(Top2LoadUsage);
@@ -81,20 +82,19 @@ partial class Cpu
         cuiBorder1.Controls.Add(TopLoadUsageLabel);
         cuiBorder1.Controls.Add(cuiSeparator2);
         cuiBorder1.Controls.Add(cuiLabel2);
-        cuiBorder1.Controls.Add(LoadChart);
         cuiBorder1.Location = new Point(12, 300);
         cuiBorder1.Name = "cuiBorder1";
         cuiBorder1.OutlineThickness = 1F;
         cuiBorder1.PanelColor = Color.White;
         cuiBorder1.PanelOutlineColor = Color.White;
-        cuiBorder1.Rounding = new Padding(10);
+        cuiBorder1.Rounding = new Padding(11);
         cuiBorder1.Size = new Size(1203, 176);
         cuiBorder1.TabIndex = 24;
         // 
         // TopUsageSeparator
         // 
         TopUsageSeparator.BackColor = Color.Transparent;
-        TopUsageSeparator.ForeColor = Color.FromArgb(40, 53, 147);
+        TopUsageSeparator.ForeColor = Color.FromArgb(20, 39, 78);
         TopUsageSeparator.Location = new Point(258, 45);
         TopUsageSeparator.Margin = new Padding(4, 3, 4, 3);
         TopUsageSeparator.Name = "TopUsageSeparator";
@@ -149,18 +149,18 @@ partial class Cpu
         // 
         TopLoadUsageLabel.BackColor = Color.Transparent;
         TopLoadUsageLabel.Content = "top\\ usages:\\ ";
-        TopLoadUsageLabel.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        TopLoadUsageLabel.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
         TopLoadUsageLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        TopLoadUsageLabel.Location = new Point(292, 14);
+        TopLoadUsageLabel.Location = new Point(280, 14);
         TopLoadUsageLabel.Margin = new Padding(4, 3, 4, 3);
         TopLoadUsageLabel.Name = "TopLoadUsageLabel";
-        TopLoadUsageLabel.Size = new Size(165, 41);
+        TopLoadUsageLabel.Size = new Size(202, 41);
         TopLoadUsageLabel.TabIndex = 42;
         // 
         // cuiSeparator2
         // 
         cuiSeparator2.BackColor = Color.Transparent;
-        cuiSeparator2.ForeColor = Color.FromArgb(40, 53, 147);
+        cuiSeparator2.ForeColor = Color.FromArgb(20, 39, 78);
         cuiSeparator2.Location = new Point(-11, 45);
         cuiSeparator2.Margin = new Padding(4, 3, 4, 3);
         cuiSeparator2.Name = "cuiSeparator2";
@@ -174,7 +174,7 @@ partial class Cpu
         // 
         cuiLabel2.BackColor = Color.Transparent;
         cuiLabel2.Content = "load";
-        cuiLabel2.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel2.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
         cuiLabel2.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel2.Location = new Point(15, 14);
         cuiLabel2.Margin = new Padding(4, 3, 4, 3);
@@ -182,73 +182,36 @@ partial class Cpu
         cuiLabel2.Size = new Size(102, 34);
         cuiLabel2.TabIndex = 21;
         // 
-        // LoadChart
-        // 
-        LoadChart.AutoMaxValue = false;
-        LoadChart.AxisColor = Color.Black;
-        LoadChart.BackColor = Color.Transparent;
-        LoadChart.ChartLineColor = Color.FromArgb(11, 35, 116);
-        LoadChart.ChartPadding = 40;
-        LoadChart.CustomXAxis = new string[]
-{
-    "1",
-    "2",
-    "3"
-};
-        LoadChart.DataPoints = new float[]
-{
-    100F,
-    40F,
-    80F,
-    75F,
-    100F,
-    65F,
-    60F
-};
-        LoadChart.DayColor = Color.Black;
-        LoadChart.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        LoadChart.GradientBackground = false;
-        LoadChart.Location = new Point(538, 8);
-        LoadChart.Margin = new Padding(8, 5, 8, 5);
-        LoadChart.MaxValue = 100F;
-        LoadChart.Name = "LoadChart";
-        LoadChart.PointColor = Color.FromArgb(11, 35, 116);
-        LoadChart.ShortDates = true;
-        LoadChart.Size = new Size(657, 163);
-        LoadChart.TabIndex = 18;
-        LoadChart.UseBezier = true;
-        LoadChart.UsePercent = true;
-        // 
         // cuiLabel3
         // 
         cuiLabel3.BackColor = Color.Transparent;
         cuiLabel3.Content = "temperature";
-        cuiLabel3.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel3.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
         cuiLabel3.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel3.Location = new Point(4, 6);
         cuiLabel3.Margin = new Padding(4, 3, 4, 3);
         cuiLabel3.Name = "cuiLabel3";
-        cuiLabel3.Size = new Size(165, 39);
+        cuiLabel3.Size = new Size(230, 39);
         cuiLabel3.TabIndex = 22;
         // 
         // cuiBorder3
         // 
+        cuiBorder3.Controls.Add(TemperatureChart);
         cuiBorder3.Controls.Add(cuiSeparator3);
         cuiBorder3.Controls.Add(cuiLabel3);
-        cuiBorder3.Controls.Add(TemperatureChart);
         cuiBorder3.Location = new Point(12, 491);
         cuiBorder3.Name = "cuiBorder3";
         cuiBorder3.OutlineThickness = 1F;
         cuiBorder3.PanelColor = Color.White;
         cuiBorder3.PanelOutlineColor = Color.White;
-        cuiBorder3.Rounding = new Padding(10);
+        cuiBorder3.Rounding = new Padding(11);
         cuiBorder3.Size = new Size(1203, 198);
         cuiBorder3.TabIndex = 25;
         // 
         // cuiSeparator3
         // 
         cuiSeparator3.BackColor = Color.Transparent;
-        cuiSeparator3.ForeColor = Color.FromArgb(40, 53, 147);
+        cuiSeparator3.ForeColor = Color.FromArgb(20, 39, 78);
         cuiSeparator3.Location = new Point(-11, 43);
         cuiSeparator3.Margin = new Padding(5, 4, 5, 4);
         cuiSeparator3.Name = "cuiSeparator3";
@@ -257,43 +220,6 @@ partial class Cpu
         cuiSeparator3.TabIndex = 23;
         cuiSeparator3.Thickness = 1F;
         cuiSeparator3.Vertical = false;
-        // 
-        // TemperatureChart
-        // 
-        TemperatureChart.AutoMaxValue = false;
-        TemperatureChart.AxisColor = Color.Black;
-        TemperatureChart.BackColor = Color.Transparent;
-        TemperatureChart.ChartLineColor = Color.FromArgb(11, 35, 116);
-        TemperatureChart.ChartPadding = 40;
-        TemperatureChart.CustomXAxis = new string[]
-{
-    "1",
-    "2",
-    "3"
-};
-        TemperatureChart.DataPoints = new float[]
-{
-    100F,
-    40F,
-    80F,
-    75F,
-    100F,
-    65F,
-    60F
-};
-        TemperatureChart.DayColor = Color.Black;
-        TemperatureChart.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TemperatureChart.GradientBackground = false;
-        TemperatureChart.Location = new Point(237, 6);
-        TemperatureChart.Margin = new Padding(8, 5, 8, 5);
-        TemperatureChart.MaxValue = 100F;
-        TemperatureChart.Name = "TemperatureChart";
-        TemperatureChart.PointColor = Color.FromArgb(11, 35, 116);
-        TemperatureChart.ShortDates = true;
-        TemperatureChart.Size = new Size(961, 192);
-        TemperatureChart.TabIndex = 18;
-        TemperatureChart.UseBezier = true;
-        TemperatureChart.UsePercent = false;
         // 
         // cuiBorder6
         // 
@@ -306,13 +232,13 @@ partial class Cpu
         cuiBorder6.Controls.Add(cuiSeparator1);
         cuiBorder6.Controls.Add(cuiLabel13);
         cuiBorder6.Controls.Add(cuiBorder5);
-        cuiBorder6.ForeColor = Color.FromArgb(40, 53, 147);
+        cuiBorder6.ForeColor = Color.FromArgb(155, 164, 180);
         cuiBorder6.Location = new Point(12, 12);
         cuiBorder6.Name = "cuiBorder6";
         cuiBorder6.OutlineThickness = 1F;
         cuiBorder6.PanelColor = Color.White;
         cuiBorder6.PanelOutlineColor = Color.White;
-        cuiBorder6.Rounding = new Padding(10);
+        cuiBorder6.Rounding = new Padding(11);
         cuiBorder6.Size = new Size(1203, 271);
         cuiBorder6.TabIndex = 24;
         // 
@@ -347,7 +273,7 @@ partial class Cpu
         // 
         cuiLabel4.BackColor = Color.Transparent;
         cuiLabel4.Content = "Track\\ your\\ CPU's\\ load\\ and\\ temperature\\ history\\ over\\ a\\ selected\\ time\\ range\\.\\ Analyze\\ performance\\ trends\\ and\\ identify\\ potential\\ issues\\ to\\ ensure\\ optimal\\ system\\ operation\\.";
-        cuiLabel4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel4.Location = new Point(0, 176);
@@ -360,7 +286,7 @@ partial class Cpu
         // 
         cuiLabel6.BackColor = Color.Transparent;
         cuiLabel6.Content = "Cores:";
-        cuiLabel6.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel6.Font = new Font("Verdana", 12F);
         cuiLabel6.ForeColor = Color.Black;
         cuiLabel6.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel6.Location = new Point(28, 91);
@@ -373,7 +299,7 @@ partial class Cpu
         // 
         cuiLabel1.BackColor = Color.Transparent;
         cuiLabel1.Content = "Model:";
-        cuiLabel1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel1.Font = new Font("Verdana", 12F);
         cuiLabel1.ForeColor = Color.Black;
         cuiLabel1.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel1.Location = new Point(28, 59);
@@ -384,7 +310,7 @@ partial class Cpu
         // 
         // cuiSeparator1
         // 
-        cuiSeparator1.ForeColor = Color.FromArgb(40, 53, 147);
+        cuiSeparator1.ForeColor = Color.FromArgb(20, 39, 78);
         cuiSeparator1.Location = new Point(0, 154);
         cuiSeparator1.Margin = new Padding(4, 3, 4, 3);
         cuiSeparator1.Name = "cuiSeparator1";
@@ -398,13 +324,13 @@ partial class Cpu
         // 
         cuiLabel13.BackColor = Color.White;
         cuiLabel13.Content = "Cpu\\ load\\ history";
-        cuiLabel13.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel13.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
         cuiLabel13.ForeColor = Color.Black;
         cuiLabel13.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel13.Location = new Point(4, 3);
         cuiLabel13.Margin = new Padding(4, 3, 4, 3);
         cuiLabel13.Name = "cuiLabel13";
-        cuiLabel13.Size = new Size(263, 39);
+        cuiLabel13.Size = new Size(318, 39);
         cuiLabel13.TabIndex = 16;
         // 
         // cuiBorder5
@@ -416,7 +342,7 @@ partial class Cpu
         cuiBorder5.Location = new Point(533, 34);
         cuiBorder5.Name = "cuiBorder5";
         cuiBorder5.OutlineThickness = 2F;
-        cuiBorder5.PanelColor = Color.FromArgb(152, 148, 244);
+        cuiBorder5.PanelColor = Color.FromArgb(57, 72, 103);
         cuiBorder5.PanelOutlineColor = Color.FromArgb(241, 244, 254);
         cuiBorder5.Rounding = new Padding(8);
         cuiBorder5.Size = new Size(641, 194);
@@ -424,21 +350,21 @@ partial class Cpu
         // 
         // DisplayResults
         // 
-        DisplayResults.BackColor = Color.FromArgb(76, 88, 176);
+        DisplayResults.BackColor = Color.FromArgb(28, 46, 83);
         DisplayResults.CheckButton = false;
         DisplayResults.Checked = false;
         DisplayResults.CheckedBackground = Color.White;
         DisplayResults.CheckedForeColor = Color.Black;
         DisplayResults.CheckedImageTint = Color.White;
-        DisplayResults.CheckedOutline = Color.FromArgb(40, 53, 147);
+        DisplayResults.CheckedOutline = Color.FromArgb(28, 46, 83);
         DisplayResults.Content = "Display";
         DisplayResults.DialogResult = DialogResult.None;
-        DisplayResults.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        DisplayResults.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         DisplayResults.ForeColor = Color.Black;
         DisplayResults.HoverBackground = Color.White;
         DisplayResults.HoveredImageTint = Color.White;
         DisplayResults.HoverForeColor = Color.Black;
-        DisplayResults.HoverOutline = Color.FromArgb(40, 53, 147);
+        DisplayResults.HoverOutline = Color.FromArgb(28, 46, 83);
         DisplayResults.Image = null;
         DisplayResults.ImageAutoCenter = true;
         DisplayResults.ImageExpand = new Point(0, 0);
@@ -447,7 +373,7 @@ partial class Cpu
         DisplayResults.Location = new Point(52, 64);
         DisplayResults.Name = "DisplayResults";
         DisplayResults.NormalBackground = Color.White;
-        DisplayResults.NormalOutline = Color.FromArgb(40, 53, 147);
+        DisplayResults.NormalOutline = Color.FromArgb(28, 46, 83);
         DisplayResults.OutlineThickness = 0.1F;
         DisplayResults.PressedBackground = Color.White;
         DisplayResults.PressedForeColor = Color.Black;
@@ -486,7 +412,7 @@ partial class Cpu
         DayLabel.AllowDrop = true;
         DayLabel.BackColor = Color.Transparent;
         DayLabel.Content = "day";
-        DayLabel.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        DayLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
         DayLabel.ForeColor = Color.Black;
         DayLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         DayLabel.ImeMode = ImeMode.On;
@@ -501,8 +427,8 @@ partial class Cpu
         // 
         OneDayCheckbox.BackColor = Color.White;
         OneDayCheckbox.Checked = false;
-        OneDayCheckbox.CheckedForeground = Color.FromArgb(40, 53, 147);
-        OneDayCheckbox.CheckedOutlineColor = Color.FromArgb(40, 53, 147);
+        OneDayCheckbox.CheckedForeground = Color.FromArgb(20, 39, 78);
+        OneDayCheckbox.CheckedOutlineColor = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.CheckedSymbolColor = Color.White;
         OneDayCheckbox.Content = "cuiCheckbox";
         OneDayCheckbox.ForeColor = SystemColors.ButtonShadow;
@@ -517,8 +443,8 @@ partial class Cpu
         OneDayCheckbox.Size = new Size(32, 30);
         OneDayCheckbox.TabIndex = 26;
         OneDayCheckbox.Text = "cuiCheckbox1";
-        OneDayCheckbox.UncheckedForeground = Color.FromArgb(40, 53, 147);
-        OneDayCheckbox.UncheckedOutlineColor = Color.FromArgb(40, 53, 147);
+        OneDayCheckbox.UncheckedForeground = Color.FromArgb(20, 39, 78);
+        OneDayCheckbox.UncheckedOutlineColor = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.UncheckedSymbolColor = Color.White;
         OneDayCheckbox.Click += OneDayCheckbox_Click;
         // 
@@ -527,7 +453,7 @@ partial class Cpu
         ToLabel.AllowDrop = true;
         ToLabel.BackColor = Color.Transparent;
         ToLabel.Content = "to:";
-        ToLabel.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        ToLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
         ToLabel.ForeColor = Color.Black;
         ToLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         ToLabel.ImeMode = ImeMode.On;
@@ -542,7 +468,7 @@ partial class Cpu
         FromLabel.AllowDrop = true;
         FromLabel.BackColor = Color.Transparent;
         FromLabel.Content = "from:";
-        FromLabel.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        FromLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
         FromLabel.ForeColor = Color.Black;
         FromLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         FromLabel.ImeMode = ImeMode.On;
@@ -557,7 +483,7 @@ partial class Cpu
         StartDateLabel.AllowDrop = true;
         StartDateLabel.BackColor = Color.White;
         StartDateLabel.Content = "one\\ day\\ statistics";
-        StartDateLabel.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        StartDateLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
         StartDateLabel.ForeColor = Color.Black;
         StartDateLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         StartDateLabel.ImeMode = ImeMode.On;
@@ -597,7 +523,7 @@ partial class Cpu
         EndHourLabel.AllowDrop = true;
         EndHourLabel.BackColor = Color.Transparent;
         EndHourLabel.Content = "end\\ time";
-        EndHourLabel.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        EndHourLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
         EndHourLabel.ForeColor = Color.Black;
         EndHourLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         EndHourLabel.Location = new Point(0, 50);
@@ -662,7 +588,7 @@ partial class Cpu
         StartHourLabel.AllowDrop = true;
         StartHourLabel.BackColor = Color.Transparent;
         StartHourLabel.Content = "start\\ time";
-        StartHourLabel.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        StartHourLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
         StartHourLabel.ForeColor = Color.Black;
         StartHourLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         StartHourLabel.Location = new Point(4, 14);
@@ -702,7 +628,7 @@ partial class Cpu
         cuiGradientBorder1.Location = new Point(0, 0);
         cuiGradientBorder1.Name = "cuiGradientBorder1";
         cuiGradientBorder1.OutlineThickness = 1F;
-        cuiGradientBorder1.PanelColor1 = Color.FromArgb(40, 53, 147);
+        cuiGradientBorder1.PanelColor1 = Color.FromArgb(20, 39, 78);
         cuiGradientBorder1.PanelColor2 = Color.Transparent;
         cuiGradientBorder1.PanelOutlineColor1 = Color.Transparent;
         cuiGradientBorder1.PanelOutlineColor2 = Color.Transparent;
@@ -710,11 +636,30 @@ partial class Cpu
         cuiGradientBorder1.Size = new Size(638, 194);
         cuiGradientBorder1.TabIndex = 24;
         // 
+        // TopUsageChart
+        // 
+        TopUsageChart.BackColor = Color.White;
+        TopUsageChart.Location = new Point(501, 3);
+        TopUsageChart.MatchAxesScreenDataRatio = false;
+        TopUsageChart.Name = "TopUsageChart";
+        TopUsageChart.Size = new Size(699, 170);
+        TopUsageChart.TabIndex = 46;
+        // 
+        // TemperatureChart
+        // 
+        TemperatureChart.BackColor = Color.White;
+        TemperatureChart.Location = new Point(242, 0);
+        TemperatureChart.Margin = new Padding(4, 4, 4, 4);
+        TemperatureChart.MatchAxesScreenDataRatio = false;
+        TemperatureChart.Name = "TemperatureChart";
+        TemperatureChart.Size = new Size(1161, 198);
+        TemperatureChart.TabIndex = 47;
+        // 
         // Cpu
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackColor = Color.FromArgb(241, 244, 254);
+        BackColor = Color.FromArgb(155, 164, 180);
         ClientSize = new Size(1227, 692);
         Controls.Add(cuiBorder6);
         Controls.Add(cuiBorder1);
@@ -736,10 +681,8 @@ partial class Cpu
 
     private CuoreUI.Controls.cuiBorder cuiBorder1;
     private CuoreUI.Controls.cuiLabel cuiLabel2;
-    public CuoreUI.Controls.Charts.cuiChartLine LoadChart;
     private CuoreUI.Controls.cuiLabel cuiLabel3;
     private CuoreUI.Controls.cuiBorder cuiBorder3;
-    public CuoreUI.Controls.Charts.cuiChartLine TemperatureChart;
     private CuoreUI.Controls.cuiBorder cuiBorder6;
     private CuoreUI.Controls.cuiLabel ModelLabel;
     private CuoreUI.Controls.cuiLabel CoresLabel;
@@ -770,4 +713,6 @@ partial class Cpu
     private CuoreUI.Controls.cuiLabel TopLoadUsageLabel;
     private CuoreUI.Controls.cuiSeparator cuiSeparator3;
     private CuoreUI.Controls.cuiSeparator TopUsageSeparator;
+    private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart TopUsageChart;
+    private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart TemperatureChart;
 }

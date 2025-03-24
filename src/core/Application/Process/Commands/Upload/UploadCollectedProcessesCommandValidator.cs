@@ -4,9 +4,9 @@ public class UploadCollectedProcessesCommandValidator : AbstractValidator<Upload
 {
     public UploadCollectedProcessesCommandValidator()
     {
-        RuleFor(command => command.ProcessList)
+        /*RuleFor(command => command.ProcessList)
             .NotNull()
             .NotEmpty()
-            .WithMessage("List of processes that need to be uploaded cannot be null or empty");
+            .WithMessage("List of processes that need to be uploaded cannot be null or empty");*/
     }
 }

@@ -29,7 +29,6 @@ partial class Drives
     private void InitializeComponent()
     {
         var resources = new System.ComponentModel.ComponentResourceManager(typeof(Drives));
-        DriveCChart = new CuoreUI.Controls.Charts.cuiChartLine();
         cuiBorder1 = new CuoreUI.Controls.cuiBorder();
         RootDirectoryDiskC = new CuoreUI.Controls.cuiLabel();
         TypeDiskC = new CuoreUI.Controls.cuiLabel();
@@ -71,7 +70,8 @@ partial class Drives
         cuiSeparator3 = new CuoreUI.Controls.cuiSeparator();
         cuiLabel18 = new CuoreUI.Controls.cuiLabel();
         cuiLabel19 = new CuoreUI.Controls.cuiLabel();
-        DriveDChart = new CuoreUI.Controls.Charts.cuiChartLine();
+        CChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
+        DChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
         cuiBorder1.SuspendLayout();
         cuiBorder6.SuspendLayout();
         cuiBorder5.SuspendLayout();
@@ -79,45 +79,9 @@ partial class Drives
         cuiBorder2.SuspendLayout();
         SuspendLayout();
         // 
-        // DriveCChart
-        // 
-        DriveCChart.AutoMaxValue = false;
-        DriveCChart.AxisColor = Color.Black;
-        DriveCChart.BackColor = Color.Transparent;
-        DriveCChart.ChartLineColor = Color.FromArgb(11, 35, 116);
-        DriveCChart.ChartPadding = 40;
-        DriveCChart.CustomXAxis = new string[]
-{
-    "1",
-    "2",
-    "3"
-};
-        DriveCChart.DataPoints = new float[]
-{
-    100F,
-    40F,
-    80F,
-    75F,
-    100F,
-    65F,
-    60F
-};
-        DriveCChart.DayColor = Color.Black;
-        DriveCChart.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        DriveCChart.GradientBackground = false;
-        DriveCChart.Location = new Point(3, 109);
-        DriveCChart.Margin = new Padding(6, 4, 6, 4);
-        DriveCChart.MaxValue = 100F;
-        DriveCChart.Name = "DriveCChart";
-        DriveCChart.PointColor = Color.FromArgb(11, 35, 116);
-        DriveCChart.ShortDates = true;
-        DriveCChart.Size = new Size(601, 384);
-        DriveCChart.TabIndex = 18;
-        DriveCChart.UseBezier = true;
-        DriveCChart.UsePercent = false;
-        // 
         // cuiBorder1
         // 
+        cuiBorder1.Controls.Add(CChart);
         cuiBorder1.Controls.Add(RootDirectoryDiskC);
         cuiBorder1.Controls.Add(TypeDiskC);
         cuiBorder1.Controls.Add(DiskCLabel);
@@ -128,13 +92,12 @@ partial class Drives
         cuiBorder1.Controls.Add(cuiSeparator2);
         cuiBorder1.Controls.Add(cuiLabel3);
         cuiBorder1.Controls.Add(cuiLabel2);
-        cuiBorder1.Controls.Add(DriveCChart);
         cuiBorder1.Location = new Point(12, 195);
         cuiBorder1.Name = "cuiBorder1";
         cuiBorder1.OutlineThickness = 1F;
         cuiBorder1.PanelColor = Color.White;
         cuiBorder1.PanelOutlineColor = Color.White;
-        cuiBorder1.Rounding = new Padding(10);
+        cuiBorder1.Rounding = new Padding(11);
         cuiBorder1.Size = new Size(604, 497);
         cuiBorder1.TabIndex = 19;
         // 
@@ -142,8 +105,8 @@ partial class Drives
         // 
         RootDirectoryDiskC.BackColor = Color.Transparent;
         RootDirectoryDiskC.Content = "";
-        RootDirectoryDiskC.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        RootDirectoryDiskC.ForeColor = Color.FromArgb(40, 53, 147);
+        RootDirectoryDiskC.Font = new Font("Verdana", 12F);
+        RootDirectoryDiskC.ForeColor = Color.FromArgb(20, 39, 78);
         RootDirectoryDiskC.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         RootDirectoryDiskC.Location = new Point(405, 79);
         RootDirectoryDiskC.Margin = new Padding(4, 3, 4, 3);
@@ -155,8 +118,8 @@ partial class Drives
         // 
         TypeDiskC.BackColor = Color.Transparent;
         TypeDiskC.Content = "";
-        TypeDiskC.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TypeDiskC.ForeColor = Color.FromArgb(40, 53, 147);
+        TypeDiskC.Font = new Font("Verdana", 12F);
+        TypeDiskC.ForeColor = Color.FromArgb(20, 39, 78);
         TypeDiskC.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         TypeDiskC.Location = new Point(405, 50);
         TypeDiskC.Margin = new Padding(4, 3, 4, 3);
@@ -168,8 +131,8 @@ partial class Drives
         // 
         DiskCLabel.BackColor = Color.Transparent;
         DiskCLabel.Content = "";
-        DiskCLabel.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        DiskCLabel.ForeColor = Color.FromArgb(40, 53, 147);
+        DiskCLabel.Font = new Font("Verdana", 12F);
+        DiskCLabel.ForeColor = Color.FromArgb(20, 39, 78);
         DiskCLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         DiskCLabel.Location = new Point(93, 77);
         DiskCLabel.Margin = new Padding(4, 3, 4, 3);
@@ -181,8 +144,8 @@ partial class Drives
         // 
         DiskCFormat.BackColor = Color.Transparent;
         DiskCFormat.Content = "";
-        DiskCFormat.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        DiskCFormat.ForeColor = Color.FromArgb(40, 53, 147);
+        DiskCFormat.Font = new Font("Verdana", 12F);
+        DiskCFormat.ForeColor = Color.FromArgb(20, 39, 78);
         DiskCFormat.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         DiskCFormat.Location = new Point(93, 50);
         DiskCFormat.Margin = new Padding(4, 3, 4, 3);
@@ -194,7 +157,7 @@ partial class Drives
         // 
         cuiLabel7.BackColor = Color.Transparent;
         cuiLabel7.Content = "RootDirectory:";
-        cuiLabel7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel7.Font = new Font("Verdana", 12F);
         cuiLabel7.ForeColor = Color.Black;
         cuiLabel7.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel7.Location = new Point(270, 77);
@@ -207,7 +170,7 @@ partial class Drives
         // 
         cuiLabel6.BackColor = Color.Transparent;
         cuiLabel6.Content = "Type:";
-        cuiLabel6.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel6.Font = new Font("Verdana", 12F);
         cuiLabel6.ForeColor = Color.Black;
         cuiLabel6.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel6.Location = new Point(336, 50);
@@ -220,7 +183,7 @@ partial class Drives
         // 
         cuiLabel5.BackColor = Color.Transparent;
         cuiLabel5.Content = "Label:";
-        cuiLabel5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel5.Font = new Font("Verdana", 12F);
         cuiLabel5.ForeColor = Color.Black;
         cuiLabel5.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel5.Location = new Point(21, 79);
@@ -232,7 +195,7 @@ partial class Drives
         // cuiSeparator2
         // 
         cuiSeparator2.BackColor = Color.Transparent;
-        cuiSeparator2.ForeColor = Color.FromArgb(40, 53, 147);
+        cuiSeparator2.ForeColor = Color.FromArgb(20, 39, 78);
         cuiSeparator2.Location = new Point(0, 28);
         cuiSeparator2.Margin = new Padding(4, 3, 4, 3);
         cuiSeparator2.Name = "cuiSeparator2";
@@ -246,7 +209,7 @@ partial class Drives
         // 
         cuiLabel3.BackColor = Color.Transparent;
         cuiLabel3.Content = "Format:";
-        cuiLabel3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel3.Font = new Font("Verdana", 12F);
         cuiLabel3.ForeColor = Color.Black;
         cuiLabel3.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel3.Location = new Point(21, 50);
@@ -259,7 +222,7 @@ partial class Drives
         // 
         cuiLabel2.BackColor = Color.Transparent;
         cuiLabel2.Content = "Disk\\ C:";
-        cuiLabel2.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel2.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         cuiLabel2.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel2.Location = new Point(4, 3);
         cuiLabel2.Margin = new Padding(4, 3, 4, 3);
@@ -280,7 +243,7 @@ partial class Drives
         cuiBorder6.OutlineThickness = 1F;
         cuiBorder6.PanelColor = Color.White;
         cuiBorder6.PanelOutlineColor = Color.White;
-        cuiBorder6.Rounding = new Padding(10);
+        cuiBorder6.Rounding = new Padding(11);
         cuiBorder6.Size = new Size(1217, 171);
         cuiBorder6.TabIndex = 37;
         // 
@@ -288,7 +251,7 @@ partial class Drives
         // 
         cuiLabel4.BackColor = Color.Transparent;
         cuiLabel4.Content = "Track\\ disk\\ usage\\ for\\ your\\ C:\\ and\\ D:\\ drives\\.\\ Identify\\ potential\\ storage\\ bottlenecks\\ and\\ manage\\ your\\ disk\\ space\\ effectively\\ for\\ optimal\\ system\\ performance\\.";
-        cuiLabel4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel4.Location = new Point(70, 80);
@@ -299,7 +262,7 @@ partial class Drives
         // 
         // cuiSeparator1
         // 
-        cuiSeparator1.ForeColor = Color.FromArgb(40, 53, 147);
+        cuiSeparator1.ForeColor = Color.FromArgb(20, 39, 78);
         cuiSeparator1.Location = new Point(78, 57);
         cuiSeparator1.Margin = new Padding(4, 3, 4, 3);
         cuiSeparator1.Name = "cuiSeparator1";
@@ -313,13 +276,13 @@ partial class Drives
         // 
         cuiLabel13.BackColor = Color.White;
         cuiLabel13.Content = "Workstation\\ drives";
-        cuiLabel13.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel13.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
         cuiLabel13.ForeColor = Color.Black;
         cuiLabel13.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel13.Location = new Point(127, 20);
         cuiLabel13.Margin = new Padding(4, 3, 4, 3);
         cuiLabel13.Name = "cuiLabel13";
-        cuiLabel13.Size = new Size(300, 41);
+        cuiLabel13.Size = new Size(365, 41);
         cuiLabel13.TabIndex = 16;
         // 
         // cuiBorder5
@@ -331,7 +294,7 @@ partial class Drives
         cuiBorder5.Location = new Point(651, 12);
         cuiBorder5.Name = "cuiBorder5";
         cuiBorder5.OutlineThickness = 2F;
-        cuiBorder5.PanelColor = Color.FromArgb(152, 148, 244);
+        cuiBorder5.PanelColor = Color.FromArgb(57, 72, 103);
         cuiBorder5.PanelOutlineColor = Color.FromArgb(241, 244, 254);
         cuiBorder5.Rounding = new Padding(8);
         cuiBorder5.Size = new Size(540, 143);
@@ -339,13 +302,13 @@ partial class Drives
         // 
         // DisplayResults
         // 
-        DisplayResults.BackColor = Color.FromArgb(76, 88, 176);
+        DisplayResults.BackColor = Color.FromArgb(28, 46, 83);
         DisplayResults.CheckButton = false;
         DisplayResults.Checked = false;
         DisplayResults.CheckedBackground = Color.White;
         DisplayResults.CheckedForeColor = Color.Black;
         DisplayResults.CheckedImageTint = Color.White;
-        DisplayResults.CheckedOutline = Color.FromArgb(40, 53, 147);
+        DisplayResults.CheckedOutline = Color.FromArgb(28, 46, 83);
         DisplayResults.Content = "Display";
         DisplayResults.DialogResult = DialogResult.None;
         DisplayResults.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -353,7 +316,7 @@ partial class Drives
         DisplayResults.HoverBackground = Color.White;
         DisplayResults.HoveredImageTint = Color.White;
         DisplayResults.HoverForeColor = Color.Black;
-        DisplayResults.HoverOutline = Color.FromArgb(40, 53, 147);
+        DisplayResults.HoverOutline = Color.FromArgb(28, 46, 83);
         DisplayResults.Image = null;
         DisplayResults.ImageAutoCenter = true;
         DisplayResults.ImageExpand = new Point(0, 0);
@@ -362,12 +325,12 @@ partial class Drives
         DisplayResults.Location = new Point(15, 42);
         DisplayResults.Name = "DisplayResults";
         DisplayResults.NormalBackground = Color.White;
-        DisplayResults.NormalOutline = Color.FromArgb(40, 53, 147);
+        DisplayResults.NormalOutline = Color.FromArgb(28, 46, 83);
         DisplayResults.OutlineThickness = 0.1F;
         DisplayResults.PressedBackground = Color.White;
         DisplayResults.PressedForeColor = Color.Black;
         DisplayResults.PressedImageTint = Color.White;
-        DisplayResults.PressedOutline = Color.FromArgb(40, 53, 147);
+        DisplayResults.PressedOutline = Color.FromArgb(28, 46, 83);
         DisplayResults.Rounding = new Padding(8);
         DisplayResults.Size = new Size(123, 61);
         DisplayResults.TabIndex = 25;
@@ -416,8 +379,8 @@ partial class Drives
         // 
         OneDayCheckbox.BackColor = Color.White;
         OneDayCheckbox.Checked = false;
-        OneDayCheckbox.CheckedForeground = Color.FromArgb(40, 53, 147);
-        OneDayCheckbox.CheckedOutlineColor = Color.FromArgb(40, 53, 147);
+        OneDayCheckbox.CheckedForeground = Color.FromArgb(20, 39, 78);
+        OneDayCheckbox.CheckedOutlineColor = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.CheckedSymbolColor = Color.White;
         OneDayCheckbox.Content = "cuiCheckbox";
         OneDayCheckbox.ForeColor = SystemColors.ButtonShadow;
@@ -432,8 +395,8 @@ partial class Drives
         OneDayCheckbox.Size = new Size(32, 30);
         OneDayCheckbox.TabIndex = 26;
         OneDayCheckbox.Text = "cuiCheckbox1";
-        OneDayCheckbox.UncheckedForeground = Color.FromArgb(40, 53, 147);
-        OneDayCheckbox.UncheckedOutlineColor = Color.FromArgb(40, 53, 147);
+        OneDayCheckbox.UncheckedForeground = Color.FromArgb(20, 39, 78);
+        OneDayCheckbox.UncheckedOutlineColor = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.UncheckedSymbolColor = Color.White;
         OneDayCheckbox.Click += OneDayCheckbox_Click;
         // 
@@ -617,16 +580,17 @@ partial class Drives
         cuiGradientBorder1.Location = new Point(0, 0);
         cuiGradientBorder1.Name = "cuiGradientBorder1";
         cuiGradientBorder1.OutlineThickness = 1F;
-        cuiGradientBorder1.PanelColor1 = Color.FromArgb(40, 53, 147);
+        cuiGradientBorder1.PanelColor1 = Color.FromArgb(20, 39, 78);
         cuiGradientBorder1.PanelColor2 = Color.Transparent;
         cuiGradientBorder1.PanelOutlineColor1 = Color.Transparent;
         cuiGradientBorder1.PanelOutlineColor2 = Color.Transparent;
         cuiGradientBorder1.Rounding = new Padding(8);
-        cuiGradientBorder1.Size = new Size(565, 148);
+        cuiGradientBorder1.Size = new Size(543, 148);
         cuiGradientBorder1.TabIndex = 24;
         // 
         // cuiBorder2
         // 
+        cuiBorder2.Controls.Add(DChart);
         cuiBorder2.Controls.Add(DiskDRootDirectory);
         cuiBorder2.Controls.Add(DiskDType);
         cuiBorder2.Controls.Add(DiskDLabel);
@@ -637,13 +601,12 @@ partial class Drives
         cuiBorder2.Controls.Add(cuiSeparator3);
         cuiBorder2.Controls.Add(cuiLabel18);
         cuiBorder2.Controls.Add(cuiLabel19);
-        cuiBorder2.Controls.Add(DriveDChart);
         cuiBorder2.Location = new Point(625, 195);
         cuiBorder2.Name = "cuiBorder2";
         cuiBorder2.OutlineThickness = 1F;
         cuiBorder2.PanelColor = Color.White;
         cuiBorder2.PanelOutlineColor = Color.White;
-        cuiBorder2.Rounding = new Padding(10);
+        cuiBorder2.Rounding = new Padding(11);
         cuiBorder2.Size = new Size(604, 497);
         cuiBorder2.TabIndex = 43;
         // 
@@ -651,8 +614,8 @@ partial class Drives
         // 
         DiskDRootDirectory.BackColor = Color.Transparent;
         DiskDRootDirectory.Content = "";
-        DiskDRootDirectory.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        DiskDRootDirectory.ForeColor = Color.FromArgb(40, 53, 147);
+        DiskDRootDirectory.Font = new Font("Verdana", 12F);
+        DiskDRootDirectory.ForeColor = Color.FromArgb(20, 39, 78);
         DiskDRootDirectory.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         DiskDRootDirectory.Location = new Point(409, 79);
         DiskDRootDirectory.Margin = new Padding(4, 3, 4, 3);
@@ -664,8 +627,8 @@ partial class Drives
         // 
         DiskDType.BackColor = Color.Transparent;
         DiskDType.Content = "";
-        DiskDType.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        DiskDType.ForeColor = Color.FromArgb(40, 53, 147);
+        DiskDType.Font = new Font("Verdana", 12F);
+        DiskDType.ForeColor = Color.FromArgb(20, 39, 78);
         DiskDType.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         DiskDType.Location = new Point(403, 50);
         DiskDType.Margin = new Padding(4, 3, 4, 3);
@@ -677,8 +640,8 @@ partial class Drives
         // 
         DiskDLabel.BackColor = Color.Transparent;
         DiskDLabel.Content = "";
-        DiskDLabel.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        DiskDLabel.ForeColor = Color.FromArgb(40, 53, 147);
+        DiskDLabel.Font = new Font("Verdana", 12F);
+        DiskDLabel.ForeColor = Color.FromArgb(20, 39, 78);
         DiskDLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         DiskDLabel.Location = new Point(93, 77);
         DiskDLabel.Margin = new Padding(4, 3, 4, 3);
@@ -690,8 +653,8 @@ partial class Drives
         // 
         DiskDFormat.BackColor = Color.Transparent;
         DiskDFormat.Content = "";
-        DiskDFormat.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        DiskDFormat.ForeColor = Color.FromArgb(40, 53, 147);
+        DiskDFormat.Font = new Font("Verdana", 12F);
+        DiskDFormat.ForeColor = Color.FromArgb(20, 39, 78);
         DiskDFormat.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         DiskDFormat.Location = new Point(93, 50);
         DiskDFormat.Margin = new Padding(4, 3, 4, 3);
@@ -703,7 +666,7 @@ partial class Drives
         // 
         cuiLabel15.BackColor = Color.Transparent;
         cuiLabel15.Content = "RootDirectory:";
-        cuiLabel15.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel15.Font = new Font("Verdana", 12F);
         cuiLabel15.ForeColor = Color.Black;
         cuiLabel15.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel15.Location = new Point(270, 77);
@@ -716,7 +679,7 @@ partial class Drives
         // 
         cuiLabel16.BackColor = Color.Transparent;
         cuiLabel16.Content = "Type:";
-        cuiLabel16.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel16.Font = new Font("Verdana", 12F);
         cuiLabel16.ForeColor = Color.Black;
         cuiLabel16.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel16.Location = new Point(336, 50);
@@ -729,7 +692,7 @@ partial class Drives
         // 
         cuiLabel17.BackColor = Color.Transparent;
         cuiLabel17.Content = "Label:";
-        cuiLabel17.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel17.Font = new Font("Verdana", 12F);
         cuiLabel17.ForeColor = Color.Black;
         cuiLabel17.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel17.Location = new Point(21, 79);
@@ -741,7 +704,7 @@ partial class Drives
         // cuiSeparator3
         // 
         cuiSeparator3.BackColor = Color.Transparent;
-        cuiSeparator3.ForeColor = Color.FromArgb(40, 53, 147);
+        cuiSeparator3.ForeColor = Color.FromArgb(20, 39, 78);
         cuiSeparator3.Location = new Point(0, 28);
         cuiSeparator3.Margin = new Padding(4, 3, 4, 3);
         cuiSeparator3.Name = "cuiSeparator3";
@@ -755,7 +718,7 @@ partial class Drives
         // 
         cuiLabel18.BackColor = Color.Transparent;
         cuiLabel18.Content = "Format:";
-        cuiLabel18.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel18.Font = new Font("Verdana", 12F);
         cuiLabel18.ForeColor = Color.Black;
         cuiLabel18.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel18.Location = new Point(21, 50);
@@ -768,7 +731,7 @@ partial class Drives
         // 
         cuiLabel19.BackColor = Color.Transparent;
         cuiLabel19.Content = "Disk\\ D:";
-        cuiLabel19.Font = new Font("Century Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel19.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         cuiLabel19.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel19.Location = new Point(4, 3);
         cuiLabel19.Margin = new Padding(4, 3, 4, 3);
@@ -776,48 +739,29 @@ partial class Drives
         cuiLabel19.Size = new Size(116, 41);
         cuiLabel19.TabIndex = 21;
         // 
-        // DriveDChart
+        // CChart
         // 
-        DriveDChart.AutoMaxValue = false;
-        DriveDChart.AxisColor = Color.Black;
-        DriveDChart.BackColor = Color.Transparent;
-        DriveDChart.ChartLineColor = Color.FromArgb(11, 35, 116);
-        DriveDChart.ChartPadding = 40;
-        DriveDChart.CustomXAxis = new string[]
-{
-    "1",
-    "2",
-    "3"
-};
-        DriveDChart.DataPoints = new float[]
-{
-    100F,
-    40F,
-    80F,
-    75F,
-    100F,
-    65F,
-    60F
-};
-        DriveDChart.DayColor = Color.Black;
-        DriveDChart.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        DriveDChart.GradientBackground = false;
-        DriveDChart.Location = new Point(3, 109);
-        DriveDChart.Margin = new Padding(6, 4, 6, 4);
-        DriveDChart.MaxValue = 100F;
-        DriveDChart.Name = "DriveDChart";
-        DriveDChart.PointColor = Color.FromArgb(11, 35, 116);
-        DriveDChart.ShortDates = true;
-        DriveDChart.Size = new Size(601, 384);
-        DriveDChart.TabIndex = 18;
-        DriveDChart.UseBezier = true;
-        DriveDChart.UsePercent = false;
+        CChart.BackColor = Color.White;
+        CChart.Location = new Point(0, 117);
+        CChart.MatchAxesScreenDataRatio = false;
+        CChart.Name = "CChart";
+        CChart.Size = new Size(604, 377);
+        CChart.TabIndex = 47;
+        // 
+        // DChart
+        // 
+        DChart.BackColor = Color.White;
+        DChart.Location = new Point(0, 120);
+        DChart.MatchAxesScreenDataRatio = false;
+        DChart.Name = "DChart";
+        DChart.Size = new Size(604, 377);
+        DChart.TabIndex = 48;
         // 
         // Drives
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackColor = Color.FromArgb(241, 244, 254);
+        BackColor = Color.FromArgb(155, 164, 180);
         ClientSize = new Size(1227, 692);
         Controls.Add(cuiBorder2);
         Controls.Add(cuiBorder6);
@@ -835,7 +779,6 @@ partial class Drives
 
     #endregion
     private CuoreUI.Controls.cuiBorder cuiBorder1;
-    public CuoreUI.Controls.Charts.cuiChartLine DriveCChart;
     private CuoreUI.Controls.cuiLabel cuiLabel2;
     private CuoreUI.Controls.cuiBorder cuiBorder6;
     private CuoreUI.Controls.cuiLabel cuiLabel4;
@@ -878,7 +821,8 @@ partial class Drives
     private CuoreUI.Controls.cuiSeparator cuiSeparator3;
     private CuoreUI.Controls.cuiLabel cuiLabel18;
     private CuoreUI.Controls.cuiLabel cuiLabel19;
-    public CuoreUI.Controls.Charts.cuiChartLine DriveDChart;
     private CuoreUI.Controls.cuiLabel TypeDiskC;
     private CuoreUI.Controls.cuiLabel RootDirectoryDiskC;
+    private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart CChart;
+    private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart DChart;
 }

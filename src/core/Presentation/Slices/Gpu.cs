@@ -1,7 +1,10 @@
-﻿using MediatR;
+﻿using LiveChartsCore.Defaults;
+using LiveChartsCore.Measure;
+using MediatR;
 using Presentation.Helpers;
 using Vordr.Application.GpuUsage.Get;
 using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
+using Vordr.Domain.Entities;
 using Vordr.Domain.Entities.Components;
 
 namespace Presentation.Slices;
@@ -79,23 +82,40 @@ public partial class Gpu : Form
     private async Task DefineCharts(GetGpuUsageQuery query)
     {
         var result = await _sender.Send(query);
-        var resultArray = result.ToArray();
-        var temperatureStatus = resultArray.Select(x => (float)x.Temperature).ToArray();
-        var loadPercentage = resultArray.Select(x => (float)x.LoadPercentage).ToArray();
-        var clocks = resultArray.Select(x => (float)x.Clock).ToArray();
-        var xAxisTemperature = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), temperatureStatus.Length);
-        var xAxisLoad = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), loadPercentage.Length);
-        var xAxisClocks = ChartHelper.CalculateLegendDate(result.Min(x => x.CapturedAtUtc), result.Max(x => x.CapturedAtUtc), clocks.Length);
-        TemperatureChart.CustomXAxis = xAxisTemperature.ToArray();
-        LoadChart.CustomXAxis = xAxisLoad.ToArray();
-        ClockChart.CustomXAxis = xAxisClocks.ToArray();
-        TemperatureChart.DataPoints = temperatureStatus;
-        LoadChart.DataPoints = loadPercentage;
-        
-        ClockChart.DataPoints = clocks;
-        ClockChart.MaxValue = clocks.Max();
+        SetTempChart(result);
+        SetLoadChart(result);
+        SetClockChart(result);
     }
 
+    private void SetTempChart(IEnumerable<GpuLoad> usage)
+    {
+        var data = usage.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(),b.Temperature)).ToList();
+        TempChart.Series = ChartHelper.DefineChart(data);
+        TempChart.XAxes = ChartHelper.DefineChartX("time",
+            usage.Select(x => x.CapturedAtUtc).Max(), usage.Select(x => x.CapturedAtUtc).Min() );
+        TempChart.YAxes = ChartHelper.DefineChartY("temperature (GB)");
+        TempChart.ZoomMode = ZoomAndPanMode.Both;
+    }
+    
+    private void SetLoadChart(IEnumerable<GpuLoad> usage)
+    {
+        var data = usage.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(),b.LoadPercentage)).ToList();
+        LoadChart.Series = ChartHelper.DefineChart(data);
+        TempChart.XAxes = ChartHelper.DefineChartX("time",
+            usage.Select(x => x.CapturedAtUtc).Max(), usage.Select(x => x.CapturedAtUtc).Min() );
+        TempChart.YAxes = ChartHelper.DefineChartY("load (%)");
+        TempChart.ZoomMode = ZoomAndPanMode.Both;
+    }
+    
+    private void SetClockChart(IEnumerable<GpuLoad> usage)
+    {
+        var data = usage.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(),b.Clock)).ToList();
+        ClockChart.Series = ChartHelper.DefineChart(data);
+        TempChart.XAxes = ChartHelper.DefineChartX("time",
+            usage.Select(x => x.CapturedAtUtc).Max(), usage.Select(x => x.CapturedAtUtc).Min() );
+        TempChart.YAxes = ChartHelper.DefineChartY("speed");
+        TempChart.ZoomMode = ZoomAndPanMode.Both;
+    }
 
     private void OneDayCheckbox_Click(object sender, EventArgs e)
     {
