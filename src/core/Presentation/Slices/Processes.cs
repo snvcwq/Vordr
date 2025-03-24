@@ -1,75 +1,64 @@
 ﻿using Presentation.Models;
+using Vordr.Application.Models.Process;
 
 namespace Presentation.Slices;
 public partial class Processes : Form
 {
+
+    private ProcessModel[] _processes = [];
     public Processes()
     {
         InitializeComponent();
-        AddProcesses();
+        ProcessesTable.DataSource = _processes;
+
     }
-    private void AddProcesses()
+
+    public async void HandleProcesses(List<ProcessInformation> processes)
     {
-        var processes = new List<ProcessModel>();
-        // Add some initial data
-        processes.Add(GetProcess1());
-        processes.Add(GetProcess2());
-        processes.Add(GetProcess1());
-        processes.Add(GetProcess2());
-        processes.Add(GetProcess1());
-        processes.Add(GetProcess2());
-        processes.Add(GetProcess1());
-        processes.Add(GetProcess2());
-        processes.Add(GetProcess1());
-        processes.Add(GetProcess2());
-        processes.Add(GetProcess1());
-        processes.Add(GetProcess2());
-        processes.Add(GetProcess1());
-        processes.Add(GetProcess2());
-        processes.Add(GetProcess1());
-        processes.Add(GetProcess2());
-        // Set the data source for the BindingSource
-        ProcessesGrid2.DataSource = processes;
+        // Update the UI thread with the list of processes
+        // Make sure the UI update happens on the main thread using Invoke
+        if (InvokeRequired)
+        {
+            // If the method is being called from a non-UI thread, invoke it on the UI thread
+            await InvokeAsync(() => HandleProcesses(processes));
+            return;
+        }
 
-        // Bind controls to properties*/
+        SetProcesses(processes);
+
     }
 
-    private ProcessModel GetProcess1() =>
-        new()
+    private void SetProcesses(IEnumerable<ProcessInformation> processList)
+    {
+        var processes = processList.Select(p => new ProcessModel
         {
-            Pid = 9272,
-            Name = "Telegram",
-            StartTime = default,
-            //Icon = new byte[]
-            //{
-            //},
-            Path = "D:\\Telegram\\Telegram.exe",
-            Priority = 32,
-            Manufacturer = "Telegram FZ-LLC",
-            Version = "5.12.3.0",
-            Architecture = "x64",
-            CpuUsage = 0,
-            RamUsage = 36.7,
-            ThreadCount = 90,
-            HandleCount = 1497
-        };
-    private ProcessModel GetProcess2() =>
-        new()
-        {
-            Pid = 22652,
-            Name = "FACEIT",
-            StartTime = default,
-            Icon = new byte[]
-            {
-            },
-            Path = "C:\\Users\\user\\AppData\\Local\\FACEIT\\app-2.0.42\\FACEIT.exe",
-            Priority = 32,
-            Manufacturer = "FACEIT Ltd.",
-            Version = "2.0.42",
-            Architecture = "x64",
-            CpuUsage = 0.09,
-            RamUsage = 326,
-            ThreadCount = 239,
-            HandleCount = 4776
-        };
+            Pid = p.Pid,
+            Icon = p.Icon,
+            Name = p.Name,
+            StartTime = p.StartTime,
+            Path = p.Path,
+            Priority = p.Priority,
+            Manufacturer = p.Company,
+            Version = p.Version,
+            Architecture = p.Architecture,
+            Cpu = p.CpuUsage,
+            Ram = p.RamUsage,
+            Threads = p.ThreadCount,
+            Handles = p.HandleCount,
+            System = p.IsSystemProcess
+        }).ToList();
+        if (!SystemProcessSwitch.Checked)
+            processes.RemoveAll(p => p.System);
+        if (!NonSystemProcessSwitch.Checked)
+            processes.RemoveAll(p => !p.System);
+
+        _processes = processes.ToArray();
+        ProcessesTable.DataSource = null;
+        ProcessesTable.DataSource = _processes;
+    }
+
+    private void Processes_Load(object sender, EventArgs e)
+    {
+
+    }
 }

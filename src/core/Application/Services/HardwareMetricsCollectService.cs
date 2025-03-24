@@ -3,6 +3,7 @@ using Vordr.Application.Common.Interfaces.Persistence;
 using Vordr.Application.Common.Interfaces.Resources;
 using Vordr.Application.Common.Interfaces.Services;
 using Vordr.Application.Common.Mappings.HardwareMetrics;
+using Vordr.Application.Models.Hardware;
 using Vordr.Domain.Entities;
 
 namespace Vordr.Application.Services;
@@ -14,7 +15,7 @@ public class HardwareMetricsCollectService(
     ILogger<HardwareMetricsCollectService> logger
     ) : IHardwareMetricsCollectService
 {
-    public async Task CollectHardwareAsync(CancellationToken cancellationToken)
+    public async Task<HardwareReport?> CollectHardwareAsync(CancellationToken cancellationToken)
     {
 
         var monitoringConfigResult = await monitoringConfigurationRepository.RetrieveMonitoringConfigurationAsync();
@@ -37,10 +38,11 @@ public class HardwareMetricsCollectService(
         {
             logger.LogWarning(
                 "Monitoring configuration was not retrieved. cpu load monitoring configuration will not be performed.");
-            return;
+            return null;
         }
         
         var information = collector.Collect(monitoringConfiguration);
         await mediator.Send(information.ToUploadHardwareMetricsCommand(), cancellationToken);
+        return information;
     }
 }

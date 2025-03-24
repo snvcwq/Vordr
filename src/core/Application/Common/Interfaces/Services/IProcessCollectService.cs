@@ -1,6 +1,8 @@
-﻿namespace Vordr.Application.Common.Interfaces.Services;
+﻿using Vordr.Application.Models.Process;
+
+namespace Vordr.Application.Common.Interfaces.Services;
 
 public interface IProcessCollectService
 {
-    public Task ExecuteProcessDataCollectingAsync();
+    public Task<List<ProcessInformation>> ExecuteProcessDataCollectingAsync();
 }

@@ -23,17 +23,16 @@ internal static class Program
         Application.SetCompatibleTextRenderingDefault(false);
         ConfigureLogging();
         var host = CreateHostBuilder().Build()
-            .ExecuteMigrations().GetAwaiter().GetResult()
-            .ScheduleMonitoring().GetAwaiter().GetResult();
+            .ExecuteMigrations().GetAwaiter().GetResult();
+           // .ScheduleMonitoring().GetAwaiter().GetResult();
 
-        var sender = host.Services.GetRequiredService<ISender>();
-        var t  = sender.Send(new RetrieveHardwareComponentQueryAsync()).GetAwaiter().GetResult();
+        var form = host.Services.GetRequiredService<MainForm>();
 
         Task.Run(() =>
         {
             host.Run();
         });
-        Application.Run(new MainForm(host.Services, sender));
+        Application.Run(form);
 
     }
     private static IHostBuilder CreateHostBuilder()

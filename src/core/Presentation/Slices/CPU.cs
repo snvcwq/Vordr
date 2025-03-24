@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Presentation.Helpers;
+using Vordr.Application.Battery.Queries;
 using Vordr.Application.CpuUsage.Queries;
 using Vordr.Application.CpuUsage.Queries.ProcessUsage;
+using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 using Vordr.Application.Models;
 using Vordr.Domain.Entities.Components;
 
@@ -9,14 +11,30 @@ namespace Presentation.Slices;
 public partial class Cpu : Form
 {
     private readonly ISender _sender;
-    public Cpu(CpuInfo info, ISender sender)
+    public Cpu( ISender sender)
     {
         InitializeComponent();
         TopLoadUsageLabel.Visible = false;
         TopUsageSeparator.Visible = false;
         _sender = sender;
-        ModelLabel.Content = info.Name;
-        CoresLabel.Content = info.Cores.ToString();
+    }
+    
+    private async void UpdateComponents()
+    {
+        var hc = (await _sender.Send(new RetrieveHardwareComponentQuery())).Cpu;
+        ModelLabel.Content = hc.Name;
+        CoresLabel.Content = hc.Cores.ToString();
+    }
+    override async protected void OnLoad(EventArgs e)
+    {
+        try
+        {
+            UpdateComponents();
+        }
+        catch (Exception exception)
+        {
+            // ignored
+        }
     }
 
     private void ModelLabel_Load(object sender, EventArgs e)

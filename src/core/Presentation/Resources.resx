@@ -121,14 +121,20 @@
   <data name="DashboardImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DashboardImage1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DrivesIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DrivesIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DashboardIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DashboardIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pie-chart (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\pie-chart (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RamIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\RamIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pie-chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\pie-chart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="setting" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\setting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="speedometer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\speedometer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MonitoringIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\MonitoringIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,14 +142,11 @@
   <data name="delete (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\delete (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CpuIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\CpuIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BatteryIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\BatteryIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="setting" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\setting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pie-chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\pie-chart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ButtonBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\ButtonBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,22 +172,28 @@
   <data name="AlertsIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\AlertsIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\maximize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="letter-v" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\letter-v1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DashboardIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DashboardIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CpuIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\CpuIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="letter-v (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\letter-v (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="battery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\battery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="notification-bell" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\notification-bell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pie-chart (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\pie-chart (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DrivesIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DrivesIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\maximize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pie-chart1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\pie-chart1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

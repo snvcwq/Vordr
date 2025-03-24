@@ -1,14 +1,18 @@
-﻿using Vordr.Application.Common.Interfaces.Resources;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Management;
+using Vordr.Application.Common.Interfaces.Resources;
 using Vordr.Application.Models.Process;
 using Vordr.ResourcesMonitoring.Windows.Process.Extensions;
 using Vordr.ResourcesMonitoring.Windows.Process.Properties;
 
 namespace Vordr.ResourcesMonitoring.Windows.Process;
 
+[SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public class ProcessDataCollector : IProcessDataCollector
 {
     public async Task<IEnumerable<ProcessInformation>> GetCurrentProcesses()
     {
+       
         var processes = System.Diagnostics.Process.GetProcesses();
 
         var processInfoList = new List<ProcessInformation>();
@@ -55,6 +59,7 @@ public class ProcessDataCollector : IProcessDataCollector
                 ThreadCount = process.GetThreadsCount(),
                 HandleCount = process.GetHandleCount(),
                 Icon = process.GetIcon(),
+                IsSystemProcess = process.IsSystemProcess()
             };
 
             return processInfo;
@@ -94,6 +99,7 @@ public class ProcessDataCollector : IProcessDataCollector
             
         var process = new ProcessMergeResult();
         var iconProcess = processes.FirstOrDefault(p => p.Icon is not null);
+        var isSystem = processes.All(p => p.IsSystemProcess);
         var icon = iconProcess?.Icon;
         var priorityProcess = processes.FirstOrDefault(p => p.Priority > 0);
         var priority = priorityProcess?.Priority ?? 0;
@@ -126,7 +132,8 @@ public class ProcessDataCollector : IProcessDataCollector
             CpuUsage = process.CpuUsage,
             RamUsage = process.RamUsage,
             ThreadCount = process.ThreadCount,
-            HandleCount = process.HandleCount
+            HandleCount = process.HandleCount,
+            IsSystemProcess = isSystem
         };
     }
 }

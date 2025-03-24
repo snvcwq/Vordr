@@ -3,6 +3,7 @@ using Presentation.Helpers;
 using Vordr.Application.CpuUsage.Queries.ProcessUsage;
 using Vordr.Application.CpuUsage.Queries;
 using Vordr.Application.Drives.Queries.Get;
+using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 using Vordr.Domain.Entities;
 using Vordr.Domain.Entities.Components;
 
@@ -10,12 +11,16 @@ namespace Presentation.Slices;
 public partial class Drives : Form
 {
     private readonly ISender _sender;
-    public Drives(IEnumerable<InfoDrive> drives, ISender sender)
+    public Drives(ISender sender)
     {
         _sender = sender;
         InitializeComponent();
-        var cDrive = drives.FirstOrDefault(d => d.RootDirectory == "C:\\");
-        var dDrive = drives.FirstOrDefault(d => d.RootDirectory == "D:\\");
+    }
+    private async void UpdateComponents()
+    {
+        var hc = (await _sender.Send(new RetrieveHardwareComponentQuery())).Drives;
+        var cDrive = hc.FirstOrDefault(d => d.RootDirectory == "C:\\");
+        var dDrive = hc.FirstOrDefault(d => d.RootDirectory == "D:\\");
         DiskCFormat.Content = cDrive.DriveFormat;
         DiskCLabel.Content = cDrive.DriveLabel;
         TypeDiskC.Content = cDrive.DriveType;
@@ -25,7 +30,17 @@ public partial class Drives : Form
         DiskDType.Content = dDrive.DriveType;
         DiskDRootDirectory.Content = dDrive.RootDirectory;
     }
-
+    override async protected void OnLoad(EventArgs e)
+    {
+        try
+        {
+            UpdateComponents();
+        }
+        catch (Exception exception)
+        {
+            // ignored
+        }
+    }
     private void OneDayCheckbox_Click(object sender, EventArgs e)
     {
         if (!OneDayCheckbox.Checked)

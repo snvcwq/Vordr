@@ -92,4 +92,9 @@ internal static class SystemProcessExtensions
         try { return process.HandleCount; }
         catch { return 0; }
     }
+    
+    internal static bool IsSystemProcess(this System.Diagnostics.Process process)
+    {
+        return SystemService.KnownSystemPaths.Any(x => x.ToLower().Contains(process.GetPath().ToLower()));
+    }
 }

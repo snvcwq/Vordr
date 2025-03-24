@@ -2,35 +2,35 @@
 using MediatR;
 using Presentation.Helpers;
 using Vordr.Application.Battery.Queries;
-using Vordr.Application.Models;
-using Vordr.Domain.Entities.Components;
+using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 
 namespace Presentation.Slices;
 public partial class Battery : Form
 {
     private readonly ISender _sender;
-    public Battery(ISender sender, BatteryInfo info)
+    public Battery(ISender sender)
     {
         _sender = sender;
         InitializeComponent();
-        ModelLabel.Content = info.Name;
-        ManufacturerLabel.Content = info.Manufacturer;
-        ChemistryLabel.Content = info.Chemistry;
-        DesignedCapacityLabel.Content = info.DesignedCapacity.AppendmWh();
-        FullChargedCapacityLabel.Content = info.FullChargedCapacity.AppendmWh();
-
-        BatteryStatusChart.DataPoints = [66, 68, 70, 90, 60, 44, 35, 22, 11];
-        BatteryDegradationStatus.DataPoints = [80, 90, 50, 67, 24, 2, 4, 51];
-
-
 
     }
 
+    private async void UpdateComponents()
+    {
+        var hc = (await _sender.Send(new RetrieveHardwareComponentQuery())).Battery;
+        ModelLabel.Content = hc.Name;
+        ManufacturerLabel.Content = hc.Manufacturer;
+        ChemistryLabel.Content = hc.Chemistry;
+        DesignedCapacityLabel.Content = hc.DesignedCapacity.AppendmWh();
+        FullChargedCapacityLabel.Content = hc.FullChargedCapacity.AppendmWh();
+    }
     override async protected void OnLoad(EventArgs e)
     {
         try
         {
             base.OnLoad(e);
+            UpdateComponents();
+
             await DefineCharts(new GetBatteryUsageQuery
             {
                 StartDate = DateTime.UtcNow,

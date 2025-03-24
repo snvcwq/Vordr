@@ -1,28 +1,49 @@
 using MediatR;
-using Microsoft.Extensions.DependencyInjection;
+using Presentation.Models;
 using System.Runtime.InteropServices;
-using Vordr.Application.HardwareComponent.Queries;
-using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
-using Vordr.Domain.Entities;
+using Vordr.Application.Common.Interfaces.Services;
+using Vordr.Application.Models.Hardware;
+using Vordr.Application.Models.Process;
 
 namespace Presentation.Slices;
 
 public partial class MainForm : Form
 {
-    private readonly IServiceProvider _serviceProvider;
     private readonly ISender _sender;
-    private HardwareComponents _hardwareComponents;
-    public MainForm(IServiceProvider serviceProvider, ISender sender)
+    private readonly Battery batteryForm;
+    private readonly Cpu cpuForm;
+    private readonly Drives drivesForm;
+    private readonly Gpu gpuForm;
+    private readonly Monitoring monitoringForm;
+    private readonly Processes processesForm;
+    private readonly Ram ramForm;
+    private readonly IHardwareMetricsCollectService _hardwareMetricsService;
+    private readonly IProcessCollectService _processCollectService;
+    public MainForm(ISender sender, Battery batteryForm, Cpu cpuForm, Drives drivesForm, Gpu gpuForm, Monitoring monitoringForm, Processes processesForm, Ram ramForm, IHardwareMetricsCollectService hardwareMetricsService, IProcessCollectService processCollectService)
     {
         _sender = sender;
-        this._serviceProvider = serviceProvider;
+        this.batteryForm = batteryForm;
+        this.cpuForm = cpuForm;
+
+        this.drivesForm = drivesForm;
+        this.gpuForm = gpuForm;
+        this.monitoringForm = monitoringForm;
+        this.processesForm = processesForm;
+        this.ramForm = ramForm;
+        _hardwareMetricsService = hardwareMetricsService;
+        _processCollectService = processCollectService;
         InitializeComponent();
     }
+    public delegate void OnPassingProcesses(List<ProcessInformation> processes);
+    public event OnPassingProcesses PassingProcesses;
     
+    public delegate void OnPassingMetrics(HardwareReport report);
+    public event OnPassingMetrics PassingMetrics;
+
     override async protected void OnLoad(EventArgs e)
     {
-        
-        _hardwareComponents = await _sender.Send(new RetrieveHardwareComponentQueryAsync());
+        CollectProcessesWorker.RunWorkerAsync(this);
+        CollectHardwareWorker.RunWorkerAsync(this);
 
         base.OnLoad(e);
     }
@@ -40,75 +61,9 @@ public partial class MainForm : Form
     [DllImport("user32.DLL", EntryPoint = "SendMessage")]
     private static extern void SendMessage(IntPtr hWnd, int wMmg, int wParam, int lParam);
 
-    private void label1_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void label2_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void cartesianChart1_Load(object sender, EventArgs e)
-    {
-
-    }
-
     private void Form1_Load(object sender, EventArgs e)
     {
 
-    }
-
-    private void label5_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void RamChart_Load(object sender, EventArgs e)
-    {
-
-    }
-
-    private void DashboardButton_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void DashboardButton_Click_1(object sender, EventArgs e)
-    {
-    }
-
-    private void button1_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void panel3_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
-
-    private void cuiChartLine1_Load(object sender, EventArgs e)
-    {
-
-    }
-
-    private void cuiBorder1_Paint(object sender, PaintEventArgs e)
-    {
-    }
-
-    private void cuiBorder1_Paint_1(object sender, PaintEventArgs e)
-    {
-    }
-
-    private void button7_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    private void cuiButtonGroup1_Click(object sender, EventArgs e)
-    {
     }
 
     private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -129,7 +84,10 @@ public partial class MainForm : Form
 
     private void DashboardButton_Click_2(object sender, EventArgs e)
     {
-        LoadForm(new Dashboard());
+        var dashboard = new Dashboard();
+        PassingMetrics += dashboard.HandleNewMetrics;
+
+        LoadForm(dashboard);
     }
     private void LoadForm(object form)
     {
@@ -165,36 +123,62 @@ public partial class MainForm : Form
 
     private void ProcessButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Processes());
+        var form = new Processes();
+        PassingProcesses += processesForm.HandleProcesses;
+
+        LoadForm(processesForm);
     }
 
     private void DrivesButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Drives(_hardwareComponents.Drives, _sender));
+        LoadForm(drivesForm);
 
     }
 
     private void BatteryButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Battery(_sender, _hardwareComponents.Battery));
+        LoadForm(batteryForm);
 
     }
 
     private void CpuButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Cpu(_hardwareComponents.Cpu, _sender));
+        LoadForm(cpuForm);
 
     }
 
     private void GpuButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Gpu(_hardwareComponents.Gpu.ToArray(), _sender));
+        LoadForm(gpuForm);
 
     }
 
     private void RamButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Ram(_sender));
+        LoadForm(ramForm);
 
+    }
+
+    private async void CollectProcessesWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+    {
+        while (true)
+        {
+            var processes = await _processCollectService.ExecuteProcessDataCollectingAsync();
+            PassingProcesses?.Invoke(processes);
+            await Task.Delay(1000);
+            GC.Collect();
+
+        }
+    }
+
+    private async void CollectHardwareWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+    {
+        while (true)
+        {
+            
+            var data = await _hardwareMetricsService.CollectHardwareAsync(CancellationToken.None);
+            PassingMetrics?.Invoke(data);
+            GC.Collect();
+        }
     }
 }

@@ -21,5 +21,6 @@ public record ProcessData : BaseEntity
     public required string Version { get; set; }
 
     public required string Architecture { get; set; }
+    public required bool IsSystemProcess { get; set; }
 
 }

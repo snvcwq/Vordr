@@ -51,6 +51,8 @@ partial class MainForm
         MinimizeButton = new CuoreUI.Controls.cuiButtonGroup();
         CloseButton = new CuoreUI.Controls.cuiButtonGroup();
         MainPanel = new Panel();
+        CollectProcessesWorker = new System.ComponentModel.BackgroundWorker();
+        CollectHardwareWorker = new System.ComponentModel.BackgroundWorker();
         panel2.SuspendLayout();
         panel1.SuspendLayout();
         SuspendLayout();
@@ -683,6 +685,14 @@ partial class MainForm
         MainPanel.Size = new Size(1227, 750);
         MainPanel.TabIndex = 3;
         // 
+        // CollectProcessesWorker
+        // 
+        CollectProcessesWorker.DoWork += CollectProcessesWorker_DoWork;
+        // 
+        // CollectHardwareWorker
+        // 
+        CollectHardwareWorker.DoWork += CollectHardwareWorker_DoWork;
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 16F);
@@ -730,4 +740,6 @@ partial class MainForm
     private Panel MainPannel;
     private Panel MainPanel;
     private CuoreUI.Controls.cuiButtonGroup MaximizeButton;
+    private System.ComponentModel.BackgroundWorker CollectProcessesWorker;
+    private System.ComponentModel.BackgroundWorker CollectHardwareWorker;
 }

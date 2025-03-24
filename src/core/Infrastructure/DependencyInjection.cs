@@ -26,7 +26,7 @@ public static class DependencyInjection
 
         services.AddMigrations();
         services.RegisterRepositories();
-        services.InitHangfire();
+        //services.InitHangfire();
         
         services.DefineSchedulers();
         services.DefineResourceCollectors();

@@ -59,7 +59,7 @@ public class UploadCollectedProcessesCommandHandler(
 
     private async Task PerformUpdateProcessesRequestsAsync(UpdateProcessesRequest request)
     {
-                foreach (var updateRequest in request.CreateProcesses)
+        foreach (var updateRequest in request.CreateProcesses)
         {
             var result = await processDataRepository.UploadAsync(updateRequest.Process);
             result.Switch(async void (objectId) =>
@@ -138,6 +138,7 @@ public class UploadCollectedProcessesCommandHandler(
         storedData.Priority = retrievedData.Priority;
         storedData.Version = retrievedData.Version;
         storedData.StartTime = retrievedData.StartTime;
+        storedData.IsSystemProcess = retrievedData.IsSystemProcess;
         var stats = CreateProcessStats(retrievedData);
         return new UpdateProcessDataRequest(storedData, stats);
     }
@@ -154,7 +155,8 @@ public class UploadCollectedProcessesCommandHandler(
             Manufacturer = retrievedData.Company,
             Priority = retrievedData.Priority,
             Version = retrievedData.Version,
-            StartTime = retrievedData.StartTime
+            StartTime = retrievedData.StartTime,
+            IsSystemProcess = retrievedData.IsSystemProcess,
         };
         var stats = CreateProcessStats(retrievedData);
         return new CreateProcessDataRequest(data, stats);

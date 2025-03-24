@@ -23,6 +23,7 @@ public record ProcessInformation
     public required double CpuUsage { get; set; }
         
     public required double RamUsage { get; set; }
+    public required bool IsSystemProcess { get; set; }
         
     public int ThreadCount { get; set; }
         

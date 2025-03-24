@@ -1,18 +1,34 @@
 ﻿using MediatR;
 using Presentation.Helpers;
 using Vordr.Application.GpuUsage.Get;
+using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 using Vordr.Domain.Entities.Components;
 
 namespace Presentation.Slices;
 public partial class Gpu : Form
 {
     private readonly ISender _sender;
-    public Gpu(GpuInfo[] info, ISender sender)
+    public Gpu(ISender sender)
     {
         InitializeComponent();
         _sender = sender;
-        ModelLabel.Content = info[0].Name;
-        DeviceLabel.Content = ConvertToValidString(info[0].DeviceId);
+    }
+    private async void UpdateComponents()
+    {
+        var hc = (await _sender.Send(new RetrieveHardwareComponentQuery())).Gpu.ToArray();
+        ModelLabel.Content = hc[0].Name;
+        DeviceLabel.Content = ConvertToValidString(hc[0].DeviceId);
+    }
+    override async protected void OnLoad(EventArgs e)
+    {
+        try
+        {
+            UpdateComponents();
+        }
+        catch (Exception exception)
+        {
+            // ignored
+        }
     }
     public string ConvertToValidString(string input)
     {
@@ -75,6 +91,7 @@ public partial class Gpu : Form
         ClockChart.CustomXAxis = xAxisClocks.ToArray();
         TemperatureChart.DataPoints = temperatureStatus;
         LoadChart.DataPoints = loadPercentage;
+        
         ClockChart.DataPoints = clocks;
         ClockChart.MaxValue = clocks.Max();
     }

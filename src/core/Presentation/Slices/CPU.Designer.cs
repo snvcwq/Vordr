@@ -109,7 +109,7 @@ partial class Cpu
         Top3LoadUsage.BackColor = Color.Transparent;
         Top3LoadUsage.Content = "";
         Top3LoadUsage.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Top3LoadUsage.ForeColor = Color.FromArgb(40, 53, 147);
+        Top3LoadUsage.ForeColor = Color.Black;
         Top3LoadUsage.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         Top3LoadUsage.Location = new Point(221, 131);
         Top3LoadUsage.Margin = new Padding(4, 3, 4, 3);
@@ -122,7 +122,7 @@ partial class Cpu
         Top2LoadUsage.BackColor = Color.Transparent;
         Top2LoadUsage.Content = "";
         Top2LoadUsage.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Top2LoadUsage.ForeColor = Color.FromArgb(40, 53, 147);
+        Top2LoadUsage.ForeColor = Color.Black;
         Top2LoadUsage.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         Top2LoadUsage.Location = new Point(221, 102);
         Top2LoadUsage.Margin = new Padding(4, 3, 4, 3);
@@ -136,7 +136,7 @@ partial class Cpu
         Top1LoadUsage.BackColor = Color.Transparent;
         Top1LoadUsage.Content = "";
         Top1LoadUsage.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Top1LoadUsage.ForeColor = Color.FromArgb(40, 53, 147);
+        Top1LoadUsage.ForeColor = Color.Black;
         Top1LoadUsage.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         Top1LoadUsage.Location = new Point(221, 73);
         Top1LoadUsage.Margin = new Padding(4, 3, 4, 3);
