@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Vordr.Application.Common.Interfaces.Services;
 using Vordr.Application.Models.Hardware;
 using Vordr.Application.Models.Process;
+using Vordr.Application.Process.Commands.Upload;
 
 namespace Presentation.Slices;
 
@@ -11,6 +12,7 @@ public partial class MainForm : Form
 {
     private readonly ISender _sender;
     private readonly Battery batteryForm;
+    private readonly Dashboard dashboard;
     private readonly Cpu cpuForm;
     private readonly Drives drivesForm;
     private readonly Gpu gpuForm;
@@ -19,7 +21,9 @@ public partial class MainForm : Form
     private readonly Ram ramForm;
     private readonly IHardwareMetricsCollectService _hardwareMetricsService;
     private readonly IProcessCollectService _processCollectService;
-    public MainForm(ISender sender, Battery batteryForm, Cpu cpuForm, Drives drivesForm, Gpu gpuForm, Monitoring monitoringForm, Processes processesForm, Ram ramForm, IHardwareMetricsCollectService hardwareMetricsService, IProcessCollectService processCollectService)
+    private bool processesIntialized = false;
+    private bool dashbordInitalized = false;
+    public MainForm(ISender sender, Battery batteryForm, Cpu cpuForm, Drives drivesForm, Gpu gpuForm, Monitoring monitoringForm, Processes processesForm, Ram ramForm, IHardwareMetricsCollectService hardwareMetricsService, IProcessCollectService processCollectService, Dashboard dashboard)
     {
         _sender = sender;
         this.batteryForm = batteryForm;
@@ -32,7 +36,9 @@ public partial class MainForm : Form
         this.ramForm = ramForm;
         _hardwareMetricsService = hardwareMetricsService;
         _processCollectService = processCollectService;
+        this.dashboard = dashboard;
         InitializeComponent();
+        WindowState = FormWindowState.Normal;
     }
     public delegate void OnPassingProcesses(List<ProcessInformation> processes);
     public event OnPassingProcesses PassingProcesses;
@@ -84,9 +90,11 @@ public partial class MainForm : Form
 
     private void DashboardButton_Click_2(object sender, EventArgs e)
     {
-        var dashboard = new Dashboard();
-        PassingMetrics += dashboard.HandleNewMetrics;
-
+        if (!dashbordInitalized)
+        {
+            PassingMetrics += dashboard.HandleNewMetrics;
+            dashbordInitalized = true;
+        }
         LoadForm(dashboard);
     }
     private void LoadForm(object form)
@@ -118,14 +126,16 @@ public partial class MainForm : Form
 
     private void SettingsButton_Click(object sender, EventArgs e)
     {
-        LoadForm(new Monitoring());
+        LoadForm(monitoringForm);
     }
 
     private void ProcessButton_Click(object sender, EventArgs e)
     {
-        var form = new Processes();
-        PassingProcesses += processesForm.HandleProcesses;
-
+        if (!processesIntialized)
+        {
+            PassingProcesses += processesForm.HandleProcesses;
+            processesIntialized = true;
+        }
         LoadForm(processesForm);
     }
 
@@ -165,6 +175,8 @@ public partial class MainForm : Form
         {
             var processes = await _processCollectService.ExecuteProcessDataCollectingAsync();
             PassingProcesses?.Invoke(processes);
+            await _sender.Send(new UploadCollectedProcessesCommand(processes));
+
             await Task.Delay(1000);
             GC.Collect();
 

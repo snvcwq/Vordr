@@ -98,17 +98,22 @@ public partial class Dashboard : Form
         {
             new PieSeries<double>
             {
+                IsVisibleAtLegend = false,
                 Values = new List<double> { Math.Round(dDrive.DriveFreeSpace,3) },
                 DataLabelsPaint = GetSolidColorPaint(43,152,121),
-                DataLabelsSize = 22,
-                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                DataLabelsSize = 0,
+                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.End,
+                MaxRadialColumnWidth = 60,
+                Fill = new SolidColorPaint(Color.FromArgb(43, 152, 121).ToSKColor()),
             },
             new PieSeries<double>
             {
                 Values = new List<double> { Math.Round((dDrive.DriveTotalSize - dDrive.DriveFreeSpace),3) },
                 DataLabelsPaint = GetSolidColorPaint(169,86,81),
-                DataLabelsSize = 22,
-                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                DataLabelsSize = 0,
+                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.End,
+                MaxRadialColumnWidth = 60,
+                Fill = new SolidColorPaint(Color.FromArgb(169, 86, 81).ToSKColor()),
             }
         };
         
@@ -123,18 +128,24 @@ public partial class Dashboard : Form
             {
                 Values = new List<double> { Math.Round(cDrive.DriveFreeSpace,3) },
                 DataLabelsPaint = GetSolidColorPaint(43,152,121),
-                DataLabelsSize = 20,
+                DataLabelsSize = 0,
                 DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                EasingFunction = null,
+                MaxRadialColumnWidth = 60,
+                Fill = new SolidColorPaint(Color.FromArgb(43, 152, 121).ToSKColor()),
                 
             },
             new PieSeries<double>
             {
                 Values = new List<double> { Math.Round(cDrive.DriveTotalSize - cDrive.DriveFreeSpace,3) },
-                DataLabelsPaint = GetSolidColorPaint(169,86,81),
-                DataLabelsSize = 20,
+                DataLabelsPaint = GetSolidColorPaint(169, 86, 81),
+                DataLabelsSize = 0,
                 DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                MaxRadialColumnWidth = 60,
+                Fill = new SolidColorPaint(Color.FromArgb(169, 86, 81).ToSKColor()),
             }
         };
+
     }
     private SolidColorPaint GetSolidColorPaint(int r, int g, int b) =>
         new SolidColorPaint(Color.FromArgb(r,g,b).ToSKColor());

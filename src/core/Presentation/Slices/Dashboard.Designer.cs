@@ -41,6 +41,12 @@ partial class Dashboard
         cuiLabel6 = new CuoreUI.Controls.cuiLabel();
         cuiLabel9 = new CuoreUI.Controls.cuiLabel();
         cuiBorder8 = new CuoreUI.Controls.cuiBorder();
+        CDrive = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
+        DDrive = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
+        cuiLabel19 = new CuoreUI.Controls.cuiLabel();
+        cuiLabel16 = new CuoreUI.Controls.cuiLabel();
+        cuiLabel20 = new CuoreUI.Controls.cuiLabel();
+        cuiLabel15 = new CuoreUI.Controls.cuiLabel();
         BatteryPanel = new CuoreUI.Controls.cuiBorder();
         DegradationLevelValue = new CuoreUI.Controls.cuiLabel();
         ChargeLevelValue = new CuoreUI.Controls.cuiLabel();
@@ -63,19 +69,12 @@ partial class Dashboard
         GpuTemperatureTrack = new CuoreUI.Controls.cuiProgressBarVertical();
         cuiLabel7 = new CuoreUI.Controls.cuiLabel();
         cuiBorder3 = new CuoreUI.Controls.cuiBorder();
-        CDrive = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
-        cuiLabel19 = new CuoreUI.Controls.cuiLabel();
-        cuiLabel20 = new CuoreUI.Controls.cuiLabel();
         cuiBorder4 = new CuoreUI.Controls.cuiBorder();
-        DDrive = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
-        cuiLabel15 = new CuoreUI.Controls.cuiLabel();
-        cuiLabel16 = new CuoreUI.Controls.cuiLabel();
         cuiBorder7.SuspendLayout();
+        cuiBorder8.SuspendLayout();
         BatteryPanel.SuspendLayout();
         cuiBorder1.SuspendLayout();
         cuiBorder2.SuspendLayout();
-        cuiBorder3.SuspendLayout();
-        cuiBorder4.SuspendLayout();
         SuspendLayout();
         // 
         // cuiProgressBarVertical2
@@ -176,9 +175,9 @@ partial class Dashboard
         GpuLoadTrack.Size = new Size(187, 187);
         GpuLoadTrack.TabIndex = 0;
         GpuLoadTrack.ThumbColor = Color.FromArgb(108, 124, 204);
-        GpuLoadTrack.TrackColor = Color.White;
+        GpuLoadTrack.TrackColor = Color.FromArgb(224, 224, 224);
         GpuLoadTrack.TrackThickness = 20;
-        GpuLoadTrack.Value = 60F;
+        GpuLoadTrack.Value = 0F;
         // 
         // cuiBorder7
         // 
@@ -227,9 +226,9 @@ partial class Dashboard
         CpuLoadTrack.Size = new Size(187, 187);
         CpuLoadTrack.TabIndex = 41;
         CpuLoadTrack.ThumbColor = Color.FromArgb(108, 124, 204);
-        CpuLoadTrack.TrackColor = Color.White;
+        CpuLoadTrack.TrackColor = Color.FromArgb(224, 224, 224);
         CpuLoadTrack.TrackThickness = 20;
-        CpuLoadTrack.Value = 80F;
+        CpuLoadTrack.Value = 0F;
         // 
         // cuiLabel5
         // 
@@ -271,6 +270,12 @@ partial class Dashboard
         // 
         // cuiBorder8
         // 
+        cuiBorder8.Controls.Add(CDrive);
+        cuiBorder8.Controls.Add(DDrive);
+        cuiBorder8.Controls.Add(cuiLabel19);
+        cuiBorder8.Controls.Add(cuiLabel16);
+        cuiBorder8.Controls.Add(cuiLabel20);
+        cuiBorder8.Controls.Add(cuiLabel15);
         cuiBorder8.Location = new Point(13, 246);
         cuiBorder8.Name = "cuiBorder8";
         cuiBorder8.OutlineThickness = 1F;
@@ -279,6 +284,82 @@ partial class Dashboard
         cuiBorder8.Rounding = new Padding(12);
         cuiBorder8.Size = new Size(779, 194);
         cuiBorder8.TabIndex = 27;
+        // 
+        // CDrive
+        // 
+        CDrive.BackColor = Color.White;
+        CDrive.InitialRotation = 0D;
+        CDrive.IsClockwise = true;
+        CDrive.Location = new Point(184, 3);
+        CDrive.MaxAngle = 360D;
+        CDrive.MaxValue = double.NaN;
+        CDrive.MinValue = 0D;
+        CDrive.Name = "CDrive";
+        CDrive.Size = new Size(190, 190);
+        CDrive.TabIndex = 49;
+        // 
+        // DDrive
+        // 
+        DDrive.BackColor = Color.White;
+        DDrive.InitialRotation = 0D;
+        DDrive.IsClockwise = true;
+        DDrive.Location = new Point(586, 4);
+        DDrive.MaxAngle = 360D;
+        DDrive.MaxValue = double.NaN;
+        DDrive.MinValue = 0D;
+        DDrive.Name = "DDrive";
+        DDrive.Size = new Size(190, 190);
+        DDrive.TabIndex = 49;
+        // 
+        // cuiLabel19
+        // 
+        cuiLabel19.BackColor = Color.Transparent;
+        cuiLabel19.BackgroundImage = Resources.pie_chart1;
+        cuiLabel19.Content = "";
+        cuiLabel19.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        cuiLabel19.Location = new Point(461, 15);
+        cuiLabel19.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel19.Name = "cuiLabel19";
+        cuiLabel19.Size = new Size(31, 32);
+        cuiLabel19.TabIndex = 48;
+        // 
+        // cuiLabel16
+        // 
+        cuiLabel16.BackColor = Color.Transparent;
+        cuiLabel16.Content = "C\\ drive";
+        cuiLabel16.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel16.ForeColor = Color.Black;
+        cuiLabel16.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Right;
+        cuiLabel16.Location = new Point(96, 25);
+        cuiLabel16.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel16.Name = "cuiLabel16";
+        cuiLabel16.Size = new Size(77, 32);
+        cuiLabel16.TabIndex = 47;
+        // 
+        // cuiLabel20
+        // 
+        cuiLabel20.BackColor = Color.Transparent;
+        cuiLabel20.Content = "D\\ drive";
+        cuiLabel20.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel20.ForeColor = Color.Black;
+        cuiLabel20.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Right;
+        cuiLabel20.Location = new Point(495, 15);
+        cuiLabel20.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel20.Name = "cuiLabel20";
+        cuiLabel20.Size = new Size(77, 32);
+        cuiLabel20.TabIndex = 47;
+        // 
+        // cuiLabel15
+        // 
+        cuiLabel15.BackColor = Color.Transparent;
+        cuiLabel15.BackgroundImage = Resources.pie_chart1;
+        cuiLabel15.Content = "";
+        cuiLabel15.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        cuiLabel15.Location = new Point(62, 25);
+        cuiLabel15.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel15.Name = "cuiLabel15";
+        cuiLabel15.Size = new Size(31, 32);
+        cuiLabel15.TabIndex = 48;
         // 
         // BatteryPanel
         // 
@@ -305,7 +386,7 @@ partial class Dashboard
         DegradationLevelValue.Content = "0";
         DegradationLevelValue.ForeColor = Color.FromArgb(108, 124, 204);
         DegradationLevelValue.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        DegradationLevelValue.Location = new Point(-1, 108);
+        DegradationLevelValue.Location = new Point(0, 115);
         DegradationLevelValue.Margin = new Padding(4, 3, 4, 3);
         DegradationLevelValue.Name = "DegradationLevelValue";
         DegradationLevelValue.Size = new Size(43, 24);
@@ -317,7 +398,7 @@ partial class Dashboard
         ChargeLevelValue.Content = "0";
         ChargeLevelValue.ForeColor = Color.FromArgb(108, 124, 204);
         ChargeLevelValue.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        ChargeLevelValue.Location = new Point(0, 169);
+        ChargeLevelValue.Location = new Point(1, 176);
         ChargeLevelValue.Margin = new Padding(4, 3, 4, 3);
         ChargeLevelValue.Name = "ChargeLevelValue";
         ChargeLevelValue.Size = new Size(43, 24);
@@ -329,7 +410,7 @@ partial class Dashboard
         cuiLabel4.Content = "Degradation\\ level\\(%\\):";
         cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        cuiLabel4.Location = new Point(16, 78);
+        cuiLabel4.Location = new Point(17, 85);
         cuiLabel4.Margin = new Padding(4, 3, 4, 3);
         cuiLabel4.Name = "cuiLabel4";
         cuiLabel4.Size = new Size(188, 24);
@@ -337,14 +418,14 @@ partial class Dashboard
         // 
         // DegradationLevelBar
         // 
-        DegradationLevelBar.Background = Color.White;
+        DegradationLevelBar.Background = Color.FromArgb(224, 224, 224);
         DegradationLevelBar.Flipped = false;
         DegradationLevelBar.Foreground = Color.FromArgb(108, 124, 204);
-        DegradationLevelBar.Location = new Point(45, 108);
+        DegradationLevelBar.Location = new Point(46, 115);
         DegradationLevelBar.MaxValue = 100;
         DegradationLevelBar.Name = "DegradationLevelBar";
         DegradationLevelBar.Rounding = 8;
-        DegradationLevelBar.Size = new Size(326, 21);
+        DegradationLevelBar.Size = new Size(318, 21);
         DegradationLevelBar.TabIndex = 32;
         DegradationLevelBar.Value = 50;
         // 
@@ -354,7 +435,7 @@ partial class Dashboard
         cuiLabel2.BackgroundImage = Resources.battery;
         cuiLabel2.Content = "";
         cuiLabel2.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        cuiLabel2.Location = new Point(16, 18);
+        cuiLabel2.Location = new Point(17, 25);
         cuiLabel2.Margin = new Padding(4, 3, 4, 3);
         cuiLabel2.Name = "cuiLabel2";
         cuiLabel2.Size = new Size(31, 35);
@@ -366,7 +447,7 @@ partial class Dashboard
         cuiLabel3.Content = "Charge\\ Level\\(%\\):";
         cuiLabel3.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel3.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        cuiLabel3.Location = new Point(16, 139);
+        cuiLabel3.Location = new Point(17, 146);
         cuiLabel3.Margin = new Padding(4, 3, 4, 3);
         cuiLabel3.Name = "cuiLabel3";
         cuiLabel3.Size = new Size(156, 24);
@@ -379,7 +460,7 @@ partial class Dashboard
         cuiLabel1.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
         cuiLabel1.ForeColor = Color.Black;
         cuiLabel1.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        cuiLabel1.Location = new Point(45, 26);
+        cuiLabel1.Location = new Point(46, 33);
         cuiLabel1.Margin = new Padding(4, 3, 4, 3);
         cuiLabel1.Name = "cuiLabel1";
         cuiLabel1.Size = new Size(77, 34);
@@ -388,10 +469,10 @@ partial class Dashboard
         // 
         // ChargeLevelBar
         // 
-        ChargeLevelBar.Background = Color.White;
+        ChargeLevelBar.Background = Color.FromArgb(224, 224, 224);
         ChargeLevelBar.Flipped = false;
         ChargeLevelBar.Foreground = Color.FromArgb(108, 124, 204);
-        ChargeLevelBar.Location = new Point(45, 169);
+        ChargeLevelBar.Location = new Point(46, 176);
         ChargeLevelBar.MaxValue = 100;
         ChargeLevelBar.Name = "ChargeLevelBar";
         ChargeLevelBar.Rounding = 8;
@@ -491,7 +572,7 @@ partial class Dashboard
         // 
         // CpuTemperatureTrack
         // 
-        CpuTemperatureTrack.Background = Color.White;
+        CpuTemperatureTrack.Background = Color.FromArgb(224, 224, 224);
         CpuTemperatureTrack.Flipped = true;
         CpuTemperatureTrack.Foreground = Color.FromArgb(108, 124, 204);
         CpuTemperatureTrack.Location = new Point(332, 12);
@@ -529,7 +610,7 @@ partial class Dashboard
         // 
         // GpuTemperatureTrack
         // 
-        GpuTemperatureTrack.Background = Color.White;
+        GpuTemperatureTrack.Background = Color.FromArgb(224, 224, 224);
         GpuTemperatureTrack.Flipped = true;
         GpuTemperatureTrack.Foreground = Color.FromArgb(108, 124, 204);
         GpuTemperatureTrack.Location = new Point(235, 11);
@@ -554,9 +635,6 @@ partial class Dashboard
         // 
         // cuiBorder3
         // 
-        cuiBorder3.Controls.Add(CDrive);
-        cuiBorder3.Controls.Add(cuiLabel19);
-        cuiBorder3.Controls.Add(cuiLabel20);
         cuiBorder3.Location = new Point(426, 78);
         cuiBorder3.Name = "cuiBorder3";
         cuiBorder3.OutlineThickness = 1F;
@@ -566,49 +644,8 @@ partial class Dashboard
         cuiBorder3.Size = new Size(365, 138);
         cuiBorder3.TabIndex = 28;
         // 
-        // CDrive
-        // 
-        CDrive.BackColor = Color.White;
-        CDrive.InitialRotation = 0D;
-        CDrive.IsClockwise = true;
-        CDrive.Location = new Point(126, 12);
-        CDrive.MaxAngle = 360D;
-        CDrive.MaxValue = double.NaN;
-        CDrive.MinValue = 0D;
-        CDrive.Name = "CDrive";
-        CDrive.Size = new Size(224, 115);
-        CDrive.TabIndex = 49;
-        // 
-        // cuiLabel19
-        // 
-        cuiLabel19.BackColor = Color.Transparent;
-        cuiLabel19.BackgroundImage = Resources.pie_chart1;
-        cuiLabel19.Content = "";
-        cuiLabel19.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        cuiLabel19.Location = new Point(8, 12);
-        cuiLabel19.Margin = new Padding(4, 3, 4, 3);
-        cuiLabel19.Name = "cuiLabel19";
-        cuiLabel19.Size = new Size(31, 32);
-        cuiLabel19.TabIndex = 48;
-        // 
-        // cuiLabel20
-        // 
-        cuiLabel20.BackColor = Color.Transparent;
-        cuiLabel20.Content = "D\\ drive";
-        cuiLabel20.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        cuiLabel20.ForeColor = Color.Black;
-        cuiLabel20.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Right;
-        cuiLabel20.Location = new Point(42, 12);
-        cuiLabel20.Margin = new Padding(4, 3, 4, 3);
-        cuiLabel20.Name = "cuiLabel20";
-        cuiLabel20.Size = new Size(77, 32);
-        cuiLabel20.TabIndex = 47;
-        // 
         // cuiBorder4
         // 
-        cuiBorder4.Controls.Add(DDrive);
-        cuiBorder4.Controls.Add(cuiLabel15);
-        cuiBorder4.Controls.Add(cuiLabel16);
         cuiBorder4.Location = new Point(22, 78);
         cuiBorder4.Name = "cuiBorder4";
         cuiBorder4.OutlineThickness = 1F;
@@ -617,44 +654,6 @@ partial class Dashboard
         cuiBorder4.Rounding = new Padding(12);
         cuiBorder4.Size = new Size(365, 138);
         cuiBorder4.TabIndex = 50;
-        // 
-        // DDrive
-        // 
-        DDrive.BackColor = Color.White;
-        DDrive.InitialRotation = 0D;
-        DDrive.IsClockwise = true;
-        DDrive.Location = new Point(135, 12);
-        DDrive.MaxAngle = 360D;
-        DDrive.MaxValue = double.NaN;
-        DDrive.MinValue = 0D;
-        DDrive.Name = "DDrive";
-        DDrive.Size = new Size(220, 115);
-        DDrive.TabIndex = 49;
-        // 
-        // cuiLabel15
-        // 
-        cuiLabel15.BackColor = Color.Transparent;
-        cuiLabel15.BackgroundImage = Resources.pie_chart1;
-        cuiLabel15.Content = "";
-        cuiLabel15.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        cuiLabel15.Location = new Point(8, 12);
-        cuiLabel15.Margin = new Padding(4, 3, 4, 3);
-        cuiLabel15.Name = "cuiLabel15";
-        cuiLabel15.Size = new Size(31, 32);
-        cuiLabel15.TabIndex = 48;
-        // 
-        // cuiLabel16
-        // 
-        cuiLabel16.BackColor = Color.Transparent;
-        cuiLabel16.Content = "D\\ drive";
-        cuiLabel16.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        cuiLabel16.ForeColor = Color.Black;
-        cuiLabel16.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Right;
-        cuiLabel16.Location = new Point(42, 12);
-        cuiLabel16.Margin = new Padding(4, 3, 4, 3);
-        cuiLabel16.Name = "cuiLabel16";
-        cuiLabel16.Size = new Size(77, 32);
-        cuiLabel16.TabIndex = 47;
         // 
         // Dashboard
         // 
@@ -678,11 +677,10 @@ partial class Dashboard
         Name = "Dashboard";
         Text = "Dashboard";
         cuiBorder7.ResumeLayout(false);
+        cuiBorder8.ResumeLayout(false);
         BatteryPanel.ResumeLayout(false);
         cuiBorder1.ResumeLayout(false);
         cuiBorder2.ResumeLayout(false);
-        cuiBorder3.ResumeLayout(false);
-        cuiBorder4.ResumeLayout(false);
         ResumeLayout(false);
     }
 

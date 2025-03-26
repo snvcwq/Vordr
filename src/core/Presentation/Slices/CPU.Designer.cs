@@ -30,6 +30,7 @@ partial class Cpu
     {
         var resources = new System.ComponentModel.ComponentResourceManager(typeof(Cpu));
         cuiBorder1 = new CuoreUI.Controls.cuiBorder();
+        TopUsageChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
         TopUsageSeparator = new CuoreUI.Controls.cuiSeparator();
         Top3LoadUsage = new CuoreUI.Controls.cuiLabel();
         Top2LoadUsage = new CuoreUI.Controls.cuiLabel();
@@ -39,6 +40,7 @@ partial class Cpu
         cuiLabel2 = new CuoreUI.Controls.cuiLabel();
         cuiLabel3 = new CuoreUI.Controls.cuiLabel();
         cuiBorder3 = new CuoreUI.Controls.cuiBorder();
+        TemperatureChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
         cuiSeparator3 = new CuoreUI.Controls.cuiSeparator();
         cuiBorder6 = new CuoreUI.Controls.cuiBorder();
         ModelLabel = new CuoreUI.Controls.cuiLabel();
@@ -63,8 +65,6 @@ partial class Cpu
         StartHourLabel = new CuoreUI.Controls.cuiLabel();
         StartDate = new CuoreUI.Controls.cuiCalendarDatePicker();
         cuiGradientBorder1 = new CuoreUI.Controls.cuiGradientBorder();
-        TopUsageChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
-        TemperatureChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
         cuiBorder1.SuspendLayout();
         cuiBorder3.SuspendLayout();
         cuiBorder6.SuspendLayout();
@@ -90,6 +90,15 @@ partial class Cpu
         cuiBorder1.Rounding = new Padding(11);
         cuiBorder1.Size = new Size(1203, 176);
         cuiBorder1.TabIndex = 24;
+        // 
+        // TopUsageChart
+        // 
+        TopUsageChart.BackColor = Color.White;
+        TopUsageChart.Location = new Point(520, 3);
+        TopUsageChart.MatchAxesScreenDataRatio = false;
+        TopUsageChart.Name = "TopUsageChart";
+        TopUsageChart.Size = new Size(680, 170);
+        TopUsageChart.TabIndex = 46;
         // 
         // TopUsageSeparator
         // 
@@ -207,6 +216,16 @@ partial class Cpu
         cuiBorder3.Rounding = new Padding(11);
         cuiBorder3.Size = new Size(1203, 198);
         cuiBorder3.TabIndex = 25;
+        // 
+        // TemperatureChart
+        // 
+        TemperatureChart.BackColor = Color.White;
+        TemperatureChart.Location = new Point(242, 0);
+        TemperatureChart.Margin = new Padding(4);
+        TemperatureChart.MatchAxesScreenDataRatio = false;
+        TemperatureChart.Name = "TemperatureChart";
+        TemperatureChart.Size = new Size(1161, 198);
+        TemperatureChart.TabIndex = 47;
         // 
         // cuiSeparator3
         // 
@@ -635,25 +654,6 @@ partial class Cpu
         cuiGradientBorder1.Rounding = new Padding(8);
         cuiGradientBorder1.Size = new Size(638, 194);
         cuiGradientBorder1.TabIndex = 24;
-        // 
-        // TopUsageChart
-        // 
-        TopUsageChart.BackColor = Color.White;
-        TopUsageChart.Location = new Point(501, 3);
-        TopUsageChart.MatchAxesScreenDataRatio = false;
-        TopUsageChart.Name = "TopUsageChart";
-        TopUsageChart.Size = new Size(699, 170);
-        TopUsageChart.TabIndex = 46;
-        // 
-        // TemperatureChart
-        // 
-        TemperatureChart.BackColor = Color.White;
-        TemperatureChart.Location = new Point(242, 0);
-        TemperatureChart.Margin = new Padding(4, 4, 4, 4);
-        TemperatureChart.MatchAxesScreenDataRatio = false;
-        TemperatureChart.Name = "TemperatureChart";
-        TemperatureChart.Size = new Size(1161, 198);
-        TemperatureChart.TabIndex = 47;
         // 
         // Cpu
         // 

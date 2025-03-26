@@ -7,7 +7,7 @@
 
     <ItemGroup>
         
-      <ProjectReference Include="..\..\monitoring\ResourcesMonitoring.Windows\ResourcesMonitoring.Windows.csproj" />
+      <ProjectReference Include="..\..\monitoring\ResourcesMonitoring\ResourcesMonitoring.csproj" />
         
       <ProjectReference Include="..\Application\Application.csproj" />
     </ItemGroup>

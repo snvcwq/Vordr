@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Management;
+﻿using System.Diagnostics.CodeAnalysis;
 using Vordr.Application.Common.Interfaces.Resources;
 using Vordr.Application.Models.Process;
 using Vordr.ResourcesMonitoring.Windows.Process.Extensions;
@@ -22,26 +20,6 @@ public class ProcessDataCollector : IProcessDataCollector
         {
             MaxDegreeOfParallelism = 5
         };
-        /*
-        var stopwatch = new Stopwatch();
-        stopwatch.Start();
-       foreach(var process in processes)
-        {
-            try
-            {
-                var processInfo = GetProcessInfoAsync(process, CancellationToken.None);
-                if (processInfo != null)
-                    processInfoList.Add(processInfo);
-                Console.WriteLine($"finished process {process.ProcessName}. it took {stopwatch.ElapsedMilliseconds} milliseconds.");
-                stopwatch.Restart();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
-        }
-        return GroupProcesses(processInfoList);*/
         await Parallel.ForEachAsync(processes, options, (process, cancellationToken) =>
         {
             try

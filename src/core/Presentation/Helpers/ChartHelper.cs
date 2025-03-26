@@ -37,7 +37,6 @@ public static class ChartHelper
         return timeDifference switch
         {
             >= 30 => [new DateTimeAxis(TimeSpan.FromDays(1), date => date.ToString("MMMM dd"))],
-            >= 5 => [new DateTimeAxis(TimeSpan.FromHours(1), date => date.ToString("HH:mm"))]
         };
     }
     

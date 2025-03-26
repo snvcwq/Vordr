@@ -36,6 +36,7 @@ partial class Battery
         cuiSeparator2 = new CuoreUI.Controls.cuiSeparator();
         cuiLabel2 = new CuoreUI.Controls.cuiLabel();
         cuiBorder3 = new CuoreUI.Controls.cuiBorder();
+        DegradationLevelChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
         cuiSeparator3 = new CuoreUI.Controls.cuiSeparator();
         cuiLabel3 = new CuoreUI.Controls.cuiLabel();
         cuiBorder5 = new CuoreUI.Controls.cuiBorder();
@@ -66,7 +67,6 @@ partial class Battery
         cuiLabel6 = new CuoreUI.Controls.cuiLabel();
         cuiLabel1 = new CuoreUI.Controls.cuiLabel();
         cuiSeparator1 = new CuoreUI.Controls.cuiSeparator();
-        DegradationLevelChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
         cuiBorder1.SuspendLayout();
         cuiBorder3.SuspendLayout();
         cuiBorder5.SuspendLayout();
@@ -104,10 +104,10 @@ partial class Battery
         // ChargeLevelChart
         // 
         ChargeLevelChart.BackColor = Color.White;
-        ChargeLevelChart.Location = new Point(4, 60);
+        ChargeLevelChart.Location = new Point(4, 49);
         ChargeLevelChart.MatchAxesScreenDataRatio = false;
         ChargeLevelChart.Name = "ChargeLevelChart";
-        ChargeLevelChart.Size = new Size(603, 304);
+        ChargeLevelChart.Size = new Size(603, 315);
         ChargeLevelChart.TabIndex = 25;
         // 
         // cuiSeparator2
@@ -148,6 +148,15 @@ partial class Battery
         cuiBorder3.Rounding = new Padding(11);
         cuiBorder3.Size = new Size(563, 374);
         cuiBorder3.TabIndex = 20;
+        // 
+        // DegradationLevelChart
+        // 
+        DegradationLevelChart.BackColor = Color.White;
+        DegradationLevelChart.Location = new Point(4, 60);
+        DegradationLevelChart.MatchAxesScreenDataRatio = false;
+        DegradationLevelChart.Name = "DegradationLevelChart";
+        DegradationLevelChart.Size = new Size(556, 311);
+        DegradationLevelChart.TabIndex = 26;
         // 
         // cuiSeparator3
         // 
@@ -662,15 +671,6 @@ partial class Battery
         cuiSeparator1.TabIndex = 23;
         cuiSeparator1.Thickness = 1F;
         cuiSeparator1.Vertical = false;
-        // 
-        // DegradationLevelChart
-        // 
-        DegradationLevelChart.BackColor = Color.White;
-        DegradationLevelChart.Location = new Point(4, 60);
-        DegradationLevelChart.MatchAxesScreenDataRatio = false;
-        DegradationLevelChart.Name = "DegradationLevelChart";
-        DegradationLevelChart.Size = new Size(556, 311);
-        DegradationLevelChart.TabIndex = 26;
         // 
         // Battery
         // 

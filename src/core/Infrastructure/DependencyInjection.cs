@@ -97,7 +97,6 @@ public static class DependencyInjection
         });
         serviceCollection.AddHangfireServer();
         GlobalConfiguration.Configuration.UseActivator(new ContainerJobActivator());
-
         
         return serviceCollection;
     }

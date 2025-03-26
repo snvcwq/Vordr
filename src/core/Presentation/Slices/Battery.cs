@@ -109,7 +109,7 @@ public partial class Battery : Form
 
     private void SetChargeChart(IEnumerable<PowerSupply> batteryData)
     {
-        var data = batteryData.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(), b.ChargeLevel)).ToList();
+        var data = batteryData.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(), Math.Round(b.ChargeLevel,3))).ToList();
         ChargeLevelChart.Series = ChartHelper.DefineChart(data);
         ChargeLevelChart.XAxes = ChartHelper.DefineChartX("time",
             batteryData.Select(x => x.CapturedAtUtc).Max(), batteryData.Select(x => x.CapturedAtUtc).Min() );
@@ -119,7 +119,7 @@ public partial class Battery : Form
     
     private void SetDegradationChart(IEnumerable<PowerSupply> batteryData)
     {
-        var data = batteryData.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(), b.DegradationLevel)).ToList();
+        var data = batteryData.Select(b => new DateTimePoint(b.CapturedAtUtc.ToLocalTime(),Math.Round(b.DegradationLevel,3))).ToList();
         DegradationLevelChart.Series = ChartHelper.DefineChart(data);
         DegradationLevelChart.XAxes = ChartHelper.DefineChartX("time",
             batteryData.Select(x => x.CapturedAtUtc).Max(), batteryData.Select(x => x.CapturedAtUtc).Min() );

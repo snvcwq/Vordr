@@ -6,13 +6,12 @@ using Vordr.Application.Process.Commands.Upload;
 
 namespace Vordr.Application.Services;
 
-public class ProcessCollectService(IProcessDataCollector processDataCollector, IMediator mediator) : IProcessCollectService
+public class ProcessCollectService(IProcessDataCollector processDataCollector) : IProcessCollectService
 {
     
     public async Task<List<ProcessInformation>> ExecuteProcessDataCollectingAsync()
     {
         var collectedProcesses = await processDataCollector.GetCurrentProcesses();
-        await mediator.Send(new UploadCollectedProcessesCommand(collectedProcesses));
         return collectedProcesses.ToList();
     }
 }
