@@ -3,9 +3,9 @@
 namespace Vordr.ResourcesMonitoring.Windows.Process.Properties;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
-internal static class IconMetric
+public static class IconMetric
 {
-    internal static byte[]? GetIcon(this System.Diagnostics.Process process)
+    public static byte[]? GetIcon(this System.Diagnostics.Process process)
     {
         try
         {

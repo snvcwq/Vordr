@@ -3,8 +3,6 @@ using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Vordr.Application.Common.Interfaces.Resources;
-using Vordr.Application.Models.Hardware;
-using Vordr.Application.Models.Hardware.Components;
 using Vordr.Domain.Entities;
 using Vordr.Domain.Entities.Components;
 

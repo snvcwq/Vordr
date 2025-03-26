@@ -38,7 +38,7 @@ public class ProcessDataCollector : IProcessDataCollector
         return GroupProcesses(processInfoList);
     }
 
-    private static ProcessInformation? GetProcessInfoAsync(System.Diagnostics.Process process, CancellationToken cancellationToken)
+    public static ProcessInformation? GetProcessInfoAsync(System.Diagnostics.Process process, CancellationToken cancellationToken)
     {
         try
         {
