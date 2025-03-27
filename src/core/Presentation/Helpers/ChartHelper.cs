@@ -27,17 +27,14 @@ public static class ChartHelper
 
     public static DateTime DefineTime(DateTime time, int hour, int minute)
     {
-        return new DateTime(time.Year, time.Month, time.Day, hour, minute, 0, DateTimeKind.Utc);
+        return new DateTime(time.Year, time.Month, time.Day, hour, minute, 0, DateTimeKind.Local).ToUniversalTime();
     }
 
     public static IEnumerable<ICartesianAxis> DefineChartX(string name, DateTime startDate, DateTime endDate)
     {
         var timeDifference = (startDate - endDate).TotalHours;
 
-        return timeDifference switch
-        {
-            >= 30 => [new DateTimeAxis(TimeSpan.FromDays(1), date => date.ToString("MMMM dd"))],
-        };
+        return [new DateTimeAxis(TimeSpan.FromDays(1), date => date.ToString("d MMM HH:mm"))];
     }
     
     public static IEnumerable<ICartesianAxis> DefineChartY(string name)

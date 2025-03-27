@@ -22,8 +22,6 @@ public partial class Dashboard : Form
     public Dashboard()
     {
         InitializeComponent();
-        DiskCPie.ChartPadding = 2;
-        DiskCPie.DataPoints = ["ocuppied_60", "free_140"];
     }
 
     public async void HandleNewMetrics(HardwareReport report)

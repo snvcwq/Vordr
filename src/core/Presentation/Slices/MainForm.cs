@@ -1,4 +1,5 @@
 using MediatR;
+using Presentation.Interface;
 using Presentation.Models;
 using System.Runtime.InteropServices;
 using Vordr.Application.Common.Interfaces.Services;
@@ -23,6 +24,8 @@ public partial class MainForm : Form
     private readonly IProcessCollectService _processCollectService;
     private bool processesIntialized = false;
     private bool dashbordInitalized = false;
+    private Form _currentForm = null; // Track the current form
+
     public MainForm(ISender sender, Battery batteryForm, Cpu cpuForm, Drives drivesForm, Gpu gpuForm, Monitoring monitoringForm, Processes processesForm, Ram ramForm, IHardwareMetricsCollectService hardwareMetricsService, IProcessCollectService processCollectService, Dashboard dashboard)
     {
         _sender = sender;
@@ -99,15 +102,26 @@ public partial class MainForm : Form
     }
     private void LoadForm(object form)
     {
+        _currentForm?.Hide(); // Optionally, hide the form or reset its data
+        if (_currentForm is IResettable resettableForm)
+        {
+            resettableForm.Reset(); // If the form implements IResettable, reset its data
+        }
+
         if (MainPanel.Controls.Count > 0)
             MainPanel.Controls.RemoveAt(0);
+
         if (form is not Form newForm)
             return;
+
         newForm.TopLevel = false;
         newForm.Dock = DockStyle.Fill;
         MainPanel.Controls.Add(newForm);
         MainPanel.Tag = newForm;
         newForm.Show();
+
+        // Track the new form
+        _currentForm = newForm;
     }
 
     private void NetworkButton_Click(object sender, EventArgs e)

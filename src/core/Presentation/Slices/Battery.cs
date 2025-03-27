@@ -2,12 +2,13 @@
 using LiveChartsCore.Measure;
 using MediatR;
 using Presentation.Helpers;
+using Presentation.Interface;
 using Vordr.Application.Battery.Queries;
 using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 using Vordr.Domain.Entities;
 
 namespace Presentation.Slices;
-public partial class Battery : Form
+public partial class Battery : Form, IResettable
 {
     private readonly ISender _sender;
     public Battery(ISender sender)
@@ -143,4 +144,10 @@ public partial class Battery : Form
 
     }
 
+    public void Reset()
+    {
+       // ChargeLevelChart.Dispose();
+        //DegradationLevelChart.Dispose();
+       // Controls.Clear();
+    }
 }
