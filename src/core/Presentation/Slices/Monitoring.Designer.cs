@@ -30,29 +30,29 @@ partial class Monitoring
     {
         cuiBorder1 = new CuoreUI.Controls.cuiBorder();
         cuiLabel2 = new CuoreUI.Controls.cuiLabel();
-        cuiSwitch1 = new CuoreUI.Controls.cuiSwitch();
+        CpuSwitch = new CuoreUI.Controls.cuiSwitch();
         cuiLabel1 = new CuoreUI.Controls.cuiLabel();
         tabPage1 = new TabPage();
         tabPage2 = new TabPage();
         cuiBorder2 = new CuoreUI.Controls.cuiBorder();
         cuiLabel3 = new CuoreUI.Controls.cuiLabel();
-        cuiSwitch2 = new CuoreUI.Controls.cuiSwitch();
+        GpuSwitch = new CuoreUI.Controls.cuiSwitch();
         cuiLabel4 = new CuoreUI.Controls.cuiLabel();
         cuiBorder3 = new CuoreUI.Controls.cuiBorder();
         cuiLabel5 = new CuoreUI.Controls.cuiLabel();
-        cuiSwitch3 = new CuoreUI.Controls.cuiSwitch();
+        BatterySwitch = new CuoreUI.Controls.cuiSwitch();
         cuiLabel6 = new CuoreUI.Controls.cuiLabel();
         cuiBorder4 = new CuoreUI.Controls.cuiBorder();
         cuiLabel7 = new CuoreUI.Controls.cuiLabel();
-        cuiSwitch4 = new CuoreUI.Controls.cuiSwitch();
+        RamSwitch = new CuoreUI.Controls.cuiSwitch();
         cuiLabel8 = new CuoreUI.Controls.cuiLabel();
         cuiBorder5 = new CuoreUI.Controls.cuiBorder();
         cuiLabel9 = new CuoreUI.Controls.cuiLabel();
-        cuiSwitch5 = new CuoreUI.Controls.cuiSwitch();
+        DrivesSwitch = new CuoreUI.Controls.cuiSwitch();
         cuiLabel10 = new CuoreUI.Controls.cuiLabel();
         cuiBorder6 = new CuoreUI.Controls.cuiBorder();
         cuiLabel11 = new CuoreUI.Controls.cuiLabel();
-        cuiSwitch6 = new CuoreUI.Controls.cuiSwitch();
+        ProcessesSwitch = new CuoreUI.Controls.cuiSwitch();
         cuiLabel12 = new CuoreUI.Controls.cuiLabel();
         cuiLabel13 = new CuoreUI.Controls.cuiLabel();
         cuiBorder1.SuspendLayout();
@@ -66,9 +66,9 @@ partial class Monitoring
         // cuiBorder1
         // 
         cuiBorder1.Controls.Add(cuiLabel2);
-        cuiBorder1.Controls.Add(cuiSwitch1);
+        cuiBorder1.Controls.Add(CpuSwitch);
         cuiBorder1.Controls.Add(cuiLabel1);
-        cuiBorder1.Location = new Point(65, 148);
+        cuiBorder1.Location = new Point(110, 145);
         cuiBorder1.Name = "cuiBorder1";
         cuiBorder1.OutlineThickness = 1F;
         cuiBorder1.PanelColor = Color.White;
@@ -90,26 +90,26 @@ partial class Monitoring
         cuiLabel2.TabIndex = 10;
         cuiLabel2.Load += cuiLabel2_Load;
         // 
-        // cuiSwitch1
+        // CpuSwitch
         // 
-        cuiSwitch1.BackColor = Color.Transparent;
-        cuiSwitch1.Checked = false;
-        cuiSwitch1.CheckedBackground = Color.White;
-        cuiSwitch1.CheckedForeground = Color.FromArgb(20, 52, 69);
-        cuiSwitch1.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
-        cuiSwitch1.ForeColor = Color.White;
-        cuiSwitch1.Location = new Point(324, 18);
-        cuiSwitch1.Name = "cuiSwitch1";
-        cuiSwitch1.OutlineStyle = true;
-        cuiSwitch1.OutlineThickness = 1F;
-        cuiSwitch1.ShowSymbols = true;
-        cuiSwitch1.Size = new Size(48, 27);
-        cuiSwitch1.TabIndex = 9;
-        cuiSwitch1.ThumbSizeModifier = new Size(0, 0);
-        cuiSwitch1.UncheckedBackground = Color.White;
-        cuiSwitch1.UncheckedForeground = Color.FromArgb(194, 50, 50);
-        cuiSwitch1.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
-        cuiSwitch1.Click += cuiSwitch1_Click;
+        CpuSwitch.BackColor = Color.Transparent;
+        CpuSwitch.Checked = false;
+        CpuSwitch.CheckedBackground = Color.White;
+        CpuSwitch.CheckedForeground = Color.FromArgb(20, 52, 69);
+        CpuSwitch.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
+        CpuSwitch.ForeColor = Color.White;
+        CpuSwitch.Location = new Point(324, 18);
+        CpuSwitch.Name = "CpuSwitch";
+        CpuSwitch.OutlineStyle = true;
+        CpuSwitch.OutlineThickness = 1F;
+        CpuSwitch.ShowSymbols = true;
+        CpuSwitch.Size = new Size(48, 27);
+        CpuSwitch.TabIndex = 9;
+        CpuSwitch.ThumbSizeModifier = new Size(0, 0);
+        CpuSwitch.UncheckedBackground = Color.White;
+        CpuSwitch.UncheckedForeground = Color.FromArgb(194, 50, 50);
+        CpuSwitch.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        CpuSwitch.Click += cuiSwitch1_Click;
         // 
         // cuiLabel1
         // 
@@ -146,9 +146,9 @@ partial class Monitoring
         // cuiBorder2
         // 
         cuiBorder2.Controls.Add(cuiLabel3);
-        cuiBorder2.Controls.Add(cuiSwitch2);
+        cuiBorder2.Controls.Add(GpuSwitch);
         cuiBorder2.Controls.Add(cuiLabel4);
-        cuiBorder2.Location = new Point(65, 331);
+        cuiBorder2.Location = new Point(110, 328);
         cuiBorder2.Name = "cuiBorder2";
         cuiBorder2.OutlineThickness = 1F;
         cuiBorder2.PanelColor = Color.White;
@@ -169,25 +169,26 @@ partial class Monitoring
         cuiLabel3.Size = new Size(292, 79);
         cuiLabel3.TabIndex = 10;
         // 
-        // cuiSwitch2
+        // GpuSwitch
         // 
-        cuiSwitch2.BackColor = Color.Transparent;
-        cuiSwitch2.Checked = false;
-        cuiSwitch2.CheckedBackground = Color.White;
-        cuiSwitch2.CheckedForeground = Color.FromArgb(20, 52, 59);
-        cuiSwitch2.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
-        cuiSwitch2.ForeColor = Color.White;
-        cuiSwitch2.Location = new Point(324, 18);
-        cuiSwitch2.Name = "cuiSwitch2";
-        cuiSwitch2.OutlineStyle = true;
-        cuiSwitch2.OutlineThickness = 1F;
-        cuiSwitch2.ShowSymbols = true;
-        cuiSwitch2.Size = new Size(48, 27);
-        cuiSwitch2.TabIndex = 9;
-        cuiSwitch2.ThumbSizeModifier = new Size(0, 0);
-        cuiSwitch2.UncheckedBackground = Color.White;
-        cuiSwitch2.UncheckedForeground = Color.FromArgb(194, 50, 50);
-        cuiSwitch2.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        GpuSwitch.BackColor = Color.Transparent;
+        GpuSwitch.Checked = false;
+        GpuSwitch.CheckedBackground = Color.White;
+        GpuSwitch.CheckedForeground = Color.FromArgb(20, 52, 59);
+        GpuSwitch.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
+        GpuSwitch.ForeColor = Color.White;
+        GpuSwitch.Location = new Point(324, 18);
+        GpuSwitch.Name = "GpuSwitch";
+        GpuSwitch.OutlineStyle = true;
+        GpuSwitch.OutlineThickness = 1F;
+        GpuSwitch.ShowSymbols = true;
+        GpuSwitch.Size = new Size(48, 27);
+        GpuSwitch.TabIndex = 9;
+        GpuSwitch.ThumbSizeModifier = new Size(0, 0);
+        GpuSwitch.UncheckedBackground = Color.White;
+        GpuSwitch.UncheckedForeground = Color.FromArgb(194, 50, 50);
+        GpuSwitch.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        GpuSwitch.Click += GpuSwitch_Click;
         // 
         // cuiLabel4
         // 
@@ -205,9 +206,9 @@ partial class Monitoring
         // cuiBorder3
         // 
         cuiBorder3.Controls.Add(cuiLabel5);
-        cuiBorder3.Controls.Add(cuiSwitch3);
+        cuiBorder3.Controls.Add(BatterySwitch);
         cuiBorder3.Controls.Add(cuiLabel6);
-        cuiBorder3.Location = new Point(65, 510);
+        cuiBorder3.Location = new Point(110, 507);
         cuiBorder3.Name = "cuiBorder3";
         cuiBorder3.OutlineThickness = 1F;
         cuiBorder3.PanelColor = Color.White;
@@ -228,25 +229,26 @@ partial class Monitoring
         cuiLabel5.Size = new Size(292, 79);
         cuiLabel5.TabIndex = 10;
         // 
-        // cuiSwitch3
+        // BatterySwitch
         // 
-        cuiSwitch3.BackColor = Color.Transparent;
-        cuiSwitch3.Checked = false;
-        cuiSwitch3.CheckedBackground = Color.White;
-        cuiSwitch3.CheckedForeground = Color.FromArgb(20, 52, 59);
-        cuiSwitch3.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
-        cuiSwitch3.ForeColor = Color.White;
-        cuiSwitch3.Location = new Point(324, 18);
-        cuiSwitch3.Name = "cuiSwitch3";
-        cuiSwitch3.OutlineStyle = true;
-        cuiSwitch3.OutlineThickness = 1F;
-        cuiSwitch3.ShowSymbols = true;
-        cuiSwitch3.Size = new Size(48, 27);
-        cuiSwitch3.TabIndex = 9;
-        cuiSwitch3.ThumbSizeModifier = new Size(0, 0);
-        cuiSwitch3.UncheckedBackground = Color.White;
-        cuiSwitch3.UncheckedForeground = Color.FromArgb(194, 50, 50);
-        cuiSwitch3.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        BatterySwitch.BackColor = Color.Transparent;
+        BatterySwitch.Checked = false;
+        BatterySwitch.CheckedBackground = Color.White;
+        BatterySwitch.CheckedForeground = Color.FromArgb(20, 52, 59);
+        BatterySwitch.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
+        BatterySwitch.ForeColor = Color.White;
+        BatterySwitch.Location = new Point(324, 18);
+        BatterySwitch.Name = "BatterySwitch";
+        BatterySwitch.OutlineStyle = true;
+        BatterySwitch.OutlineThickness = 1F;
+        BatterySwitch.ShowSymbols = true;
+        BatterySwitch.Size = new Size(48, 27);
+        BatterySwitch.TabIndex = 9;
+        BatterySwitch.ThumbSizeModifier = new Size(0, 0);
+        BatterySwitch.UncheckedBackground = Color.White;
+        BatterySwitch.UncheckedForeground = Color.FromArgb(194, 50, 50);
+        BatterySwitch.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        BatterySwitch.Click += BatterySwitch_Click;
         // 
         // cuiLabel6
         // 
@@ -263,9 +265,9 @@ partial class Monitoring
         // cuiBorder4
         // 
         cuiBorder4.Controls.Add(cuiLabel7);
-        cuiBorder4.Controls.Add(cuiSwitch4);
+        cuiBorder4.Controls.Add(RamSwitch);
         cuiBorder4.Controls.Add(cuiLabel8);
-        cuiBorder4.Location = new Point(527, 148);
+        cuiBorder4.Location = new Point(696, 145);
         cuiBorder4.Name = "cuiBorder4";
         cuiBorder4.OutlineThickness = 1F;
         cuiBorder4.PanelColor = Color.White;
@@ -286,25 +288,26 @@ partial class Monitoring
         cuiLabel7.Size = new Size(292, 79);
         cuiLabel7.TabIndex = 10;
         // 
-        // cuiSwitch4
+        // RamSwitch
         // 
-        cuiSwitch4.BackColor = Color.Transparent;
-        cuiSwitch4.Checked = false;
-        cuiSwitch4.CheckedBackground = Color.White;
-        cuiSwitch4.CheckedForeground = Color.FromArgb(20, 52, 59);
-        cuiSwitch4.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
-        cuiSwitch4.ForeColor = Color.White;
-        cuiSwitch4.Location = new Point(298, 18);
-        cuiSwitch4.Name = "cuiSwitch4";
-        cuiSwitch4.OutlineStyle = true;
-        cuiSwitch4.OutlineThickness = 1F;
-        cuiSwitch4.ShowSymbols = true;
-        cuiSwitch4.Size = new Size(48, 27);
-        cuiSwitch4.TabIndex = 9;
-        cuiSwitch4.ThumbSizeModifier = new Size(0, 0);
-        cuiSwitch4.UncheckedBackground = Color.White;
-        cuiSwitch4.UncheckedForeground = Color.FromArgb(194, 50, 50);
-        cuiSwitch4.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        RamSwitch.BackColor = Color.Transparent;
+        RamSwitch.Checked = false;
+        RamSwitch.CheckedBackground = Color.White;
+        RamSwitch.CheckedForeground = Color.FromArgb(20, 52, 59);
+        RamSwitch.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
+        RamSwitch.ForeColor = Color.White;
+        RamSwitch.Location = new Point(298, 18);
+        RamSwitch.Name = "RamSwitch";
+        RamSwitch.OutlineStyle = true;
+        RamSwitch.OutlineThickness = 1F;
+        RamSwitch.ShowSymbols = true;
+        RamSwitch.Size = new Size(48, 27);
+        RamSwitch.TabIndex = 9;
+        RamSwitch.ThumbSizeModifier = new Size(0, 0);
+        RamSwitch.UncheckedBackground = Color.White;
+        RamSwitch.UncheckedForeground = Color.FromArgb(194, 50, 50);
+        RamSwitch.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        RamSwitch.Click += RamSwitch_Click;
         // 
         // cuiLabel8
         // 
@@ -321,9 +324,9 @@ partial class Monitoring
         // cuiBorder5
         // 
         cuiBorder5.Controls.Add(cuiLabel9);
-        cuiBorder5.Controls.Add(cuiSwitch5);
+        cuiBorder5.Controls.Add(DrivesSwitch);
         cuiBorder5.Controls.Add(cuiLabel10);
-        cuiBorder5.Location = new Point(527, 331);
+        cuiBorder5.Location = new Point(696, 328);
         cuiBorder5.Name = "cuiBorder5";
         cuiBorder5.OutlineThickness = 1F;
         cuiBorder5.PanelColor = Color.White;
@@ -344,25 +347,26 @@ partial class Monitoring
         cuiLabel9.Size = new Size(327, 79);
         cuiLabel9.TabIndex = 10;
         // 
-        // cuiSwitch5
+        // DrivesSwitch
         // 
-        cuiSwitch5.BackColor = Color.Transparent;
-        cuiSwitch5.Checked = false;
-        cuiSwitch5.CheckedBackground = Color.White;
-        cuiSwitch5.CheckedForeground = Color.FromArgb(20, 52, 59);
-        cuiSwitch5.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
-        cuiSwitch5.ForeColor = Color.White;
-        cuiSwitch5.Location = new Point(298, 18);
-        cuiSwitch5.Name = "cuiSwitch5";
-        cuiSwitch5.OutlineStyle = true;
-        cuiSwitch5.OutlineThickness = 1F;
-        cuiSwitch5.ShowSymbols = true;
-        cuiSwitch5.Size = new Size(48, 27);
-        cuiSwitch5.TabIndex = 9;
-        cuiSwitch5.ThumbSizeModifier = new Size(0, 0);
-        cuiSwitch5.UncheckedBackground = Color.White;
-        cuiSwitch5.UncheckedForeground = Color.FromArgb(194, 50, 50);
-        cuiSwitch5.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        DrivesSwitch.BackColor = Color.Transparent;
+        DrivesSwitch.Checked = false;
+        DrivesSwitch.CheckedBackground = Color.White;
+        DrivesSwitch.CheckedForeground = Color.FromArgb(20, 52, 59);
+        DrivesSwitch.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
+        DrivesSwitch.ForeColor = Color.White;
+        DrivesSwitch.Location = new Point(298, 18);
+        DrivesSwitch.Name = "DrivesSwitch";
+        DrivesSwitch.OutlineStyle = true;
+        DrivesSwitch.OutlineThickness = 1F;
+        DrivesSwitch.ShowSymbols = true;
+        DrivesSwitch.Size = new Size(48, 27);
+        DrivesSwitch.TabIndex = 9;
+        DrivesSwitch.ThumbSizeModifier = new Size(0, 0);
+        DrivesSwitch.UncheckedBackground = Color.White;
+        DrivesSwitch.UncheckedForeground = Color.FromArgb(194, 50, 50);
+        DrivesSwitch.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        DrivesSwitch.Click += DrivesSwitch_Click;
         // 
         // cuiLabel10
         // 
@@ -379,9 +383,9 @@ partial class Monitoring
         // cuiBorder6
         // 
         cuiBorder6.Controls.Add(cuiLabel11);
-        cuiBorder6.Controls.Add(cuiSwitch6);
+        cuiBorder6.Controls.Add(ProcessesSwitch);
         cuiBorder6.Controls.Add(cuiLabel12);
-        cuiBorder6.Location = new Point(527, 510);
+        cuiBorder6.Location = new Point(696, 507);
         cuiBorder6.Name = "cuiBorder6";
         cuiBorder6.OutlineThickness = 1F;
         cuiBorder6.PanelColor = Color.White;
@@ -402,25 +406,26 @@ partial class Monitoring
         cuiLabel11.Size = new Size(327, 79);
         cuiLabel11.TabIndex = 10;
         // 
-        // cuiSwitch6
+        // ProcessesSwitch
         // 
-        cuiSwitch6.BackColor = Color.Transparent;
-        cuiSwitch6.Checked = false;
-        cuiSwitch6.CheckedBackground = Color.White;
-        cuiSwitch6.CheckedForeground = Color.FromArgb(20, 52, 59);
-        cuiSwitch6.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
-        cuiSwitch6.ForeColor = Color.White;
-        cuiSwitch6.Location = new Point(298, 18);
-        cuiSwitch6.Name = "cuiSwitch6";
-        cuiSwitch6.OutlineStyle = true;
-        cuiSwitch6.OutlineThickness = 1F;
-        cuiSwitch6.ShowSymbols = true;
-        cuiSwitch6.Size = new Size(48, 27);
-        cuiSwitch6.TabIndex = 9;
-        cuiSwitch6.ThumbSizeModifier = new Size(0, 0);
-        cuiSwitch6.UncheckedBackground = Color.White;
-        cuiSwitch6.UncheckedForeground = Color.FromArgb(194, 50, 50);
-        cuiSwitch6.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        ProcessesSwitch.BackColor = Color.Transparent;
+        ProcessesSwitch.Checked = false;
+        ProcessesSwitch.CheckedBackground = Color.White;
+        ProcessesSwitch.CheckedForeground = Color.FromArgb(20, 52, 59);
+        ProcessesSwitch.CheckedOutlineColor = Color.FromArgb(20, 52, 59);
+        ProcessesSwitch.ForeColor = Color.White;
+        ProcessesSwitch.Location = new Point(298, 18);
+        ProcessesSwitch.Name = "ProcessesSwitch";
+        ProcessesSwitch.OutlineStyle = true;
+        ProcessesSwitch.OutlineThickness = 1F;
+        ProcessesSwitch.ShowSymbols = true;
+        ProcessesSwitch.Size = new Size(48, 27);
+        ProcessesSwitch.TabIndex = 9;
+        ProcessesSwitch.ThumbSizeModifier = new Size(0, 0);
+        ProcessesSwitch.UncheckedBackground = Color.White;
+        ProcessesSwitch.UncheckedForeground = Color.FromArgb(194, 50, 50);
+        ProcessesSwitch.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
+        ProcessesSwitch.Click += ProcessesSwitch_Click;
         // 
         // cuiLabel12
         // 
@@ -479,29 +484,29 @@ partial class Monitoring
 
     private CuoreUI.Controls.cuiBorder cuiBorder1;
     private CuoreUI.Controls.cuiLabel cuiLabel1;
-    private CuoreUI.Controls.cuiSwitch cuiSwitch1;
+    private CuoreUI.Controls.cuiSwitch CpuSwitch;
     private TabPage tabPage1;
     private TabPage tabPage2;
     private CuoreUI.Controls.cuiLabel cuiLabel2;
     private CuoreUI.Controls.cuiBorder cuiBorder2;
     private CuoreUI.Controls.cuiLabel cuiLabel3;
-    private CuoreUI.Controls.cuiSwitch cuiSwitch2;
+    private CuoreUI.Controls.cuiSwitch GpuSwitch;
     private CuoreUI.Controls.cuiLabel cuiLabel4;
     private CuoreUI.Controls.cuiBorder cuiBorder3;
     private CuoreUI.Controls.cuiLabel cuiLabel5;
-    private CuoreUI.Controls.cuiSwitch cuiSwitch3;
+    private CuoreUI.Controls.cuiSwitch BatterySwitch;
     private CuoreUI.Controls.cuiLabel cuiLabel6;
     private CuoreUI.Controls.cuiBorder cuiBorder4;
     private CuoreUI.Controls.cuiLabel cuiLabel7;
-    private CuoreUI.Controls.cuiSwitch cuiSwitch4;
+    private CuoreUI.Controls.cuiSwitch RamSwitch;
     private CuoreUI.Controls.cuiLabel cuiLabel8;
     private CuoreUI.Controls.cuiBorder cuiBorder5;
     private CuoreUI.Controls.cuiLabel cuiLabel9;
-    private CuoreUI.Controls.cuiSwitch cuiSwitch5;
+    private CuoreUI.Controls.cuiSwitch DrivesSwitch;
     private CuoreUI.Controls.cuiLabel cuiLabel10;
     private CuoreUI.Controls.cuiBorder cuiBorder6;
     private CuoreUI.Controls.cuiLabel cuiLabel11;
-    private CuoreUI.Controls.cuiSwitch cuiSwitch6;
+    private CuoreUI.Controls.cuiSwitch ProcessesSwitch;
     private CuoreUI.Controls.cuiLabel cuiLabel12;
     private CuoreUI.Controls.cuiLabel cuiLabel13;
 }

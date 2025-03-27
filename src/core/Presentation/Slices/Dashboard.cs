@@ -47,6 +47,8 @@ public partial class Dashboard : Form
 
     public void DefineBattery(PowerSupplyReport report )
     {
+        if (report is null)
+            return;
         var degradationColour = ColorTransition.GetColorGreenToRed((int)report.DegradationLevel);
         DegradationLevelBar.Value = (int)report.DegradationLevel;
         DegradationLevelBar.Foreground = degradationColour;
@@ -63,86 +65,105 @@ public partial class Dashboard : Form
     
     public void DefineLoad(CpuReport cpuReport, GpuReport gpuReport)
     {
-        var cpuColour = ColorTransition.GetColorGreenToRed((int)cpuReport.AvgUsage);
-        CpuLoadTrack.Value = (float)cpuReport.AvgUsage;
-        CpuLoadTrack.ForeColor = cpuColour;
-        CpuLoadTrack.ThumbColor = cpuColour;
-        
-        var gpuColour = ColorTransition.GetColorGreenToRed((int)gpuReport.AvgLoad);
-        GpuLoadTrack.Value = (float)gpuReport.AvgLoad;
-        GpuLoadTrack.ForeColor = gpuColour;
-        GpuLoadTrack.ThumbColor = gpuColour;
+        if (cpuReport is not null)
+        {
+            var cpuColour = ColorTransition.GetColorGreenToRed((int)cpuReport.AvgUsage);
+            CpuLoadTrack.Value = (float)cpuReport.AvgUsage;
+            CpuLoadTrack.ForeColor = cpuColour;
+            CpuLoadTrack.ThumbColor = cpuColour;            
+        }
+
+
+        if (gpuReport is not null)
+        {
+            var gpuColour = ColorTransition.GetColorGreenToRed((int)gpuReport.AvgLoad);
+            GpuLoadTrack.Value = (float)gpuReport.AvgLoad;
+            GpuLoadTrack.ForeColor = gpuColour;
+            GpuLoadTrack.ThumbColor = gpuColour;            
+        }
+
     }
     
     public void DefineTemperature(CpuReport cpuReport, GpuReport gpuReport)
     {
-        var cpuColour = ColorTransition.GetColorGreenToRed((int)cpuReport.Temperature);
-        CpuTemperatureTrack.Value = (int)cpuReport.Temperature;
-        CpuTemperatureTrack.Foreground = cpuColour;
-        CpuTemperature.Content = cpuReport.Temperature.ToString(CultureInfo.InvariantCulture);
-        CpuTemperature.ForeColor = cpuColour;
+        if (cpuReport != null)
+        {
+            var cpuColour = ColorTransition.GetColorGreenToRed((int)cpuReport.Temperature);
+            CpuTemperatureTrack.Value = (int)cpuReport.Temperature;
+            CpuTemperatureTrack.Foreground = cpuColour;
+            CpuTemperature.Content = cpuReport.Temperature.ToString(CultureInfo.InvariantCulture);
+            CpuTemperature.ForeColor = cpuColour; 
+        }
+
+        if (gpuReport != null)
+        {
+            var gpuColour = ColorTransition.GetColorRedToGreen((int)gpuReport.Temperature);
+            GpuTemperatureTrack.Value = (int)gpuReport.Temperature;
+            GpuTemperatureTrack.Foreground = gpuColour;
+            GpuTemperature.Content = gpuReport.Temperature.ToString(CultureInfo.InvariantCulture);
+            GpuTemperature.ForeColor = gpuColour;
+        }
         
-        var gpuColour = ColorTransition.GetColorRedToGreen((int)gpuReport.Temperature);
-        GpuTemperatureTrack.Value = (int)gpuReport.Temperature;
-        GpuTemperatureTrack.Foreground = gpuColour;
-        GpuTemperature.Content = gpuReport.Temperature.ToString(CultureInfo.InvariantCulture);
-        GpuTemperature.ForeColor = cpuColour;
     }
     
     public void DefineDrives(List<DriveReport> reports)
     {
         var dDrive = reports.FirstOrDefault(r => r.DriveName == "D:\\");
-        DDrive.Series = new List<ISeries>
+        if (dDrive is not null)
         {
-            new PieSeries<double>
+            DDrive.Series = new List<ISeries>
             {
-                IsVisibleAtLegend = false,
-                Values = new List<double> { Math.Round(dDrive.DriveFreeSpace,3) },
-                DataLabelsPaint = GetSolidColorPaint(43,152,121),
-                DataLabelsSize = 0,
-                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.End,
-                MaxRadialColumnWidth = 60,
-                Fill = new SolidColorPaint(Color.FromArgb(43, 152, 121).ToSKColor()),
-            },
-            new PieSeries<double>
-            {
-                Values = new List<double> { Math.Round((dDrive.DriveTotalSize - dDrive.DriveFreeSpace),3) },
-                DataLabelsPaint = GetSolidColorPaint(169,86,81),
-                DataLabelsSize = 0,
-                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.End,
-                MaxRadialColumnWidth = 60,
-                Fill = new SolidColorPaint(Color.FromArgb(169, 86, 81).ToSKColor()),
-            }
-        };
+                new PieSeries<double>
+                {
+                    IsVisibleAtLegend = false,
+                    Values = new List<double> { Math.Round(dDrive.DriveFreeSpace,3) },
+                    DataLabelsPaint = GetSolidColorPaint(43,152,121),
+                    DataLabelsSize = 0,
+                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.End,
+                    MaxRadialColumnWidth = 60,
+                    Fill = new SolidColorPaint(Color.FromArgb(43, 152, 121).ToSKColor()),
+                },
+                new PieSeries<double>
+                {
+                    Values = new List<double> { Math.Round((dDrive.DriveTotalSize - dDrive.DriveFreeSpace),3) },
+                    DataLabelsPaint = GetSolidColorPaint(169,86,81),
+                    DataLabelsSize = 0,
+                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.End,
+                    MaxRadialColumnWidth = 60,
+                    Fill = new SolidColorPaint(Color.FromArgb(169, 86, 81).ToSKColor()),
+                }
+            };    
+        }
+        
         
         var cDrive = reports.FirstOrDefault(r => r.DriveName == "C:\\");
-        var x = new PieSeries<double>()
+        if (cDrive is not null)
         {
-
-        };
-        CDrive.Series = new List<ISeries>
-        {
-            new PieSeries<double>
+            CDrive.Series = new List<ISeries>
             {
-                Values = new List<double> { Math.Round(cDrive.DriveFreeSpace,3) },
-                DataLabelsPaint = GetSolidColorPaint(43,152,121),
-                DataLabelsSize = 0,
-                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                EasingFunction = null,
-                MaxRadialColumnWidth = 60,
-                Fill = new SolidColorPaint(Color.FromArgb(43, 152, 121).ToSKColor()),
+                new PieSeries<double>
+                {
+                    Values = new List<double> { Math.Round(cDrive.DriveFreeSpace,3) },
+                    DataLabelsPaint = GetSolidColorPaint(43,152,121),
+                    DataLabelsSize = 0,
+                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                    EasingFunction = null,
+                    MaxRadialColumnWidth = 60,
+                    Fill = new SolidColorPaint(Color.FromArgb(43, 152, 121).ToSKColor()),
                 
-            },
-            new PieSeries<double>
-            {
-                Values = new List<double> { Math.Round(cDrive.DriveTotalSize - cDrive.DriveFreeSpace,3) },
-                DataLabelsPaint = GetSolidColorPaint(169, 86, 81),
-                DataLabelsSize = 0,
-                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                MaxRadialColumnWidth = 60,
-                Fill = new SolidColorPaint(Color.FromArgb(169, 86, 81).ToSKColor()),
-            }
-        };
+                },
+                new PieSeries<double>
+                {
+                    Values = new List<double> { Math.Round(cDrive.DriveTotalSize - cDrive.DriveFreeSpace,3) },
+                    DataLabelsPaint = GetSolidColorPaint(169, 86, 81),
+                    DataLabelsSize = 0,
+                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                    MaxRadialColumnWidth = 60,
+                    Fill = new SolidColorPaint(Color.FromArgb(169, 86, 81).ToSKColor()),
+                }
+            };    
+        }
+        
 
     }
     private SolidColorPaint GetSolidColorPaint(int r, int g, int b) =>
