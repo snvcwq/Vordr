@@ -2,8 +2,8 @@
 
 public static class SystemService
 {
-    public static List<string> KnownSystemPaths = new()
-    {
+    public static readonly List<string> KnownSystemPaths =
+    [
         @"C:\Windows\explorer.exe",
         @"C:\Windows\System32\ntoskrnl.exe",
         @"C:\Windows\System32\WerFault.exe",
@@ -21,5 +21,5 @@ public static class SystemService
         @"C:\Windows\System32\conhost.exe",
         @"C:\Windows\System32\svchost.exe",
         @"C:\Windows\System32\sihost.exe"
-    };
+    ];
 }
