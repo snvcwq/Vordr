@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vordr.Common", "Vordr.Commo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vordr.Client.WebApi", "Vordr.Client.WebApi\Vordr.Client.WebApi.csproj", "{2822F01F-AF36-4D3C-BD7E-BFD1B7612377}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vordr.Client.Monitoring", "client\Vordr.Client.Monitoring\Vordr.Client.Monitoring.csproj", "{CF00058C-B91C-4671-A45F-D597A9EC5CE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{2822F01F-AF36-4D3C-BD7E-BFD1B7612377}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2822F01F-AF36-4D3C-BD7E-BFD1B7612377}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2822F01F-AF36-4D3C-BD7E-BFD1B7612377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF00058C-B91C-4671-A45F-D597A9EC5CE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF00058C-B91C-4671-A45F-D597A9EC5CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF00058C-B91C-4671-A45F-D597A9EC5CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF00058C-B91C-4671-A45F-D597A9EC5CE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,5 +103,6 @@ Global
 		{858C8488-B5F0-40D4-BC5B-21AC364BA941} = {BC33A679-0047-495F-9617-7EF7BF706926}
 		{DC3ACC4E-0EF5-4571-8AF8-40449E55A406} = {C5542A54-9DCA-4C2A-8E59-3660303C816E}
 		{2822F01F-AF36-4D3C-BD7E-BFD1B7612377} = {731D04B1-477F-4757-9268-AE1573B4DC79}
+		{CF00058C-B91C-4671-A45F-D597A9EC5CE3} = {731D04B1-477F-4757-9268-AE1573B4DC79}
 	EndGlobalSection
 EndGlobal

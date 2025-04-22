@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>Vordr.Client.Monitoring</RootNamespace>
+        <AssemblyName>Vordr.Client.Monitoring</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="LibreHardwareMonitorLib" />
+        <PackageReference Include="Serilog" />
+        <PackageReference Include="System.Diagnostics.PerformanceCounter" />
+        <PackageReference Include="System.Drawing.Common" />
+        <PackageReference Include="System.Management" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Vordr.Common\Vordr.Common.csproj" />
+    </ItemGroup>
+
+</Project>
