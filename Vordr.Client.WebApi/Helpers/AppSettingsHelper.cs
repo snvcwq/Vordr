@@ -1,31 +1,63 @@
-﻿namespace Vordr.Client.WebApi.Helpers;
+﻿using System.Text.Json;
+
+namespace Vordr.Client.WebApi.Helpers;
 
 public static class AppSettingsHelper
 {
-    public const string PropertySeparator = "__";
+ private const string AppSettingsFilePath = "appsettings.json";
+ public const string Separator = "__";
+ private static readonly Lock Lock = new();
 
-    public static void SetValueValue(object target, string keyPath, object newValue)
+    private static dynamic? _configInstance;
+
+    public static void Load<T>() where T : class, new()
     {
-        var parts = keyPath.Split(PropertySeparator);
-        var currentObject = target;
-
-        for (var i = 0; i < parts.Length - 1; i++)
+        lock (Lock)
         {
-            var prop = currentObject.GetType().GetProperty(parts[i]);
-            if (prop == null)
-                throw new ArgumentException($"Property '{parts[i]}' not found on type '{currentObject.GetType().Name}'");
+            if (!File.Exists(AppSettingsFilePath))
+                throw new FileNotFoundException($"Could not find {AppSettingsFilePath}");
 
-            currentObject = prop.GetValue(currentObject);
-            if (currentObject == null)
-                throw new NullReferenceException($"Property '{parts[i]}' is null.");
+            var json = File.ReadAllText(AppSettingsFilePath);
+            _configInstance = JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            }) ?? throw new InvalidOperationException("Failed to deserialize appsettings");
         }
+    }
 
-        var finalPropertyName = parts[^1];
-        var finalProp = currentObject.GetType().GetProperty(finalPropertyName);
-        if (finalProp == null)
-            throw new ArgumentException($"Property '{finalPropertyName}' not found on type '{currentObject.GetType().Name}'");
+    public static void UpdateValue(string keyPath, object newValue)
+    {
+        lock (Lock)
+        {
+            if (_configInstance == null)
+                throw new InvalidOperationException("AppSettings not loaded. Call Load<T>() first.");
 
-        var convertedValue = Convert.ChangeType(newValue, finalProp.PropertyType);
-        finalProp.SetValue(currentObject, convertedValue);
+            var parts = keyPath.Split(Separator);
+            var current = _configInstance;
+
+            for (var i = 0; i < parts.Length - 1; i++)
+            {
+                var prop = current.GetType().GetProperty(parts[i]);
+                if (prop == null) throw new ArgumentException($"Property '{parts[i]}' not found.");
+                current = prop.GetValue(current) ?? throw new NullReferenceException($"Property '{parts[i]}' is null.");
+            }
+
+            var finalProp = current.GetType().GetProperty(parts[^1]);
+            if (finalProp == null) throw new ArgumentException($"Property '{parts[^1]}' not found.");
+
+            var converted = Convert.ChangeType(newValue, finalProp.PropertyType);
+            finalProp.SetValue(current, converted);
+
+            Save();
+        }
+    }
+
+    private static void Save()
+    {
+        var json = JsonSerializer.Serialize(_configInstance, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+        File.WriteAllText(AppSettingsFilePath, json);
     }
 }

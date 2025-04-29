@@ -98,7 +98,6 @@ partial class MainForm
         BatteryButton.ImageAutoCenter = true;
         BatteryButton.ImageExpand = new Point(0, 0);
         BatteryButton.ImageOffset = new Point(-40, 0);
-        BatteryButton.ImageTint = Color.White;
         BatteryButton.Location = new Point(24, 565);
         BatteryButton.Margin = new Padding(4);
         BatteryButton.Name = "BatteryButton";
@@ -136,7 +135,6 @@ partial class MainForm
         DrivesButton.ImageAutoCenter = true;
         DrivesButton.ImageExpand = new Point(0, 0);
         DrivesButton.ImageOffset = new Point(-40, 0);
-        DrivesButton.ImageTint = Color.White;
         DrivesButton.Location = new Point(24, 501);
         DrivesButton.Margin = new Padding(4);
         DrivesButton.Name = "DrivesButton";
@@ -174,7 +172,6 @@ partial class MainForm
         NotificationButton.ImageAutoCenter = true;
         NotificationButton.ImageExpand = new Point(3, 3);
         NotificationButton.ImageOffset = new Point(0, 0);
-        NotificationButton.ImageTint = Color.White;
         NotificationButton.Location = new Point(113, 9);
         NotificationButton.Margin = new Padding(9);
         NotificationButton.Name = "NotificationButton";
@@ -210,7 +207,6 @@ partial class MainForm
         NetworkButton.ImageAutoCenter = true;
         NetworkButton.ImageExpand = new Point(0, 0);
         NetworkButton.ImageOffset = new Point(-30, 0);
-        NetworkButton.ImageTint = Color.White;
         NetworkButton.Location = new Point(24, 437);
         NetworkButton.Margin = new Padding(4);
         NetworkButton.Name = "NetworkButton";
@@ -248,7 +244,6 @@ partial class MainForm
         SettingsButton.ImageAutoCenter = true;
         SettingsButton.ImageExpand = new Point(3, 3);
         SettingsButton.ImageOffset = new Point(0, 0);
-        SettingsButton.ImageTint = Color.White;
         SettingsButton.Location = new Point(165, 9);
         SettingsButton.Margin = new Padding(9);
         SettingsButton.Name = "SettingsButton";
@@ -285,7 +280,6 @@ partial class MainForm
         GpuButton.ImageAutoCenter = true;
         GpuButton.ImageExpand = new Point(0, 0);
         GpuButton.ImageOffset = new Point(-24, 0);
-        GpuButton.ImageTint = Color.White;
         GpuButton.Location = new Point(24, 373);
         GpuButton.Margin = new Padding(4);
         GpuButton.Name = "GpuButton";
@@ -323,7 +317,6 @@ partial class MainForm
         CpuButton.ImageAutoCenter = true;
         CpuButton.ImageExpand = new Point(0, 0);
         CpuButton.ImageOffset = new Point(-24, 0);
-        CpuButton.ImageTint = Color.White;
         CpuButton.Location = new Point(24, 309);
         CpuButton.Margin = new Padding(4);
         CpuButton.Name = "CpuButton";
@@ -361,7 +354,6 @@ partial class MainForm
         RamButton.ImageAutoCenter = true;
         RamButton.ImageExpand = new Point(0, 0);
         RamButton.ImageOffset = new Point(-24, 0);
-        RamButton.ImageTint = Color.White;
         RamButton.Location = new Point(24, 245);
         RamButton.Margin = new Padding(4);
         RamButton.Name = "RamButton";
@@ -399,7 +391,6 @@ partial class MainForm
         DashboardButton.ImageAutoCenter = true;
         DashboardButton.ImageExpand = new Point(0, 0);
         DashboardButton.ImageOffset = new Point(-24, 0);
-        DashboardButton.ImageTint = Color.White;
         DashboardButton.Location = new Point(24, 117);
         DashboardButton.Margin = new Padding(4);
         DashboardButton.Name = "DashboardButton";
@@ -437,7 +428,6 @@ partial class MainForm
         ProcessButton.ImageAutoCenter = true;
         ProcessButton.ImageExpand = new Point(0, 0);
         ProcessButton.ImageOffset = new Point(-30, 0);
-        ProcessButton.ImageTint = Color.White;
         ProcessButton.Location = new Point(24, 181);
         ProcessButton.Margin = new Padding(4);
         ProcessButton.Name = "ProcessButton";
@@ -460,7 +450,6 @@ partial class MainForm
         AppName.BackColor = Color.Transparent;
         AppName.Content = "ordR";
         AppName.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        AppName.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         AppName.Location = new Point(79, 49);
         AppName.Margin = new Padding(4, 3, 4, 3);
         AppName.Name = "AppName";
@@ -487,7 +476,6 @@ partial class MainForm
         cuiButton1.ImageAutoCenter = true;
         cuiButton1.ImageExpand = new Point(30, 30);
         cuiButton1.ImageOffset = new Point(0, 0);
-        cuiButton1.ImageTint = Color.White;
         cuiButton1.Location = new Point(12, 6);
         cuiButton1.Name = "cuiButton1";
         cuiButton1.NormalBackground = Color.White;
@@ -578,7 +566,6 @@ partial class MainForm
         MaximizeButton.ImageAutoCenter = true;
         MaximizeButton.ImageExpand = new Point(3, 3);
         MaximizeButton.ImageOffset = new Point(0, 0);
-        MaximizeButton.ImageTint = Color.White;
         MaximizeButton.Location = new Point(1454, 0);
         MaximizeButton.Margin = new Padding(9);
         MaximizeButton.Name = "MaximizeButton";
@@ -623,7 +610,6 @@ partial class MainForm
         MinimizeButton.ImageAutoCenter = true;
         MinimizeButton.ImageExpand = new Point(3, 3);
         MinimizeButton.ImageOffset = new Point(0, 0);
-        MinimizeButton.ImageTint = Color.White;
         MinimizeButton.Location = new Point(1430, 0);
         MinimizeButton.Margin = new Padding(9);
         MinimizeButton.Name = "MinimizeButton";
@@ -661,7 +647,6 @@ partial class MainForm
         CloseButton.ImageAutoCenter = true;
         CloseButton.ImageExpand = new Point(3, 3);
         CloseButton.ImageOffset = new Point(0, 0);
-        CloseButton.ImageTint = Color.White;
         CloseButton.Location = new Point(1473, 0);
         CloseButton.Margin = new Padding(9);
         CloseButton.Name = "CloseButton";

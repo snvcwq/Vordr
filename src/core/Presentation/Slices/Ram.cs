@@ -49,7 +49,7 @@ public partial class Ram : Form
                 return;
             }
 
-            var startHourTuple = StartHour.Content.Split(':').Select(int.Parse).ToArray();
+            var startHourTuple = StartHour.Content.Split(':').Select(x => int.Parse(x)).ToArray();
             var endHourTuple = EndHour.Content.Split(':').Select(int.Parse).ToArray();
             var validationResult = ChartHelper.ValidateTime(startHourTuple[0], startHourTuple[1]);
             var validationResult2 = ChartHelper.ValidateTime(endHourTuple[0], endHourTuple[1]);

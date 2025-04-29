@@ -21,9 +21,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <Folder Include="Battery\Commands\" />
-      <Folder Include="CpuUsage\Commands\" />
-      <Folder Include="RamUsage\Commands\" />
+      <Folder Include="Services\" />
     </ItemGroup>
     
 </Project>

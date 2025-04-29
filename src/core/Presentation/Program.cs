@@ -24,7 +24,6 @@ internal static class Program
         ConfigureLogging();
         var host = CreateHostBuilder().Build()
             .ExecuteMigrations().GetAwaiter().GetResult();
-           // .ScheduleMonitoring().GetAwaiter().GetResult();
 
         var form = host.Services.GetRequiredService<MainForm>();
 

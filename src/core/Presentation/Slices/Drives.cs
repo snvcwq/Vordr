@@ -117,6 +117,7 @@ public partial class Drives : Form
                 MessageBox.Show("Please fill start hour and end hour fields");
                 return;
             }
+            var x = StartHour.
 
             var startHourTuple = StartHour.Content.Split(':').Select(int.Parse).ToArray();
             var endHourTuple = EndHour.Content.Split(':').Select(int.Parse).ToArray();

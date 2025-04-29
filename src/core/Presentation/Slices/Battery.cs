@@ -70,42 +70,7 @@ public partial class Battery : Form, IResettable
 
     private async void DisplayResults_Click(object sender, EventArgs e)
     {
-        try
-        {
-            if (string.IsNullOrEmpty(StartHour.Content) || string.IsNullOrEmpty(EndHour.Content))
-            {
-                MessageBox.Show("Please fill start hour and end hour fields");
-                return;
-            }
-
-            var startHourTuple = StartHour.Content.Split(':').Select(int.Parse).ToArray();
-            var endHourTuple = EndHour.Content.Split(':').Select(int.Parse).ToArray();
-            var validationResult = ChartHelper.ValidateTime(startHourTuple[0], startHourTuple[1]);
-            var validationResult2 = ChartHelper.ValidateTime(endHourTuple[0], endHourTuple[1]);
-            if (validationResult != null || validationResult2 != null)
-            {
-                MessageBox.Show($"{validationResult} {validationResult2}");
-                return;
-            }
-            var endDate = OneDayCheckbox.Checked ? StartDate.Value : EndDate.Value;
-
-            var query = new GetBatteryUsageQuery
-            {
-                StartDate = ChartHelper.DefineTime(StartDate.Value, startHourTuple[0], startHourTuple[1]),
-                EndDate = ChartHelper.DefineTime(endDate, endHourTuple[0], endHourTuple[1])
-            };
-            validationResult = ChartHelper.ValidateTime(endHourTuple[0], endHourTuple[1]);
-            if (validationResult != null)
-            {
-                MessageBox.Show(validationResult);
-                return;
-            }
-            await DefineCharts(query);
-        }
-        catch (Exception exception)
-        {
-            MessageBox.Show(exception.Message);
-        }
+        
     }
 
     private void SetChargeChart(IEnumerable<PowerSupply> batteryData)

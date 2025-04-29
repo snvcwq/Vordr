@@ -1,8 +1,6 @@
 ﻿using Vordr.Application.Common.Behaviours;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Vordr.Application.Common.Interfaces.Services;
-using Vordr.Application.Services;
 
 namespace Vordr.Application;
 
@@ -21,18 +19,7 @@ public static class DependencyInjection
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         });
         
-        serviceCollection.RegisterServices();
         
-        
-        return serviceCollection;
-    }
-    
-    private static IServiceCollection RegisterServices(this IServiceCollection serviceCollection)
-    {
-
-        serviceCollection.AddScoped<IProcessCollectService, ProcessCollectService>();
-        serviceCollection.AddScoped<IHardwareMetricsCollectService, HardwareMetricsCollectService>();
-
         return serviceCollection;
     }
     
