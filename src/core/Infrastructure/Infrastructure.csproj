@@ -17,11 +17,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <PackageReference Include="Cronos" />
-      <PackageReference Include="Hangfire" />
-      <PackageReference Include="Hangfire.AspNetCore" />
-      <PackageReference Include="Hangfire.Core" />
-      <PackageReference Include="Hangfire.Mongo" />
+      <PackageReference Include="Cronos" Version="0.10.0"/>
     </ItemGroup>
 
 </Project>

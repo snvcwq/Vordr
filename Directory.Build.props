@@ -9,7 +9,4 @@
     </PropertyGroup>
     
     <!-- Analyzers -->
-    <ItemGroup>
-        <PackageReference Include="MongoDB.Analyzer" />
-    </ItemGroup>
 </Project>

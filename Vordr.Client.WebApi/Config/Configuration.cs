@@ -4,6 +4,8 @@ public static class Configuration
 {
     public const string MonitorProcesses = nameof(MonitorProcesses);
     
+    public const string ServerAddress = nameof(ServerAddress);
+    
     public const string ProcessesScanFrequency = nameof(ProcessesScanFrequency);
     
     public const string MonitorDrives = nameof(MonitorDrives);
