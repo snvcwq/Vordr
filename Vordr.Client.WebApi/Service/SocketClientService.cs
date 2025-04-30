@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using Vordr.Client.WebApi.Helpers;
 using Vordr.Client.WebApi.Interfaces;
 using Vordr.Client.WebApi.Options;
+using Vordr.Common.Helpers;
 using Vordr.Common.Messaging;
 
 namespace Vordr.Client.WebApi.Service;

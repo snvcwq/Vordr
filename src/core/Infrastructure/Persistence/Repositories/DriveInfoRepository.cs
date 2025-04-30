@@ -26,6 +26,7 @@ public class DriveInfoRepository(MongoDbClient client, ILogger<DriveInfoReposito
             return Error.Failure(ex.Message);
         }
     }
+    
     public async Task<IEnumerable<DriveInformation>> RetrieveAsync(GetDriveUsageQuery query)
     {
         var filterBuilder = Builders<DriveInformation>.Filter;

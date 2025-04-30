@@ -2,11 +2,13 @@ using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Presentation.Options;
 using Presentation.Slices;
+using Presentation.Socket;
 using Serilog;
+using System.Net;
 using Vordr.Application;
-using Vordr.Application.HardwareComponent.Queries;
-using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 using Vordr.Domain;
 using Vordr.Infrastructure;
 using Vordr.Infrastructure.Extensions;
@@ -24,6 +26,8 @@ internal static class Program
         ConfigureLogging();
         var host = CreateHostBuilder().Build()
             .ExecuteMigrations().GetAwaiter().GetResult();
+        
+        host.StartSocketServer();
 
         var form = host.Services.GetRequiredService<MainForm>();
 
@@ -33,6 +37,20 @@ internal static class Program
         });
         Application.Run(form);
 
+    }
+
+    private static void StartSocketServer(this IHost host)
+    {
+        Task.Run(async () =>
+        {
+            var socketSettings = host.Services.GetRequiredService<SocketSettings>();
+            var socketOptions = host.Services.GetRequiredService<IOptions<SocketOptions>>().Value;
+            var sender = host.Services.GetRequiredService<ISender>();
+            var address = socketOptions.LocalDeployment ? Dns.GetHostName() : socketOptions.DnsAddress;
+            var (socket, endpoint) = await socketSettings.CreateSocket(socketOptions.Port, address);
+            socket.StartListening(endpoint);
+            await socket.StartAcceptingClientsAsync(sender);
+        });
     }
     private static IHostBuilder CreateHostBuilder()
     {

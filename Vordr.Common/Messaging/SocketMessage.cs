@@ -1,4 +1,5 @@
 ﻿using Vordr.Common.Enums;
+using Vordr.Common.Messaging.Messages.Registration;
 
 namespace Vordr.Common.Messaging;
 

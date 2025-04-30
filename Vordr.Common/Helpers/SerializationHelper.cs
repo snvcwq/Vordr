@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
 
-namespace Vordr.Client.WebApi.Helpers;
+namespace Vordr.Common.Helpers;
 
 public static class SerializationHelper
 {

@@ -9,8 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace Presentation {
-
-
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -315,6 +316,16 @@ namespace Presentation {
         internal static System.Drawing.Bitmap speedometer {
             get {
                 object obj = ResourceManager.GetObject("speedometer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap workstation {
+            get {
+                object obj = ResourceManager.GetObject("workstation", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

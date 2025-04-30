@@ -1,59 +1,39 @@
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Presentation.Interface;
-using Presentation.Models;
 using System.Runtime.InteropServices;
-using Vordr.Application.Common.Interfaces.Services;
 using Vordr.Application.Models.Hardware;
 using Vordr.Application.Models.Process;
-using Vordr.Application.Process.Commands.Upload;
 
 namespace Presentation.Slices;
 
 public partial class MainForm : Form
 {
     private readonly ISender _sender;
-    private readonly Battery batteryForm;
-    private readonly Dashboard dashboard;
-    private readonly Cpu cpuForm;
-    private readonly Drives drivesForm;
-    private readonly Gpu gpuForm;
-    private readonly Monitoring monitoringForm;
-    private readonly Processes processesForm;
-    private readonly Ram ramForm;
-    private readonly IHardwareMetricsCollectService _hardwareMetricsService;
-    private readonly IProcessCollectService _processCollectService;
-    private bool processesIntialized = false;
+    private readonly IServiceScopeFactory _serviceScopeFactory;
+    private readonly Battery _batteryForm;
+    private readonly Workstations _workstationsForm;
+    private bool _processesIntialized = false;
     private bool dashbordInitalized = false;
-    private Form _currentForm = null; // Track the current form
+    private Form _currentForm = null;
 
-    public MainForm(ISender sender, Battery batteryForm, Cpu cpuForm, Drives drivesForm, Gpu gpuForm, Monitoring monitoringForm, Processes processesForm, Ram ramForm, IHardwareMetricsCollectService hardwareMetricsService, IProcessCollectService processCollectService, Dashboard dashboard)
+    public MainForm(ISender sender, Battery batteryForm, Workstations workstationsForm, IServiceScopeFactory serviceScopeFactory)
     {
         _sender = sender;
-        this.batteryForm = batteryForm;
-        this.cpuForm = cpuForm;
-
-        this.drivesForm = drivesForm;
-        this.gpuForm = gpuForm;
-        this.monitoringForm = monitoringForm;
-        this.processesForm = processesForm;
-        this.ramForm = ramForm;
-        _hardwareMetricsService = hardwareMetricsService;
-        _processCollectService = processCollectService;
-        this.dashboard = dashboard;
+        _batteryForm = batteryForm;
+        _workstationsForm = workstationsForm;
+        _serviceScopeFactory = serviceScopeFactory;
         InitializeComponent();
         WindowState = FormWindowState.Normal;
     }
     public delegate void OnPassingProcesses(List<ProcessInformation> processes);
     public event OnPassingProcesses PassingProcesses;
-    
+
     public delegate void OnPassingMetrics(HardwareReport report);
     public event OnPassingMetrics PassingMetrics;
 
     override async protected void OnLoad(EventArgs e)
     {
-        CollectProcessesWorker.RunWorkerAsync(this);
-        CollectHardwareWorker.RunWorkerAsync(this);
-
         base.OnLoad(e);
     }
 
@@ -95,10 +75,8 @@ public partial class MainForm : Form
     {
         if (!dashbordInitalized)
         {
-            PassingMetrics += dashboard.HandleNewMetrics;
             dashbordInitalized = true;
         }
-        LoadForm(dashboard);
     }
     private void LoadForm(object form)
     {
@@ -140,46 +118,35 @@ public partial class MainForm : Form
 
     private void SettingsButton_Click(object sender, EventArgs e)
     {
-        LoadForm(monitoringForm);
     }
 
     private void ProcessButton_Click(object sender, EventArgs e)
     {
-        if (!processesIntialized)
-        {
-            PassingProcesses += processesForm.HandleProcesses;
-            processesIntialized = true;
-        }
-        LoadForm(processesForm);
     }
 
     private void DrivesButton_Click(object sender, EventArgs e)
     {
-        LoadForm(drivesForm);
 
     }
 
     private void BatteryButton_Click(object sender, EventArgs e)
     {
-        LoadForm(batteryForm);
+        LoadForm(_batteryForm);
 
     }
 
     private void CpuButton_Click(object sender, EventArgs e)
     {
-        LoadForm(cpuForm);
 
     }
 
     private void GpuButton_Click(object sender, EventArgs e)
     {
-        LoadForm(gpuForm);
 
     }
 
     private void RamButton_Click(object sender, EventArgs e)
     {
-        LoadForm(ramForm);
 
     }
 
@@ -187,13 +154,13 @@ public partial class MainForm : Form
     {
         while (true)
         {
-            var processes = await _processCollectService.ExecuteProcessDataCollectingAsync();
+            /*var processes = await _processCollectService.ExecuteProcessDataCollectingAsync();
             PassingProcesses?.Invoke(processes);
             await _sender.Send(new UploadCollectedProcessesCommand(processes));
 
             await Task.Delay(1000);
             GC.Collect();
-
+*/
         }
     }
 
@@ -201,10 +168,16 @@ public partial class MainForm : Form
     {
         while (true)
         {
-            
+            /*
             var data = await _hardwareMetricsService.CollectHardwareAsync(CancellationToken.None);
             PassingMetrics?.Invoke(data);
             GC.Collect();
+        */
         }
+    }
+
+    private void WorkstationsButton_Click(object sender, EventArgs e)
+    {
+        LoadForm(_workstationsForm);
     }
 }

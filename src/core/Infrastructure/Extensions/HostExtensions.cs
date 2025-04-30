@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Vordr.Application.Common.Interfaces.BackgroundJobs;
 using Vordr.Infrastructure.Migrations.Configuration;
 
 namespace Vordr.Infrastructure.Extensions;
@@ -14,18 +12,6 @@ public static class HostExtensions
         var mongoMigrationPerformer = scope.ServiceProvider.GetRequiredService<MongoMigrationPerformer>();
         await mongoMigrationPerformer.PerformMigrationsAsync();
 
-        return app;
-    }
-
-    public async static Task<IHost> ScheduleMonitoring(this IHost app)
-    {
-        using var scope = app.Services.CreateScope();
-        var processMonitorScheduler = scope.ServiceProvider.GetRequiredService<IProcessMonitorScheduler>();
-        var cpuLoadMonitoringScheduler = scope.ServiceProvider.GetRequiredService<IHardwareMonitorScheduler>();
-
-
-        await processMonitorScheduler.ConfigureMonitoring();
-        await cpuLoadMonitoringScheduler.ConfigureCollecting();
         return app;
     }
 }

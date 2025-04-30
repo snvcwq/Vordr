@@ -29,6 +29,7 @@ partial class MainForm
     private void InitializeComponent()
     {
         panel2 = new Panel();
+        WorkstationsButton = new CuoreUI.Controls.cuiButtonGroup();
         BatteryButton = new CuoreUI.Controls.cuiButtonGroup();
         DrivesButton = new CuoreUI.Controls.cuiButtonGroup();
         NotificationButton = new CuoreUI.Controls.cuiButtonGroup();
@@ -51,8 +52,6 @@ partial class MainForm
         MinimizeButton = new CuoreUI.Controls.cuiButtonGroup();
         CloseButton = new CuoreUI.Controls.cuiButtonGroup();
         MainPanel = new Panel();
-        CollectProcessesWorker = new System.ComponentModel.BackgroundWorker();
-        CollectHardwareWorker = new System.ComponentModel.BackgroundWorker();
         panel2.SuspendLayout();
         panel1.SuspendLayout();
         SuspendLayout();
@@ -60,6 +59,7 @@ partial class MainForm
         // panel2
         // 
         panel2.BackColor = Color.White;
+        panel2.Controls.Add(WorkstationsButton);
         panel2.Controls.Add(BatteryButton);
         panel2.Controls.Add(DrivesButton);
         panel2.Controls.Add(NotificationButton);
@@ -77,6 +77,46 @@ partial class MainForm
         panel2.Name = "panel2";
         panel2.Size = new Size(204, 774);
         panel2.TabIndex = 2;
+        // 
+        // WorkstationsButton
+        // 
+        WorkstationsButton.BackColor = Color.Transparent;
+        WorkstationsButton.Checked = false;
+        WorkstationsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
+        WorkstationsButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
+        WorkstationsButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
+        WorkstationsButton.CheckedOutline = Color.FromArgb(140, 140, 244);
+        WorkstationsButton.Content = "Workstations";
+        WorkstationsButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        WorkstationsButton.ForeColor = Color.FromArgb(11, 35, 116);
+        WorkstationsButton.Group = 0;
+        WorkstationsButton.HoverBackground = Color.White;
+        WorkstationsButton.HoveredImageTint = Color.White;
+        WorkstationsButton.HoverForeColor = Color.FromArgb(140, 140, 244);
+        WorkstationsButton.HoverOutline = Color.FromArgb(140, 140, 244);
+        WorkstationsButton.Image = Resources.workstation;
+        WorkstationsButton.ImageAutoCenter = true;
+        WorkstationsButton.ImageExpand = new Point(0, 0);
+        WorkstationsButton.ImageOffset = new Point(-20, 0);
+        WorkstationsButton.Location = new Point(24, 629);
+        WorkstationsButton.Margin = new Padding(4);
+        WorkstationsButton.Name = "WorkstationsButton";
+        WorkstationsButton.NormalBackground = Color.White;
+        WorkstationsButton.NormalForeColor = Color.FromArgb(11, 35, 116);
+        WorkstationsButton.NormalImageTint = Color.White;
+        WorkstationsButton.NormalOutline = Color.White;
+        WorkstationsButton.OutlineThickness = 0F;
+        WorkstationsButton.PressedBackground = Color.FromArgb(241, 244, 254);
+        WorkstationsButton.PressedForeColor = Color.FromArgb(140, 140, 244);
+        WorkstationsButton.PressedImageTint = Color.FromArgb(140, 140, 244);
+        WorkstationsButton.PressedOutline = Color.FromArgb(140, 140, 244);
+        WorkstationsButton.RightToLeft = RightToLeft.No;
+        WorkstationsButton.Rounding = new Padding(8);
+        WorkstationsButton.Size = new Size(191, 56);
+        WorkstationsButton.TabIndex = 31;
+        WorkstationsButton.TextAlignment = StringAlignment.Center;
+        WorkstationsButton.TextOffset = new Point(-20, 0);
+        WorkstationsButton.Click += WorkstationsButton_Click;
         // 
         // BatteryButton
         // 
@@ -102,6 +142,8 @@ partial class MainForm
         BatteryButton.Margin = new Padding(4);
         BatteryButton.Name = "BatteryButton";
         BatteryButton.NormalBackground = Color.White;
+        BatteryButton.NormalForeColor = Color.FromArgb(11, 35, 116);
+        BatteryButton.NormalImageTint = Color.White;
         BatteryButton.NormalOutline = Color.White;
         BatteryButton.OutlineThickness = 0F;
         BatteryButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -112,6 +154,7 @@ partial class MainForm
         BatteryButton.Rounding = new Padding(8);
         BatteryButton.Size = new Size(191, 56);
         BatteryButton.TabIndex = 30;
+        BatteryButton.TextAlignment = StringAlignment.Center;
         BatteryButton.TextOffset = new Point(-20, 0);
         BatteryButton.Click += BatteryButton_Click;
         // 
@@ -139,6 +182,8 @@ partial class MainForm
         DrivesButton.Margin = new Padding(4);
         DrivesButton.Name = "DrivesButton";
         DrivesButton.NormalBackground = Color.White;
+        DrivesButton.NormalForeColor = Color.FromArgb(11, 35, 116);
+        DrivesButton.NormalImageTint = Color.White;
         DrivesButton.NormalOutline = Color.White;
         DrivesButton.OutlineThickness = 0F;
         DrivesButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -149,6 +194,7 @@ partial class MainForm
         DrivesButton.Rounding = new Padding(8);
         DrivesButton.Size = new Size(191, 56);
         DrivesButton.TabIndex = 29;
+        DrivesButton.TextAlignment = StringAlignment.Center;
         DrivesButton.TextOffset = new Point(-20, 0);
         DrivesButton.Click += DrivesButton_Click;
         // 
@@ -176,6 +222,8 @@ partial class MainForm
         NotificationButton.Margin = new Padding(9);
         NotificationButton.Name = "NotificationButton";
         NotificationButton.NormalBackground = Color.FromArgb(241, 244, 254);
+        NotificationButton.NormalForeColor = Color.White;
+        NotificationButton.NormalImageTint = Color.White;
         NotificationButton.NormalOutline = Color.Empty;
         NotificationButton.OutlineThickness = 1.6F;
         NotificationButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -185,6 +233,7 @@ partial class MainForm
         NotificationButton.Rounding = new Padding(8);
         NotificationButton.Size = new Size(34, 34);
         NotificationButton.TabIndex = 23;
+        NotificationButton.TextAlignment = StringAlignment.Center;
         NotificationButton.TextOffset = new Point(0, 0);
         // 
         // NetworkButton
@@ -211,6 +260,8 @@ partial class MainForm
         NetworkButton.Margin = new Padding(4);
         NetworkButton.Name = "NetworkButton";
         NetworkButton.NormalBackground = Color.White;
+        NetworkButton.NormalForeColor = Color.FromArgb(11, 35, 116);
+        NetworkButton.NormalImageTint = Color.White;
         NetworkButton.NormalOutline = Color.White;
         NetworkButton.OutlineThickness = 0F;
         NetworkButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -221,6 +272,7 @@ partial class MainForm
         NetworkButton.Rounding = new Padding(8);
         NetworkButton.Size = new Size(191, 56);
         NetworkButton.TabIndex = 28;
+        NetworkButton.TextAlignment = StringAlignment.Center;
         NetworkButton.TextOffset = new Point(-20, 0);
         NetworkButton.Click += NetworkButton_Click;
         // 
@@ -248,6 +300,8 @@ partial class MainForm
         SettingsButton.Margin = new Padding(9);
         SettingsButton.Name = "SettingsButton";
         SettingsButton.NormalBackground = Color.FromArgb(241, 244, 254);
+        SettingsButton.NormalForeColor = Color.White;
+        SettingsButton.NormalImageTint = Color.White;
         SettingsButton.NormalOutline = Color.Empty;
         SettingsButton.OutlineThickness = 1.6F;
         SettingsButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -257,6 +311,7 @@ partial class MainForm
         SettingsButton.Rounding = new Padding(8);
         SettingsButton.Size = new Size(33, 34);
         SettingsButton.TabIndex = 22;
+        SettingsButton.TextAlignment = StringAlignment.Center;
         SettingsButton.TextOffset = new Point(0, 0);
         SettingsButton.Click += SettingsButton_Click;
         // 
@@ -284,6 +339,8 @@ partial class MainForm
         GpuButton.Margin = new Padding(4);
         GpuButton.Name = "GpuButton";
         GpuButton.NormalBackground = Color.White;
+        GpuButton.NormalForeColor = Color.FromArgb(11, 35, 116);
+        GpuButton.NormalImageTint = Color.White;
         GpuButton.NormalOutline = Color.White;
         GpuButton.OutlineThickness = 0F;
         GpuButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -294,6 +351,7 @@ partial class MainForm
         GpuButton.Rounding = new Padding(8);
         GpuButton.Size = new Size(191, 56);
         GpuButton.TabIndex = 27;
+        GpuButton.TextAlignment = StringAlignment.Center;
         GpuButton.TextOffset = new Point(-20, 0);
         GpuButton.Click += GpuButton_Click;
         // 
@@ -321,6 +379,8 @@ partial class MainForm
         CpuButton.Margin = new Padding(4);
         CpuButton.Name = "CpuButton";
         CpuButton.NormalBackground = Color.White;
+        CpuButton.NormalForeColor = Color.FromArgb(11, 35, 116);
+        CpuButton.NormalImageTint = Color.White;
         CpuButton.NormalOutline = Color.White;
         CpuButton.OutlineThickness = 0F;
         CpuButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -331,6 +391,7 @@ partial class MainForm
         CpuButton.Rounding = new Padding(8);
         CpuButton.Size = new Size(191, 56);
         CpuButton.TabIndex = 26;
+        CpuButton.TextAlignment = StringAlignment.Center;
         CpuButton.TextOffset = new Point(-20, 0);
         CpuButton.Click += CpuButton_Click;
         // 
@@ -358,6 +419,8 @@ partial class MainForm
         RamButton.Margin = new Padding(4);
         RamButton.Name = "RamButton";
         RamButton.NormalBackground = Color.White;
+        RamButton.NormalForeColor = Color.FromArgb(11, 35, 116);
+        RamButton.NormalImageTint = Color.White;
         RamButton.NormalOutline = Color.White;
         RamButton.OutlineThickness = 0F;
         RamButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -368,6 +431,7 @@ partial class MainForm
         RamButton.Rounding = new Padding(8);
         RamButton.Size = new Size(191, 56);
         RamButton.TabIndex = 25;
+        RamButton.TextAlignment = StringAlignment.Center;
         RamButton.TextOffset = new Point(-20, 0);
         RamButton.Click += RamButton_Click;
         // 
@@ -395,6 +459,8 @@ partial class MainForm
         DashboardButton.Margin = new Padding(4);
         DashboardButton.Name = "DashboardButton";
         DashboardButton.NormalBackground = Color.White;
+        DashboardButton.NormalForeColor = Color.FromArgb(11, 35, 116);
+        DashboardButton.NormalImageTint = Color.White;
         DashboardButton.NormalOutline = Color.White;
         DashboardButton.OutlineThickness = 0F;
         DashboardButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -405,6 +471,7 @@ partial class MainForm
         DashboardButton.Rounding = new Padding(8);
         DashboardButton.Size = new Size(191, 56);
         DashboardButton.TabIndex = 24;
+        DashboardButton.TextAlignment = StringAlignment.Center;
         DashboardButton.TextOffset = new Point(-20, 0);
         DashboardButton.Click += DashboardButton_Click_2;
         // 
@@ -432,6 +499,8 @@ partial class MainForm
         ProcessButton.Margin = new Padding(4);
         ProcessButton.Name = "ProcessButton";
         ProcessButton.NormalBackground = Color.White;
+        ProcessButton.NormalForeColor = Color.FromArgb(11, 35, 116);
+        ProcessButton.NormalImageTint = Color.White;
         ProcessButton.NormalOutline = Color.White;
         ProcessButton.OutlineThickness = 0F;
         ProcessButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -442,6 +511,7 @@ partial class MainForm
         ProcessButton.Rounding = new Padding(8);
         ProcessButton.Size = new Size(191, 56);
         ProcessButton.TabIndex = 23;
+        ProcessButton.TextAlignment = StringAlignment.Center;
         ProcessButton.TextOffset = new Point(-20, 0);
         ProcessButton.Click += ProcessButton_Click;
         // 
@@ -450,11 +520,13 @@ partial class MainForm
         AppName.BackColor = Color.Transparent;
         AppName.Content = "ordR";
         AppName.Font = new Font("Century Gothic", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        AppName.HorizontalAlignment = StringAlignment.Center;
         AppName.Location = new Point(79, 49);
         AppName.Margin = new Padding(4, 3, 4, 3);
         AppName.Name = "AppName";
         AppName.Size = new Size(63, 25);
         AppName.TabIndex = 20;
+        AppName.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiButton1
         // 
@@ -479,6 +551,8 @@ partial class MainForm
         cuiButton1.Location = new Point(12, 6);
         cuiButton1.Name = "cuiButton1";
         cuiButton1.NormalBackground = Color.White;
+        cuiButton1.NormalForeColor = Color.White;
+        cuiButton1.NormalImageTint = Color.White;
         cuiButton1.NormalOutline = Color.Empty;
         cuiButton1.OutlineThickness = 1.6F;
         cuiButton1.PressedBackground = Color.White;
@@ -488,6 +562,7 @@ partial class MainForm
         cuiButton1.Rounding = new Padding(8);
         cuiButton1.Size = new Size(97, 82);
         cuiButton1.TabIndex = 19;
+        cuiButton1.TextAlignment = StringAlignment.Center;
         cuiButton1.TextOffset = new Point(0, 0);
         // 
         // tabPage1
@@ -570,6 +645,8 @@ partial class MainForm
         MaximizeButton.Margin = new Padding(9);
         MaximizeButton.Name = "MaximizeButton";
         MaximizeButton.NormalBackground = Color.FromArgb(108, 124, 204);
+        MaximizeButton.NormalForeColor = Color.FromArgb(108, 124, 204);
+        MaximizeButton.NormalImageTint = Color.White;
         MaximizeButton.NormalOutline = Color.Empty;
         MaximizeButton.OutlineThickness = 1.6F;
         MaximizeButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -579,6 +656,7 @@ partial class MainForm
         MaximizeButton.Rounding = new Padding(8);
         MaximizeButton.Size = new Size(24, 22);
         MaximizeButton.TabIndex = 24;
+        MaximizeButton.TextAlignment = StringAlignment.Center;
         MaximizeButton.TextOffset = new Point(0, 0);
         MaximizeButton.Click += MaximizeButton_Click;
         // 
@@ -614,6 +692,8 @@ partial class MainForm
         MinimizeButton.Margin = new Padding(9);
         MinimizeButton.Name = "MinimizeButton";
         MinimizeButton.NormalBackground = Color.FromArgb(108, 124, 204);
+        MinimizeButton.NormalForeColor = Color.FromArgb(108, 124, 204);
+        MinimizeButton.NormalImageTint = Color.White;
         MinimizeButton.NormalOutline = Color.Empty;
         MinimizeButton.OutlineThickness = 1.6F;
         MinimizeButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -623,6 +703,7 @@ partial class MainForm
         MinimizeButton.Rounding = new Padding(8);
         MinimizeButton.Size = new Size(25, 22);
         MinimizeButton.TabIndex = 22;
+        MinimizeButton.TextAlignment = StringAlignment.Center;
         MinimizeButton.TextOffset = new Point(0, 0);
         MinimizeButton.Click += MinimizeButton_Click;
         // 
@@ -651,6 +732,8 @@ partial class MainForm
         CloseButton.Margin = new Padding(9);
         CloseButton.Name = "CloseButton";
         CloseButton.NormalBackground = Color.FromArgb(108, 124, 204);
+        CloseButton.NormalForeColor = Color.FromArgb(108, 124, 204);
+        CloseButton.NormalImageTint = Color.White;
         CloseButton.NormalOutline = Color.Empty;
         CloseButton.OutlineThickness = 1.6F;
         CloseButton.PressedBackground = Color.FromArgb(241, 244, 254);
@@ -660,6 +743,7 @@ partial class MainForm
         CloseButton.Rounding = new Padding(8);
         CloseButton.Size = new Size(27, 22);
         CloseButton.TabIndex = 21;
+        CloseButton.TextAlignment = StringAlignment.Center;
         CloseButton.TextOffset = new Point(0, 0);
         CloseButton.Click += CloseButton_Click;
         // 
@@ -670,14 +754,6 @@ partial class MainForm
         MainPanel.Name = "MainPanel";
         MainPanel.Size = new Size(1297, 774);
         MainPanel.TabIndex = 3;
-        // 
-        // CollectProcessesWorker
-        // 
-        CollectProcessesWorker.DoWork += CollectProcessesWorker_DoWork;
-        // 
-        // CollectHardwareWorker
-        // 
-        CollectHardwareWorker.DoWork += CollectHardwareWorker_DoWork;
         // 
         // MainForm
         // 
@@ -726,6 +802,5 @@ partial class MainForm
     private Panel MainPannel;
     private Panel MainPanel;
     private CuoreUI.Controls.cuiButtonGroup MaximizeButton;
-    private System.ComponentModel.BackgroundWorker CollectProcessesWorker;
-    private System.ComponentModel.BackgroundWorker CollectHardwareWorker;
+    private CuoreUI.Controls.cuiButtonGroup WorkstationsButton;
 }

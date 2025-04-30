@@ -1,5 +1,4 @@
 ﻿using SkiaSharp;
-
 namespace Presentation.Helpers;
 
 public static class ColorTransition

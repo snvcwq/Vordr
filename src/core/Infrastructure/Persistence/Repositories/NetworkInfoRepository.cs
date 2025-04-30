@@ -15,7 +15,6 @@ public class NetworkInfoRepository(MongoDbClient client, ILogger<NetworkInfoRepo
         {
             await _collection.InsertOneAsync(data);
             return data.Id;
-
         }
         catch (Exception ex)
         {

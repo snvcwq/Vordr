@@ -43,6 +43,9 @@ public class MongoDbClient(IOptions<MongoDbOptions> mongoOptions)
     public IMongoCollection<NetworkInformation> NetworkInfoCollection() =>
         Database().GetCollection<NetworkInformation>(MongoCollections.NetworkInfo);
     
+    public IMongoCollection<Workstation> WorkstationsCollection() =>
+        Database().GetCollection<Workstation>(MongoCollections.Workstation);
+    
     public IMongoDatabase Database() =>
         Client.GetDatabase(Db);
 }

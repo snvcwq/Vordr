@@ -66,11 +66,13 @@ partial class Battery
         cuiLabel13.Content = "Workstation\\ battery\\ log\\n";
         cuiLabel13.Font = new Font("Verdana", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         cuiLabel13.ForeColor = Color.Black;
+        cuiLabel13.HorizontalAlignment = StringAlignment.Center;
         cuiLabel13.Location = new Point(28, 15);
         cuiLabel13.Margin = new Padding(4, 3, 4, 3);
         cuiLabel13.Name = "cuiLabel13";
         cuiLabel13.Size = new Size(429, 51);
         cuiLabel13.TabIndex = 16;
+        cuiLabel13.VerticalAlignment = StringAlignment.Near;
         // 
         // ChargeLevelChart
         // 
@@ -99,11 +101,13 @@ partial class Battery
         cuiLabel2.BackColor = Color.Transparent;
         cuiLabel2.Content = "charge\\ level";
         cuiLabel2.Font = new Font("Verdana", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel2.HorizontalAlignment = StringAlignment.Center;
         cuiLabel2.Location = new Point(4, 13);
         cuiLabel2.Margin = new Padding(4, 3, 4, 3);
         cuiLabel2.Name = "cuiLabel2";
         cuiLabel2.Size = new Size(233, 41);
         cuiLabel2.TabIndex = 21;
+        cuiLabel2.VerticalAlignment = StringAlignment.Near;
         // 
         // DegradationLevelChart
         // 
@@ -132,11 +136,13 @@ partial class Battery
         cuiLabel3.BackColor = Color.Transparent;
         cuiLabel3.Content = "degradation";
         cuiLabel3.Font = new Font("Verdana", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel3.HorizontalAlignment = StringAlignment.Center;
         cuiLabel3.Location = new Point(4, 13);
         cuiLabel3.Margin = new Padding(4, 3, 4, 3);
         cuiLabel3.Name = "cuiLabel3";
         cuiLabel3.Size = new Size(251, 41);
         cuiLabel3.TabIndex = 22;
+        cuiLabel3.VerticalAlignment = StringAlignment.Near;
         // 
         // DisplayResults
         // 
@@ -162,6 +168,8 @@ partial class Battery
         DisplayResults.Location = new Point(52, 64);
         DisplayResults.Name = "DisplayResults";
         DisplayResults.NormalBackground = Color.White;
+        DisplayResults.NormalForeColor = Color.Black;
+        DisplayResults.NormalImageTint = Color.White;
         DisplayResults.NormalOutline = Color.FromArgb(28, 46, 83);
         DisplayResults.OutlineThickness = 0.1F;
         DisplayResults.PressedBackground = Color.White;
@@ -171,6 +179,7 @@ partial class Battery
         DisplayResults.Rounding = new Padding(8);
         DisplayResults.Size = new Size(123, 61);
         DisplayResults.TabIndex = 25;
+        DisplayResults.TextAlignment = StringAlignment.Center;
         DisplayResults.TextOffset = new Point(0, 0);
         DisplayResults.Click += DisplayResults_Click;
         // 
@@ -181,12 +190,14 @@ partial class Battery
         DayLabel.Content = "day";
         DayLabel.Font = new Font("Verdana", 11.25F, FontStyle.Bold);
         DayLabel.ForeColor = Color.Black;
+        DayLabel.HorizontalAlignment = StringAlignment.Center;
         DayLabel.ImeMode = ImeMode.On;
         DayLabel.Location = new Point(240, 12);
         DayLabel.Margin = new Padding(4, 3, 4, 3);
         DayLabel.Name = "DayLabel";
         DayLabel.Size = new Size(81, 24);
         DayLabel.TabIndex = 34;
+        DayLabel.VerticalAlignment = StringAlignment.Near;
         DayLabel.Visible = false;
         // 
         // OneDayCheckbox
@@ -221,12 +232,14 @@ partial class Battery
         ToLabel.Content = "to:";
         ToLabel.Font = new Font("Verdana", 11.25F, FontStyle.Bold);
         ToLabel.ForeColor = Color.Black;
+        ToLabel.HorizontalAlignment = StringAlignment.Center;
         ToLabel.ImeMode = ImeMode.On;
         ToLabel.Location = new Point(178, 49);
         ToLabel.Margin = new Padding(4, 3, 4, 3);
         ToLabel.Name = "ToLabel";
         ToLabel.Size = new Size(81, 24);
         ToLabel.TabIndex = 33;
+        ToLabel.VerticalAlignment = StringAlignment.Near;
         // 
         // FromLabel
         // 
@@ -235,12 +248,14 @@ partial class Battery
         FromLabel.Content = "from:";
         FromLabel.Font = new Font("Verdana", 11.25F, FontStyle.Bold);
         FromLabel.ForeColor = Color.Black;
+        FromLabel.HorizontalAlignment = StringAlignment.Center;
         FromLabel.ImeMode = ImeMode.On;
         FromLabel.Location = new Point(178, 13);
         FromLabel.Margin = new Padding(4, 3, 4, 3);
         FromLabel.Name = "FromLabel";
         FromLabel.Size = new Size(81, 24);
         FromLabel.TabIndex = 32;
+        FromLabel.VerticalAlignment = StringAlignment.Near;
         FromLabel.Load += FromLabel_Load;
         // 
         // StartDateLabel
@@ -250,12 +265,15 @@ partial class Battery
         StartDateLabel.Content = "one\\ day\\ statistics";
         StartDateLabel.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
         StartDateLabel.ForeColor = Color.Black;
+        StartDateLabel.HorizontalAlignment = StringAlignment.Center;
         StartDateLabel.ImeMode = ImeMode.On;
         StartDateLabel.Location = new Point(165, 99);
         StartDateLabel.Margin = new Padding(4, 3, 4, 3);
         StartDateLabel.Name = "StartDateLabel";
         StartDateLabel.Size = new Size(173, 30);
         StartDateLabel.TabIndex = 29;
+        StartDateLabel.VerticalAlignment = StringAlignment.Near;
+        // 
         // EndHourLabel
         // 
         EndHourLabel.AllowDrop = true;
@@ -263,11 +281,13 @@ partial class Battery
         EndHourLabel.Content = "end\\ time";
         EndHourLabel.Font = new Font("Verdana", 11.25F, FontStyle.Bold);
         EndHourLabel.ForeColor = Color.Black;
+        EndHourLabel.HorizontalAlignment = StringAlignment.Center;
         EndHourLabel.Location = new Point(0, 49);
         EndHourLabel.Margin = new Padding(4, 3, 4, 3);
         EndHourLabel.Name = "EndHourLabel";
         EndHourLabel.Size = new Size(104, 25);
         EndHourLabel.TabIndex = 31;
+        EndHourLabel.VerticalAlignment = StringAlignment.Near;
         // 
         // EndDate
         // 
@@ -294,9 +314,6 @@ partial class Battery
         EndDate.Theme = CuoreUI.Controls.Forms.DatePicker.Themes.Dark;
         EndDate.Value = new DateTime(2025, 3, 21, 0, 0, 0, 0);
         // 
-        // StartHour
-        // 
-        // 
         // StartHourLabel
         // 
         StartHourLabel.AllowDrop = true;
@@ -304,11 +321,13 @@ partial class Battery
         StartHourLabel.Content = "start\\ time";
         StartHourLabel.Font = new Font("Verdana", 11.25F, FontStyle.Bold);
         StartHourLabel.ForeColor = Color.Black;
+        StartHourLabel.HorizontalAlignment = StringAlignment.Center;
         StartHourLabel.Location = new Point(4, 13);
         StartHourLabel.Margin = new Padding(4, 3, 4, 3);
         StartHourLabel.Name = "StartHourLabel";
         StartHourLabel.Size = new Size(100, 23);
         StartHourLabel.TabIndex = 29;
+        StartHourLabel.VerticalAlignment = StringAlignment.Near;
         // 
         // StartDate
         // 
@@ -335,29 +354,19 @@ partial class Battery
         StartDate.Theme = CuoreUI.Controls.Forms.DatePicker.Themes.Dark;
         StartDate.Value = new DateTime(2025, 3, 21, 0, 0, 0, 0);
         // 
-        // cuiLabel4
-        // 
-        cuiLabel4.BackColor = Color.Transparent;
-        cuiLabel4.Content = "Analyze\\ your\\ workstation's\\ battery\\ performance\\ over\\ a\\ selected\\ period\\ to\\ understand\\ usage\\ and\\ identify\\ degradation\\ trends\\.";
-        cuiLabel4.Font = new Font("Verdana", 12F);
-        cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
-        cuiLabel4.Location = new Point(0, 208);
-        cuiLabel4.Margin = new Padding(4, 3, 4, 3);
-        cuiLabel4.Name = "cuiLabel4";
-        cuiLabel4.Size = new Size(526, 60);
-        cuiLabel4.TabIndex = 22;
-        // 
         // ModelLabel
         // 
         ModelLabel.BackColor = Color.Transparent;
         ModelLabel.Content = "";
         ModelLabel.Font = new Font("Verdana", 12F);
         ModelLabel.ForeColor = Color.FromArgb(20, 39, 78);
+        ModelLabel.HorizontalAlignment = StringAlignment.Center;
         ModelLabel.Location = new Point(221, 60);
         ModelLabel.Margin = new Padding(4, 3, 4, 3);
         ModelLabel.Name = "ModelLabel";
         ModelLabel.Size = new Size(305, 23);
         ModelLabel.TabIndex = 38;
+        ModelLabel.VerticalAlignment = StringAlignment.Near;
         ModelLabel.Load += ModelLabel_Load;
         // 
         // ManufacturerLabel
@@ -366,11 +375,13 @@ partial class Battery
         ManufacturerLabel.Content = "";
         ManufacturerLabel.Font = new Font("Verdana", 12F);
         ManufacturerLabel.ForeColor = Color.FromArgb(20, 39, 78);
+        ManufacturerLabel.HorizontalAlignment = StringAlignment.Center;
         ManufacturerLabel.Location = new Point(221, 89);
         ManufacturerLabel.Margin = new Padding(4, 3, 4, 3);
         ManufacturerLabel.Name = "ManufacturerLabel";
         ManufacturerLabel.Size = new Size(305, 23);
         ManufacturerLabel.TabIndex = 37;
+        ManufacturerLabel.VerticalAlignment = StringAlignment.Near;
         // 
         // ChemistryLabel
         // 
@@ -378,11 +389,13 @@ partial class Battery
         ChemistryLabel.Content = "";
         ChemistryLabel.Font = new Font("Verdana", 12F);
         ChemistryLabel.ForeColor = Color.FromArgb(20, 39, 78);
+        ChemistryLabel.HorizontalAlignment = StringAlignment.Center;
         ChemistryLabel.Location = new Point(221, 118);
         ChemistryLabel.Margin = new Padding(4, 3, 4, 3);
         ChemistryLabel.Name = "ChemistryLabel";
         ChemistryLabel.Size = new Size(305, 23);
         ChemistryLabel.TabIndex = 36;
+        ChemistryLabel.VerticalAlignment = StringAlignment.Near;
         // 
         // DesignedCapacityLabel
         // 
@@ -390,11 +403,13 @@ partial class Battery
         DesignedCapacityLabel.Content = "";
         DesignedCapacityLabel.Font = new Font("Verdana", 12F);
         DesignedCapacityLabel.ForeColor = Color.FromArgb(20, 39, 78);
+        DesignedCapacityLabel.HorizontalAlignment = StringAlignment.Center;
         DesignedCapacityLabel.Location = new Point(221, 147);
         DesignedCapacityLabel.Margin = new Padding(4, 3, 4, 3);
         DesignedCapacityLabel.Name = "DesignedCapacityLabel";
         DesignedCapacityLabel.Size = new Size(305, 23);
         DesignedCapacityLabel.TabIndex = 35;
+        DesignedCapacityLabel.VerticalAlignment = StringAlignment.Near;
         // 
         // FullChargedCapacityLabel
         // 
@@ -402,11 +417,13 @@ partial class Battery
         FullChargedCapacityLabel.Content = "";
         FullChargedCapacityLabel.Font = new Font("Verdana", 12F);
         FullChargedCapacityLabel.ForeColor = Color.FromArgb(20, 39, 78);
+        FullChargedCapacityLabel.HorizontalAlignment = StringAlignment.Center;
         FullChargedCapacityLabel.Location = new Point(221, 179);
         FullChargedCapacityLabel.Margin = new Padding(4, 3, 4, 3);
         FullChargedCapacityLabel.Name = "FullChargedCapacityLabel";
         FullChargedCapacityLabel.Size = new Size(305, 23);
         FullChargedCapacityLabel.TabIndex = 34;
+        FullChargedCapacityLabel.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiLabel12
         // 
@@ -414,11 +431,13 @@ partial class Battery
         cuiLabel12.Content = "Chemistry:";
         cuiLabel12.Font = new Font("Verdana", 12F);
         cuiLabel12.ForeColor = Color.Black;
+        cuiLabel12.HorizontalAlignment = StringAlignment.Center;
         cuiLabel12.Location = new Point(28, 118);
         cuiLabel12.Margin = new Padding(4, 3, 4, 3);
         cuiLabel12.Name = "cuiLabel12";
         cuiLabel12.Size = new Size(93, 23);
         cuiLabel12.TabIndex = 32;
+        cuiLabel12.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiLabel10
         // 
@@ -426,11 +445,13 @@ partial class Battery
         cuiLabel10.Content = "Full\\ charged\\ capaticy:";
         cuiLabel10.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel10.ForeColor = Color.Black;
+        cuiLabel10.HorizontalAlignment = StringAlignment.Center;
         cuiLabel10.Location = new Point(18, 176);
         cuiLabel10.Margin = new Padding(4, 3, 4, 3);
         cuiLabel10.Name = "cuiLabel10";
         cuiLabel10.Size = new Size(195, 26);
         cuiLabel10.TabIndex = 30;
+        cuiLabel10.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiLabel8
         // 
@@ -438,11 +459,13 @@ partial class Battery
         cuiLabel8.Content = "Designed\\ capalicy:";
         cuiLabel8.Font = new Font("Verdana", 12F);
         cuiLabel8.ForeColor = Color.Black;
+        cuiLabel8.HorizontalAlignment = StringAlignment.Center;
         cuiLabel8.Location = new Point(28, 147);
         cuiLabel8.Margin = new Padding(4, 3, 4, 3);
         cuiLabel8.Name = "cuiLabel8";
         cuiLabel8.Size = new Size(168, 23);
         cuiLabel8.TabIndex = 28;
+        cuiLabel8.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiLabel6
         // 
@@ -450,11 +473,13 @@ partial class Battery
         cuiLabel6.Content = "Manufacturer:";
         cuiLabel6.Font = new Font("Verdana", 12F);
         cuiLabel6.ForeColor = Color.Black;
+        cuiLabel6.HorizontalAlignment = StringAlignment.Center;
         cuiLabel6.Location = new Point(28, 91);
         cuiLabel6.Margin = new Padding(4, 3, 4, 3);
         cuiLabel6.Name = "cuiLabel6";
         cuiLabel6.Size = new Size(128, 23);
         cuiLabel6.TabIndex = 26;
+        cuiLabel6.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiLabel1
         // 
@@ -462,11 +487,13 @@ partial class Battery
         cuiLabel1.Content = "Model:";
         cuiLabel1.Font = new Font("Verdana", 12F);
         cuiLabel1.ForeColor = Color.Black;
+        cuiLabel1.HorizontalAlignment = StringAlignment.Center;
         cuiLabel1.Location = new Point(28, 59);
         cuiLabel1.Margin = new Padding(4, 3, 4, 3);
         cuiLabel1.Name = "cuiLabel1";
         cuiLabel1.Size = new Size(76, 23);
         cuiLabel1.TabIndex = 24;
+        cuiLabel1.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiSeparator1
         // 
@@ -484,7 +511,7 @@ partial class Battery
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackColor = Color.FromArgb(155, 164, 180);
+        BackColor = Color.FromArgb(241, 244, 254);
         ClientSize = new Size(1227, 692);
         FormBorderStyle = FormBorderStyle.None;
         Name = "Battery";
