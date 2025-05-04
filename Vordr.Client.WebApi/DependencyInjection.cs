@@ -1,5 +1,6 @@
 ﻿using Hangfire;
 using Hangfire.MemoryStorage;
+using LibreHardwareMonitor.Hardware;
 using Serilog;
 using Vordr.Client.Monitoring;
 using Vordr.Client.WebApi.BackgroundJobs;

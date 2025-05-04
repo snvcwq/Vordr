@@ -43,7 +43,7 @@ public class MonitoringService(
         return new SocketMessage
         {
             Type = messageType,
-            ClientId = regOptions.ClientId,
+            ClientId = regOptions.ClientId(),
             Payload = payload 
         };    
     }

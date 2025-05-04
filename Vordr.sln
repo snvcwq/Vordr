@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallerCustomActions", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientInstallerCustomAction", "ClientInstallerCustomAction\ClientInstallerCustomAction.csproj", "{7F5F1C93-B5DA-4D69-B2D6-A26BCF279370}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VordrClientInstaller", "VordrClientInstaller\VordrClientInstaller.vdproj", "{951018AB-E88C-6A51-2069-B714E9AE2A0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +133,10 @@ Global
 		{7F5F1C93-B5DA-4D69-B2D6-A26BCF279370}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F5F1C93-B5DA-4D69-B2D6-A26BCF279370}.Release|x86.ActiveCfg = Release|Any CPU
 		{7F5F1C93-B5DA-4D69-B2D6-A26BCF279370}.Release|x86.Build.0 = Release|Any CPU
+		{951018AB-E88C-6A51-2069-B714E9AE2A0E}.Debug|Any CPU.ActiveCfg = Debug
+		{951018AB-E88C-6A51-2069-B714E9AE2A0E}.Debug|x86.ActiveCfg = Debug
+		{951018AB-E88C-6A51-2069-B714E9AE2A0E}.Release|Any CPU.ActiveCfg = Release
+		{951018AB-E88C-6A51-2069-B714E9AE2A0E}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,6 +153,7 @@ Global
 		{E37FF48B-0094-9E5D-FAA5-D66BBB7A51F3} = {F806FB71-6BAC-4C69-AC7B-D4BA3505A048}
 		{B39BFF5A-5550-4C9F-B30C-B9826F011440} = {F806FB71-6BAC-4C69-AC7B-D4BA3505A048}
 		{7F5F1C93-B5DA-4D69-B2D6-A26BCF279370} = {731D04B1-477F-4757-9268-AE1573B4DC79}
+		{951018AB-E88C-6A51-2069-B714E9AE2A0E} = {731D04B1-477F-4757-9268-AE1573B4DC79}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C73950C-9A25-4428-95D9-CE4BD89F62B0}

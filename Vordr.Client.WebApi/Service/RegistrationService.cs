@@ -19,7 +19,7 @@ public class RegistrationService(ISocketClientService socketClientService, IOpti
             return true;
         var registration = new SocketMessage
         {
-            Type = MessageType.Registration, ClientId = regOpt.ClientId, Payload = new RegistrationMessage(regOpt.ClientId, regOpt.HostName)
+            Type = MessageType.Registration, ClientId = regOpt.ClientId(), Payload = new RegistrationMessage(regOpt.ClientId(), regOpt.Address())
         };
         var response = await socketClientService.SendAsync(registration);
         var registrationResponse = (response?.Payload as JObject)!.ToString().JsonDeserialize<RegistrationResponse>();

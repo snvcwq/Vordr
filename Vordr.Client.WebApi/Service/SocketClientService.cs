@@ -17,8 +17,8 @@ public class SocketClientService : IAsyncDisposable, ISocketClientService
     {
         var config = options.Value;
 
-        var ip = IPAddress.Parse(config.Address);
-        var endPoint = new IPEndPoint(ip, config.Port);
+        var ip = IPAddress.Parse(config.Address());
+        var endPoint = new IPEndPoint(ip, config.Port());
 
         _socket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
         _socket.Connect(endPoint);
