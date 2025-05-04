@@ -9,4 +9,6 @@ public record BaseMetric()
     public ObjectId Id { get; init; }
 
     public DateTime CapturedAtUtc { get; set; } = DateTime.UtcNow; 
+    
+    public string? ClientId { get; set; }
 }

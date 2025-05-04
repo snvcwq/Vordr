@@ -8,10 +8,15 @@ public class HardwareComponentsRepository(MongoDbClient client) : IHardwareCompo
 {
     private readonly IMongoCollection<HardwareComponents> _collection = client.HardwareComponentsCollection();
 
-    public async Task UploadAsync(HardwareComponents data)
+    public async Task UploadAsync(HardwareComponents data, string clientId)
     {
-        await _collection.DeleteManyAsync(FilterDefinition<HardwareComponents>.Empty);
-        await _collection.InsertOneAsync(data);
+        data.ClientId = clientId;
+
+        var filter = Builders<HardwareComponents>.Filter.Eq(x => x.ClientId, clientId);
+
+        var options = new ReplaceOptions { IsUpsert = true };
+
+        await _collection.ReplaceOneAsync(filter, data, options);
     }
     public async Task<HardwareComponents> RetrieveAsync()
     {

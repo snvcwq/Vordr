@@ -5,12 +5,13 @@ namespace Vordr.Application.Common.Mappings.HardwareMetrics;
 
 public static class GpuReportMappings
 {
-    public static GpuLoad ToGpuLoad(this GpuReport report) =>
+    public static GpuLoad ToGpuLoad(this GpuReport report, string clientId) =>
         new()
         {
             LoadPercentage = report.AvgLoad,
             Clock = report.Clock,
             Temperature = report.Temperature,
-            CapturedAtUtc = report.CapturedAtUtc
+            CapturedAtUtc = report.CapturedAtUtc,
+            ClientId = clientId,
         };
 }

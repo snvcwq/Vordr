@@ -5,6 +5,7 @@ public static class ColorTransition
 {
     private static readonly Color GreenColor = Color.FromArgb(43, 152, 121);
     private static readonly Color RedColor = Color.FromArgb(169, 86, 81);
+    private static readonly Color YellowColor = Color.FromArgb(212, 172, 52);
 
     public static Color GetColorGreenToRed(int value)
     {

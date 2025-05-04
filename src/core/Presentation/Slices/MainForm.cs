@@ -12,16 +12,14 @@ public partial class MainForm : Form
     private readonly ISender _sender;
     private readonly IServiceScopeFactory _serviceScopeFactory;
     private readonly Battery _batteryForm;
-    private readonly Workstations _workstationsForm;
     private bool _processesIntialized = false;
     private bool dashbordInitalized = false;
     private Form _currentForm = null;
 
-    public MainForm(ISender sender, Battery batteryForm, Workstations workstationsForm, IServiceScopeFactory serviceScopeFactory)
+    public MainForm(ISender sender, Battery batteryForm, IServiceScopeFactory serviceScopeFactory)
     {
         _sender = sender;
         _batteryForm = batteryForm;
-        _workstationsForm = workstationsForm;
         _serviceScopeFactory = serviceScopeFactory;
         InitializeComponent();
         WindowState = FormWindowState.Normal;
@@ -150,34 +148,9 @@ public partial class MainForm : Form
 
     }
 
-    private async void CollectProcessesWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-    {
-        while (true)
-        {
-            /*var processes = await _processCollectService.ExecuteProcessDataCollectingAsync();
-            PassingProcesses?.Invoke(processes);
-            await _sender.Send(new UploadCollectedProcessesCommand(processes));
-
-            await Task.Delay(1000);
-            GC.Collect();
-*/
-        }
-    }
-
-    private async void CollectHardwareWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-    {
-        while (true)
-        {
-            /*
-            var data = await _hardwareMetricsService.CollectHardwareAsync(CancellationToken.None);
-            PassingMetrics?.Invoke(data);
-            GC.Collect();
-        */
-        }
-    }
-
     private void WorkstationsButton_Click(object sender, EventArgs e)
     {
-        LoadForm(_workstationsForm);
+        var workstationForm = new Workstations(_sender, _serviceScopeFactory);
+        LoadForm(workstationForm);
     }
 }

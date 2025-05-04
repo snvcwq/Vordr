@@ -4,6 +4,13 @@
         <RootNamespace>Vordr.Application</RootNamespace>
         <AssemblyName>Vordr.Application</AssemblyName>
     </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningsNotAsErrors>NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="MediatR" Version="12.5.0"/>

@@ -26,6 +26,7 @@ public partial class HardwareComponentsCollector : IHardwareComponentsCollector
             _computer.Open();
             _computer.Accept(new HardwareMonitorVisitor());
 
+            Thread.Sleep(100);
 
             Parallel.ForEach(_computer.Hardware, hardware =>
             {

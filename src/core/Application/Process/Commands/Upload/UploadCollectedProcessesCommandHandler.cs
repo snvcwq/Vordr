@@ -52,7 +52,7 @@ public class UploadCollectedProcessesCommandHandler(
 
         
 
-        var updateProcessesRequest =  DefineUpdateProcessesRequest(retrievedProcesses, storedProcessData);
+        var updateProcessesRequest =  DefineUpdateProcessesRequest(retrievedProcesses, storedProcessData, request.clientId);
 
         await PerformUpdateProcessesRequestsAsync(updateProcessesRequest);
     }
@@ -108,7 +108,7 @@ public class UploadCollectedProcessesCommandHandler(
     }
 
     private static UpdateProcessesRequest DefineUpdateProcessesRequest(IList<ProcessInformation> retrievedProcesses,
-        IList<ProcessData> storedProcesses)
+        IList<ProcessData> storedProcesses, string clientId)
     {
             var storedProcessesDictionary = storedProcesses.ToDictionary(pd => (pd.Name, pd.Path, pd.Manufacturer, pd.Version));
 
@@ -119,7 +119,7 @@ public class UploadCollectedProcessesCommandHandler(
             storedProcessesDictionary.TryGetValue((retrievedProcess.Name, retrievedProcess.Path, retrievedProcess.Company, retrievedProcess.Version), out var storedProcess);
 
             if (storedProcess is null)
-                newProcessesData.Add(CreateProcessData(retrievedProcess));
+                newProcessesData.Add(CreateProcessData(retrievedProcess, clientId));
             else
                 updateProcessesData.Add(UpdateProcessData(storedProcess, retrievedProcess));
         }
@@ -143,7 +143,7 @@ public class UploadCollectedProcessesCommandHandler(
         return new UpdateProcessDataRequest(storedData, stats);
     }
 
-    private static CreateProcessDataRequest CreateProcessData(ProcessInformation retrievedData)
+    private static CreateProcessDataRequest CreateProcessData(ProcessInformation retrievedData, string clientId)
     {
         var data = new ProcessData
         {
@@ -157,6 +157,7 @@ public class UploadCollectedProcessesCommandHandler(
             Version = retrievedData.Version,
             StartTime = retrievedData.StartTime,
             IsSystemProcess = retrievedData.IsSystemProcess,
+            ClientId = clientId
         };
         var stats = CreateProcessStats(retrievedData);
         return new CreateProcessDataRequest(data, stats);

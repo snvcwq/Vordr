@@ -7,13 +7,13 @@ namespace Vordr.Infrastructure.Migrations.Configuration;
 
 public class AddIndexesToBatteryMigration(
     MongoDbClient client,
-    ILogger<SeedDefaultConfigurationMigration> logger)
+    ILogger<AddIndexesToBatteryMigration> logger)
     : IMigration
 {
     
     private readonly IMongoCollection<PowerSupply> _batteryColection = client.Database().GetCollection<PowerSupply>(MongoCollections.PowerSupplyInfo);
     public Version Version { get; set; } = new(1, 1, 0);
-    public string Name { get; set; } = nameof(SeedDefaultConfigurationMigration);
+    public string Name { get; set; } = nameof(AddIndexesToBatteryMigration);
     public string Description { get; set; } = "Add index";
 
     public async Task<bool> ExecuteAsync()

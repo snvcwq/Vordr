@@ -10,22 +10,20 @@ namespace Vordr.Application.Hardware.Commands.UploadHardwareMetrics;
 
 public static class UploadHardwareMetricsMapper
 {
-    public static HardwareReport ToHardwareReport(this Vordr.Common.Messaging.Messages.HardwareReports.HardwareReport report) =>
-        new()
+    public static HardwareReport ToHardwareReport(this Vordr.Common.Messaging.Messages.HardwareReports.HardwareReport report)
+    {
+        if(report == null || report.Cpu is null || report.Ram is null || report.Gpu is null || report.Battery is null)
+            return null!;
+        return new()
         {
             Cpu = new CpuReport
             {
-                AvgUsage = report.Cpu!.AvgUsage,
-                Temperature = report.Cpu!.Temperature,
-                CapturedAtUtc = report.Cpu!.CapturedAtUtc,
+                AvgUsage = report.Cpu.AvgUsage, Temperature = report.Cpu.Temperature, CapturedAtUtc = report.Cpu.CapturedAtUtc,
             },
             Drives = report.Drives.ConvertAll(x => new DriveReport(x.DriveName, x.DriveFreeSpace, x.DriveTotalSize, x.CapturedAtUtc)),
             Gpu = new GpuReport
             {
-                AvgLoad = report.Gpu!.AvgLoad,
-                Temperature = report.Gpu!.Temperature,
-                Clock = report.Gpu!.Clock,
-                CapturedAtUtc = report.Gpu!.CapturedAtUtc,
+                AvgLoad = report.Gpu.AvgLoad, Temperature = report.Gpu.Temperature, Clock = report.Gpu.Clock, CapturedAtUtc = report.Gpu.CapturedAtUtc,
             },
             Networks = report.Networks.ConvertAll(x => new NetworkReport
             {
@@ -38,17 +36,14 @@ public static class UploadHardwareMetricsMapper
             }),
             Ram = new RamReport
             {
-                AvailableMemory = report.Ram!.AvailableMemory,
-                UsedMemory = report.Ram!.UsedMemory,
-                CapturedAtUtc = report.Ram!.CapturedAtUtc,
+                AvailableMemory = report.Ram.AvailableMemory, UsedMemory = report.Ram.UsedMemory, CapturedAtUtc = report.Ram.CapturedAtUtc,
             },
             Battery = new PowerSupplyReport
             {
-                DegradationLevel = report.Battery!.DegradationLevel,
-                ChargeLevel = report.Battery.ChargeLevel,
-                CapturedAtUtc = report.Battery.CapturedAtUtc,
+                DegradationLevel = report.Battery.DegradationLevel, ChargeLevel = report.Battery.ChargeLevel, CapturedAtUtc = report.Battery.CapturedAtUtc,
             }
         };
+    }
 
     public static IEnumerable<ProcessInformation> ToProcessInformation(this List<ProcessInfo>? processInformation)
     {

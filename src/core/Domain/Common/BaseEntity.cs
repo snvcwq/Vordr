@@ -7,6 +7,8 @@ namespace Vordr.Domain.Common
         [JsonIgnore]
         [BsonId]
         public ObjectId Id { get; init; }
+        
+        public string ClientId { get; set; } = null!;
 
         public DateTime LastModifiedUtc { get; set; } = DateTime.UtcNow; 
 

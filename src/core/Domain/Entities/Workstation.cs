@@ -6,7 +6,6 @@ namespace Vordr.Domain.Entities;
 public record Workstation : BaseEntity
 {
     public WorkstationState State { get; init; }
-    public required string ClientId { get; init; }
     
     public string? Name { get; init; }
     

@@ -9,6 +9,6 @@ public class UpdateHardwareComponentCommandHandler(
 
     public async Task Handle(UpdateHardwareComponentCommand request, CancellationToken cancellationToken)
     {
-        await repository.UploadAsync(request.components);
+        await repository.UploadAsync(request.components, request.clientId);
     }
 }

@@ -20,7 +20,10 @@ public partial class Battery : Form, IResettable
 
     private async void UpdateComponents()
     {
-        var hc = (await _sender.Send(new RetrieveHardwareComponentQuery())).Battery;
+        var hc1 = (await _sender.Send(new RetrieveHardwareComponentQuery()));
+        if (hc1 is null)
+            return;
+        var hc = hc1.Battery;
         ModelLabel.Content = hc.Name;
         ManufacturerLabel.Content = hc.Manufacturer;
         ChemistryLabel.Content = hc.Chemistry;

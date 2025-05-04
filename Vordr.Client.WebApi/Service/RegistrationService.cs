@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 using Vordr.Client.WebApi.Helpers;
 using Vordr.Client.WebApi.Interfaces;
 using Vordr.Client.WebApi.Options;
 using Vordr.Common.Enums;
+using Vordr.Common.Helpers;
 using Vordr.Common.Messaging;
 using Vordr.Common.Messaging.Messages.Registration;
 
@@ -20,12 +22,16 @@ public class RegistrationService(ISocketClientService socketClientService, IOpti
             Type = MessageType.Registration, ClientId = regOpt.ClientId, Payload = new RegistrationMessage(regOpt.ClientId, regOpt.HostName)
         };
         var response = await socketClientService.SendAsync(registration);
-        var registrationResponse = response?.Payload as RegistrationResponse;
-        
-        AppSettingsHelper.Load<AppSettingsOptions>();
-        AppSettingsHelper.UpdateValue($"{nameof(RegistrationOptions)}{AppSettingsHelper.Separator}{nameof(RegistrationOptions.IsRegistered)}", true);
-        
-        return registrationResponse?.Successful is true;
+        var registrationResponse = (response?.Payload as JObject)!.ToString().JsonDeserialize<RegistrationResponse>();
+
+        if (registrationResponse?.Successful is true)
+        {
+            AppSettingsHelper.Load<AppSettingsOptions>();
+            AppSettingsHelper.UpdateValue($"{nameof(RegistrationOptions)}{AppSettingsHelper.Separator}{nameof(RegistrationOptions.IsRegistered)}", true);
+            return true;
+        }
+                
+        return false;
     }
 
 }

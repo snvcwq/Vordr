@@ -1,0 +1,51 @@
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <OutputPath>bin\Debug\</OutputPath>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <OutputPath>bin\Release\</OutputPath>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+    <PropertyGroup>
+        <RuntimeIdentifiers>win</RuntimeIdentifiers>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <OutputType>Library</OutputType>
+        <RootNamespace>MyCustomAction</RootNamespace>
+        <AssemblyName>MyCustomAction</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <ProjectGuid>{B39BFF5A-5550-4C9F-B30C-B9826F011440}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+            <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.Configuration.Install" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Management" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Include="InputDialog.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Include="Installer3.cs">
+        <SubType>Component</SubType>
+      </Compile>
+      <Compile Include="Installer3.Designer.cs" />
+      <Compile Include="SerializationHelper.cs" />
+      <Compile Include="WorkstationIdentifier.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Installer3.resx" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -5,11 +5,12 @@ namespace Vordr.Application.Common.Mappings.HardwareMetrics;
 
 public static class PowerSupplyReportMappings
 {
-    public static PowerSupply ToPowerSupply(this PowerSupplyReport report) =>
+    public static PowerSupply ToPowerSupply(this PowerSupplyReport report, string clientId) =>
         new()
         {
             ChargeLevel = report.ChargeLevel,
             DegradationLevel = report.DegradationLevel,
-            CapturedAtUtc = report.CapturedAtUtc
+            CapturedAtUtc = report.CapturedAtUtc,
+            ClientId = clientId
         };
 }

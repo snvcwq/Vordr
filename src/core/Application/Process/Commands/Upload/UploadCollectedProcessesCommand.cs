@@ -3,4 +3,4 @@ using Vordr.Common.Messaging.Messages.Process;
 
 namespace Vordr.Application.Process.Commands.Upload;
 
-public record UploadCollectedProcessesCommand(IEnumerable<ProcessInformation> ProcessList) : IRequest;
+public record UploadCollectedProcessesCommand(IEnumerable<ProcessInformation> ProcessList, string clientId) : IRequest;

@@ -4,7 +4,7 @@ namespace Vordr.Common.Config;
 
 public class MonitoringConfiguration
 {
-    public required ProcessMonitoringConfig ProcessMonitoringConfig { get; set; }
+    public required MonitoringStatus MonitorProcesses { get; set; }
     
     public MonitoringStatus MonitorDrives { get; set; }
     
@@ -22,5 +22,4 @@ public class MonitoringConfiguration
     
     public MonitoringStatus MonitorPowerSupply { get; set; }
     
-    public required string? ScanFrequency { get; set; }
 }

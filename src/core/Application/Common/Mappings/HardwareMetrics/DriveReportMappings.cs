@@ -5,11 +5,12 @@ namespace Vordr.Application.Common.Mappings.HardwareMetrics;
 
 public static class DriveReportMappings
 {
-    public static DriveInformation ToDriveInformation(this DriveReport report) =>
+    public static DriveInformation ToDriveInformation(this DriveReport report, string clientId) =>
         new()
         {
             DriveName = report.DriveName,
             DriveFreeSpaceGb = report.DriveFreeSpace,
-            DriveTotalSizeGb = report.DriveTotalSize
+            DriveTotalSizeGb = report.DriveTotalSize,
+            ClientId = clientId
         };
 }

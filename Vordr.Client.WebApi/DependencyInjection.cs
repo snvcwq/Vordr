@@ -7,6 +7,7 @@ using Vordr.Client.WebApi.Interfaces;
 using Vordr.Client.WebApi.Interfaces.BackgroundJobs;
 using Vordr.Client.WebApi.Options;
 using Vordr.Client.WebApi.Service;
+using Vordr.Common.Config;
 
 namespace Vordr.Client.WebApi;
 
@@ -30,6 +31,7 @@ public static class DependencyInjection
 
         builder.Services.Configure<RegistrationOptions>(builder.Configuration.GetSection(nameof(RegistrationOptions)));
         builder.Services.Configure<MonitoringOptions>(builder.Configuration.GetSection(nameof(MonitoringOptions)));
+        builder.Services.Configure<MonitoringConfiguration>(builder.Configuration.GetSection(nameof(MonitoringConfiguration)));
         
         ConfigureLogging();
         return builder;
@@ -37,7 +39,8 @@ public static class DependencyInjection
     
     public static WebApplication ScheduleMonitoring(this WebApplication app)
     {
-        var scheduler = app.Services.GetRequiredService<IMonitoringScheduler>();
+        var scope = app.Services.CreateScope();
+        var scheduler = scope.ServiceProvider.GetRequiredService<IMonitoringScheduler>();
         scheduler.ScheduleProcessesMonitoring();
         scheduler.ScheduleHardwareComponentMonitoring();
         scheduler.ScheduleHardwareDataMonitoring();

@@ -1,9 +1,11 @@
-﻿using Vordr.Application.Hardware.Commands.UploadHardwareMetrics;
+﻿using Newtonsoft.Json.Linq;
+using Vordr.Application.Hardware.Commands.UploadHardwareMetrics;
 using Vordr.Application.HardwareComponent.Commands;
 using Vordr.Application.Models.Hardware;
 using Vordr.Application.Models.Process;
 using Vordr.Application.Process.Commands.Upload;
 using Vordr.Common.Enums;
+using Vordr.Common.Helpers;
 using Vordr.Common.Messaging;
 using Vordr.Common.Messaging.Messages.HardwareComponents;
 using Vordr.Common.Messaging.Messages.Process;
@@ -23,23 +25,26 @@ public class HandleSocketMessagesCommandHandler(ISender sender) : IRequestHandle
         {
             case MessageType.HardwareData:
                 {
-                    
-                    await sender.Send(new UploadHardwareMetricsCommand((msg.Payload as HardwareReport)!.ToHardwareReport()), cancellationToken);
+                    await sender.Send(new UploadHardwareMetricsCommand(((msg.Payload as JObject)?.ToString().JsonDeserialize<HardwareReport>()!).ToHardwareReport(), msg.ClientId), cancellationToken);
                     msgResponse = true;
                     break;
                 }
             case MessageType.ProcessList:
                 {
-                    await sender.Send(new UploadCollectedProcessesCommand((msg.Payload as List<ProcessInfo>).ToProcessInformation()), cancellationToken);
+                    
+                    await sender.Send(new UploadCollectedProcessesCommand((msg.Payload as JArray)?.ToString().JsonDeserialize<List<ProcessInfo>>()!.ToProcessInformation()!, msg.ClientId), cancellationToken);
                     msgResponse = true;
                     break;
-                }   
+                }
             case MessageType.Registration:
-                msgResponse = await sender.Send(new HandleClientRegistrationCommand.HandleClientRegistrationCommand((msg.Payload as RegistrationMessage)!), cancellationToken);
-                break;
+                {
+                   msgResponse = await sender.Send(new HandleClientRegistrationCommand.HandleClientRegistrationCommand((msg.Payload as JObject)?.ToString().JsonDeserialize<RegistrationMessage>()!), cancellationToken);
+                   break;
+
+                }
             case MessageType.HardwareComponents:
                 {
-                    await sender.Send(new UpdateHardwareComponentCommand(((msg.Payload as HardwareData)!).ToHardwareComponents()), cancellationToken);
+                    await sender.Send(new UpdateHardwareComponentCommand((msg.Payload as JObject)?.ToString().JsonDeserialize<HardwareData>()!.ToHardwareComponents()!, msg.ClientId), cancellationToken);
                     msgResponse = true;
                 }
                 break;

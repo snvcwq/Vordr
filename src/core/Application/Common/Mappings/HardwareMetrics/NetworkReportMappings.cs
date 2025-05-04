@@ -5,13 +5,14 @@ namespace Vordr.Application.Common.Mappings.HardwareMetrics;
 
 public static class NetworkReportMappings
 {
-    public static NetworkInformation ToNetworkInformation(this NetworkReport report) =>
+    public static NetworkInformation ToNetworkInformation(this NetworkReport report, string clientId) =>
         new()
         {
             Network = report.Network,
             DataUploaded = report.DataUploaded,
             DataDownloaded = report.DataDownloaded,
             DownloadSpeed = report.DownloadSpeed,
-            UploadSpeed = report.UploadSpeed
+            UploadSpeed = report.UploadSpeed,
+            ClientId = clientId,
         };
 }

@@ -5,11 +5,12 @@ namespace Vordr.Application.Common.Mappings.HardwareMetrics;
 
 public static class RamReportMappings
 {
-    public static RamUsage ToRamUsage(this RamReport report) =>
+    public static RamUsage ToRamUsage(this RamReport report, string clientId) =>
         new()
         {
             AvailableMemory = report.AvailableMemory,
             UsedMemory = report.UsedMemory,
-            CapturedAtUtc = report.CapturedAtUtc
+            CapturedAtUtc = report.CapturedAtUtc,
+            ClientId = clientId
         };
 }

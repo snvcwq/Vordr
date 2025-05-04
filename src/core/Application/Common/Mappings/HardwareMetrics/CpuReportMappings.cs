@@ -5,11 +5,12 @@ namespace Vordr.Application.Common.Mappings.HardwareMetrics;
 
 public static class CpuReportMappings
 {
-    public static CpuLoad ToCpuLoad(this CpuReport report) =>
+    public static CpuLoad ToCpuLoad(this CpuReport report, string clientId) =>
         new()
         {
             LoadPercents = report.AvgUsage,
             Temperature = report.Temperature,
-            CapturedAtUtc = report.CapturedAtUtc
+            CapturedAtUtc = report.CapturedAtUtc,
+            ClientId = clientId
         };
 }

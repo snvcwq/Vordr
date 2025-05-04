@@ -1,12 +1,14 @@
-﻿using Vordr.Common.Messaging.Messages.Registration;
+﻿using Vordr.Application.Common.Interfaces.Persistence;
+using Vordr.Common.Messaging.Messages.Registration;
 
 namespace Vordr.Application.SocketMessages.HandleClientRegistrationCommand;
 
-public class HandleClientRegistrationCommandHandler : IRequestHandler<HandleClientRegistrationCommand, RegistrationResponse>
+public class HandleClientRegistrationCommandHandler(IWorkstationRepository workstationRepository) : IRequestHandler<HandleClientRegistrationCommand, RegistrationResponse>
 {
 
-    public Task<RegistrationResponse> Handle(HandleClientRegistrationCommand request, CancellationToken cancellationToken)
+    public async Task<RegistrationResponse> Handle(HandleClientRegistrationCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var result = await workstationRepository.RegisterWorkstationAsync(request.message.ClientId, request.message.HostName);
+        return new RegistrationResponse(result);
     }
 }

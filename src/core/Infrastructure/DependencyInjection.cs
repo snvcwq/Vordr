@@ -33,7 +33,6 @@ public static class DependencyInjection
 
     private static IServiceCollection AddMigrations(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddSingleton<SeedDefaultConfigurationMigration>();
         serviceCollection.AddSingleton<AddIndexesToBatteryMigration>();
         return serviceCollection;
     }

@@ -2,4 +2,4 @@
 
 namespace Vordr.Application.Hardware.Commands.UploadHardwareMetrics;
 
-public record UploadHardwareMetricsCommand(HardwareReport HardwareReport) : IRequest;
+public record UploadHardwareMetricsCommand(HardwareReport HardwareReport, string clientId) : IRequest;
