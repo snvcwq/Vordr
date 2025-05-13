@@ -106,27 +106,27 @@ partial class AlertControl
         cuiSeparator1.Margin = new Padding(4);
         cuiSeparator1.Name = "cuiSeparator1";
         cuiSeparator1.SeparatorMargin = 8;
-        cuiSeparator1.Size = new Size(597, 14);
+        cuiSeparator1.Size = new Size(732, 14);
         cuiSeparator1.TabIndex = 35;
         cuiSeparator1.Thickness = 1F;
         cuiSeparator1.Vertical = false;
         // 
         // SaveButton
         // 
-        SaveButton.BackColor = Color.FromArgb(28, 46, 83);
+        SaveButton.BackColor = Color.Transparent;
         SaveButton.CheckButton = false;
-        SaveButton.CheckedBackground = Color.FromArgb(28, 46, 83);
-        SaveButton.CheckedForeColor = Color.FromArgb(28, 46, 83);
-        SaveButton.CheckedImageTint = Color.FromArgb(28, 46, 83);
-        SaveButton.CheckedOutline = Color.FromArgb(28, 46, 83);
+        SaveButton.CheckedBackground = Color.FromArgb(108, 124, 204);
+        SaveButton.CheckedForeColor = Color.White;
+        SaveButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
+        SaveButton.CheckedOutline = Color.FromArgb(108, 124, 204);
         SaveButton.Content = "Save";
         SaveButton.DialogResult = DialogResult.None;
         SaveButton.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         SaveButton.ForeColor = Color.White;
-        SaveButton.HoverBackground = Color.FromArgb(28, 46, 83);
+        SaveButton.HoverBackground = Color.FromArgb(108, 124, 204);
         SaveButton.HoveredImageTint = Color.White;
-        SaveButton.HoverForeColor = Color.FromArgb(28, 46, 83);
-        SaveButton.HoverOutline = Color.FromArgb(28, 46, 83);
+        SaveButton.HoverForeColor = Color.White;
+        SaveButton.HoverOutline = Color.FromArgb(108, 124, 204);
         SaveButton.Image = null;
         SaveButton.ImageAutoCenter = true;
         SaveButton.ImageExpand = new Point(0, 0);
@@ -134,14 +134,14 @@ partial class AlertControl
         SaveButton.ImageTint = Color.White;
         SaveButton.Location = new Point(733, 94);
         SaveButton.Name = "SaveButton";
-        SaveButton.NormalBackground = Color.FromArgb(28, 46, 83);
-        SaveButton.NormalOutline = Color.FromArgb(28, 46, 83);
+        SaveButton.NormalBackground = Color.FromArgb(108, 124, 204);
+        SaveButton.NormalOutline = Color.FromArgb(108, 124, 204);
         SaveButton.OutlineThickness = 4F;
-        SaveButton.PressedBackground = Color.FromArgb(28, 46, 83);
-        SaveButton.PressedForeColor = Color.FromArgb(28, 46, 83);
+        SaveButton.PressedBackground = Color.FromArgb(11, 35, 116);
+        SaveButton.PressedForeColor = Color.WhiteSmoke;
         SaveButton.PressedImageTint = Color.White;
-        SaveButton.PressedOutline = Color.FromArgb(28, 46, 83);
-        SaveButton.Rounding = new Padding(16);
+        SaveButton.PressedOutline = Color.FromArgb(11, 35, 116);
+        SaveButton.Rounding = new Padding(10);
         SaveButton.Size = new Size(104, 40);
         SaveButton.TabIndex = 34;
         SaveButton.TextOffset = new Point(0, 0);
