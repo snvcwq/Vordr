@@ -1,0 +1,716 @@
+﻿namespace Presentation.Slices;
+
+partial class Cpu
+{
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
+
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && (components != null))
+        {
+            components.Dispose();
+        }
+        base.Dispose(disposing);
+    }
+
+    #region Windows Form Designer generated code
+
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+        var resources = new System.ComponentModel.ComponentResourceManager(typeof(Cpu));
+        cuiBorder1 = new CuoreUI.Controls.cuiBorder();
+        TopUsageChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
+        TopUsageSeparator = new CuoreUI.Controls.cuiSeparator();
+        Top3LoadUsage = new CuoreUI.Controls.cuiLabel();
+        Top2LoadUsage = new CuoreUI.Controls.cuiLabel();
+        Top1LoadUsage = new CuoreUI.Controls.cuiLabel();
+        TopLoadUsageLabel = new CuoreUI.Controls.cuiLabel();
+        cuiSeparator2 = new CuoreUI.Controls.cuiSeparator();
+        cuiLabel2 = new CuoreUI.Controls.cuiLabel();
+        cuiLabel3 = new CuoreUI.Controls.cuiLabel();
+        cuiBorder3 = new CuoreUI.Controls.cuiBorder();
+        TemperatureChart = new LiveChartsCore.SkiaSharpView.WinForms.CartesianChart();
+        cuiSeparator3 = new CuoreUI.Controls.cuiSeparator();
+        cuiBorder6 = new CuoreUI.Controls.cuiBorder();
+        ModelLabel = new CuoreUI.Controls.cuiLabel();
+        CoresLabel = new CuoreUI.Controls.cuiLabel();
+        cuiLabel4 = new CuoreUI.Controls.cuiLabel();
+        cuiLabel6 = new CuoreUI.Controls.cuiLabel();
+        cuiLabel1 = new CuoreUI.Controls.cuiLabel();
+        cuiSeparator1 = new CuoreUI.Controls.cuiSeparator();
+        cuiLabel13 = new CuoreUI.Controls.cuiLabel();
+        cuiBorder5 = new CuoreUI.Controls.cuiBorder();
+        DisplayResults = new CuoreUI.Controls.cuiButton();
+        CalendarDateLabel = new CuoreUI.Controls.cuiBorder();
+        DayLabel = new CuoreUI.Controls.cuiLabel();
+        OneDayCheckbox = new CuoreUI.Controls.cuiCheckbox();
+        ToLabel = new CuoreUI.Controls.cuiLabel();
+        FromLabel = new CuoreUI.Controls.cuiLabel();
+        StartDateLabel = new CuoreUI.Controls.cuiLabel();
+        EndHour = new CuoreUI.Controls.cuiTextBox2();
+        EndHourLabel = new CuoreUI.Controls.cuiLabel();
+        EndDate = new CuoreUI.Controls.cuiCalendarDatePicker();
+        StartHour = new CuoreUI.Controls.cuiTextBox2();
+        StartHourLabel = new CuoreUI.Controls.cuiLabel();
+        StartDate = new CuoreUI.Controls.cuiCalendarDatePicker();
+        cuiGradientBorder1 = new CuoreUI.Controls.cuiGradientBorder();
+        cuiBorder1.SuspendLayout();
+        cuiBorder3.SuspendLayout();
+        cuiBorder6.SuspendLayout();
+        cuiBorder5.SuspendLayout();
+        CalendarDateLabel.SuspendLayout();
+        SuspendLayout();
+        // 
+        // cuiBorder1
+        // 
+        cuiBorder1.Controls.Add(TopUsageChart);
+        cuiBorder1.Controls.Add(TopUsageSeparator);
+        cuiBorder1.Controls.Add(Top3LoadUsage);
+        cuiBorder1.Controls.Add(Top2LoadUsage);
+        cuiBorder1.Controls.Add(Top1LoadUsage);
+        cuiBorder1.Controls.Add(TopLoadUsageLabel);
+        cuiBorder1.Controls.Add(cuiSeparator2);
+        cuiBorder1.Controls.Add(cuiLabel2);
+        cuiBorder1.Location = new Point(12, 300);
+        cuiBorder1.Name = "cuiBorder1";
+        cuiBorder1.OutlineThickness = 1F;
+        cuiBorder1.PanelColor = Color.White;
+        cuiBorder1.PanelOutlineColor = Color.White;
+        cuiBorder1.Rounding = new Padding(11);
+        cuiBorder1.Size = new Size(1203, 176);
+        cuiBorder1.TabIndex = 24;
+        // 
+        // TopUsageChart
+        // 
+        TopUsageChart.BackColor = Color.White;
+        TopUsageChart.Location = new Point(520, 3);
+        TopUsageChart.MatchAxesScreenDataRatio = false;
+        TopUsageChart.Name = "TopUsageChart";
+        TopUsageChart.Size = new Size(680, 170);
+        TopUsageChart.TabIndex = 46;
+        // 
+        // TopUsageSeparator
+        // 
+        TopUsageSeparator.BackColor = Color.Transparent;
+        TopUsageSeparator.ForeColor = Color.FromArgb(20, 39, 78);
+        TopUsageSeparator.Location = new Point(258, 45);
+        TopUsageSeparator.Margin = new Padding(4, 3, 4, 3);
+        TopUsageSeparator.Name = "TopUsageSeparator";
+        TopUsageSeparator.SeparatorMargin = 8;
+        TopUsageSeparator.Size = new Size(236, 10);
+        TopUsageSeparator.TabIndex = 45;
+        TopUsageSeparator.Thickness = 1F;
+        TopUsageSeparator.Vertical = false;
+        // 
+        // Top3LoadUsage
+        // 
+        Top3LoadUsage.BackColor = Color.Transparent;
+        Top3LoadUsage.Content = "";
+        Top3LoadUsage.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Top3LoadUsage.ForeColor = Color.Black;
+        Top3LoadUsage.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        Top3LoadUsage.Location = new Point(221, 131);
+        Top3LoadUsage.Margin = new Padding(4, 3, 4, 3);
+        Top3LoadUsage.Name = "Top3LoadUsage";
+        Top3LoadUsage.Size = new Size(305, 23);
+        Top3LoadUsage.TabIndex = 44;
+        // 
+        // Top2LoadUsage
+        // 
+        Top2LoadUsage.BackColor = Color.Transparent;
+        Top2LoadUsage.Content = "";
+        Top2LoadUsage.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Top2LoadUsage.ForeColor = Color.Black;
+        Top2LoadUsage.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        Top2LoadUsage.Location = new Point(221, 102);
+        Top2LoadUsage.Margin = new Padding(4, 3, 4, 3);
+        Top2LoadUsage.Name = "Top2LoadUsage";
+        Top2LoadUsage.Size = new Size(305, 23);
+        Top2LoadUsage.TabIndex = 43;
+        // 
+        // Top1LoadUsage
+        // 
+        Top1LoadUsage.Anchor = AnchorStyles.Left;
+        Top1LoadUsage.BackColor = Color.Transparent;
+        Top1LoadUsage.Content = "";
+        Top1LoadUsage.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Top1LoadUsage.ForeColor = Color.Black;
+        Top1LoadUsage.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        Top1LoadUsage.Location = new Point(221, 73);
+        Top1LoadUsage.Margin = new Padding(4, 3, 4, 3);
+        Top1LoadUsage.Name = "Top1LoadUsage";
+        Top1LoadUsage.RightToLeft = RightToLeft.No;
+        Top1LoadUsage.Size = new Size(305, 23);
+        Top1LoadUsage.TabIndex = 39;
+        // 
+        // TopLoadUsageLabel
+        // 
+        TopLoadUsageLabel.BackColor = Color.Transparent;
+        TopLoadUsageLabel.Content = "top\\ usages:\\ ";
+        TopLoadUsageLabel.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
+        TopLoadUsageLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        TopLoadUsageLabel.Location = new Point(280, 14);
+        TopLoadUsageLabel.Margin = new Padding(4, 3, 4, 3);
+        TopLoadUsageLabel.Name = "TopLoadUsageLabel";
+        TopLoadUsageLabel.Size = new Size(202, 41);
+        TopLoadUsageLabel.TabIndex = 42;
+        // 
+        // cuiSeparator2
+        // 
+        cuiSeparator2.BackColor = Color.Transparent;
+        cuiSeparator2.ForeColor = Color.FromArgb(20, 39, 78);
+        cuiSeparator2.Location = new Point(-11, 45);
+        cuiSeparator2.Margin = new Padding(4, 3, 4, 3);
+        cuiSeparator2.Name = "cuiSeparator2";
+        cuiSeparator2.SeparatorMargin = 8;
+        cuiSeparator2.Size = new Size(236, 10);
+        cuiSeparator2.TabIndex = 22;
+        cuiSeparator2.Thickness = 1F;
+        cuiSeparator2.Vertical = false;
+        // 
+        // cuiLabel2
+        // 
+        cuiLabel2.BackColor = Color.Transparent;
+        cuiLabel2.Content = "load";
+        cuiLabel2.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
+        cuiLabel2.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        cuiLabel2.Location = new Point(15, 14);
+        cuiLabel2.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel2.Name = "cuiLabel2";
+        cuiLabel2.Size = new Size(102, 34);
+        cuiLabel2.TabIndex = 21;
+        // 
+        // cuiLabel3
+        // 
+        cuiLabel3.BackColor = Color.Transparent;
+        cuiLabel3.Content = "temperature";
+        cuiLabel3.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
+        cuiLabel3.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        cuiLabel3.Location = new Point(4, 6);
+        cuiLabel3.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel3.Name = "cuiLabel3";
+        cuiLabel3.Size = new Size(230, 39);
+        cuiLabel3.TabIndex = 22;
+        // 
+        // cuiBorder3
+        // 
+        cuiBorder3.Controls.Add(TemperatureChart);
+        cuiBorder3.Controls.Add(cuiSeparator3);
+        cuiBorder3.Controls.Add(cuiLabel3);
+        cuiBorder3.Location = new Point(12, 491);
+        cuiBorder3.Name = "cuiBorder3";
+        cuiBorder3.OutlineThickness = 1F;
+        cuiBorder3.PanelColor = Color.White;
+        cuiBorder3.PanelOutlineColor = Color.White;
+        cuiBorder3.Rounding = new Padding(11);
+        cuiBorder3.Size = new Size(1203, 198);
+        cuiBorder3.TabIndex = 25;
+        // 
+        // TemperatureChart
+        // 
+        TemperatureChart.BackColor = Color.White;
+        TemperatureChart.Location = new Point(242, 0);
+        TemperatureChart.Margin = new Padding(4);
+        TemperatureChart.MatchAxesScreenDataRatio = false;
+        TemperatureChart.Name = "TemperatureChart";
+        TemperatureChart.Size = new Size(1161, 198);
+        TemperatureChart.TabIndex = 47;
+        // 
+        // cuiSeparator3
+        // 
+        cuiSeparator3.BackColor = Color.Transparent;
+        cuiSeparator3.ForeColor = Color.FromArgb(20, 39, 78);
+        cuiSeparator3.Location = new Point(-11, 43);
+        cuiSeparator3.Margin = new Padding(5, 4, 5, 4);
+        cuiSeparator3.Name = "cuiSeparator3";
+        cuiSeparator3.SeparatorMargin = 8;
+        cuiSeparator3.Size = new Size(236, 13);
+        cuiSeparator3.TabIndex = 23;
+        cuiSeparator3.Thickness = 1F;
+        cuiSeparator3.Vertical = false;
+        // 
+        // cuiBorder6
+        // 
+        cuiBorder6.BackColor = Color.Transparent;
+        cuiBorder6.Controls.Add(ModelLabel);
+        cuiBorder6.Controls.Add(CoresLabel);
+        cuiBorder6.Controls.Add(cuiLabel4);
+        cuiBorder6.Controls.Add(cuiLabel6);
+        cuiBorder6.Controls.Add(cuiLabel1);
+        cuiBorder6.Controls.Add(cuiSeparator1);
+        cuiBorder6.Controls.Add(cuiLabel13);
+        cuiBorder6.Controls.Add(cuiBorder5);
+        cuiBorder6.ForeColor = Color.FromArgb(155, 164, 180);
+        cuiBorder6.Location = new Point(12, 12);
+        cuiBorder6.Name = "cuiBorder6";
+        cuiBorder6.OutlineThickness = 1F;
+        cuiBorder6.PanelColor = Color.White;
+        cuiBorder6.PanelOutlineColor = Color.White;
+        cuiBorder6.Rounding = new Padding(11);
+        cuiBorder6.Size = new Size(1203, 271);
+        cuiBorder6.TabIndex = 24;
+        // 
+        // ModelLabel
+        // 
+        ModelLabel.BackColor = Color.Transparent;
+        ModelLabel.Content = "";
+        ModelLabel.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        ModelLabel.ForeColor = Color.FromArgb(40, 53, 147);
+        ModelLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        ModelLabel.Location = new Point(138, 59);
+        ModelLabel.Margin = new Padding(4, 3, 4, 3);
+        ModelLabel.Name = "ModelLabel";
+        ModelLabel.Size = new Size(305, 23);
+        ModelLabel.TabIndex = 38;
+        ModelLabel.Load += ModelLabel_Load;
+        // 
+        // CoresLabel
+        // 
+        CoresLabel.BackColor = Color.Transparent;
+        CoresLabel.Content = "";
+        CoresLabel.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        CoresLabel.ForeColor = Color.FromArgb(40, 53, 147);
+        CoresLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        CoresLabel.Location = new Point(112, 91);
+        CoresLabel.Margin = new Padding(4, 3, 4, 3);
+        CoresLabel.Name = "CoresLabel";
+        CoresLabel.Size = new Size(68, 29);
+        CoresLabel.TabIndex = 37;
+        // 
+        // cuiLabel4
+        // 
+        cuiLabel4.BackColor = Color.Transparent;
+        cuiLabel4.Content = "Track\\ your\\ CPU's\\ load\\ and\\ temperature\\ history\\ over\\ a\\ selected\\ time\\ range\\.\\ Analyze\\ performance\\ trends\\ and\\ identify\\ potential\\ issues\\ to\\ ensure\\ optimal\\ system\\ operation\\.";
+        cuiLabel4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
+        cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        cuiLabel4.Location = new Point(0, 176);
+        cuiLabel4.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel4.Name = "cuiLabel4";
+        cuiLabel4.Size = new Size(526, 64);
+        cuiLabel4.TabIndex = 22;
+        // 
+        // cuiLabel6
+        // 
+        cuiLabel6.BackColor = Color.Transparent;
+        cuiLabel6.Content = "Cores:";
+        cuiLabel6.Font = new Font("Verdana", 12F);
+        cuiLabel6.ForeColor = Color.Black;
+        cuiLabel6.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        cuiLabel6.Location = new Point(28, 91);
+        cuiLabel6.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel6.Name = "cuiLabel6";
+        cuiLabel6.Size = new Size(76, 21);
+        cuiLabel6.TabIndex = 26;
+        // 
+        // cuiLabel1
+        // 
+        cuiLabel1.BackColor = Color.Transparent;
+        cuiLabel1.Content = "Model:";
+        cuiLabel1.Font = new Font("Verdana", 12F);
+        cuiLabel1.ForeColor = Color.Black;
+        cuiLabel1.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        cuiLabel1.Location = new Point(28, 59);
+        cuiLabel1.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel1.Name = "cuiLabel1";
+        cuiLabel1.Size = new Size(76, 23);
+        cuiLabel1.TabIndex = 24;
+        // 
+        // cuiSeparator1
+        // 
+        cuiSeparator1.ForeColor = Color.FromArgb(20, 39, 78);
+        cuiSeparator1.Location = new Point(0, 154);
+        cuiSeparator1.Margin = new Padding(4, 3, 4, 3);
+        cuiSeparator1.Name = "cuiSeparator1";
+        cuiSeparator1.SeparatorMargin = 8;
+        cuiSeparator1.Size = new Size(526, 16);
+        cuiSeparator1.TabIndex = 23;
+        cuiSeparator1.Thickness = 1F;
+        cuiSeparator1.Vertical = false;
+        // 
+        // cuiLabel13
+        // 
+        cuiLabel13.BackColor = Color.White;
+        cuiLabel13.Content = "Cpu\\ load\\ history";
+        cuiLabel13.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
+        cuiLabel13.ForeColor = Color.Black;
+        cuiLabel13.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        cuiLabel13.Location = new Point(4, 3);
+        cuiLabel13.Margin = new Padding(4, 3, 4, 3);
+        cuiLabel13.Name = "cuiLabel13";
+        cuiLabel13.Size = new Size(318, 39);
+        cuiLabel13.TabIndex = 16;
+        // 
+        // cuiBorder5
+        // 
+        cuiBorder5.BackColor = Color.Transparent;
+        cuiBorder5.Controls.Add(DisplayResults);
+        cuiBorder5.Controls.Add(CalendarDateLabel);
+        cuiBorder5.Controls.Add(cuiGradientBorder1);
+        cuiBorder5.Location = new Point(533, 34);
+        cuiBorder5.Name = "cuiBorder5";
+        cuiBorder5.OutlineThickness = 2F;
+        cuiBorder5.PanelColor = Color.FromArgb(57, 72, 103);
+        cuiBorder5.PanelOutlineColor = Color.FromArgb(241, 244, 254);
+        cuiBorder5.Rounding = new Padding(8);
+        cuiBorder5.Size = new Size(641, 194);
+        cuiBorder5.TabIndex = 22;
+        // 
+        // DisplayResults
+        // 
+        DisplayResults.BackColor = Color.FromArgb(28, 46, 83);
+        DisplayResults.CheckButton = false;
+        DisplayResults.CheckedBackground = Color.White;
+        DisplayResults.CheckedForeColor = Color.Black;
+        DisplayResults.CheckedImageTint = Color.White;
+        DisplayResults.CheckedOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.Content = "Display";
+        DisplayResults.DialogResult = DialogResult.None;
+        DisplayResults.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        DisplayResults.ForeColor = Color.Black;
+        DisplayResults.HoverBackground = Color.White;
+        DisplayResults.HoveredImageTint = Color.White;
+        DisplayResults.HoverForeColor = Color.Black;
+        DisplayResults.HoverOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.Image = null;
+        DisplayResults.ImageAutoCenter = true;
+        DisplayResults.ImageExpand = new Point(0, 0);
+        DisplayResults.ImageOffset = new Point(0, 0);
+        DisplayResults.ImageTint = Color.White;
+        DisplayResults.Location = new Point(52, 64);
+        DisplayResults.Name = "DisplayResults";
+        DisplayResults.NormalBackground = Color.White;
+        DisplayResults.NormalOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.OutlineThickness = 0.1F;
+        DisplayResults.PressedBackground = Color.White;
+        DisplayResults.PressedForeColor = Color.Black;
+        DisplayResults.PressedImageTint = Color.White;
+        DisplayResults.PressedOutline = Color.FromArgb(40, 53, 147);
+        DisplayResults.Rounding = new Padding(8);
+        DisplayResults.Size = new Size(123, 61);
+        DisplayResults.TabIndex = 25;
+        DisplayResults.TextOffset = new Point(0, 0);
+        DisplayResults.Click += DisplayResults_Click;
+        // 
+        // CalendarDateLabel
+        // 
+        CalendarDateLabel.Controls.Add(DayLabel);
+        CalendarDateLabel.Controls.Add(OneDayCheckbox);
+        CalendarDateLabel.Controls.Add(ToLabel);
+        CalendarDateLabel.Controls.Add(FromLabel);
+        CalendarDateLabel.Controls.Add(StartDateLabel);
+        CalendarDateLabel.Controls.Add(EndHour);
+        CalendarDateLabel.Controls.Add(EndHourLabel);
+        CalendarDateLabel.Controls.Add(EndDate);
+        CalendarDateLabel.Controls.Add(StartHour);
+        CalendarDateLabel.Controls.Add(StartHourLabel);
+        CalendarDateLabel.Controls.Add(StartDate);
+        CalendarDateLabel.Location = new Point(224, 25);
+        CalendarDateLabel.Name = "CalendarDateLabel";
+        CalendarDateLabel.OutlineThickness = 1F;
+        CalendarDateLabel.PanelColor = Color.White;
+        CalendarDateLabel.PanelOutlineColor = Color.White;
+        CalendarDateLabel.Rounding = new Padding(10);
+        CalendarDateLabel.Size = new Size(393, 143);
+        CalendarDateLabel.TabIndex = 32;
+        // 
+        // DayLabel
+        // 
+        DayLabel.AllowDrop = true;
+        DayLabel.BackColor = Color.Transparent;
+        DayLabel.Content = "day";
+        DayLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
+        DayLabel.ForeColor = Color.Black;
+        DayLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        DayLabel.ImeMode = ImeMode.On;
+        DayLabel.Location = new Point(240, 12);
+        DayLabel.Margin = new Padding(4, 3, 4, 3);
+        DayLabel.Name = "DayLabel";
+        DayLabel.Size = new Size(81, 24);
+        DayLabel.TabIndex = 34;
+        DayLabel.Visible = false;
+        // 
+        // OneDayCheckbox
+        // 
+        OneDayCheckbox.BackColor = Color.White;
+        OneDayCheckbox.CheckedForeground = Color.FromArgb(20, 39, 78);
+        OneDayCheckbox.CheckedOutlineColor = Color.FromArgb(20, 39, 78);
+        OneDayCheckbox.CheckedSymbolColor = Color.White;
+        OneDayCheckbox.Content = "cuiCheckbox";
+        OneDayCheckbox.ForeColor = SystemColors.ButtonShadow;
+        OneDayCheckbox.Location = new Point(335, 99);
+        OneDayCheckbox.MinimumSize = new Size(16, 16);
+        OneDayCheckbox.Name = "OneDayCheckbox";
+        OneDayCheckbox.OutlineStyle = false;
+        OneDayCheckbox.OutlineThickness = 2F;
+        OneDayCheckbox.Padding = new Padding(8);
+        OneDayCheckbox.Rounding = 10;
+        OneDayCheckbox.ShowSymbols = true;
+        OneDayCheckbox.Size = new Size(32, 30);
+        OneDayCheckbox.TabIndex = 26;
+        OneDayCheckbox.Text = "cuiCheckbox1";
+        OneDayCheckbox.UncheckedForeground = Color.FromArgb(20, 39, 78);
+        OneDayCheckbox.UncheckedOutlineColor = Color.FromArgb(20, 39, 78);
+        OneDayCheckbox.UncheckedSymbolColor = Color.White;
+        OneDayCheckbox.Click += OneDayCheckbox_Click;
+        // 
+        // ToLabel
+        // 
+        ToLabel.AllowDrop = true;
+        ToLabel.BackColor = Color.Transparent;
+        ToLabel.Content = "to:";
+        ToLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
+        ToLabel.ForeColor = Color.Black;
+        ToLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        ToLabel.ImeMode = ImeMode.On;
+        ToLabel.Location = new Point(178, 49);
+        ToLabel.Margin = new Padding(4, 3, 4, 3);
+        ToLabel.Name = "ToLabel";
+        ToLabel.Size = new Size(81, 24);
+        ToLabel.TabIndex = 33;
+        // 
+        // FromLabel
+        // 
+        FromLabel.AllowDrop = true;
+        FromLabel.BackColor = Color.Transparent;
+        FromLabel.Content = "from:";
+        FromLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
+        FromLabel.ForeColor = Color.Black;
+        FromLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        FromLabel.ImeMode = ImeMode.On;
+        FromLabel.Location = new Point(178, 13);
+        FromLabel.Margin = new Padding(4, 3, 4, 3);
+        FromLabel.Name = "FromLabel";
+        FromLabel.Size = new Size(81, 24);
+        FromLabel.TabIndex = 32;
+        // 
+        // StartDateLabel
+        // 
+        StartDateLabel.AllowDrop = true;
+        StartDateLabel.BackColor = Color.White;
+        StartDateLabel.Content = "one\\ day\\ statistics";
+        StartDateLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
+        StartDateLabel.ForeColor = Color.Black;
+        StartDateLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        StartDateLabel.ImeMode = ImeMode.On;
+        StartDateLabel.Location = new Point(149, 104);
+        StartDateLabel.Margin = new Padding(4, 3, 4, 3);
+        StartDateLabel.Name = "StartDateLabel";
+        StartDateLabel.Size = new Size(190, 25);
+        StartDateLabel.TabIndex = 29;
+        // 
+        // EndHour
+        // 
+        EndHour.AllowDrop = true;
+        EndHour.BackColor = Color.White;
+        EndHour.BorderColor = Color.Transparent;
+        EndHour.BorderFocusColor = Color.WhiteSmoke;
+        EndHour.BorderSize = 1;
+        EndHour.CausesValidation = false;
+        EndHour.Content = "";
+        EndHour.Font = new Font("Century Schoolbook", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        EndHour.ForeColor = Color.Gray;
+        EndHour.Location = new Point(101, 49);
+        EndHour.Margin = new Padding(4);
+        EndHour.Multiline = false;
+        EndHour.Name = "EndHour";
+        EndHour.Padding = new Padding(20, 6, 20, 0);
+        EndHour.PasswordChar = false;
+        EndHour.PlaceholderColor = Color.DimGray;
+        EndHour.PlaceholderText = "14:00";
+        EndHour.Rounding = 8;
+        EndHour.Size = new Size(90, 33);
+        EndHour.TabIndex = 31;
+        EndHour.TextOffset = new Size(0, 0);
+        EndHour.UnderlinedStyle = true;
+        // 
+        // EndHourLabel
+        // 
+        EndHourLabel.AllowDrop = true;
+        EndHourLabel.BackColor = Color.Transparent;
+        EndHourLabel.Content = "end\\ time";
+        EndHourLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
+        EndHourLabel.ForeColor = Color.Black;
+        EndHourLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        EndHourLabel.Location = new Point(0, 50);
+        EndHourLabel.Margin = new Padding(4, 3, 4, 3);
+        EndHourLabel.Name = "EndHourLabel";
+        EndHourLabel.Size = new Size(104, 25);
+        EndHourLabel.TabIndex = 31;
+        // 
+        // EndDate
+        // 
+        EndDate.BackColor = Color.Transparent;
+        EndDate.EnableThemeChangeButton = true;
+        EndDate.Font = new Font("Segoe UI", 9.75F);
+        EndDate.ForeColor = Color.Black;
+        EndDate.HoverBackground = Color.Transparent;
+        EndDate.HoverOutline = Color.Transparent;
+        EndDate.Icon = (Image)resources.GetObject("EndDate.Icon");
+        EndDate.IconTint = Color.Black;
+        EndDate.Location = new Point(252, 39);
+        EndDate.Margin = new Padding(4, 3, 4, 3);
+        EndDate.Name = "EndDate";
+        EndDate.NormalBackground = Color.White;
+        EndDate.NormalOutline = Color.White;
+        EndDate.OutlineThickness = 2F;
+        EndDate.PressedBackground = Color.White;
+        EndDate.PressedOutline = Color.White;
+        EndDate.Rounding = 8;
+        EndDate.ShowIcon = true;
+        EndDate.Size = new Size(126, 44);
+        EndDate.TabIndex = 29;
+        EndDate.Theme = CuoreUI.Controls.Forms.DatePicker.Themes.Dark;
+        EndDate.Value = new DateTime(2025, 3, 21, 0, 0, 0, 0);
+        // 
+        // StartHour
+        // 
+        StartHour.AllowDrop = true;
+        StartHour.BackColor = Color.White;
+        StartHour.BorderColor = Color.Transparent;
+        StartHour.BorderFocusColor = Color.WhiteSmoke;
+        StartHour.BorderSize = 1;
+        StartHour.CausesValidation = false;
+        StartHour.Content = "";
+        StartHour.Font = new Font("Century Schoolbook", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        StartHour.ForeColor = Color.Gray;
+        StartHour.ImeMode = ImeMode.On;
+        StartHour.Location = new Point(102, 14);
+        StartHour.Margin = new Padding(4);
+        StartHour.Multiline = false;
+        StartHour.Name = "StartHour";
+        StartHour.Padding = new Padding(20, 4, 20, 0);
+        StartHour.PasswordChar = false;
+        StartHour.PlaceholderColor = Color.DimGray;
+        StartHour.PlaceholderText = "12:00";
+        StartHour.Rounding = 8;
+        StartHour.Size = new Size(89, 28);
+        StartHour.TabIndex = 30;
+        StartHour.TextOffset = new Size(0, 0);
+        StartHour.UnderlinedStyle = true;
+        // 
+        // StartHourLabel
+        // 
+        StartHourLabel.AllowDrop = true;
+        StartHourLabel.BackColor = Color.Transparent;
+        StartHourLabel.Content = "start\\ time";
+        StartHourLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
+        StartHourLabel.ForeColor = Color.Black;
+        StartHourLabel.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
+        StartHourLabel.Location = new Point(4, 14);
+        StartHourLabel.Margin = new Padding(4, 3, 4, 3);
+        StartHourLabel.Name = "StartHourLabel";
+        StartHourLabel.Size = new Size(100, 23);
+        StartHourLabel.TabIndex = 29;
+        // 
+        // StartDate
+        // 
+        StartDate.BackColor = Color.Transparent;
+        StartDate.EnableThemeChangeButton = true;
+        StartDate.Font = new Font("Segoe UI", 9.75F);
+        StartDate.ForeColor = Color.Black;
+        StartDate.HoverBackground = Color.Transparent;
+        StartDate.HoverOutline = Color.Transparent;
+        StartDate.Icon = (Image)resources.GetObject("StartDate.Icon");
+        StartDate.IconTint = Color.Black;
+        StartDate.Location = new Point(267, 3);
+        StartDate.Margin = new Padding(4, 3, 4, 3);
+        StartDate.Name = "StartDate";
+        StartDate.NormalBackground = Color.White;
+        StartDate.NormalOutline = Color.White;
+        StartDate.OutlineThickness = 2F;
+        StartDate.PressedBackground = Color.White;
+        StartDate.PressedOutline = Color.White;
+        StartDate.Rounding = 8;
+        StartDate.ShowIcon = true;
+        StartDate.Size = new Size(100, 46);
+        StartDate.TabIndex = 28;
+        StartDate.Theme = CuoreUI.Controls.Forms.DatePicker.Themes.Dark;
+        StartDate.Value = new DateTime(2025, 3, 21, 0, 0, 0, 0);
+        // 
+        // cuiGradientBorder1
+        // 
+        cuiGradientBorder1.GradientAngle = 0F;
+        cuiGradientBorder1.Location = new Point(0, 0);
+        cuiGradientBorder1.Name = "cuiGradientBorder1";
+        cuiGradientBorder1.OutlineThickness = 1F;
+        cuiGradientBorder1.PanelColor1 = Color.FromArgb(40, 52, 92);
+        cuiGradientBorder1.PanelColor2 = Color.Transparent;
+        cuiGradientBorder1.PanelOutlineColor1 = Color.Transparent;
+        cuiGradientBorder1.PanelOutlineColor2 = Color.Transparent;
+        cuiGradientBorder1.Rounding = new Padding(8);
+        cuiGradientBorder1.Size = new Size(638, 194);
+        cuiGradientBorder1.TabIndex = 24;
+        // 
+        // Cpu
+        // 
+        AutoScaleDimensions = new SizeF(9F, 19F);
+        AutoScaleMode = AutoScaleMode.Font;
+        BackColor = Color.FromArgb(241, 244, 254);
+        ClientSize = new Size(1227, 692);
+        Controls.Add(cuiBorder6);
+        Controls.Add(cuiBorder1);
+        Controls.Add(cuiBorder3);
+        Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        FormBorderStyle = FormBorderStyle.None;
+        Margin = new Padding(4);
+        Name = "Cpu";
+        Text = "Cpu";
+        cuiBorder1.ResumeLayout(false);
+        cuiBorder3.ResumeLayout(false);
+        cuiBorder6.ResumeLayout(false);
+        cuiBorder5.ResumeLayout(false);
+        CalendarDateLabel.ResumeLayout(false);
+        ResumeLayout(false);
+    }
+
+    #endregion
+
+    private CuoreUI.Controls.cuiBorder cuiBorder1;
+    private CuoreUI.Controls.cuiLabel cuiLabel2;
+    private CuoreUI.Controls.cuiLabel cuiLabel3;
+    private CuoreUI.Controls.cuiBorder cuiBorder3;
+    private CuoreUI.Controls.cuiBorder cuiBorder6;
+    private CuoreUI.Controls.cuiLabel ModelLabel;
+    private CuoreUI.Controls.cuiLabel CoresLabel;
+    private CuoreUI.Controls.cuiLabel cuiLabel4;
+    private CuoreUI.Controls.cuiLabel cuiLabel6;
+    private CuoreUI.Controls.cuiLabel cuiLabel1;
+    private CuoreUI.Controls.cuiSeparator cuiSeparator1;
+    private CuoreUI.Controls.cuiLabel cuiLabel13;
+    private CuoreUI.Controls.cuiBorder cuiBorder5;
+    private CuoreUI.Controls.cuiButton DisplayResults;
+    private CuoreUI.Controls.cuiBorder CalendarDateLabel;
+    private CuoreUI.Controls.cuiLabel DayLabel;
+    private CuoreUI.Controls.cuiCheckbox OneDayCheckbox;
+    private CuoreUI.Controls.cuiLabel ToLabel;
+    private CuoreUI.Controls.cuiLabel FromLabel;
+    private CuoreUI.Controls.cuiLabel StartDateLabel;
+    public CuoreUI.Controls.cuiTextBox2 EndHour;
+    private CuoreUI.Controls.cuiLabel EndHourLabel;
+    private CuoreUI.Controls.cuiCalendarDatePicker EndDate;
+    public CuoreUI.Controls.cuiTextBox2 StartHour;
+    private CuoreUI.Controls.cuiLabel StartHourLabel;
+    private CuoreUI.Controls.cuiCalendarDatePicker StartDate;
+    private CuoreUI.Controls.cuiGradientBorder cuiGradientBorder1;
+    private CuoreUI.Controls.cuiSeparator cuiSeparator2;
+    private CuoreUI.Controls.cuiLabel Top3LoadUsage;
+    private CuoreUI.Controls.cuiLabel Top2LoadUsage;
+    private CuoreUI.Controls.cuiLabel Top1LoadUsage;
+    private CuoreUI.Controls.cuiLabel TopLoadUsageLabel;
+    private CuoreUI.Controls.cuiSeparator cuiSeparator3;
+    private CuoreUI.Controls.cuiSeparator TopUsageSeparator;
+    private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart TopUsageChart;
+    private LiveChartsCore.SkiaSharpView.WinForms.CartesianChart TemperatureChart;
+}

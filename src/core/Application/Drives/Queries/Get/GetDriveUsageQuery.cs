@@ -6,4 +6,6 @@ public record GetDriveUsageQuery : IRequest<IEnumerable<DriveInformation>>
 {
     public DateTime StartDate { get; init; }
     public DateTime EndDate { get; init; }
+    public required string ClientId { get; init; }
+
 }

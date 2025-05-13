@@ -172,6 +172,10 @@ public class ProcessDataRepository(MongoDbClient client, ILogger<ProcessDataRepo
             return Error.Failure(ex.Message);
         }
     }
+    public Task<ProcessData?> RetrieveAsync(ObjectId objectId, string? clientId)
+    {
+        throw new NotImplementedException();
+    }
     public async Task<ProcessData?> RetrieveAsync(ObjectId objectId)
     {
         try
@@ -190,13 +194,13 @@ public class ProcessDataRepository(MongoDbClient client, ILogger<ProcessDataRepo
         return null;
     }
 
-    public async Task<ErrorOr<IEnumerable<ProcessData>>> RetrieveAsync(IEnumerable<int> pidLIst)
+    public async Task<ErrorOr<IEnumerable<ProcessData>>> RetrieveAsync(IEnumerable<int> pidLIst, string? clientId)
     {
         try
         {
             var filters = pidLIst.Select(pid =>
-                Builders<ProcessData>.Filter.Eq(pd => pd.Pid, pid));
-
+                Builders<ProcessData>.Filter.Eq(pd => pd.Pid, pid) &
+                Builders<ProcessData>.Filter.Lte(x => x.ClientId, clientId));
             var filter = Builders<ProcessData>.Filter.Or(filters);
 
             var processDataList = await _collection.FindAsync(filter);

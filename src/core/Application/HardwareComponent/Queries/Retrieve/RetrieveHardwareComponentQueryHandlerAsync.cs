@@ -10,6 +10,6 @@ public class RetrieveHardwareComponentQueryHandlerAsync(
 
     public async Task<HardwareComponents> Handle(RetrieveHardwareComponentQueryAsync request, CancellationToken cancellationToken)
     {
-        return await repository.RetrieveAsync();
+        return await repository.RetrieveAsync(request);
     }
 }

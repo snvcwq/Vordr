@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Hangfire.MemoryStorage.Database;
+using Microsoft.Extensions.Options;
 using Vordr.Client.Monitoring.Interfaces.Resources;
 using Vordr.Client.WebApi.Interfaces;
 using Vordr.Client.WebApi.Options;
@@ -20,6 +21,10 @@ public class MonitoringService(
     public async Task PerformHardwareComponentMonitoring()
     {
         var data = hardwareComponentsCollector.Collect();
+                
+        var data2 = data.Network.ToList();
+        data2.RemoveAll(d => d is null);
+        data.Network = data2;
         var msg = CreateSocketMessage(MessageType.HardwareComponents, data);
         await socketClientService.SendAsync(msg);
     }

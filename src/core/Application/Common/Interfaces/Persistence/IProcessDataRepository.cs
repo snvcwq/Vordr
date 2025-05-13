@@ -19,5 +19,5 @@ public interface IProcessDataRepository
     public Task<ErrorOr<IEnumerable<ProcessData>>> RetrieveAsync(IEnumerable<ProcessOsIdentifier> identifiers);
     
     public Task<ErrorOr<IEnumerable<ProcessData>>> RetrieveAsync();
-    public Task<ProcessData?> RetrieveAsync(ObjectId objectId);
+    public Task<ProcessData?> RetrieveAsync(ObjectId objectId, string? clientId);
 }

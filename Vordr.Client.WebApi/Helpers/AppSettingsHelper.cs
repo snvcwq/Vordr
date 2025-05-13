@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Vordr.Client.WebApi.Helpers;
 
@@ -20,7 +21,8 @@ public static class AppSettingsHelper
             var json = File.ReadAllText(AppSettingsFilePath);
             _configInstance = JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true
+                PropertyNameCaseInsensitive = true,
+                Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
             }) ?? throw new InvalidOperationException("Failed to deserialize appsettings");
         }
     }

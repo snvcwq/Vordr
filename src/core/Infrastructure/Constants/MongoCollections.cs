@@ -14,5 +14,7 @@ public static class MongoCollections
     public const string NetworkInfo = "networksInfo";
     public const string HardwareComponents = "hardwareComponents";
     public const string Workstation = "workstations";
+    public const string NotificationConfig = "notificationConfig";
+    public const string Alerts = "alerts";
 
 }

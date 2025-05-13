@@ -8,4 +8,5 @@ public record GetBatteryUsageQuery : IRequest<IEnumerable<PowerSupply>>
 {
     public DateTime StartDate { get; init; }
     public DateTime EndDate { get; init; }
+    public required string ClientId { get; init; }
 }

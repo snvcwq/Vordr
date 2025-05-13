@@ -2,6 +2,7 @@
 using Vordr.Application.Common.Interfaces.Persistence;
 using Vordr.Application.Common.Mappings.Process;
 using Vordr.Application.Models.Process;
+using Vordr.Application.StaticData;
 using Vordr.Domain.Entities;
 
 namespace Vordr.Application.Process.Commands.Upload;
@@ -15,6 +16,7 @@ public class UploadCollectedProcessesCommandHandler(
 {
     public async Task Handle(UploadCollectedProcessesCommand request, CancellationToken cancellationToken)
     {
+        StaticProcesses.UpdateData(request.ProcessList.ToList(), request.clientId);
         var retrievedProcesses = request.ProcessList.ToList();
         var processOsIdentifiers = retrievedProcesses.Select(p => new ProcessOsIdentifier(p.Name, p.Path, p.Version, p.Company));
         var storedProcessesResult = await processDataRepository.RetrieveAsync(processOsIdentifiers);

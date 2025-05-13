@@ -45,7 +45,11 @@ public class MongoDbClient(IOptions<MongoDbOptions> mongoOptions)
     
     public IMongoCollection<Workstation> WorkstationsCollection() =>
         Database().GetCollection<Workstation>(MongoCollections.Workstation);
+    public IMongoCollection<NotificationConfig> NotificationConfigCollection() =>
+        Database().GetCollection<NotificationConfig>(MongoCollections.NotificationConfig);
     
+    public IMongoCollection<Vordr.Domain.Entities.Alert> AlertsCollection() =>
+        Database().GetCollection<Vordr.Domain.Entities.Alert>(MongoCollections.Alerts);
     public IMongoDatabase Database() =>
         Client.GetDatabase(Db);
 }

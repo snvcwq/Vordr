@@ -1,4 +1,6 @@
-﻿namespace Presentation.Slices;
+﻿using CuoreUI.Controls;
+
+namespace Presentation.Slices;
 
 partial class Workstations
 {
@@ -30,15 +32,15 @@ partial class Workstations
     {
         tabPage2 = new TabPage();
         tabPage3 = new TabPage();
-        WorkstationsGroup = new CuoreUI.Controls.cuiGroupBox();
+        WorkstationsGroup = new cuiGroupBox();
         WorkstationsFlow = new FlowLayoutPanel();
-        cuiPanel1 = new CuoreUI.Controls.cuiPanel();
-        NewWorkstationIdentifier = new CuoreUI.Controls.cuiTextBox();
-        GenerateWorkstationidentifierButton = new CuoreUI.Controls.cuiButton();
-        cuiLabel3 = new CuoreUI.Controls.cuiLabel();
-        cuiLabel2 = new CuoreUI.Controls.cuiLabel();
-        WorkstationNameTextbox = new CuoreUI.Controls.cuiTextBox();
-        cuiLabel1 = new CuoreUI.Controls.cuiLabel();
+        cuiPanel1 = new cuiBorder();
+        NewWorkstationIdentifier = new cuiTextBox2();
+        GenerateWorkstationidentifierButton = new cuiButton();
+        cuiLabel3 = new cuiLabel();
+        cuiLabel2 = new cuiLabel();
+        WorkstationNameTextbox = new cuiTextBox2();
+        cuiLabel1 = new cuiLabel();
         WorkstationsGroup.SuspendLayout();
         cuiPanel1.SuspendLayout();
         SuspendLayout();
@@ -105,27 +107,22 @@ partial class Workstations
         // 
         // NewWorkstationIdentifier
         // 
-        NewWorkstationIdentifier.BackgroundColor = Color.White;
+        NewWorkstationIdentifier.BackColor = Color.White;
         NewWorkstationIdentifier.BorderColor = Color.FromArgb(128, 128, 128, 128);
+        NewWorkstationIdentifier.BorderFocusColor = Color.FromArgb(255, 106, 0);
+        NewWorkstationIdentifier.BorderSize = 1;
         NewWorkstationIdentifier.Content = "";
-        NewWorkstationIdentifier.FocusBackgroundColor = Color.White;
-        NewWorkstationIdentifier.FocusBorderColor = Color.White;
-        NewWorkstationIdentifier.FocusImageTint = Color.White;
         NewWorkstationIdentifier.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
         NewWorkstationIdentifier.ForeColor = Color.Gray;
-        NewWorkstationIdentifier.Image = null;
-        NewWorkstationIdentifier.ImageExpand = new Point(0, 0);
-        NewWorkstationIdentifier.ImageOffset = new Point(0, 0);
-        NewWorkstationIdentifier.Location = new Point(49, 203);
+        NewWorkstationIdentifier.Location = new Point(19, 202);
         NewWorkstationIdentifier.Margin = new Padding(4);
         NewWorkstationIdentifier.Multiline = false;
         NewWorkstationIdentifier.Name = "NewWorkstationIdentifier";
-        NewWorkstationIdentifier.NormalImageTint = Color.White;
         NewWorkstationIdentifier.Padding = new Padding(15, 13, 15, 0);
         NewWorkstationIdentifier.PasswordChar = false;
         NewWorkstationIdentifier.PlaceholderColor = SystemColors.WindowText;
         NewWorkstationIdentifier.PlaceholderText = "";
-        NewWorkstationIdentifier.Rounding = new Padding(8);
+        NewWorkstationIdentifier.Rounding = 8;
         NewWorkstationIdentifier.Size = new Size(1009, 40);
         NewWorkstationIdentifier.TabIndex = 5;
         NewWorkstationIdentifier.TextOffset = new Size(0, 0);
@@ -151,11 +148,10 @@ partial class Workstations
         GenerateWorkstationidentifierButton.ImageAutoCenter = true;
         GenerateWorkstationidentifierButton.ImageExpand = new Point(0, 0);
         GenerateWorkstationidentifierButton.ImageOffset = new Point(0, 0);
-        GenerateWorkstationidentifierButton.Location = new Point(49, 165);
+        GenerateWorkstationidentifierButton.ImageTint = Color.White;
+        GenerateWorkstationidentifierButton.Location = new Point(47, 151);
         GenerateWorkstationidentifierButton.Name = "GenerateWorkstationidentifierButton";
         GenerateWorkstationidentifierButton.NormalBackground = Color.White;
-        GenerateWorkstationidentifierButton.NormalForeColor = Color.Black;
-        GenerateWorkstationidentifierButton.NormalImageTint = Color.White;
         GenerateWorkstationidentifierButton.NormalOutline = Color.FromArgb(64, 128, 128, 128);
         GenerateWorkstationidentifierButton.OutlineThickness = 1F;
         GenerateWorkstationidentifierButton.PressedBackground = Color.WhiteSmoke;
@@ -165,7 +161,6 @@ partial class Workstations
         GenerateWorkstationidentifierButton.Rounding = new Padding(8);
         GenerateWorkstationidentifierButton.Size = new Size(349, 31);
         GenerateWorkstationidentifierButton.TabIndex = 4;
-        GenerateWorkstationidentifierButton.TextAlignment = StringAlignment.Center;
         GenerateWorkstationidentifierButton.TextOffset = new Point(0, 0);
         GenerateWorkstationidentifierButton.Click += GenerateWorkstationidentifierButton_Click;
         // 
@@ -174,51 +169,44 @@ partial class Workstations
         cuiLabel3.BackColor = Color.Transparent;
         cuiLabel3.Content = "2\\.\\ Generate\\ workstation\\ identifier";
         cuiLabel3.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        cuiLabel3.HorizontalAlignment = StringAlignment.Center;
-        cuiLabel3.Location = new Point(4, 133);
+        cuiLabel3.HorizontalAlignment = cuiLabel.HorizontalAlignments.Left;
+        cuiLabel3.Location = new Point(19, 119);
         cuiLabel3.Margin = new Padding(4, 3, 4, 3);
         cuiLabel3.Name = "cuiLabel3";
         cuiLabel3.Size = new Size(327, 26);
         cuiLabel3.TabIndex = 3;
-        cuiLabel3.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiLabel2
         // 
+        cuiLabel2.Anchor = AnchorStyles.Left;
         cuiLabel2.BackColor = Color.Transparent;
-        cuiLabel2.Content = "1\\.\\ Select\\ a\\ name\\ for\\ workstation\\ or\\ leave\\ empty\\ for\\ auto\\ name\\ defining";
+        cuiLabel2.Content = "1\\.\\ Insert\\ workstation\\ name";
         cuiLabel2.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        cuiLabel2.HorizontalAlignment = StringAlignment.Center;
-        cuiLabel2.Location = new Point(4, 39);
+        cuiLabel2.HorizontalAlignment = cuiLabel.HorizontalAlignments.Left;
+        cuiLabel2.Location = new Point(19, 39);
         cuiLabel2.Margin = new Padding(4, 3, 4, 3);
         cuiLabel2.Name = "cuiLabel2";
-        cuiLabel2.Size = new Size(712, 24);
+        cuiLabel2.Size = new Size(284, 29);
         cuiLabel2.TabIndex = 2;
-        cuiLabel2.VerticalAlignment = StringAlignment.Near;
         // 
         // WorkstationNameTextbox
         // 
-        WorkstationNameTextbox.BackColor = Color.Transparent;
-        WorkstationNameTextbox.BackgroundColor = Color.White;
+        WorkstationNameTextbox.BackColor = Color.White;
         WorkstationNameTextbox.BorderColor = Color.Black;
-        WorkstationNameTextbox.Content = "Insert workstation name";
-        WorkstationNameTextbox.FocusBackgroundColor = Color.White;
-        WorkstationNameTextbox.FocusBorderColor = Color.FromArgb(255, 106, 0);
-        WorkstationNameTextbox.FocusImageTint = Color.White;
+        WorkstationNameTextbox.BorderFocusColor = Color.FromArgb(255, 106, 0);
+        WorkstationNameTextbox.BorderSize = 1;
+        WorkstationNameTextbox.Content = "";
         WorkstationNameTextbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         WorkstationNameTextbox.ForeColor = Color.Gray;
-        WorkstationNameTextbox.Image = null;
-        WorkstationNameTextbox.ImageExpand = new Point(0, 0);
-        WorkstationNameTextbox.ImageOffset = new Point(0, 0);
-        WorkstationNameTextbox.Location = new Point(49, 89);
+        WorkstationNameTextbox.Location = new Point(47, 75);
         WorkstationNameTextbox.Margin = new Padding(4);
         WorkstationNameTextbox.Multiline = false;
         WorkstationNameTextbox.Name = "WorkstationNameTextbox";
-        WorkstationNameTextbox.NormalImageTint = Color.White;
         WorkstationNameTextbox.Padding = new Padding(20, 8, 20, 0);
         WorkstationNameTextbox.PasswordChar = false;
         WorkstationNameTextbox.PlaceholderColor = SystemColors.WindowText;
         WorkstationNameTextbox.PlaceholderText = "";
-        WorkstationNameTextbox.Rounding = new Padding(8);
+        WorkstationNameTextbox.Rounding = 8;
         WorkstationNameTextbox.Size = new Size(349, 37);
         WorkstationNameTextbox.TabIndex = 1;
         WorkstationNameTextbox.TextOffset = new Size(0, 0);
@@ -227,15 +215,14 @@ partial class Workstations
         // cuiLabel1
         // 
         cuiLabel1.BackColor = Color.Transparent;
-        cuiLabel1.Content = "Add\\ a\\ new\\ workstation\\ to\\ network";
+        cuiLabel1.Content = "Add\\ a\\ new\\ workstation\\ to\\ network:";
         cuiLabel1.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        cuiLabel1.HorizontalAlignment = StringAlignment.Center;
+        cuiLabel1.HorizontalAlignment = cuiLabel.HorizontalAlignments.Left;
         cuiLabel1.Location = new Point(19, 13);
         cuiLabel1.Margin = new Padding(4, 3, 4, 3);
         cuiLabel1.Name = "cuiLabel1";
         cuiLabel1.Size = new Size(377, 32);
         cuiLabel1.TabIndex = 0;
-        cuiLabel1.VerticalAlignment = StringAlignment.Near;
         // 
         // Workstations
         // 
@@ -262,11 +249,11 @@ partial class Workstations
     private FlowLayoutPanel flowLayoutPanel1;
     private CuoreUI.Controls.cuiGroupBox WorkstationsGroup;
     private FlowLayoutPanel WorkstationsFlow;
-    private CuoreUI.Controls.cuiPanel cuiPanel1;
+    private CuoreUI.Controls.cuiBorder cuiPanel1;
     private CuoreUI.Controls.cuiLabel cuiLabel1;
     private CuoreUI.Controls.cuiLabel cuiLabel2;
-    private CuoreUI.Controls.cuiTextBox WorkstationNameTextbox;
+    private CuoreUI.Controls.cuiTextBox2 WorkstationNameTextbox;
     private CuoreUI.Controls.cuiButton GenerateWorkstationidentifierButton;
     private CuoreUI.Controls.cuiLabel cuiLabel3;
-    private CuoreUI.Controls.cuiTextBox NewWorkstationIdentifier;
+    private CuoreUI.Controls.cuiTextBox2 NewWorkstationIdentifier;
 }

@@ -1,4 +1,6 @@
-﻿namespace Presentation.Controls;
+﻿using CuoreUI.Controls;
+
+namespace Presentation.Controls;
 
 partial class WorkstationControl
 {
@@ -28,36 +30,35 @@ partial class WorkstationControl
     /// </summary>
     private void InitializeComponent()
     {
-        MonitoreEnabledSwitch = new CuoreUI.Controls.cuiSwitch();
-        cuiPanel1 = new CuoreUI.Controls.cuiPanel();
-        StateValue = new CuoreUI.Controls.cuiLabel();
-        cuiLabel2 = new CuoreUI.Controls.cuiLabel();
-        cuiSeparator1 = new CuoreUI.Controls.cuiSeparator();
-        WorkstationName = new CuoreUI.Controls.cuiLabel();
-        DeleteWorkstationButton = new CuoreUI.Controls.cuiButton();
-        cuiLabel1 = new CuoreUI.Controls.cuiLabel();
-        cuiPanel2 = new CuoreUI.Controls.cuiPanel();
+        MonitoreEnabledSwitch = new cuiSwitch();
+        cuiPanel1 = new cuiBorder();
+        StateValue = new cuiLabel();
+        cuiLabel2 = new cuiLabel();
+        cuiSeparator1 = new cuiSeparator();
+        WorkstationName = new cuiLabel();
+        DeleteWorkstationButton = new cuiButton();
+        cuiLabel1 = new cuiLabel();
+        cuiPanel2 = new cuiBorder();
         cuiPanel1.SuspendLayout();
         SuspendLayout();
         // 
         // MonitoreEnabledSwitch
         // 
         MonitoreEnabledSwitch.CheckedBackground = Color.White;
-        MonitoreEnabledSwitch.CheckedForeground = Color.FromArgb(43, 152, 121);
-        MonitoreEnabledSwitch.CheckedOutlineColor = Color.FromArgb(43, 152, 121);
-        MonitoreEnabledSwitch.CheckedSymbolColor = Color.White;
+        MonitoreEnabledSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
+        MonitoreEnabledSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
         MonitoreEnabledSwitch.ForeColor = Color.FromArgb(171, 171, 171);
         MonitoreEnabledSwitch.Location = new Point(175, 58);
         MonitoreEnabledSwitch.Name = "MonitoreEnabledSwitch";
+        MonitoreEnabledSwitch.OutlineStyle = true;
         MonitoreEnabledSwitch.OutlineThickness = 1F;
         MonitoreEnabledSwitch.ShowSymbols = true;
         MonitoreEnabledSwitch.Size = new Size(62, 28);
         MonitoreEnabledSwitch.TabIndex = 0;
         MonitoreEnabledSwitch.ThumbSizeModifier = new Size(0, 0);
         MonitoreEnabledSwitch.UncheckedBackground = Color.White;
-        MonitoreEnabledSwitch.UncheckedForeground = Color.FromArgb(169, 86, 81);
-        MonitoreEnabledSwitch.UncheckedOutlineColor = Color.FromArgb(169, 86, 81);
-        MonitoreEnabledSwitch.UncheckedSymbolColor = Color.White;
+        MonitoreEnabledSwitch.UncheckedForeground = Color.FromArgb(194, 50, 50);
+        MonitoreEnabledSwitch.UncheckedOutlineColor = Color.FromArgb(194, 50, 50);
         MonitoreEnabledSwitch.CheckedChanged += MonitoreEnabledSwitch_CheckedChanged;
         // 
         // cuiPanel1
@@ -89,25 +90,23 @@ partial class WorkstationControl
         // 
         StateValue.Content = "";
         StateValue.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        StateValue.HorizontalAlignment = StringAlignment.Center;
+        StateValue.HorizontalAlignment = cuiLabel.HorizontalAlignments.Center;
         StateValue.Location = new Point(84, 85);
         StateValue.Margin = new Padding(4, 3, 4, 3);
         StateValue.Name = "StateValue";
         StateValue.Size = new Size(153, 22);
         StateValue.TabIndex = 6;
-        StateValue.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiLabel2
         // 
         cuiLabel2.Content = "state";
         cuiLabel2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        cuiLabel2.HorizontalAlignment = StringAlignment.Center;
+        cuiLabel2.HorizontalAlignment = cuiLabel.HorizontalAlignments.Center;
         cuiLabel2.Location = new Point(13, 85);
         cuiLabel2.Margin = new Padding(4, 3, 4, 3);
         cuiLabel2.Name = "cuiLabel2";
         cuiLabel2.Size = new Size(84, 22);
         cuiLabel2.TabIndex = 5;
-        cuiLabel2.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiSeparator1
         // 
@@ -124,13 +123,12 @@ partial class WorkstationControl
         // WorkstationName
         // 
         WorkstationName.Content = "";
-        WorkstationName.HorizontalAlignment = StringAlignment.Center;
+        WorkstationName.HorizontalAlignment = cuiLabel.HorizontalAlignments.Center;
         WorkstationName.Location = new Point(71, 13);
         WorkstationName.Margin = new Padding(4, 3, 4, 3);
         WorkstationName.Name = "WorkstationName";
         WorkstationName.Size = new Size(175, 32);
         WorkstationName.TabIndex = 3;
-        WorkstationName.VerticalAlignment = StringAlignment.Near;
         // 
         // DeleteWorkstationButton
         // 
@@ -152,11 +150,10 @@ partial class WorkstationControl
         DeleteWorkstationButton.ImageAutoCenter = true;
         DeleteWorkstationButton.ImageExpand = new Point(0, 0);
         DeleteWorkstationButton.ImageOffset = new Point(0, 0);
+        DeleteWorkstationButton.ImageTint = Color.White;
         DeleteWorkstationButton.Location = new Point(71, 113);
         DeleteWorkstationButton.Name = "DeleteWorkstationButton";
         DeleteWorkstationButton.NormalBackground = Color.White;
-        DeleteWorkstationButton.NormalForeColor = Color.FromArgb(169, 86, 81);
-        DeleteWorkstationButton.NormalImageTint = Color.White;
         DeleteWorkstationButton.NormalOutline = Color.FromArgb(169, 86, 81);
         DeleteWorkstationButton.OutlineThickness = 1F;
         DeleteWorkstationButton.PressedBackground = Color.FromArgb(169, 86, 81);
@@ -166,7 +163,6 @@ partial class WorkstationControl
         DeleteWorkstationButton.Rounding = new Padding(8);
         DeleteWorkstationButton.Size = new Size(116, 31);
         DeleteWorkstationButton.TabIndex = 2;
-        DeleteWorkstationButton.TextAlignment = StringAlignment.Center;
         DeleteWorkstationButton.TextOffset = new Point(0, 0);
         DeleteWorkstationButton.Click += DeleteWorkstationButton_Click;
         // 
@@ -174,25 +170,24 @@ partial class WorkstationControl
         // 
         cuiLabel1.Content = "monitore";
         cuiLabel1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        cuiLabel1.HorizontalAlignment = StringAlignment.Center;
+        cuiLabel1.HorizontalAlignment = cuiLabel.HorizontalAlignments.Center;
         cuiLabel1.Location = new Point(13, 64);
         cuiLabel1.Margin = new Padding(4, 3, 4, 3);
         cuiLabel1.Name = "cuiLabel1";
         cuiLabel1.Size = new Size(114, 22);
         cuiLabel1.TabIndex = 1;
-        cuiLabel1.VerticalAlignment = StringAlignment.Near;
         // 
         // cuiPanel2
         // 
-        cuiPanel2.BackgroundImage = Resources.workstation;
+        cuiPanel2.BackgroundImage = Resources.workstation__1_;
         cuiPanel2.BackgroundImageLayout = ImageLayout.Stretch;
-        cuiPanel2.Location = new Point(13, 13);
+        cuiPanel2.Location = new Point(13, 10);
         cuiPanel2.Name = "cuiPanel2";
         cuiPanel2.OutlineThickness = 1F;
         cuiPanel2.PanelColor = Color.Transparent;
         cuiPanel2.PanelOutlineColor = Color.Transparent;
         cuiPanel2.Rounding = new Padding(8);
-        cuiPanel2.Size = new Size(51, 32);
+        cuiPanel2.Size = new Size(51, 35);
         cuiPanel2.TabIndex = 0;
         // 
         // WorkstationControl
@@ -212,10 +207,10 @@ partial class WorkstationControl
     #endregion
 
     private CuoreUI.Controls.cuiSwitch MonitoreEnabledSwitch;
-    private CuoreUI.Controls.cuiPanel cuiPanel2;
+    private CuoreUI.Controls.cuiBorder cuiPanel2;
     private CuoreUI.Controls.cuiButton DeleteWorkstationButton;
     private CuoreUI.Controls.cuiLabel cuiLabel1;
-    public CuoreUI.Controls.cuiPanel cuiPanel1;
+    public CuoreUI.Controls.cuiBorder cuiPanel1;
     private CuoreUI.Controls.cuiLabel WorkstationName;
     private CuoreUI.Controls.cuiSeparator cuiSeparator1;
     private CuoreUI.Controls.cuiLabel StateValue;

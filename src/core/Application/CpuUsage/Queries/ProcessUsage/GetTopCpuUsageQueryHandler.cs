@@ -19,7 +19,7 @@ public class GetTopCpuUsageQueryHandler(IProcessMetricsRepository repository, IP
         var result = new List<TopCpu>();
         foreach (var group in uniqueProcessMetrics)
         {
-            var data = await processDataRepository.RetrieveAsync(group.ProcessObjectId);
+            var data = await processDataRepository.RetrieveAsync(group.ProcessObjectId, request.ClientId);
             if (data is null)
             {
                 break;

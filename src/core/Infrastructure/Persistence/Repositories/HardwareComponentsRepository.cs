@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using Vordr.Application.Common.Interfaces.Persistence;
+using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 using Vordr.Domain.Entities;
 
 namespace Vordr.Infrastructure.Persistence.Repositories;
@@ -18,12 +19,12 @@ public class HardwareComponentsRepository(MongoDbClient client) : IHardwareCompo
 
         await _collection.ReplaceOneAsync(filter, data, options);
     }
-    public async Task<HardwareComponents> RetrieveAsync()
+    public async Task<HardwareComponents> RetrieveAsync(RetrieveHardwareComponentQueryAsync queryAsync)
     {
-        return (await _collection.FindAsync(FilterDefinition<HardwareComponents>.Empty)).SingleOrDefault();
+        return (await _collection.FindAsync(Builders<HardwareComponents>.Filter.Eq(x => x.ClientId, queryAsync.ClientId))).SingleOrDefault();
     }
-    public HardwareComponents Retrieve()
+    public HardwareComponents Retrieve(RetrieveHardwareComponentQuery query)
     {
-        return (_collection.FindSync(FilterDefinition<HardwareComponents>.Empty)).SingleOrDefault();
+        return (_collection.FindSync(Builders<HardwareComponents>.Filter.Eq(x => x.ClientId, query.ClientId))).SingleOrDefault();
     }
 }

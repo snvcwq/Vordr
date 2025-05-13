@@ -1,5 +1,6 @@
 ﻿using Vordr.Application.Common.Interfaces.Persistence;
 using Vordr.Application.Common.Mappings.HardwareMetrics;
+using Vordr.Application.StaticData;
 
 namespace Vordr.Application.Hardware.Commands.UploadHardwareMetrics;
 
@@ -14,6 +15,7 @@ public class UploadHardwareMetricsCommandHandler(
 {
     public async Task Handle(UploadHardwareMetricsCommand request, CancellationToken cancellationToken)
     {
+        DashboardInformation.UpdateData(request.HardwareReport, request.clientId);
         if(request.HardwareReport is null)
             return;
         var report = request.HardwareReport;
@@ -36,7 +38,6 @@ public class UploadHardwareMetricsCommandHandler(
 
         if (report.Networks.Count != 0)
             tasks.AddRange(report.Networks.Select(networkReport => networkRepository.UploadAsync(networkReport.ToNetworkInformation(request.clientId))));
-
         await Task.WhenAll(tasks);
     }
 

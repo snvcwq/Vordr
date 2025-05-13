@@ -30,7 +30,8 @@ public class PowerSupplyRepository(MongoDbClient client, ILogger<PowerSupplyRepo
     {
         var filterBuilder = Builders<PowerSupply>.Filter;
         var filter = filterBuilder.Gte(x => x.CapturedAtUtc, query.StartDate) &
-                     filterBuilder.Lte(x => x.CapturedAtUtc, query.EndDate);
+                     filterBuilder.Lte(x => x.CapturedAtUtc, query.EndDate)&
+                     filterBuilder.Lte(x => x.ClientId, query.ClientId);
         
         return await (await _collection.FindAsync(filter)).ToListAsync();
     }

@@ -34,6 +34,7 @@ public static class DependencyInjection
     private static IServiceCollection AddMigrations(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddSingleton<AddIndexesToBatteryMigration>();
+        serviceCollection.AddSingleton<AddAlertsMigration>();
         return serviceCollection;
     }
 
@@ -50,7 +51,8 @@ public static class DependencyInjection
         serviceCollection.AddScoped<IPowerSupplyRepository, PowerSupplyRepository>();
         serviceCollection.AddScoped<IHardwareComponentsRepository, HardwareComponentsRepository>();
         serviceCollection.AddScoped<IWorkstationRepository, WorkstationsRepository>();
-
+        serviceCollection.AddScoped<INotificationRepository, NotificationRepository>();
+        serviceCollection.AddScoped<IAlertRepository, AlertRepository>();
         
         return serviceCollection;
     }

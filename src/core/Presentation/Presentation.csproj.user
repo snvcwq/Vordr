@@ -1,8 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Controls\AlertControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controls\ComputerDropdownControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Controls\WorkstationControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Slices\Alerts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Slices\Battery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Slices\Cpu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Slices\Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Slices\Drives.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Slices\Gpu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Slices\Monitoring.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Slices\Processes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Slices\Ram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Slices\Settings.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="Slices\Workstations.cs">
       <SubType>Form</SubType>

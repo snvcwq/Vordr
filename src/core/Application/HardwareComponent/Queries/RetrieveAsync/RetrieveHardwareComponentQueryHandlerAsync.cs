@@ -10,7 +10,7 @@ public class RetrieveHardwareComponentQueryHandler(
 
     public Task<HardwareComponents> Handle(RetrieveHardwareComponentQuery request, CancellationToken cancellationToken)
     {
-        var x = repository.Retrieve();
+        var x = repository.Retrieve(request);
         return Task.FromResult(x);
     }
 }

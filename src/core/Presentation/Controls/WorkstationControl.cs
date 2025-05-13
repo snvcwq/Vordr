@@ -30,6 +30,7 @@ public partial class WorkstationControl : UserControl
         SetStateValue(workstation.State);
         MonitoreEnabledSwitch.Checked = workstation.State is WorkstationState.Monitoring or WorkstationState.PendingActivation;
     }
+
     private void SetStateValue(WorkstationState state)
     {
         StateValue.Content = state.ToString();

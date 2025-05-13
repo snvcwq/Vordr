@@ -30,7 +30,8 @@ public class CpuLoadRepository(MongoDbClient client, ILogger<CpuLoadRepository> 
     {
         var filterBuilder = Builders<CpuLoad>.Filter;
         var filter = filterBuilder.Gte(x => x.CapturedAtUtc, usageQuery.StartDate) &
-                     filterBuilder.Lte(x => x.CapturedAtUtc, usageQuery.EndDate);
+                     filterBuilder.Lte(x => x.CapturedAtUtc, usageQuery.EndDate)&
+                     filterBuilder.Lte(x => x.ClientId, usageQuery.ClientId);
         
         return await (await _collection.FindAsync(filter)).ToListAsync();
     }

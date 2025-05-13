@@ -30,7 +30,8 @@ public class GpuLoadRepository(MongoDbClient client, ILogger<GpuLoadRepository> 
     {
         var filterBuilder = Builders<GpuLoad>.Filter;
         var filter = filterBuilder.Gte(x => x.CapturedAtUtc, query.StartDate) &
-                     filterBuilder.Lte(x => x.CapturedAtUtc, query.EndDate);
+                     filterBuilder.Lte(x => x.CapturedAtUtc, query.EndDate)&
+                     filterBuilder.Lte(x => x.ClientId, query.ClientId);
         
         return await (await _collection.FindAsync(filter)).ToListAsync();
     }

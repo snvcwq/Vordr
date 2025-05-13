@@ -4,23 +4,34 @@ using Vordr.Application.HardwareComponent.Commands;
 using Vordr.Application.Models.Hardware;
 using Vordr.Application.Models.Process;
 using Vordr.Application.Process.Commands.Upload;
+using Vordr.Application.Workstations.GetWorkstation;
+using Vordr.Application.Workstations.GetWorkstationById;
 using Vordr.Common.Enums;
 using Vordr.Common.Helpers;
 using Vordr.Common.Messaging;
 using Vordr.Common.Messaging.Messages.HardwareComponents;
 using Vordr.Common.Messaging.Messages.Process;
 using Vordr.Common.Messaging.Messages.Registration;
+using Vordr.Domain.Enums;
 using HardwareReport = Vordr.Common.Messaging.Messages.HardwareReports.HardwareReport;
 
 namespace Vordr.Application.SocketMessages.HandleSocketMessagesCommand;
 
 public class HandleSocketMessagesCommandHandler(ISender sender) : IRequestHandler<HandleSocketMessagesCommand, SocketResponse>
 {
-
     public async Task<SocketResponse> Handle(HandleSocketMessagesCommand request, CancellationToken cancellationToken)
     {
         var msg = request.Message;
         object msgResponse;
+        if (msg.Type is not MessageType.Registration)
+        {
+            var workstation = await sender.Send(new GetWorkstationByIdCommand(request.Message.ClientId), cancellationToken);
+            if (workstation is null)
+                return new SocketResponse(MessageType.Registration, new RegistrationResponse(false));
+            if(workstation.State is not WorkstationState.Monitoring)
+                return new SocketResponse(MessageType.Registration, new RegistrationResponse(false));
+            
+        }
         switch (msg.Type)
         {
             case MessageType.HardwareData:

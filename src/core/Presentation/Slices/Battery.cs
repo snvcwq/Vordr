@@ -3,6 +3,7 @@ using LiveChartsCore.Measure;
 using MediatR;
 using Presentation.Helpers;
 using Presentation.Interface;
+using Presentation.StaticData;
 using Vordr.Application.Battery.Queries;
 using Vordr.Application.HardwareComponent.Queries.RetrieveAsync;
 using Vordr.Domain.Entities;
@@ -20,8 +21,10 @@ public partial class Battery : Form, IResettable
 
     private async void UpdateComponents()
     {
-        var hc1 = (await _sender.Send(new RetrieveHardwareComponentQuery()));
-        if (hc1 is null)
+        var command = new RetrieveHardwareComponentQuery
+        { ClientId = SelectedWorkstation.GetSelectedWorkstationId() };
+        var hc1 = (await _sender.Send(command));
+        if (hc1?.Battery is null)
             return;
         var hc = hc1.Battery;
         ModelLabel.Content = hc.Name;
@@ -40,7 +43,8 @@ public partial class Battery : Form, IResettable
             await DefineCharts(new GetBatteryUsageQuery
             {
                 StartDate = DateTime.UtcNow,
-                EndDate = DateTime.UtcNow.AddDays(-1)
+                EndDate = DateTime.UtcNow.AddDays(-1),
+                ClientId = SelectedWorkstation.GetSelectedWorkstationId()
             });
         }
         catch (Exception exception)
@@ -73,7 +77,43 @@ public partial class Battery : Form, IResettable
 
     private async void DisplayResults_Click(object sender, EventArgs e)
     {
-        
+        try
+        {
+            if (string.IsNullOrEmpty(StartHour.Content) || string.IsNullOrEmpty(EndHour.Content))
+            {
+                MessageBox.Show("Please fill start hour and end hour fields");
+                return;
+            }
+
+            var startHourTuple = StartHour.Content.Split(':').Select(int.Parse).ToArray();
+            var endHourTuple = EndHour.Content.Split(':').Select(int.Parse).ToArray();
+            var validationResult = ChartHelper.ValidateTime(startHourTuple[0], startHourTuple[1]);
+            var validationResult2 = ChartHelper.ValidateTime(endHourTuple[0], endHourTuple[1]);
+            if (validationResult != null || validationResult2 != null)
+            {
+                MessageBox.Show($"{validationResult} {validationResult2}");
+                return;
+            }
+            var endDate = OneDayCheckbox.Checked ? StartDate.Value : EndDate.Value;
+
+            var query = new GetBatteryUsageQuery
+            {
+                StartDate = ChartHelper.DefineTime(StartDate.Value, startHourTuple[0], startHourTuple[1]),
+                EndDate = ChartHelper.DefineTime(endDate, endHourTuple[0], endHourTuple[1]),
+                ClientId = SelectedWorkstation.GetSelectedWorkstationId()
+            };
+            validationResult = ChartHelper.ValidateTime(endHourTuple[0], endHourTuple[1]);
+            if (validationResult != null)
+            {
+                MessageBox.Show(validationResult);
+                return;
+            }
+            await DefineCharts(query);
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show(exception.Message);
+        }
     }
 
     private void SetChargeChart(IEnumerable<PowerSupply> batteryData)

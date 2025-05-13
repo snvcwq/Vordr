@@ -13,6 +13,7 @@
 	</PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MailKit" Version="4.12.0" />
         <PackageReference Include="MediatR" Version="12.5.0"/>
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0-preview1"/>
         <PackageReference Include="FluentValidation" Version="12.0.0-preview1"/>
@@ -29,6 +30,7 @@
     </ItemGroup>
     
     <ItemGroup>
+      <Folder Include="Process\Events\" />
       <Folder Include="Services\" />
     </ItemGroup>
     

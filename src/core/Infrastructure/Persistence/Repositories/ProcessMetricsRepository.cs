@@ -50,7 +50,8 @@ public class ProcessMetricsRepository(MongoDbClient client, ILogger<ProcessMetri
     {
             var filterBuilder = Builders<ProcessMetrics>.Filter;
             var filter = filterBuilder.Gte(x => x.LastModifiedUtc, query.StartDate) &
-                         filterBuilder.Lte(x => x.LastModifiedUtc, query.EndDate);
+                         filterBuilder.Lte(x => x.LastModifiedUtc, query.EndDate)&
+                         filterBuilder.Lte(x => x.ClientId, query.ClientId);
         
             return await (await _collection.FindAsync(filter)).ToListAsync();
     }

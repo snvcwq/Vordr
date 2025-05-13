@@ -11,5 +11,6 @@ public interface IWorkstationRepository
     
     public Task<bool> RemoveWorkstationAsync(string clientId);
     public Task<IEnumerable<Workstation>> GetWorkstationAsync();
+    public Task<Workstation?> GetWorkstationAsync(string clientId);
     public Task<bool> ChangeMonitoringStateAsync(string clientId, WorkstationState state);
 }
