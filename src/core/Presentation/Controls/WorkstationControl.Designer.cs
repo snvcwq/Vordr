@@ -123,6 +123,8 @@ partial class WorkstationControl
         // WorkstationName
         // 
         WorkstationName.Content = "";
+        WorkstationName.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        WorkstationName.ForeColor = Color.FromArgb(57, 72, 103);
         WorkstationName.HorizontalAlignment = cuiLabel.HorizontalAlignments.Center;
         WorkstationName.Location = new Point(71, 13);
         WorkstationName.Margin = new Padding(4, 3, 4, 3);
@@ -178,7 +180,7 @@ partial class WorkstationControl
         // 
         // cuiPanel2
         // 
-        cuiPanel2.BackgroundImage = Resources.workstation__1_;
+        cuiPanel2.BackgroundImage = Resources.monitor__1_;
         cuiPanel2.BackgroundImageLayout = ImageLayout.Stretch;
         cuiPanel2.Location = new Point(13, 10);
         cuiPanel2.Name = "cuiPanel2";
