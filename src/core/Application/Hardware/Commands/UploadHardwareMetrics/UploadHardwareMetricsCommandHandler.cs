@@ -1,4 +1,5 @@
-﻿using Vordr.Application.Common.Interfaces.Persistence;
+﻿using Vordr.Application.Common.Interfaces;
+using Vordr.Application.Common.Interfaces.Persistence;
 using Vordr.Application.Common.Mappings.HardwareMetrics;
 using Vordr.Application.Notfication.SendNotfication;
 using Vordr.Application.StaticData;
@@ -14,13 +15,14 @@ public class UploadHardwareMetricsCommandHandler(
     INetworkRepository networkRepository,
     IDriveInfoRepository driveRepository,
     IAlertRepository alertRepository,
-    ISender sender
+    ISender sender,
+    IPushNotifiction pushNotifiction
     ) : IRequestHandler<UploadHardwareMetricsCommand>
 {
     public async Task Handle(UploadHardwareMetricsCommand request, CancellationToken cancellationToken)
     {
         DashboardInformation.UpdateData(request.HardwareReport, request.clientId);
-        if(request.HardwareReport is null)
+        if (request.HardwareReport is null)
             return;
 
         var gpuIsMore = await alertRepository.GetByTypeAsync(AlertType.GpuIsMoreThan);
@@ -32,87 +34,128 @@ public class UploadHardwareMetricsCommandHandler(
         var batteryLevelIsMore = await alertRepository.GetByTypeAsync(AlertType.BatteryLevelIsLessThan);
         var batteryDegradationLevelIsMore = await alertRepository.GetByTypeAsync(AlertType.BatteryDegradationLevelIsLessThan);
 
-        if (gpuIsMore.Enabled)
+        if (gpuIsMore.Enabled && request.HardwareReport.Gpu != null)
         {
-            if (request.HardwareReport.Gpu != null)
+            if (int.TryParse(gpuIsMore.Value, out var threshold))
             {
-                if (request.HardwareReport.Gpu.AvgLoad >= Convert.ToInt32(gpuIsMore.Value))
+                var current = request.HardwareReport.Gpu.AvgLoad;
+                if (current >= threshold)
                 {
-                    await sender.Send(new SendNotificationCommand("Gpu"), cancellationToken);
+                    string message = $"We noticed that GPU usage is {current}%, which is above the defined alert threshold of {threshold}%. Please investigate the cause.";
+                    await sender.Send(new SendNotificationCommand(message, AlertType.GpuIsMoreThan), cancellationToken);
+                    pushNotifiction.Send(message);
                 }
             }
         }
-        if (gpuTempIsMore.Enabled)
+
+        if (gpuTempIsMore.Enabled && request.HardwareReport.Gpu != null)
         {
-            if (request.HardwareReport.Gpu != null)
+            if (int.TryParse(gpuTempIsMore.Value, out var threshold))
             {
-                if (request.HardwareReport.Gpu.Temperature >= Convert.ToInt32(gpuTempIsMore.Value))
+                var current = request.HardwareReport.Gpu.Temperature;
+                if (current >= threshold)
                 {
-                    await sender.Send(new SendNotificationCommand("Gpu Temp"), cancellationToken);
+                    string message = $"We noticed that GPU temperature is {current}°C, which exceeds the defined threshold of {threshold}°C. Please check your cooling system.";
+                    await sender.Send(new SendNotificationCommand(message, AlertType.GpuTempIsMoreThan), cancellationToken);
+                    pushNotifiction.Send(message);
+
                 }
             }
         }
-        if (cpuIsMore.Enabled)
+
+        if (cpuIsMore.Enabled && request.HardwareReport.Cpu != null)
         {
-            if (request.HardwareReport.Cpu != null)
+            if (int.TryParse(cpuIsMore.Value, out var threshold))
             {
-                if (request.HardwareReport.Cpu.AvgUsage >= Convert.ToInt32(cpuIsMore.Value))
+                var current = request.HardwareReport.Cpu.AvgUsage;
+                if (current >= threshold)
                 {
-                    await sender.Send(new SendNotificationCommand("Cpu"), cancellationToken);
+                    string message = $"CPU usage is currently {current}%, exceeding the defined threshold of {threshold}%. Investigate potential performance issues.";
+                    await sender.Send(new SendNotificationCommand(message, AlertType.CpuIsMoreThan), cancellationToken);
+                    pushNotifiction.Send(message);
+
                 }
             }
         }
-        if (cpuTempIsMore.Enabled)
+
+        if (cpuTempIsMore.Enabled && request.HardwareReport.Cpu != null)
         {
-            if (request.HardwareReport.Cpu != null)
+            if (int.TryParse(cpuTempIsMore.Value, out var threshold))
             {
-                if (request.HardwareReport.Cpu.Temperature >= Convert.ToInt32(cpuTempIsMore.Value))
+                var current = request.HardwareReport.Cpu.Temperature;
+                if (current >= threshold)
                 {
-                    await sender.Send(new SendNotificationCommand("Cpu Temp"), cancellationToken);
+                    string message = $"CPU temperature has reached {current}°C, which is above the alert limit of {threshold}°C. Please ensure adequate cooling.";
+                    await sender.Send(new SendNotificationCommand(message, AlertType.CpuTempIsMoreThan), cancellationToken);
+                    pushNotifiction.Send(message);
+
                 }
             }
         }
-        if (ramIsMore.Enabled)
+
+        if (ramIsMore.Enabled && request.HardwareReport.Ram != null)
         {
-            if (request.HardwareReport.Ram != null)
+            if (int.TryParse(ramIsMore.Value, out var threshold))
             {
-                if (request.HardwareReport.Ram.UsedMemory >= Convert.ToInt32(ramIsMore.Value))
+                var current = request.HardwareReport.Ram.UsedMemory;
+                if (current >= threshold)
                 {
-                    await sender.Send(new SendNotificationCommand("Ram "), cancellationToken);
+                    string message = $"Memory usage is {current} MB, exceeding the defined threshold of {threshold} MB. Consider checking for memory-intensive processes.";
+                    await sender.Send(new SendNotificationCommand(message, AlertType.RamIsMoreThan), cancellationToken);
+                    pushNotifiction.Send(message);
+
                 }
             }
         }
-        if (drivesIsMore.Enabled)
+
+        if (drivesIsMore.Enabled && request.HardwareReport.Drives != null)
         {
-            if (request.HardwareReport.Drives != null)
+            if (int.TryParse(drivesIsMore.Value, out var threshold))
             {
-                if (request.HardwareReport.Drives.Any(d => d.DriveTotalSize - d.DriveFreeSpace >= Convert.ToInt32(drivesIsMore.Value)))
+                foreach (var drive in request.HardwareReport.Drives)
                 {
-                    await sender.Send(new SendNotificationCommand("Gpu"), cancellationToken);
+                    var used = drive.DriveTotalSize - drive.DriveFreeSpace;
+                    if (used >= threshold)
+                    {
+                        string message = $"Disk usage on drive {drive.DriveName} is {used} MB, exceeding the alert threshold of {threshold} MB. Free up some space if possible.";
+                        await sender.Send(new SendNotificationCommand(message, AlertType.DriveIsMoreThan), cancellationToken);
+                        pushNotifiction.Send(message);
+                        break;
+                    }
                 }
             }
         }
-        if (batteryLevelIsMore.Enabled)
+
+        if (batteryLevelIsMore.Enabled && request.HardwareReport.Battery != null)
         {
-            if (request.HardwareReport.Battery != null)
+            if (int.TryParse(batteryLevelIsMore.Value, out var threshold))
             {
-                if (request.HardwareReport.Battery.ChargeLevel <= Convert.ToInt32(batteryLevelIsMore.Value))
+                var current = request.HardwareReport.Battery.ChargeLevel;
+                if (current <= threshold)
                 {
-                    await sender.Send(new SendNotificationCommand("Gpu"), cancellationToken);
+                    string message = $"Battery level is low: {current}%. This is below the alert threshold of {threshold}%. Please connect to a power source.";
+                    await sender.Send(new SendNotificationCommand(message, AlertType.BatteryLevelIsLessThan), cancellationToken);
+                    pushNotifiction.Send(message);
+
                 }
             }
         }
-        if (batteryDegradationLevelIsMore.Enabled)
+
+        if (batteryDegradationLevelIsMore.Enabled && request.HardwareReport.Battery != null)
         {
-            if (request.HardwareReport.Battery != null)
+            if (int.TryParse(batteryDegradationLevelIsMore.Value, out var threshold))
             {
-                if (request.HardwareReport.Battery.DegradationLevel >= Convert.ToInt32(batteryDegradationLevelIsMore.Value))
+                var current = request.HardwareReport.Battery.DegradationLevel;
+                if (current >= threshold)
                 {
-                    await sender.Send(new SendNotificationCommand("Gpu"), cancellationToken);
+                    string message = $"Battery degradation level is {current}%, exceeding the threshold of {threshold}%. Battery health may be compromised.";
+                    await sender.Send(new SendNotificationCommand(message, AlertType.BatteryDegradationLevelIsLessThan), cancellationToken);
+                    pushNotifiction.Send(message);
+
                 }
             }
         }
-        
+
         var report = request.HardwareReport;
         var tasks = new List<Task>();
 

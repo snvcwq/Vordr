@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Presentation.Implementation;
 using Presentation.Options;
-using Presentation.SendNotfication;
 using Presentation.Socket;
 using System.Reflection;
 using Vordr.Application.Battery.Queries;
 using Vordr.Application.Common.Behaviours;
+using Vordr.Application.Common.Interfaces;
 using Vordr.Application.Notfication.SendNotfication;
 
 namespace Presentation;
@@ -29,6 +30,7 @@ public static class DependencyInjection
         services.Configure<SocketOptions>(configuration.GetSection(nameof(SocketOptions)));
         services.AddSingleton<Slices.MainForm>();
         services.AddSingleton<Slices.Workstations>();
+        services.AddScoped<IPushNotifiction, PushNotificaiton>();
         
         return services;
     }

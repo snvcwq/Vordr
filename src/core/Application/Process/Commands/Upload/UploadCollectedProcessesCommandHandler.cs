@@ -1,9 +1,12 @@
 ﻿using Vordr.Application.Common.Extensions;
+using Vordr.Application.Common.Interfaces;
 using Vordr.Application.Common.Interfaces.Persistence;
 using Vordr.Application.Common.Mappings.Process;
 using Vordr.Application.Models.Process;
+using Vordr.Application.Notfication.SendNotfication;
 using Vordr.Application.StaticData;
 using Vordr.Domain.Entities;
+using Vordr.Domain.Enums;
 
 namespace Vordr.Application.Process.Commands.Upload;
 
@@ -11,12 +14,42 @@ namespace Vordr.Application.Process.Commands.Upload;
 public class UploadCollectedProcessesCommandHandler(
     ILogger<UploadCollectedProcessesCommand> logger,
     IProcessDataRepository processDataRepository,
-    IProcessMetricsRepository processMetricsRepository
+    IProcessMetricsRepository processMetricsRepository,
+    IAlertRepository alertRepository,
+    ISender sender,
+    IPushNotifiction pushNotifiction
 ) : IRequestHandler<UploadCollectedProcessesCommand>
 {
     public async Task Handle(UploadCollectedProcessesCommand request, CancellationToken cancellationToken)
     {
         StaticProcesses.UpdateData(request.ProcessList.ToList(), request.clientId);
+        
+        var processCpu = await alertRepository.GetByTypeAsync(AlertType.ProcessUsesCpuMoreThan);
+        var processRam = await alertRepository.GetByTypeAsync(AlertType.ProcessUsesRamMoreThan);
+        
+        if (processCpu.Enabled && int.TryParse(processCpu.Value, out var cpuThreshold))
+        {
+            var process = request.ProcessList.FirstOrDefault(p => p.CpuUsage >= cpuThreshold);
+            if (process != null)
+            {
+                var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) is using {process.CpuUsage:F2}% CPU, which exceeds the alert threshold of {cpuThreshold}%. Please investigate.";
+                await sender.Send(new SendNotificationCommand(message, AlertType.ProcessUsesCpuMoreThan), cancellationToken);
+                pushNotifiction.Send(message);
+
+            }
+        }
+
+        if (processRam.Enabled && int.TryParse(processRam.Value, out var ramThreshold))
+        {
+            var process = request.ProcessList.FirstOrDefault(p => p.RamUsage >= ramThreshold);
+            if (process != null)
+            {
+                var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) is using {process.RamUsage:F2} MB RAM, which exceeds the alert threshold of {ramThreshold} MB. Please investigate.";
+                await sender.Send(new SendNotificationCommand(message, AlertType.ProcessUsesRamMoreThan), cancellationToken);
+                pushNotifiction.Send(message);
+
+            }
+        }
         var retrievedProcesses = request.ProcessList.ToList();
         var processOsIdentifiers = retrievedProcesses.Select(p => new ProcessOsIdentifier(p.Name, p.Path, p.Version, p.Company));
         var storedProcessesResult = await processDataRepository.RetrieveAsync(processOsIdentifiers);

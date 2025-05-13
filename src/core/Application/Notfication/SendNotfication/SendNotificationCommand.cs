@@ -1,3 +1,5 @@
-﻿namespace Vordr.Application.Notfication.SendNotfication;
+﻿using Vordr.Domain.Enums;
 
-public record SendNotificationCommand(string Message) : IRequest;
+namespace Vordr.Application.Notfication.SendNotfication;
+
+public record SendNotificationCommand(string Message, AlertType AlertType) : IRequest;
