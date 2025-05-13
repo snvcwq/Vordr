@@ -61,7 +61,7 @@ partial class Ram
         // cuiLabel5
         // 
         cuiLabel5.BackColor = Color.Transparent;
-        cuiLabel5.Content = "Load";
+        cuiLabel5.Content = "load";
         cuiLabel5.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
         cuiLabel5.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel5.Location = new Point(4, 3);
@@ -101,7 +101,7 @@ partial class Ram
         cuiSeparator2.Margin = new Padding(5, 4, 5, 4);
         cuiSeparator2.Name = "cuiSeparator2";
         cuiSeparator2.SeparatorMargin = 8;
-        cuiSeparator2.Size = new Size(173, 24);
+        cuiSeparator2.Size = new Size(313, 24);
         cuiSeparator2.TabIndex = 24;
         cuiSeparator2.Thickness = 1F;
         cuiSeparator2.Vertical = false;
@@ -126,7 +126,7 @@ partial class Ram
         // cuiLabel4
         // 
         cuiLabel4.BackColor = Color.Transparent;
-        cuiLabel4.Content = "\"Monitor\\ your\\ system's\\ RAM\\ utilization\\ over\\ time\\ to\\ identify\\ memory\\ bottlenecks\\ and\\ optimize\\ performance\\.";
+        cuiLabel4.Content = "monitor\\ your\\ system's\\ RAM\\ utilization\\ over\\ time\\ to\\ identify\\ memory\\ bottlenecks\\ and\\ optimize\\ performance\\.";
         cuiLabel4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
@@ -170,7 +170,7 @@ partial class Ram
         cuiBorder5.Location = new Point(533, 34);
         cuiBorder5.Name = "cuiBorder5";
         cuiBorder5.OutlineThickness = 2F;
-        cuiBorder5.PanelColor = Color.FromArgb(57, 72, 103);
+        cuiBorder5.PanelColor = Color.FromArgb(76, 96, 138);
         cuiBorder5.PanelOutlineColor = Color.FromArgb(241, 244, 254);
         cuiBorder5.Rounding = new Padding(8);
         cuiBorder5.Size = new Size(641, 194);
@@ -178,12 +178,13 @@ partial class Ram
         // 
         // DisplayResults
         // 
-        DisplayResults.BackColor = Color.FromArgb(28, 46, 83);
+        DisplayResults.BackColor = Color.FromArgb(56, 68, 108);
         DisplayResults.CheckButton = false;
+        DisplayResults.Checked = false;
         DisplayResults.CheckedBackground = Color.White;
         DisplayResults.CheckedForeColor = Color.Black;
         DisplayResults.CheckedImageTint = Color.White;
-        DisplayResults.CheckedOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.CheckedOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.Content = "Display";
         DisplayResults.DialogResult = DialogResult.None;
         DisplayResults.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -191,7 +192,7 @@ partial class Ram
         DisplayResults.HoverBackground = Color.White;
         DisplayResults.HoveredImageTint = Color.White;
         DisplayResults.HoverForeColor = Color.Black;
-        DisplayResults.HoverOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.HoverOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.Image = null;
         DisplayResults.ImageAutoCenter = true;
         DisplayResults.ImageExpand = new Point(0, 0);
@@ -200,12 +201,12 @@ partial class Ram
         DisplayResults.Location = new Point(52, 64);
         DisplayResults.Name = "DisplayResults";
         DisplayResults.NormalBackground = Color.White;
-        DisplayResults.NormalOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.NormalOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.OutlineThickness = 0.1F;
         DisplayResults.PressedBackground = Color.White;
         DisplayResults.PressedForeColor = Color.Black;
         DisplayResults.PressedImageTint = Color.White;
-        DisplayResults.PressedOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.PressedOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.Rounding = new Padding(8);
         DisplayResults.Size = new Size(123, 61);
         DisplayResults.TabIndex = 25;
@@ -253,6 +254,7 @@ partial class Ram
         // OneDayCheckbox
         // 
         OneDayCheckbox.BackColor = Color.White;
+        OneDayCheckbox.Checked = false;
         OneDayCheckbox.CheckedForeground = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.CheckedOutlineColor = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.CheckedSymbolColor = Color.White;
@@ -460,7 +462,7 @@ partial class Ram
         cuiGradientBorder1.PanelOutlineColor1 = Color.Transparent;
         cuiGradientBorder1.PanelOutlineColor2 = Color.Transparent;
         cuiGradientBorder1.Rounding = new Padding(8);
-        cuiGradientBorder1.Size = new Size(641, 191);
+        cuiGradientBorder1.Size = new Size(431, 191);
         cuiGradientBorder1.TabIndex = 24;
         // 
         // Ram

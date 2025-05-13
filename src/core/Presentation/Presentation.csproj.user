@@ -28,9 +28,6 @@
     <Compile Update="Slices\Gpu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Slices\Monitoring.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Slices\Processes.cs">
       <SubType>Form</SubType>
     </Compile>

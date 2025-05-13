@@ -77,7 +77,7 @@ partial class Battery
         // cuiLabel13
         // 
         cuiLabel13.BackColor = Color.White;
-        cuiLabel13.Content = "Workstation\\ battery\\ log\\n";
+        cuiLabel13.Content = "workstation\\ battery\\ log\\n";
         cuiLabel13.Font = new Font("Verdana", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
         cuiLabel13.ForeColor = Color.Black;
         cuiLabel13.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
@@ -107,7 +107,7 @@ partial class Battery
         ChargeLevelChart.Location = new Point(4, 49);
         ChargeLevelChart.MatchAxesScreenDataRatio = false;
         ChargeLevelChart.Name = "ChargeLevelChart";
-        ChargeLevelChart.Size = new Size(603, 315);
+        ChargeLevelChart.Size = new Size(603, 294);
         ChargeLevelChart.TabIndex = 25;
         // 
         // cuiSeparator2
@@ -155,7 +155,7 @@ partial class Battery
         DegradationLevelChart.Location = new Point(4, 60);
         DegradationLevelChart.MatchAxesScreenDataRatio = false;
         DegradationLevelChart.Name = "DegradationLevelChart";
-        DegradationLevelChart.Size = new Size(556, 311);
+        DegradationLevelChart.Size = new Size(556, 283);
         DegradationLevelChart.TabIndex = 26;
         // 
         // cuiSeparator3
@@ -189,11 +189,11 @@ partial class Battery
         cuiBorder5.Controls.Add(DisplayResults);
         cuiBorder5.Controls.Add(CalendarDateLabel);
         cuiBorder5.Controls.Add(cuiGradientBorder1);
-        cuiBorder5.ForeColor = Color.FromArgb(57, 72, 103);
+        cuiBorder5.ForeColor = Color.FromArgb(76, 96, 138);
         cuiBorder5.Location = new Point(533, 34);
         cuiBorder5.Name = "cuiBorder5";
         cuiBorder5.OutlineThickness = 2F;
-        cuiBorder5.PanelColor = Color.FromArgb(57, 72, 103);
+        cuiBorder5.PanelColor = Color.FromArgb(76, 96, 138);
         cuiBorder5.PanelOutlineColor = Color.FromArgb(241, 244, 254);
         cuiBorder5.Rounding = new Padding(8);
         cuiBorder5.Size = new Size(641, 194);
@@ -201,12 +201,12 @@ partial class Battery
         // 
         // DisplayResults
         // 
-        DisplayResults.BackColor = Color.FromArgb(28, 46, 83);
+        DisplayResults.BackColor = Color.FromArgb(56, 68, 108);
         DisplayResults.CheckButton = false;
         DisplayResults.CheckedBackground = Color.White;
         DisplayResults.CheckedForeColor = Color.Black;
         DisplayResults.CheckedImageTint = Color.White;
-        DisplayResults.CheckedOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.CheckedOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.Content = "Display";
         DisplayResults.DialogResult = DialogResult.None;
         DisplayResults.Font = new Font("Verdana", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -214,7 +214,7 @@ partial class Battery
         DisplayResults.HoverBackground = Color.White;
         DisplayResults.HoveredImageTint = Color.White;
         DisplayResults.HoverForeColor = Color.Black;
-        DisplayResults.HoverOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.HoverOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.Image = null;
         DisplayResults.ImageAutoCenter = true;
         DisplayResults.ImageExpand = new Point(0, 0);
@@ -223,12 +223,12 @@ partial class Battery
         DisplayResults.Location = new Point(52, 64);
         DisplayResults.Name = "DisplayResults";
         DisplayResults.NormalBackground = Color.White;
-        DisplayResults.NormalOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.NormalOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.OutlineThickness = 0.1F;
         DisplayResults.PressedBackground = Color.White;
         DisplayResults.PressedForeColor = Color.Black;
         DisplayResults.PressedImageTint = Color.White;
-        DisplayResults.PressedOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.PressedOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.Rounding = new Padding(8);
         DisplayResults.Size = new Size(123, 61);
         DisplayResults.TabIndex = 25;
@@ -484,13 +484,13 @@ partial class Battery
         cuiGradientBorder1.PanelOutlineColor1 = Color.Transparent;
         cuiGradientBorder1.PanelOutlineColor2 = Color.Transparent;
         cuiGradientBorder1.Rounding = new Padding(8);
-        cuiGradientBorder1.Size = new Size(553, 194);
+        cuiGradientBorder1.Size = new Size(432, 194);
         cuiGradientBorder1.TabIndex = 24;
         // 
         // cuiLabel4
         // 
         cuiLabel4.BackColor = Color.Transparent;
-        cuiLabel4.Content = "Analyze\\ your\\ workstation's\\ battery\\ performance\\ over\\ a\\ selected\\ period\\ to\\ understand\\ usage\\ and\\ identify\\ degradation\\ trends\\.";
+        cuiLabel4.Content = "analyze\\ your\\ workstation's\\ battery\\ performance\\ over\\ a\\ selected\\ period\\ to\\ understand\\ usage\\ and\\ identify\\ degradation\\ trends\\.";
         cuiLabel4.Font = new Font("Verdana", 12F);
         cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
@@ -600,7 +600,7 @@ partial class Battery
         cuiLabel12.Font = new Font("Verdana", 12F);
         cuiLabel12.ForeColor = Color.Black;
         cuiLabel12.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Right;
-        cuiLabel12.Location = new Point(28, 118);
+        cuiLabel12.Location = new Point(17, 118);
         cuiLabel12.Margin = new Padding(4, 3, 4, 3);
         cuiLabel12.Name = "cuiLabel12";
         cuiLabel12.Size = new Size(112, 23);
@@ -613,7 +613,7 @@ partial class Battery
         cuiLabel10.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel10.ForeColor = Color.Black;
         cuiLabel10.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Right;
-        cuiLabel10.Location = new Point(0, 176);
+        cuiLabel10.Location = new Point(-11, 176);
         cuiLabel10.Margin = new Padding(4, 3, 4, 3);
         cuiLabel10.Name = "cuiLabel10";
         cuiLabel10.Size = new Size(224, 26);
@@ -626,10 +626,10 @@ partial class Battery
         cuiLabel8.Font = new Font("Verdana", 12F);
         cuiLabel8.ForeColor = Color.Black;
         cuiLabel8.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        cuiLabel8.Location = new Point(1, 147);
+        cuiLabel8.Location = new Point(6, 147);
         cuiLabel8.Margin = new Padding(4, 3, 4, 3);
         cuiLabel8.Name = "cuiLabel8";
-        cuiLabel8.Size = new Size(242, 23);
+        cuiLabel8.Size = new Size(207, 23);
         cuiLabel8.TabIndex = 28;
         // 
         // cuiLabel6

@@ -53,7 +53,7 @@ partial class AlertControl
         cuiBorder1.PanelColor = Color.White;
         cuiBorder1.PanelOutlineColor = Color.White;
         cuiBorder1.Rounding = new Padding(10);
-        cuiBorder1.Size = new Size(856, 150);
+        cuiBorder1.Size = new Size(927, 150);
         cuiBorder1.TabIndex = 0;
         // 
         // ValueTextBox
@@ -86,7 +86,7 @@ partial class AlertControl
         EnabledAlert.CheckedForeground = Color.FromArgb(9, 121, 105);
         EnabledAlert.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
         EnabledAlert.ForeColor = Color.White;
-        EnabledAlert.Location = new Point(771, 17);
+        EnabledAlert.Location = new Point(833, 17);
         EnabledAlert.Name = "EnabledAlert";
         EnabledAlert.OutlineStyle = true;
         EnabledAlert.OutlineThickness = 1F;
@@ -132,7 +132,7 @@ partial class AlertControl
         SaveButton.ImageExpand = new Point(0, 0);
         SaveButton.ImageOffset = new Point(0, 0);
         SaveButton.ImageTint = Color.White;
-        SaveButton.Location = new Point(733, 94);
+        SaveButton.Location = new Point(795, 94);
         SaveButton.Name = "SaveButton";
         SaveButton.NormalBackground = Color.FromArgb(108, 124, 204);
         SaveButton.NormalOutline = Color.FromArgb(108, 124, 204);
@@ -174,7 +174,7 @@ partial class AlertControl
         BackColor = Color.Transparent;
         Controls.Add(cuiBorder1);
         Name = "AlertControl";
-        Size = new Size(859, 150);
+        Size = new Size(927, 150);
         cuiBorder1.ResumeLayout(false);
         ResumeLayout(false);
     }

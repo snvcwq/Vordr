@@ -77,12 +77,12 @@ partial class Settings
         PushNotificationSwitchț.CheckedForeground = Color.FromArgb(9, 121, 105);
         PushNotificationSwitchț.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
         PushNotificationSwitchț.ForeColor = Color.White;
-        PushNotificationSwitchț.Location = new Point(378, 14);
+        PushNotificationSwitchț.Location = new Point(358, 20);
         PushNotificationSwitchț.Name = "PushNotificationSwitchț";
         PushNotificationSwitchț.OutlineStyle = true;
         PushNotificationSwitchț.OutlineThickness = 1F;
         PushNotificationSwitchț.ShowSymbols = true;
-        PushNotificationSwitchț.Size = new Size(86, 39);
+        PushNotificationSwitchț.Size = new Size(72, 26);
         PushNotificationSwitchț.TabIndex = 25;
         PushNotificationSwitchț.ThumbSizeModifier = new Size(0, 0);
         PushNotificationSwitchț.UncheckedBackground = Color.White;
@@ -92,7 +92,7 @@ partial class Settings
         // cuiLabel4
         // 
         cuiLabel4.BackColor = Color.Transparent;
-        cuiLabel4.Content = "Receive\\ a\\ push\\ \\ notification\\ on\\ your\\ workstation\\ when\\ an\\ alert\\ occurs\\ in\\ system";
+        cuiLabel4.Content = "receive\\ a\\ push\\ \\ notification\\ on\\ your\\ workstation\\ when\\ an\\ alert\\ occurs\\ in\\ system";
         cuiLabel4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
@@ -117,9 +117,9 @@ partial class Settings
         // cuiLabel13
         // 
         cuiLabel13.BackColor = Color.White;
-        cuiLabel13.Content = "Push\\ notfications";
-        cuiLabel13.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
-        cuiLabel13.ForeColor = Color.Black;
+        cuiLabel13.Content = "push\\ notfications";
+        cuiLabel13.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel13.ForeColor = Color.FromArgb(11, 35, 116);
         cuiLabel13.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel13.Location = new Point(1, 14);
         cuiLabel13.Margin = new Padding(4, 3, 4, 3);
@@ -159,7 +159,7 @@ partial class Settings
         // 
         cuiLabel8.Anchor = AnchorStyles.Left;
         cuiLabel8.BackColor = Color.Transparent;
-        cuiLabel8.Content = "Email";
+        cuiLabel8.Content = "receiver\\ email";
         cuiLabel8.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel8.ForeColor = Color.Black;
         cuiLabel8.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Left;
@@ -194,36 +194,36 @@ partial class Settings
         // 
         // SaveButton
         // 
-        SaveButton.BackColor = Color.FromArgb(28, 46, 83);
+        SaveButton.BackColor = Color.Transparent;
         SaveButton.CheckButton = false;
-        SaveButton.CheckedBackground = Color.FromArgb(28, 46, 83);
-        SaveButton.CheckedForeColor = Color.Black;
-        SaveButton.CheckedImageTint = Color.FromArgb(28, 46, 83);
-        SaveButton.CheckedOutline = Color.FromArgb(28, 46, 83);
+        SaveButton.CheckedBackground = Color.FromArgb(108, 124, 204);
+        SaveButton.CheckedForeColor = Color.White;
+        SaveButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
+        SaveButton.CheckedOutline = Color.FromArgb(108, 124, 204);
         SaveButton.Content = "Save";
         SaveButton.DialogResult = DialogResult.None;
         SaveButton.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         SaveButton.ForeColor = Color.White;
-        SaveButton.HoverBackground = Color.FromArgb(28, 46, 83);
+        SaveButton.HoverBackground = Color.FromArgb(108, 124, 204);
         SaveButton.HoveredImageTint = Color.White;
-        SaveButton.HoverForeColor = Color.FromArgb(28, 46, 83);
-        SaveButton.HoverOutline = Color.FromArgb(28, 46, 83);
+        SaveButton.HoverForeColor = Color.FromArgb(108, 124, 204);
+        SaveButton.HoverOutline = Color.FromArgb(108, 124, 204);
         SaveButton.Image = null;
         SaveButton.ImageAutoCenter = true;
         SaveButton.ImageExpand = new Point(0, 0);
         SaveButton.ImageOffset = new Point(0, 0);
         SaveButton.ImageTint = Color.White;
-        SaveButton.Location = new Point(862, 323);
+        SaveButton.Location = new Point(905, 346);
         SaveButton.Name = "SaveButton";
-        SaveButton.NormalBackground = Color.FromArgb(28, 46, 83);
-        SaveButton.NormalOutline = Color.FromArgb(28, 46, 83);
+        SaveButton.NormalBackground = Color.FromArgb(108, 124, 204);
+        SaveButton.NormalOutline = Color.FromArgb(108, 124, 204);
         SaveButton.OutlineThickness = 0.1F;
-        SaveButton.PressedBackground = Color.FromArgb(28, 46, 83);
+        SaveButton.PressedBackground = Color.FromArgb(11, 35, 116);
         SaveButton.PressedForeColor = Color.White;
         SaveButton.PressedImageTint = Color.White;
-        SaveButton.PressedOutline = Color.FromArgb(28, 46, 83);
+        SaveButton.PressedOutline = Color.FromArgb(11, 35, 116);
         SaveButton.Rounding = new Padding(8);
-        SaveButton.Size = new Size(123, 61);
+        SaveButton.Size = new Size(104, 38);
         SaveButton.TabIndex = 33;
         SaveButton.TextOffset = new Point(0, 0);
         SaveButton.Click += SaveButton_Click;
@@ -232,8 +232,8 @@ partial class Settings
         // 
         cuiLabel7.Anchor = AnchorStyles.Left;
         cuiLabel7.BackColor = Color.Transparent;
-        cuiLabel7.Content = "Smtp\\ Password";
-        cuiLabel7.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel7.Content = "smtp\\ password";
+        cuiLabel7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel7.ForeColor = Color.Black;
         cuiLabel7.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Left;
         cuiLabel7.Location = new Point(486, 232);
@@ -269,8 +269,8 @@ partial class Settings
         // 
         cuiLabel6.Anchor = AnchorStyles.Left;
         cuiLabel6.BackColor = Color.Transparent;
-        cuiLabel6.Content = "Smtp\\ Port";
-        cuiLabel6.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel6.Content = "smtp\\ port";
+        cuiLabel6.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel6.ForeColor = Color.Black;
         cuiLabel6.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Left;
         cuiLabel6.Location = new Point(486, 128);
@@ -306,8 +306,8 @@ partial class Settings
         // 
         cuiLabel5.Anchor = AnchorStyles.Left;
         cuiLabel5.BackColor = Color.Transparent;
-        cuiLabel5.Content = "Smtp\\ Username";
-        cuiLabel5.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel5.Content = "smtp\\ username";
+        cuiLabel5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel5.ForeColor = Color.Black;
         cuiLabel5.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Left;
         cuiLabel5.Location = new Point(38, 232);
@@ -343,8 +343,8 @@ partial class Settings
         // 
         cuiLabel3.Anchor = AnchorStyles.Left;
         cuiLabel3.BackColor = Color.Transparent;
-        cuiLabel3.Content = "Smtp\\ Host";
-        cuiLabel3.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel3.Content = "smtp\\ host";
+        cuiLabel3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel3.ForeColor = Color.Black;
         cuiLabel3.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Left;
         cuiLabel3.Location = new Point(38, 128);
@@ -383,12 +383,12 @@ partial class Settings
         EmailNotificationSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         EmailNotificationSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
         EmailNotificationSwitch.ForeColor = Color.White;
-        EmailNotificationSwitch.Location = new Point(374, 12);
+        EmailNotificationSwitch.Location = new Point(351, 17);
         EmailNotificationSwitch.Name = "EmailNotificationSwitch";
         EmailNotificationSwitch.OutlineStyle = true;
         EmailNotificationSwitch.OutlineThickness = 1F;
         EmailNotificationSwitch.ShowSymbols = true;
-        EmailNotificationSwitch.Size = new Size(86, 39);
+        EmailNotificationSwitch.Size = new Size(75, 25);
         EmailNotificationSwitch.TabIndex = 24;
         EmailNotificationSwitch.ThumbSizeModifier = new Size(0, 0);
         EmailNotificationSwitch.UncheckedBackground = Color.White;
@@ -398,7 +398,7 @@ partial class Settings
         // cuiLabel1
         // 
         cuiLabel1.BackColor = Color.Transparent;
-        cuiLabel1.Content = "Receive\\ a\\ email\\ notification\\ on\\ your\\ workstation\\ when\\ an\\ alert\\ occurs\\ in\\ system";
+        cuiLabel1.Content = "receive\\ a\\ email\\ notification\\ on\\ your\\ workstation\\ when\\ an\\ alert\\ occurs\\ in\\ system";
         cuiLabel1.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel1.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel1.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
@@ -423,9 +423,9 @@ partial class Settings
         // cuiLabel2
         // 
         cuiLabel2.BackColor = Color.White;
-        cuiLabel2.Content = "EmailNotifications";
-        cuiLabel2.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
-        cuiLabel2.ForeColor = Color.Black;
+        cuiLabel2.Content = "email\\ notifications";
+        cuiLabel2.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        cuiLabel2.ForeColor = Color.FromArgb(11, 35, 116);
         cuiLabel2.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
         cuiLabel2.Location = new Point(4, 12);
         cuiLabel2.Margin = new Padding(4, 3, 4, 3);

@@ -291,7 +291,7 @@ partial class Cpu
         // cuiLabel4
         // 
         cuiLabel4.BackColor = Color.Transparent;
-        cuiLabel4.Content = "Track\\ your\\ CPU's\\ load\\ and\\ temperature\\ history\\ over\\ a\\ selected\\ time\\ range\\.\\ Analyze\\ performance\\ trends\\ and\\ identify\\ potential\\ issues\\ to\\ ensure\\ optimal\\ system\\ operation\\.";
+        cuiLabel4.Content = "track\\ your\\ CPU's\\ load\\ and\\ temperature\\ history\\ over\\ a\\ selected\\ time\\ range\\.\\ Analyze\\ performance\\ trends\\ and\\ identify\\ potential\\ issues\\ to\\ ensure\\ optimal\\ system\\ operation\\.";
         cuiLabel4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
@@ -342,7 +342,7 @@ partial class Cpu
         // cuiLabel13
         // 
         cuiLabel13.BackColor = Color.White;
-        cuiLabel13.Content = "Cpu\\ load\\ history";
+        cuiLabel13.Content = "cpu\\ load\\ history";
         cuiLabel13.Font = new Font("Verdana", 21.75F, FontStyle.Bold);
         cuiLabel13.ForeColor = Color.Black;
         cuiLabel13.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
@@ -358,10 +358,11 @@ partial class Cpu
         cuiBorder5.Controls.Add(DisplayResults);
         cuiBorder5.Controls.Add(CalendarDateLabel);
         cuiBorder5.Controls.Add(cuiGradientBorder1);
+        cuiBorder5.ForeColor = Color.FromArgb(76, 96, 138);
         cuiBorder5.Location = new Point(533, 34);
         cuiBorder5.Name = "cuiBorder5";
         cuiBorder5.OutlineThickness = 2F;
-        cuiBorder5.PanelColor = Color.FromArgb(57, 72, 103);
+        cuiBorder5.PanelColor = Color.FromArgb(76, 96, 138);
         cuiBorder5.PanelOutlineColor = Color.FromArgb(241, 244, 254);
         cuiBorder5.Rounding = new Padding(8);
         cuiBorder5.Size = new Size(641, 194);
@@ -369,12 +370,12 @@ partial class Cpu
         // 
         // DisplayResults
         // 
-        DisplayResults.BackColor = Color.FromArgb(28, 46, 83);
+        DisplayResults.BackColor = Color.FromArgb(56, 68, 108);
         DisplayResults.CheckButton = false;
         DisplayResults.CheckedBackground = Color.White;
         DisplayResults.CheckedForeColor = Color.Black;
         DisplayResults.CheckedImageTint = Color.White;
-        DisplayResults.CheckedOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.CheckedOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.Content = "Display";
         DisplayResults.DialogResult = DialogResult.None;
         DisplayResults.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -382,7 +383,7 @@ partial class Cpu
         DisplayResults.HoverBackground = Color.White;
         DisplayResults.HoveredImageTint = Color.White;
         DisplayResults.HoverForeColor = Color.Black;
-        DisplayResults.HoverOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.HoverOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.Image = null;
         DisplayResults.ImageAutoCenter = true;
         DisplayResults.ImageExpand = new Point(0, 0);
@@ -391,12 +392,12 @@ partial class Cpu
         DisplayResults.Location = new Point(52, 64);
         DisplayResults.Name = "DisplayResults";
         DisplayResults.NormalBackground = Color.White;
-        DisplayResults.NormalOutline = Color.FromArgb(28, 46, 83);
+        DisplayResults.NormalOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.OutlineThickness = 0.1F;
         DisplayResults.PressedBackground = Color.White;
         DisplayResults.PressedForeColor = Color.Black;
         DisplayResults.PressedImageTint = Color.White;
-        DisplayResults.PressedOutline = Color.FromArgb(40, 53, 147);
+        DisplayResults.PressedOutline = Color.FromArgb(56, 68, 108);
         DisplayResults.Rounding = new Padding(8);
         DisplayResults.Size = new Size(123, 61);
         DisplayResults.TabIndex = 25;
@@ -650,7 +651,7 @@ partial class Cpu
         cuiGradientBorder1.PanelOutlineColor1 = Color.Transparent;
         cuiGradientBorder1.PanelOutlineColor2 = Color.Transparent;
         cuiGradientBorder1.Rounding = new Padding(8);
-        cuiGradientBorder1.Size = new Size(638, 194);
+        cuiGradientBorder1.Size = new Size(415, 191);
         cuiGradientBorder1.TabIndex = 24;
         // 
         // Cpu
