@@ -64,7 +64,9 @@ partial class MainForm
         // panel2
         // 
         panel2.BackColor = Color.White;
+        panel2.Controls.Add(AlertsButton);
         panel2.Controls.Add(SelectWorkstationButton);
+        panel2.Controls.Add(SettingsButton);
         panel2.Controls.Add(DropdownContainer);
         panel2.Controls.Add(WorkstationsButton);
         panel2.Controls.Add(BatteryButton);
@@ -76,8 +78,6 @@ partial class MainForm
         panel2.Controls.Add(ProcessButton);
         panel2.Controls.Add(AppName);
         panel2.Controls.Add(cuiButton1);
-        panel2.Controls.Add(AlertsButton);
-        panel2.Controls.Add(SettingsButton);
         panel2.Dock = DockStyle.Left;
         panel2.Location = new Point(0, 22);
         panel2.Name = "panel2";
@@ -149,7 +149,7 @@ partial class MainForm
         WorkstationsButton.ImageExpand = new Point(0, 0);
         WorkstationsButton.ImageOffset = new Point(-20, 0);
         WorkstationsButton.ImageTint = Color.White;
-        WorkstationsButton.Location = new Point(24, 676);
+        WorkstationsButton.Location = new Point(24, 592);
         WorkstationsButton.Margin = new Padding(4);
         WorkstationsButton.Name = "WorkstationsButton";
         WorkstationsButton.NormalBackground = Color.White;
@@ -186,7 +186,7 @@ partial class MainForm
         BatteryButton.ImageExpand = new Point(0, 0);
         BatteryButton.ImageOffset = new Point(-40, 0);
         BatteryButton.ImageTint = Color.White;
-        BatteryButton.Location = new Point(24, 622);
+        BatteryButton.Location = new Point(24, 538);
         BatteryButton.Margin = new Padding(4);
         BatteryButton.Name = "BatteryButton";
         BatteryButton.NormalBackground = Color.White;
@@ -223,7 +223,7 @@ partial class MainForm
         DrivesButton.ImageExpand = new Point(0, 0);
         DrivesButton.ImageOffset = new Point(-40, 0);
         DrivesButton.ImageTint = Color.White;
-        DrivesButton.Location = new Point(24, 568);
+        DrivesButton.Location = new Point(24, 484);
         DrivesButton.Margin = new Padding(4);
         DrivesButton.Name = "DrivesButton";
         DrivesButton.NormalBackground = Color.White;
@@ -260,7 +260,7 @@ partial class MainForm
         GpuButton.ImageExpand = new Point(0, 0);
         GpuButton.ImageOffset = new Point(-24, 0);
         GpuButton.ImageTint = Color.White;
-        GpuButton.Location = new Point(24, 517);
+        GpuButton.Location = new Point(24, 433);
         GpuButton.Margin = new Padding(4);
         GpuButton.Name = "GpuButton";
         GpuButton.NormalBackground = Color.White;
@@ -297,7 +297,7 @@ partial class MainForm
         CpuButton.ImageExpand = new Point(0, 0);
         CpuButton.ImageOffset = new Point(-24, 0);
         CpuButton.ImageTint = Color.White;
-        CpuButton.Location = new Point(24, 463);
+        CpuButton.Location = new Point(24, 379);
         CpuButton.Margin = new Padding(4);
         CpuButton.Name = "CpuButton";
         CpuButton.NormalBackground = Color.White;
@@ -334,7 +334,7 @@ partial class MainForm
         RamButton.ImageExpand = new Point(0, 0);
         RamButton.ImageOffset = new Point(-24, 0);
         RamButton.ImageTint = Color.White;
-        RamButton.Location = new Point(24, 409);
+        RamButton.Location = new Point(24, 325);
         RamButton.Margin = new Padding(4);
         RamButton.Name = "RamButton";
         RamButton.NormalBackground = Color.White;
@@ -371,7 +371,7 @@ partial class MainForm
         DashboardButton.ImageExpand = new Point(0, 0);
         DashboardButton.ImageOffset = new Point(-24, 0);
         DashboardButton.ImageTint = Color.White;
-        DashboardButton.Location = new Point(24, 301);
+        DashboardButton.Location = new Point(24, 217);
         DashboardButton.Margin = new Padding(4);
         DashboardButton.Name = "DashboardButton";
         DashboardButton.NormalBackground = Color.White;
@@ -408,7 +408,7 @@ partial class MainForm
         ProcessButton.ImageExpand = new Point(0, 0);
         ProcessButton.ImageOffset = new Point(-30, 0);
         ProcessButton.ImageTint = Color.White;
-        ProcessButton.Location = new Point(24, 355);
+        ProcessButton.Location = new Point(24, 271);
         ProcessButton.Margin = new Padding(4);
         ProcessButton.Name = "ProcessButton";
         ProcessButton.NormalBackground = Color.White;
@@ -491,7 +491,7 @@ partial class MainForm
         AlertsButton.ImageExpand = new Point(0, 0);
         AlertsButton.ImageOffset = new Point(-45, 0);
         AlertsButton.ImageTint = Color.White;
-        AlertsButton.Location = new Point(24, 193);
+        AlertsButton.Location = new Point(24, 661);
         AlertsButton.Margin = new Padding(4);
         AlertsButton.Name = "AlertsButton";
         AlertsButton.NormalBackground = Color.White;
@@ -528,7 +528,7 @@ partial class MainForm
         SettingsButton.ImageExpand = new Point(0, 0);
         SettingsButton.ImageOffset = new Point(-35, 0);
         SettingsButton.ImageTint = Color.White;
-        SettingsButton.Location = new Point(24, 247);
+        SettingsButton.Location = new Point(24, 715);
         SettingsButton.Margin = new Padding(4);
         SettingsButton.Name = "SettingsButton";
         SettingsButton.NormalBackground = Color.White;
