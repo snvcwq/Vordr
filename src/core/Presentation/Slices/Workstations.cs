@@ -34,10 +34,44 @@ public partial class Workstations : Form
         var clientId = WorkstationHelper.CreateNewClientId();
         var workstation = new Workstation
         {
-            LastModifiedUtc = DateTime.UtcNow, State = WorkstationState.PendingActivation, ClientId = clientId, Name = WorkstationNameTextbox.Content,
+            LastModifiedUtc = DateTime.UtcNow,
+            State = WorkstationState.PendingActivation,
+            ClientId = clientId,
+            Name = WorkstationNameTextbox.Content,
         };
         await Sender.Send(new AddWorkstationCommand(workstation));
         var socketOptions = ServiceScopeFactory.CreateScope().ServiceProvider.GetRequiredService<IOptions<SocketOptions>>().Value;
         NewWorkstationIdentifier.Content = WorkstationHelper.CreateNewWorkstationIdentifier(socketOptions, clientId);
+    }
+
+    private async void GenerateWorkstationidentifierButton_Click_1(object sender, EventArgs e)
+    {
+        var clientId = WorkstationHelper.CreateNewClientId();
+        var workstation = new Workstation
+        {
+            LastModifiedUtc = DateTime.UtcNow,
+            State = WorkstationState.PendingActivation,
+            ClientId = clientId,
+            Name = WorkstationNameTextbox.Content,
+        };
+        await Sender.Send(new AddWorkstationCommand(workstation));
+        var socketOptions = ServiceScopeFactory.CreateScope().ServiceProvider.GetRequiredService<IOptions<SocketOptions>>().Value;
+        NewWorkstationIdentifier.Content = WorkstationHelper.CreateNewWorkstationIdentifier(socketOptions, clientId);
+    }
+
+    private async void GenerateWorkstationidentifierButton_Click_2(object sender, EventArgs e)
+    {
+        var clientId = WorkstationHelper.CreateNewClientId();
+        var workstation = new Workstation
+        {
+            LastModifiedUtc = DateTime.UtcNow,
+            State = WorkstationState.PendingActivation,
+            ClientId = clientId,
+            Name = WorkstationNameTextbox.Content,
+        };
+        await Sender.Send(new AddWorkstationCommand(workstation));
+        var socketOptions = ServiceScopeFactory.CreateScope().ServiceProvider.GetRequiredService<IOptions<SocketOptions>>().Value;
+        NewWorkstationIdentifier.Content = WorkstationHelper.CreateNewWorkstationIdentifier(socketOptions, clientId);
+
     }
 }

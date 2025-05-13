@@ -33,7 +33,14 @@ public partial class WorkstationControl : UserControl
 
     private void SetStateValue(WorkstationState state)
     {
-        StateValue.Content = state.ToString();
+        StateValue.Content = state switch
+        {
+            WorkstationState.Monitoring => "monitoring",
+            WorkstationState.PendingActivation => "pending",
+            WorkstationState.Deactivated => "deactivated",
+            WorkstationState.Disconnected => "disconnected",
+            _ => StateValue.Content
+        };
 
         StateValue.ForeColor = state switch
         {

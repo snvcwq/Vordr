@@ -36,11 +36,11 @@ partial class Workstations
         WorkstationsFlow = new FlowLayoutPanel();
         cuiPanel1 = new cuiBorder();
         NewWorkstationIdentifier = new cuiTextBox2();
-        GenerateWorkstationidentifierButton = new cuiButton();
         cuiLabel3 = new cuiLabel();
         cuiLabel2 = new cuiLabel();
         WorkstationNameTextbox = new cuiTextBox2();
         cuiLabel1 = new cuiLabel();
+        GenerateWorkstationidentifierButton = new cuiButton();
         WorkstationsGroup.SuspendLayout();
         cuiPanel1.SuspendLayout();
         SuspendLayout();
@@ -90,8 +90,8 @@ partial class Workstations
         // 
         // cuiPanel1
         // 
-        cuiPanel1.Controls.Add(NewWorkstationIdentifier);
         cuiPanel1.Controls.Add(GenerateWorkstationidentifierButton);
+        cuiPanel1.Controls.Add(NewWorkstationIdentifier);
         cuiPanel1.Controls.Add(cuiLabel3);
         cuiPanel1.Controls.Add(cuiLabel2);
         cuiPanel1.Controls.Add(WorkstationNameTextbox);
@@ -128,48 +128,13 @@ partial class Workstations
         NewWorkstationIdentifier.TextOffset = new Size(0, 0);
         NewWorkstationIdentifier.UnderlinedStyle = true;
         // 
-        // GenerateWorkstationidentifierButton
-        // 
-        GenerateWorkstationidentifierButton.CheckButton = false;
-        GenerateWorkstationidentifierButton.CheckedBackground = Color.FromArgb(255, 106, 0);
-        GenerateWorkstationidentifierButton.CheckedForeColor = Color.White;
-        GenerateWorkstationidentifierButton.CheckedImageTint = Color.White;
-        GenerateWorkstationidentifierButton.CheckedOutline = Color.FromArgb(255, 106, 0);
-        GenerateWorkstationidentifierButton.Content = "Generate";
-        GenerateWorkstationidentifierButton.DialogResult = DialogResult.None;
-        GenerateWorkstationidentifierButton.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        GenerateWorkstationidentifierButton.ForeColor = Color.Black;
-        GenerateWorkstationidentifierButton.HoverBackground = Color.White;
-        GenerateWorkstationidentifierButton.HoveredImageTint = Color.White;
-        GenerateWorkstationidentifierButton.HoverForeColor = Color.Black;
-        GenerateWorkstationidentifierButton.HoverOutline = Color.FromArgb(32, 128, 128, 128);
-        GenerateWorkstationidentifierButton.Image = null;
-        GenerateWorkstationidentifierButton.ImageAutoCenter = true;
-        GenerateWorkstationidentifierButton.ImageExpand = new Point(0, 0);
-        GenerateWorkstationidentifierButton.ImageOffset = new Point(0, 0);
-        GenerateWorkstationidentifierButton.ImageTint = Color.White;
-        GenerateWorkstationidentifierButton.Location = new Point(47, 151);
-        GenerateWorkstationidentifierButton.Name = "GenerateWorkstationidentifierButton";
-        GenerateWorkstationidentifierButton.NormalBackground = Color.White;
-        GenerateWorkstationidentifierButton.NormalOutline = Color.FromArgb(64, 128, 128, 128);
-        GenerateWorkstationidentifierButton.OutlineThickness = 1F;
-        GenerateWorkstationidentifierButton.PressedBackground = Color.WhiteSmoke;
-        GenerateWorkstationidentifierButton.PressedForeColor = Color.FromArgb(32, 32, 32);
-        GenerateWorkstationidentifierButton.PressedImageTint = Color.White;
-        GenerateWorkstationidentifierButton.PressedOutline = Color.FromArgb(64, 128, 128, 128);
-        GenerateWorkstationidentifierButton.Rounding = new Padding(8);
-        GenerateWorkstationidentifierButton.Size = new Size(349, 31);
-        GenerateWorkstationidentifierButton.TabIndex = 4;
-        GenerateWorkstationidentifierButton.TextOffset = new Point(0, 0);
-        GenerateWorkstationidentifierButton.Click += GenerateWorkstationidentifierButton_Click;
-        // 
         // cuiLabel3
         // 
         cuiLabel3.BackColor = Color.Transparent;
         cuiLabel3.Content = "2\\.\\ Generate\\ workstation\\ identifier";
-        cuiLabel3.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel3.HorizontalAlignment = cuiLabel.HorizontalAlignments.Left;
-        cuiLabel3.Location = new Point(19, 119);
+        cuiLabel3.Location = new Point(47, 132);
         cuiLabel3.Margin = new Padding(4, 3, 4, 3);
         cuiLabel3.Name = "cuiLabel3";
         cuiLabel3.Size = new Size(327, 26);
@@ -180,9 +145,9 @@ partial class Workstations
         cuiLabel2.Anchor = AnchorStyles.Left;
         cuiLabel2.BackColor = Color.Transparent;
         cuiLabel2.Content = "1\\.\\ Insert\\ workstation\\ name";
-        cuiLabel2.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        cuiLabel2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel2.HorizontalAlignment = cuiLabel.HorizontalAlignments.Left;
-        cuiLabel2.Location = new Point(19, 39);
+        cuiLabel2.Location = new Point(47, 39);
         cuiLabel2.Margin = new Padding(4, 3, 4, 3);
         cuiLabel2.Name = "cuiLabel2";
         cuiLabel2.Size = new Size(284, 29);
@@ -214,14 +179,51 @@ partial class Workstations
         // cuiLabel1
         // 
         cuiLabel1.BackColor = Color.Transparent;
-        cuiLabel1.Content = "Add\\ a\\ new\\ workstation\\ to\\ network:";
+        cuiLabel1.Content = "add\\ a\\ new\\ workstation\\ to\\ network:";
         cuiLabel1.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel1.HorizontalAlignment = cuiLabel.HorizontalAlignments.Left;
         cuiLabel1.Location = new Point(19, 13);
         cuiLabel1.Margin = new Padding(4, 3, 4, 3);
         cuiLabel1.Name = "cuiLabel1";
-        cuiLabel1.Size = new Size(377, 32);
+        cuiLabel1.Size = new Size(390, 33);
         cuiLabel1.TabIndex = 0;
+        // 
+        // GenerateWorkstationidentifierButton
+        // 
+        GenerateWorkstationidentifierButton.BackColor = Color.Transparent;
+        GenerateWorkstationidentifierButton.CheckButton = false;
+        GenerateWorkstationidentifierButton.Checked = false;
+        GenerateWorkstationidentifierButton.CheckedBackground = Color.FromArgb(108, 124, 204);
+        GenerateWorkstationidentifierButton.CheckedForeColor = Color.White;
+        GenerateWorkstationidentifierButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
+        GenerateWorkstationidentifierButton.CheckedOutline = Color.FromArgb(108, 124, 204);
+        GenerateWorkstationidentifierButton.Content = "generate";
+        GenerateWorkstationidentifierButton.DialogResult = DialogResult.None;
+        GenerateWorkstationidentifierButton.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        GenerateWorkstationidentifierButton.ForeColor = Color.White;
+        GenerateWorkstationidentifierButton.HoverBackground = Color.FromArgb(108, 124, 204);
+        GenerateWorkstationidentifierButton.HoveredImageTint = Color.White;
+        GenerateWorkstationidentifierButton.HoverForeColor = Color.White;
+        GenerateWorkstationidentifierButton.HoverOutline = Color.FromArgb(108, 124, 204);
+        GenerateWorkstationidentifierButton.Image = null;
+        GenerateWorkstationidentifierButton.ImageAutoCenter = true;
+        GenerateWorkstationidentifierButton.ImageExpand = new Point(0, 0);
+        GenerateWorkstationidentifierButton.ImageOffset = new Point(0, 0);
+        GenerateWorkstationidentifierButton.ImageTint = Color.White;
+        GenerateWorkstationidentifierButton.Location = new Point(72, 179);
+        GenerateWorkstationidentifierButton.Name = "GenerateWorkstationidentifierButton";
+        GenerateWorkstationidentifierButton.NormalBackground = Color.FromArgb(108, 124, 204);
+        GenerateWorkstationidentifierButton.NormalOutline = Color.FromArgb(108, 124, 204);
+        GenerateWorkstationidentifierButton.OutlineThickness = 4F;
+        GenerateWorkstationidentifierButton.PressedBackground = Color.FromArgb(11, 35, 116);
+        GenerateWorkstationidentifierButton.PressedForeColor = Color.WhiteSmoke;
+        GenerateWorkstationidentifierButton.PressedImageTint = Color.White;
+        GenerateWorkstationidentifierButton.PressedOutline = Color.FromArgb(11, 35, 116);
+        GenerateWorkstationidentifierButton.Rounding = new Padding(10);
+        GenerateWorkstationidentifierButton.Size = new Size(227, 31);
+        GenerateWorkstationidentifierButton.TabIndex = 36;
+        GenerateWorkstationidentifierButton.TextOffset = new Point(0, 0);
+        GenerateWorkstationidentifierButton.Click += GenerateWorkstationidentifierButton_Click_2;
         // 
         // Workstations
         // 
@@ -252,7 +254,7 @@ partial class Workstations
     private CuoreUI.Controls.cuiLabel cuiLabel1;
     private CuoreUI.Controls.cuiLabel cuiLabel2;
     private CuoreUI.Controls.cuiTextBox2 WorkstationNameTextbox;
-    private CuoreUI.Controls.cuiButton GenerateWorkstationidentifierButton;
     private CuoreUI.Controls.cuiLabel cuiLabel3;
     private CuoreUI.Controls.cuiTextBox2 NewWorkstationIdentifier;
+    private cuiButton GenerateWorkstationidentifierButton;
 }
