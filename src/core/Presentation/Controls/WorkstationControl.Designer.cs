@@ -133,7 +133,6 @@ partial class WorkstationControl
         // DeleteWorkstationButton
         // 
         DeleteWorkstationButton.CheckButton = false;
-        DeleteWorkstationButton.Checked = false;
         DeleteWorkstationButton.CheckedBackground = Color.FromArgb(169, 86, 81);
         DeleteWorkstationButton.CheckedForeColor = Color.White;
         DeleteWorkstationButton.CheckedImageTint = Color.White;

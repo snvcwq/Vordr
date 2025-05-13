@@ -34,9 +34,9 @@ partial class Alerts
         // AlertsFlowChart
         // 
         AlertsFlowChart.AutoScroll = true;
-        AlertsFlowChart.Location = new Point(144, 12);
+        AlertsFlowChart.Location = new Point(18, 12);
         AlertsFlowChart.Name = "AlertsFlowChart";
-        AlertsFlowChart.Size = new Size(1133, 682);
+        AlertsFlowChart.Size = new Size(1248, 680);
         AlertsFlowChart.TabIndex = 0;
         // 
         // Alerts

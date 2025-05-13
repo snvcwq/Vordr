@@ -121,7 +121,7 @@ partial class AlertControl
         SaveButton.CheckedOutline = Color.FromArgb(28, 46, 83);
         SaveButton.Content = "Save";
         SaveButton.DialogResult = DialogResult.None;
-        SaveButton.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        SaveButton.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         SaveButton.ForeColor = Color.White;
         SaveButton.HoverBackground = Color.FromArgb(28, 46, 83);
         SaveButton.HoveredImageTint = Color.White;
@@ -136,7 +136,7 @@ partial class AlertControl
         SaveButton.Name = "SaveButton";
         SaveButton.NormalBackground = Color.FromArgb(28, 46, 83);
         SaveButton.NormalOutline = Color.FromArgb(28, 46, 83);
-        SaveButton.OutlineThickness = 0.1F;
+        SaveButton.OutlineThickness = 4F;
         SaveButton.PressedBackground = Color.FromArgb(28, 46, 83);
         SaveButton.PressedForeColor = Color.FromArgb(28, 46, 83);
         SaveButton.PressedImageTint = Color.White;

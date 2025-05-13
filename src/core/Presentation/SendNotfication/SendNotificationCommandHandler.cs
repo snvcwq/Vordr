@@ -6,16 +6,17 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using MimeKit;
 using Vordr.Application.Common.Extensions;
 using Vordr.Application.Common.Interfaces.Persistence;
+using Vordr.Application.Notfication.SendNotfication;
 
 namespace Presentation.SendNotfication;
 
-public class SendNotificationCommandHandler(INotificationRepository repository) : IRequestHandler<SendNotificationCommand, ErrorOr<Success>>
+public class SendNotificationCommandHandler(INotificationRepository repository) : IRequestHandler<SendNotificationCommand>
 {
-    public async Task<ErrorOr<Success>> Handle(SendNotificationCommand request, CancellationToken cancellationToken)
+    public async Task Handle(SendNotificationCommand request, CancellationToken cancellationToken)
     {
         var config = await repository.GetAsync();
         if (config == null)
-            return Error.NotFound("NotificationConfig", "Notification settings not found.");
+            return;
 
         // Send Email if enabled
         if (config.EmailEnabled)
@@ -43,7 +44,7 @@ public class SendNotificationCommandHandler(INotificationRepository repository) 
             }
             catch (Exception ex)
             {
-                return Error.Failure($"Failed to send email: {ex.Message}");
+                return;
             }
         }
 
@@ -62,10 +63,10 @@ public class SendNotificationCommandHandler(INotificationRepository repository) 
             catch (Exception ex)
             {
                 // Handle push notification failure
-                return Error.Failure($"Failed to send push notification: {ex.Message}");
+                return ;
             }
         }
 
-        return Result.Success;
+        return;
     }
 }

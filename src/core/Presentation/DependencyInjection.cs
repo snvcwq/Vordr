@@ -7,6 +7,7 @@ using Presentation.Socket;
 using System.Reflection;
 using Vordr.Application.Battery.Queries;
 using Vordr.Application.Common.Behaviours;
+using Vordr.Application.Notfication.SendNotfication;
 
 namespace Presentation;
 
