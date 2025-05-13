@@ -41,11 +41,11 @@ partial class ComputerDropdownControl
         WorkstationName.Content = "Your text here!";
         WorkstationName.DialogResult = DialogResult.None;
         WorkstationName.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        WorkstationName.ForeColor = Color.FromArgb(11, 35, 116);
+        WorkstationName.ForeColor = Color.FromArgb(108, 124, 204);
         WorkstationName.HoverBackground = Color.White;
         WorkstationName.HoveredImageTint = SystemColors.Window;
-        WorkstationName.HoverForeColor = Color.FromArgb(11, 35, 116);
-        WorkstationName.HoverOutline = Color.White;
+        WorkstationName.HoverForeColor = Color.FromArgb(108, 124, 204);
+        WorkstationName.HoverOutline = Color.Transparent;
         WorkstationName.Image = null;
         WorkstationName.ImageAutoCenter = true;
         WorkstationName.ImageExpand = new Point(0, 0);

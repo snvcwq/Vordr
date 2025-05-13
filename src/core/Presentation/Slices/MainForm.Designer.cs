@@ -32,7 +32,9 @@ partial class MainForm
     {
         components = new System.ComponentModel.Container();
         panel2 = new Panel();
+        AlertsButton = new cuiButtonGroup();
         SelectWorkstationButton = new cuiButtonGroup();
+        SettingsButton = new cuiButtonGroup();
         DropdownContainer = new FlowLayoutPanel();
         WorkstationsButton = new cuiButtonGroup();
         BatteryButton = new cuiButtonGroup();
@@ -44,8 +46,6 @@ partial class MainForm
         ProcessButton = new cuiButtonGroup();
         AppName = new cuiLabel();
         cuiButton1 = new cuiButton();
-        AlertsButton = new cuiButtonGroup();
-        SettingsButton = new cuiButtonGroup();
         tabPage1 = new TabPage();
         tabPage2 = new TabPage();
         tabPage3 = new TabPage();
@@ -84,6 +84,44 @@ partial class MainForm
         panel2.Size = new Size(204, 774);
         panel2.TabIndex = 2;
         // 
+        // AlertsButton
+        // 
+        AlertsButton.BackColor = Color.Transparent;
+        AlertsButton.Checked = false;
+        AlertsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
+        AlertsButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
+        AlertsButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
+        AlertsButton.CheckedOutline = Color.FromArgb(140, 140, 244);
+        AlertsButton.Content = "Alerts";
+        AlertsButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        AlertsButton.ForeColor = Color.FromArgb(11, 35, 116);
+        AlertsButton.Group = 0;
+        AlertsButton.HoverBackground = Color.White;
+        AlertsButton.HoveredImageTint = Color.White;
+        AlertsButton.HoverForeColor = Color.FromArgb(140, 140, 244);
+        AlertsButton.HoverOutline = Color.FromArgb(140, 140, 244);
+        AlertsButton.Image = Resources.notification;
+        AlertsButton.ImageAutoCenter = true;
+        AlertsButton.ImageExpand = new Point(0, 0);
+        AlertsButton.ImageOffset = new Point(-45, 0);
+        AlertsButton.ImageTint = Color.White;
+        AlertsButton.Location = new Point(24, 627);
+        AlertsButton.Margin = new Padding(4);
+        AlertsButton.Name = "AlertsButton";
+        AlertsButton.NormalBackground = Color.White;
+        AlertsButton.NormalOutline = Color.White;
+        AlertsButton.OutlineThickness = 0F;
+        AlertsButton.PressedBackground = Color.FromArgb(241, 244, 254);
+        AlertsButton.PressedForeColor = Color.FromArgb(140, 140, 244);
+        AlertsButton.PressedImageTint = Color.FromArgb(140, 140, 244);
+        AlertsButton.PressedOutline = Color.FromArgb(140, 140, 244);
+        AlertsButton.RightToLeft = RightToLeft.No;
+        AlertsButton.Rounding = new Padding(8);
+        AlertsButton.Size = new Size(203, 46);
+        AlertsButton.TabIndex = 34;
+        AlertsButton.TextOffset = new Point(-20, 0);
+        AlertsButton.Click += AlertsButton_Click;
+        // 
         // SelectWorkstationButton
         // 
         SelectWorkstationButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -99,12 +137,12 @@ partial class MainForm
         SelectWorkstationButton.HoveredImageTint = Color.FromArgb(241, 244, 254);
         SelectWorkstationButton.HoverForeColor = Color.FromArgb(11, 35, 116);
         SelectWorkstationButton.HoverOutline = Color.Empty;
-        SelectWorkstationButton.Image = Resources.workstation;
+        SelectWorkstationButton.Image = Resources.monitor1;
         SelectWorkstationButton.ImageAutoCenter = false;
-        SelectWorkstationButton.ImageExpand = new Point(5, 5);
-        SelectWorkstationButton.ImageOffset = new Point(10, 0);
+        SelectWorkstationButton.ImageExpand = new Point(3, 3);
+        SelectWorkstationButton.ImageOffset = new Point(3, 0);
         SelectWorkstationButton.ImageTint = Color.White;
-        SelectWorkstationButton.Location = new Point(3, 92);
+        SelectWorkstationButton.Location = new Point(9, 92);
         SelectWorkstationButton.Margin = new Padding(9);
         SelectWorkstationButton.Name = "SelectWorkstationButton";
         SelectWorkstationButton.NormalBackground = Color.FromArgb(241, 244, 254);
@@ -112,18 +150,56 @@ partial class MainForm
         SelectWorkstationButton.OutlineThickness = 1.6F;
         SelectWorkstationButton.PressedBackground = Color.FromArgb(241, 244, 254);
         SelectWorkstationButton.PressedForeColor = Color.FromArgb(11, 35, 116);
-        SelectWorkstationButton.PressedImageTint = Color.FromArgb(241, 244, 254);
+        SelectWorkstationButton.PressedImageTint = Color.FromArgb(108, 124, 204);
         SelectWorkstationButton.PressedOutline = Color.Empty;
         SelectWorkstationButton.Rounding = new Padding(8);
-        SelectWorkstationButton.Size = new Size(201, 34);
+        SelectWorkstationButton.Size = new Size(186, 34);
         SelectWorkstationButton.TabIndex = 32;
         SelectWorkstationButton.TextOffset = new Point(0, 0);
         SelectWorkstationButton.Click += SelectWorkstationButton_Click;
         // 
+        // SettingsButton
+        // 
+        SettingsButton.BackColor = Color.Transparent;
+        SettingsButton.Checked = false;
+        SettingsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
+        SettingsButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
+        SettingsButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
+        SettingsButton.CheckedOutline = Color.FromArgb(140, 140, 244);
+        SettingsButton.Content = "Settings";
+        SettingsButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        SettingsButton.ForeColor = Color.FromArgb(11, 35, 116);
+        SettingsButton.Group = 0;
+        SettingsButton.HoverBackground = Color.White;
+        SettingsButton.HoveredImageTint = Color.White;
+        SettingsButton.HoverForeColor = Color.FromArgb(140, 140, 244);
+        SettingsButton.HoverOutline = Color.FromArgb(140, 140, 244);
+        SettingsButton.Image = Resources.setting__1_;
+        SettingsButton.ImageAutoCenter = true;
+        SettingsButton.ImageExpand = new Point(0, 0);
+        SettingsButton.ImageOffset = new Point(-35, 0);
+        SettingsButton.ImageTint = Color.White;
+        SettingsButton.Location = new Point(24, 681);
+        SettingsButton.Margin = new Padding(4);
+        SettingsButton.Name = "SettingsButton";
+        SettingsButton.NormalBackground = Color.White;
+        SettingsButton.NormalOutline = Color.White;
+        SettingsButton.OutlineThickness = 0F;
+        SettingsButton.PressedBackground = Color.FromArgb(241, 244, 254);
+        SettingsButton.PressedForeColor = Color.FromArgb(140, 140, 244);
+        SettingsButton.PressedImageTint = Color.FromArgb(140, 140, 244);
+        SettingsButton.PressedOutline = Color.FromArgb(140, 140, 244);
+        SettingsButton.RightToLeft = RightToLeft.No;
+        SettingsButton.Rounding = new Padding(8);
+        SettingsButton.Size = new Size(203, 46);
+        SettingsButton.TabIndex = 33;
+        SettingsButton.TextOffset = new Point(-20, 0);
+        SettingsButton.Click += SettingsButton_Click;
+        // 
         // DropdownContainer
         // 
         DropdownContainer.AutoScroll = true;
-        DropdownContainer.BorderStyle = BorderStyle.FixedSingle;
+        DropdownContainer.ForeColor = SystemColors.ButtonHighlight;
         DropdownContainer.Location = new Point(7, 138);
         DropdownContainer.Name = "DropdownContainer";
         DropdownContainer.Size = new Size(220, 57);
@@ -149,7 +225,7 @@ partial class MainForm
         WorkstationsButton.ImageExpand = new Point(0, 0);
         WorkstationsButton.ImageOffset = new Point(-20, 0);
         WorkstationsButton.ImageTint = Color.White;
-        WorkstationsButton.Location = new Point(24, 592);
+        WorkstationsButton.Location = new Point(24, 573);
         WorkstationsButton.Margin = new Padding(4);
         WorkstationsButton.Name = "WorkstationsButton";
         WorkstationsButton.NormalBackground = Color.White;
@@ -186,7 +262,7 @@ partial class MainForm
         BatteryButton.ImageExpand = new Point(0, 0);
         BatteryButton.ImageOffset = new Point(-40, 0);
         BatteryButton.ImageTint = Color.White;
-        BatteryButton.Location = new Point(24, 538);
+        BatteryButton.Location = new Point(24, 519);
         BatteryButton.Margin = new Padding(4);
         BatteryButton.Name = "BatteryButton";
         BatteryButton.NormalBackground = Color.White;
@@ -223,7 +299,7 @@ partial class MainForm
         DrivesButton.ImageExpand = new Point(0, 0);
         DrivesButton.ImageOffset = new Point(-40, 0);
         DrivesButton.ImageTint = Color.White;
-        DrivesButton.Location = new Point(24, 484);
+        DrivesButton.Location = new Point(24, 465);
         DrivesButton.Margin = new Padding(4);
         DrivesButton.Name = "DrivesButton";
         DrivesButton.NormalBackground = Color.White;
@@ -260,7 +336,7 @@ partial class MainForm
         GpuButton.ImageExpand = new Point(0, 0);
         GpuButton.ImageOffset = new Point(-24, 0);
         GpuButton.ImageTint = Color.White;
-        GpuButton.Location = new Point(24, 433);
+        GpuButton.Location = new Point(24, 414);
         GpuButton.Margin = new Padding(4);
         GpuButton.Name = "GpuButton";
         GpuButton.NormalBackground = Color.White;
@@ -297,7 +373,7 @@ partial class MainForm
         CpuButton.ImageExpand = new Point(0, 0);
         CpuButton.ImageOffset = new Point(-24, 0);
         CpuButton.ImageTint = Color.White;
-        CpuButton.Location = new Point(24, 379);
+        CpuButton.Location = new Point(24, 360);
         CpuButton.Margin = new Padding(4);
         CpuButton.Name = "CpuButton";
         CpuButton.NormalBackground = Color.White;
@@ -334,7 +410,7 @@ partial class MainForm
         RamButton.ImageExpand = new Point(0, 0);
         RamButton.ImageOffset = new Point(-24, 0);
         RamButton.ImageTint = Color.White;
-        RamButton.Location = new Point(24, 325);
+        RamButton.Location = new Point(24, 306);
         RamButton.Margin = new Padding(4);
         RamButton.Name = "RamButton";
         RamButton.NormalBackground = Color.White;
@@ -371,7 +447,7 @@ partial class MainForm
         DashboardButton.ImageExpand = new Point(0, 0);
         DashboardButton.ImageOffset = new Point(-24, 0);
         DashboardButton.ImageTint = Color.White;
-        DashboardButton.Location = new Point(24, 217);
+        DashboardButton.Location = new Point(24, 198);
         DashboardButton.Margin = new Padding(4);
         DashboardButton.Name = "DashboardButton";
         DashboardButton.NormalBackground = Color.White;
@@ -408,7 +484,7 @@ partial class MainForm
         ProcessButton.ImageExpand = new Point(0, 0);
         ProcessButton.ImageOffset = new Point(-30, 0);
         ProcessButton.ImageTint = Color.White;
-        ProcessButton.Location = new Point(24, 271);
+        ProcessButton.Location = new Point(24, 252);
         ProcessButton.Margin = new Padding(4);
         ProcessButton.Name = "ProcessButton";
         ProcessButton.NormalBackground = Color.White;
@@ -471,80 +547,6 @@ partial class MainForm
         cuiButton1.TabIndex = 19;
         cuiButton1.TextOffset = new Point(0, 0);
         // 
-        // AlertsButton
-        // 
-        AlertsButton.BackColor = Color.Transparent;
-        AlertsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
-        AlertsButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
-        AlertsButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
-        AlertsButton.CheckedOutline = Color.FromArgb(140, 140, 244);
-        AlertsButton.Content = "Alerts";
-        AlertsButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        AlertsButton.ForeColor = Color.FromArgb(11, 35, 116);
-        AlertsButton.Group = 0;
-        AlertsButton.HoverBackground = Color.White;
-        AlertsButton.HoveredImageTint = Color.White;
-        AlertsButton.HoverForeColor = Color.FromArgb(140, 140, 244);
-        AlertsButton.HoverOutline = Color.FromArgb(140, 140, 244);
-        AlertsButton.Image = Resources.notification;
-        AlertsButton.ImageAutoCenter = true;
-        AlertsButton.ImageExpand = new Point(0, 0);
-        AlertsButton.ImageOffset = new Point(-45, 0);
-        AlertsButton.ImageTint = Color.White;
-        AlertsButton.Location = new Point(24, 661);
-        AlertsButton.Margin = new Padding(4);
-        AlertsButton.Name = "AlertsButton";
-        AlertsButton.NormalBackground = Color.White;
-        AlertsButton.NormalOutline = Color.White;
-        AlertsButton.OutlineThickness = 0F;
-        AlertsButton.PressedBackground = Color.FromArgb(241, 244, 254);
-        AlertsButton.PressedForeColor = Color.FromArgb(140, 140, 244);
-        AlertsButton.PressedImageTint = Color.FromArgb(140, 140, 244);
-        AlertsButton.PressedOutline = Color.FromArgb(140, 140, 244);
-        AlertsButton.RightToLeft = RightToLeft.No;
-        AlertsButton.Rounding = new Padding(8);
-        AlertsButton.Size = new Size(203, 46);
-        AlertsButton.TabIndex = 34;
-        AlertsButton.TextOffset = new Point(-20, 0);
-        AlertsButton.Click += AlertsButton_Click;
-        // 
-        // SettingsButton
-        // 
-        SettingsButton.BackColor = Color.Transparent;
-        SettingsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
-        SettingsButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
-        SettingsButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
-        SettingsButton.CheckedOutline = Color.FromArgb(140, 140, 244);
-        SettingsButton.Content = "Settings";
-        SettingsButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        SettingsButton.ForeColor = Color.FromArgb(11, 35, 116);
-        SettingsButton.Group = 0;
-        SettingsButton.HoverBackground = Color.White;
-        SettingsButton.HoveredImageTint = Color.White;
-        SettingsButton.HoverForeColor = Color.FromArgb(140, 140, 244);
-        SettingsButton.HoverOutline = Color.FromArgb(140, 140, 244);
-        SettingsButton.Image = Resources.setting__1_;
-        SettingsButton.ImageAutoCenter = true;
-        SettingsButton.ImageExpand = new Point(0, 0);
-        SettingsButton.ImageOffset = new Point(-35, 0);
-        SettingsButton.ImageTint = Color.White;
-        SettingsButton.Location = new Point(24, 715);
-        SettingsButton.Margin = new Padding(4);
-        SettingsButton.Name = "SettingsButton";
-        SettingsButton.NormalBackground = Color.White;
-        SettingsButton.NormalOutline = Color.White;
-        SettingsButton.OutlineThickness = 0F;
-        SettingsButton.PressedBackground = Color.FromArgb(241, 244, 254);
-        SettingsButton.PressedForeColor = Color.FromArgb(140, 140, 244);
-        SettingsButton.PressedImageTint = Color.FromArgb(140, 140, 244);
-        SettingsButton.PressedOutline = Color.FromArgb(140, 140, 244);
-        SettingsButton.RightToLeft = RightToLeft.No;
-        SettingsButton.Rounding = new Padding(8);
-        SettingsButton.Size = new Size(203, 46);
-        SettingsButton.TabIndex = 33;
-        SettingsButton.TextOffset = new Point(-20, 0);
-        SettingsButton.Click += SettingsButton_Click;
-        // 
         // tabPage1
         // 
         tabPage1.Location = new Point(4, 46);
@@ -604,6 +606,7 @@ partial class MainForm
         // 
         MaximizeButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         MaximizeButton.BackColor = Color.FromArgb(108, 124, 204);
+        MaximizeButton.Checked = false;
         MaximizeButton.CheckedBackground = Color.FromArgb(108, 124, 204);
         MaximizeButton.CheckedForeColor = Color.FromArgb(108, 124, 204);
         MaximizeButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
@@ -648,6 +651,7 @@ partial class MainForm
         // 
         MinimizeButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         MinimizeButton.BackColor = Color.FromArgb(108, 124, 204);
+        MinimizeButton.Checked = false;
         MinimizeButton.CheckedBackground = Color.FromArgb(108, 124, 204);
         MinimizeButton.CheckedForeColor = Color.FromArgb(108, 124, 204);
         MinimizeButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
@@ -685,6 +689,7 @@ partial class MainForm
         // 
         CloseButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         CloseButton.BackColor = Color.FromArgb(108, 124, 204);
+        CloseButton.Checked = false;
         CloseButton.CheckedBackground = Color.FromArgb(108, 124, 204);
         CloseButton.CheckedForeColor = Color.FromArgb(108, 124, 204);
         CloseButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
