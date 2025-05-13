@@ -276,7 +276,6 @@ partial class Battery
         // OneDayCheckbox
         // 
         OneDayCheckbox.BackColor = Color.White;
-        OneDayCheckbox.Checked = false;
         OneDayCheckbox.CheckedForeground = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.CheckedOutlineColor = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.CheckedSymbolColor = Color.White;

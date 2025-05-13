@@ -87,7 +87,6 @@ partial class MainForm
         // SelectWorkstationButton
         // 
         SelectWorkstationButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        SelectWorkstationButton.Checked = false;
         SelectWorkstationButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         SelectWorkstationButton.CheckedForeColor = Color.FromArgb(11, 35, 116);
         SelectWorkstationButton.CheckedImageTint = Color.FromArgb(241, 244, 254);
@@ -133,7 +132,6 @@ partial class MainForm
         // WorkstationsButton
         // 
         WorkstationsButton.BackColor = Color.Transparent;
-        WorkstationsButton.Checked = false;
         WorkstationsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         WorkstationsButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         WorkstationsButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -171,7 +169,6 @@ partial class MainForm
         // BatteryButton
         // 
         BatteryButton.BackColor = Color.Transparent;
-        BatteryButton.Checked = false;
         BatteryButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         BatteryButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         BatteryButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -209,7 +206,6 @@ partial class MainForm
         // DrivesButton
         // 
         DrivesButton.BackColor = Color.Transparent;
-        DrivesButton.Checked = false;
         DrivesButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         DrivesButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         DrivesButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -247,7 +243,6 @@ partial class MainForm
         // GpuButton
         // 
         GpuButton.BackColor = Color.Transparent;
-        GpuButton.Checked = false;
         GpuButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         GpuButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         GpuButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -285,7 +280,6 @@ partial class MainForm
         // CpuButton
         // 
         CpuButton.BackColor = Color.Transparent;
-        CpuButton.Checked = false;
         CpuButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         CpuButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         CpuButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -323,7 +317,6 @@ partial class MainForm
         // RamButton
         // 
         RamButton.BackColor = Color.Transparent;
-        RamButton.Checked = false;
         RamButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         RamButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         RamButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -361,7 +354,6 @@ partial class MainForm
         // DashboardButton
         // 
         DashboardButton.BackColor = Color.Transparent;
-        DashboardButton.Checked = false;
         DashboardButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         DashboardButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         DashboardButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -399,7 +391,6 @@ partial class MainForm
         // ProcessButton
         // 
         ProcessButton.BackColor = Color.Transparent;
-        ProcessButton.Checked = false;
         ProcessButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         ProcessButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         ProcessButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -449,7 +440,6 @@ partial class MainForm
         // cuiButton1
         // 
         cuiButton1.CheckButton = false;
-        cuiButton1.Checked = false;
         cuiButton1.CheckedBackground = Color.White;
         cuiButton1.CheckedForeColor = Color.White;
         cuiButton1.CheckedImageTint = Color.White;
@@ -484,7 +474,6 @@ partial class MainForm
         // AlertsButton
         // 
         AlertsButton.BackColor = Color.Transparent;
-        AlertsButton.Checked = false;
         AlertsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         AlertsButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         AlertsButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -522,7 +511,6 @@ partial class MainForm
         // SettingsButton
         // 
         SettingsButton.BackColor = Color.Transparent;
-        SettingsButton.Checked = false;
         SettingsButton.CheckedBackground = Color.FromArgb(241, 244, 254);
         SettingsButton.CheckedForeColor = Color.FromArgb(140, 140, 244);
         SettingsButton.CheckedImageTint = Color.FromArgb(140, 140, 244);
@@ -616,7 +604,6 @@ partial class MainForm
         // 
         MaximizeButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         MaximizeButton.BackColor = Color.FromArgb(108, 124, 204);
-        MaximizeButton.Checked = false;
         MaximizeButton.CheckedBackground = Color.FromArgb(108, 124, 204);
         MaximizeButton.CheckedForeColor = Color.FromArgb(108, 124, 204);
         MaximizeButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
@@ -661,7 +648,6 @@ partial class MainForm
         // 
         MinimizeButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         MinimizeButton.BackColor = Color.FromArgb(108, 124, 204);
-        MinimizeButton.Checked = false;
         MinimizeButton.CheckedBackground = Color.FromArgb(108, 124, 204);
         MinimizeButton.CheckedForeColor = Color.FromArgb(108, 124, 204);
         MinimizeButton.CheckedImageTint = Color.FromArgb(108, 124, 204);
@@ -699,7 +685,6 @@ partial class MainForm
         // 
         CloseButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         CloseButton.BackColor = Color.FromArgb(108, 124, 204);
-        CloseButton.Checked = false;
         CloseButton.CheckedBackground = Color.FromArgb(108, 124, 204);
         CloseButton.CheckedForeColor = Color.FromArgb(108, 124, 204);
         CloseButton.CheckedImageTint = Color.FromArgb(108, 124, 204);

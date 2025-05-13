@@ -149,7 +149,6 @@ partial class Processes
         // NonSystemProcessSwitch
         // 
         NonSystemProcessSwitch.BackColor = Color.Transparent;
-        NonSystemProcessSwitch.Checked = true;
         NonSystemProcessSwitch.CheckedBackground = Color.White;
         NonSystemProcessSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         NonSystemProcessSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
@@ -169,7 +168,6 @@ partial class Processes
         // SystemProcessSwitch
         // 
         SystemProcessSwitch.BackColor = Color.Transparent;
-        SystemProcessSwitch.Checked = false;
         SystemProcessSwitch.CheckedBackground = Color.White;
         SystemProcessSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         SystemProcessSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);

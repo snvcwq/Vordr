@@ -131,7 +131,6 @@ partial class Workstations
         // GenerateWorkstationidentifierButton
         // 
         GenerateWorkstationidentifierButton.CheckButton = false;
-        GenerateWorkstationidentifierButton.Checked = false;
         GenerateWorkstationidentifierButton.CheckedBackground = Color.FromArgb(255, 106, 0);
         GenerateWorkstationidentifierButton.CheckedForeColor = Color.White;
         GenerateWorkstationidentifierButton.CheckedImageTint = Color.White;

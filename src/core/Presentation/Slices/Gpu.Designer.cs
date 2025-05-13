@@ -356,7 +356,6 @@ partial class Gpu
         // 
         DisplayResults.BackColor = Color.FromArgb(28, 46, 83);
         DisplayResults.CheckButton = false;
-        DisplayResults.Checked = false;
         DisplayResults.CheckedBackground = Color.White;
         DisplayResults.CheckedForeColor = Color.Black;
         DisplayResults.CheckedImageTint = Color.White;

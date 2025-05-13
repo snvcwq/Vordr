@@ -180,7 +180,6 @@ partial class Ram
         // 
         DisplayResults.BackColor = Color.FromArgb(28, 46, 83);
         DisplayResults.CheckButton = false;
-        DisplayResults.Checked = false;
         DisplayResults.CheckedBackground = Color.White;
         DisplayResults.CheckedForeColor = Color.Black;
         DisplayResults.CheckedImageTint = Color.White;
@@ -254,7 +253,6 @@ partial class Ram
         // OneDayCheckbox
         // 
         OneDayCheckbox.BackColor = Color.White;
-        OneDayCheckbox.Checked = false;
         OneDayCheckbox.CheckedForeground = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.CheckedOutlineColor = Color.FromArgb(20, 39, 78);
         OneDayCheckbox.CheckedSymbolColor = Color.White;

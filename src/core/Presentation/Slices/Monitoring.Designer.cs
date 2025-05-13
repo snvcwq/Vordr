@@ -94,7 +94,6 @@ partial class Monitoring
         // CpuSwitch
         // 
         CpuSwitch.BackColor = Color.Transparent;
-        CpuSwitch.Checked = false;
         CpuSwitch.CheckedBackground = Color.White;
         CpuSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         CpuSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
@@ -173,7 +172,6 @@ partial class Monitoring
         // GpuSwitch
         // 
         GpuSwitch.BackColor = Color.Transparent;
-        GpuSwitch.Checked = false;
         GpuSwitch.CheckedBackground = Color.White;
         GpuSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         GpuSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
@@ -233,7 +231,6 @@ partial class Monitoring
         // BatterySwitch
         // 
         BatterySwitch.BackColor = Color.Transparent;
-        BatterySwitch.Checked = false;
         BatterySwitch.CheckedBackground = Color.White;
         BatterySwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         BatterySwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
@@ -292,7 +289,6 @@ partial class Monitoring
         // RamSwitch
         // 
         RamSwitch.BackColor = Color.Transparent;
-        RamSwitch.Checked = false;
         RamSwitch.CheckedBackground = Color.White;
         RamSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         RamSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
@@ -351,7 +347,6 @@ partial class Monitoring
         // DrivesSwitch
         // 
         DrivesSwitch.BackColor = Color.Transparent;
-        DrivesSwitch.Checked = false;
         DrivesSwitch.CheckedBackground = Color.White;
         DrivesSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         DrivesSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
@@ -410,7 +405,6 @@ partial class Monitoring
         // ProcessesSwitch
         // 
         ProcessesSwitch.BackColor = Color.Transparent;
-        ProcessesSwitch.Checked = false;
         ProcessesSwitch.CheckedBackground = Color.White;
         ProcessesSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         ProcessesSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);

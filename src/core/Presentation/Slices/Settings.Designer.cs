@@ -379,7 +379,6 @@ partial class Settings
         // EmailNotificationSwitch
         // 
         EmailNotificationSwitch.BackColor = Color.Transparent;
-        EmailNotificationSwitch.Checked = false;
         EmailNotificationSwitch.CheckedBackground = Color.White;
         EmailNotificationSwitch.CheckedForeground = Color.FromArgb(9, 121, 105);
         EmailNotificationSwitch.CheckedOutlineColor = Color.FromArgb(9, 121, 105);
