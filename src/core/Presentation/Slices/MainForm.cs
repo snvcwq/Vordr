@@ -23,7 +23,6 @@ public partial class MainForm : Form
     private Dashboard _dashboard = null;
     private Drives _drives = null;
     private Gpu _gpu = null;
-    private Monitoring _monitoring = null;
     private Processes _processes = null;
     private Ram _ram = null;
     private Workstations _workstation = null;
