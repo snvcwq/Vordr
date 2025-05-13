@@ -14,7 +14,7 @@ public class PushNotificaiton : IPushNotifiction
                 new ToastContentBuilder()
                     .AddArgument("action", "viewConversation")
                     .AddArgument("conversationId", 9813)
-                    .AddText("VordR system alert")
+                    .AddText($"VordR system alert.")
                     .AddText(message)
                     .Show();
             }

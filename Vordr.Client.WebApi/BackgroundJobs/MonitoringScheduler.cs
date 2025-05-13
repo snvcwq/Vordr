@@ -15,6 +15,9 @@ public class MonitoringScheduler(IMonitoringService monitoringService, IRecurrin
         var opt = monitoringOptions.Value.HardwareComponentsFrequencyCronExpression;
         Expression<Action> action = () => monitoringService.PerformHardwareComponentMonitoring();
         recurringJobManager.AddOrUpdate(nameof(monitoringService.PerformHardwareComponentMonitoring), action, opt);
+        Task.Delay(3000).Wait();
+        recurringJobManager.AddOrUpdate("PerformHardwareComponentMonitoring2", action, opt);
+
     }
     public void ScheduleHardwareDataMonitoring()
     {
@@ -27,6 +30,8 @@ public class MonitoringScheduler(IMonitoringService monitoringService, IRecurrin
         var opt = monitoringOptions.Value.HardwareProcessFrequencyCronExpression;
         Expression<Action> action = () => monitoringService.PerformProcessesMonitoring();
         recurringJobManager.AddOrUpdate(nameof(monitoringService.PerformProcessesMonitoring), action, opt);
-        
+        Task.Delay(3000).Wait();
+        recurringJobManager.AddOrUpdate("PerformProcessesMonitoring2", action, opt);
+
     }
 }

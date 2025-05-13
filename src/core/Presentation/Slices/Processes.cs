@@ -57,6 +57,10 @@ public partial class Processes : Form
         _processes = processes.ToArray();
         ProcessesTable.DataSource = null;
         ProcessesTable.DataSource = _processes;
+        ProcessesTable.DataError += (s, e) =>
+        {
+            e.ThrowException = false;
+        };
     }
 
     private void Processes_Load(object sender, EventArgs e)
