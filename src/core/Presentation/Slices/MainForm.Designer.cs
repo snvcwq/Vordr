@@ -126,7 +126,7 @@ partial class MainForm
         DropdownContainer.BorderStyle = BorderStyle.FixedSingle;
         DropdownContainer.Location = new Point(7, 138);
         DropdownContainer.Name = "DropdownContainer";
-        DropdownContainer.Size = new Size(220, 78);
+        DropdownContainer.Size = new Size(220, 57);
         DropdownContainer.TabIndex = 0;
         // 
         // WorkstationsButton
@@ -144,7 +144,7 @@ partial class MainForm
         WorkstationsButton.HoveredImageTint = Color.White;
         WorkstationsButton.HoverForeColor = Color.FromArgb(140, 140, 244);
         WorkstationsButton.HoverOutline = Color.FromArgb(140, 140, 244);
-        WorkstationsButton.Image = Resources.workstation;
+        WorkstationsButton.Image = Resources.computer;
         WorkstationsButton.ImageAutoCenter = true;
         WorkstationsButton.ImageExpand = new Point(0, 0);
         WorkstationsButton.ImageOffset = new Point(-20, 0);
@@ -297,7 +297,7 @@ partial class MainForm
         CpuButton.ImageExpand = new Point(0, 0);
         CpuButton.ImageOffset = new Point(-24, 0);
         CpuButton.ImageTint = Color.White;
-        CpuButton.Location = new Point(24, 462);
+        CpuButton.Location = new Point(24, 463);
         CpuButton.Margin = new Padding(4);
         CpuButton.Name = "CpuButton";
         CpuButton.NormalBackground = Color.White;
@@ -334,7 +334,7 @@ partial class MainForm
         RamButton.ImageExpand = new Point(0, 0);
         RamButton.ImageOffset = new Point(-24, 0);
         RamButton.ImageTint = Color.White;
-        RamButton.Location = new Point(24, 408);
+        RamButton.Location = new Point(24, 409);
         RamButton.Margin = new Padding(4);
         RamButton.Name = "RamButton";
         RamButton.NormalBackground = Color.White;
@@ -371,7 +371,7 @@ partial class MainForm
         DashboardButton.ImageExpand = new Point(0, 0);
         DashboardButton.ImageOffset = new Point(-24, 0);
         DashboardButton.ImageTint = Color.White;
-        DashboardButton.Location = new Point(24, 309);
+        DashboardButton.Location = new Point(24, 301);
         DashboardButton.Margin = new Padding(4);
         DashboardButton.Name = "DashboardButton";
         DashboardButton.NormalBackground = Color.White;
@@ -408,7 +408,7 @@ partial class MainForm
         ProcessButton.ImageExpand = new Point(0, 0);
         ProcessButton.ImageOffset = new Point(-30, 0);
         ProcessButton.ImageTint = Color.White;
-        ProcessButton.Location = new Point(24, 354);
+        ProcessButton.Location = new Point(24, 355);
         ProcessButton.Margin = new Padding(4);
         ProcessButton.Name = "ProcessButton";
         ProcessButton.NormalBackground = Color.White;
@@ -486,12 +486,12 @@ partial class MainForm
         AlertsButton.HoveredImageTint = Color.White;
         AlertsButton.HoverForeColor = Color.FromArgb(140, 140, 244);
         AlertsButton.HoverOutline = Color.FromArgb(140, 140, 244);
-        AlertsButton.Image = Resources.AlertsIcon;
+        AlertsButton.Image = Resources.notification;
         AlertsButton.ImageAutoCenter = true;
         AlertsButton.ImageExpand = new Point(0, 0);
         AlertsButton.ImageOffset = new Point(-45, 0);
         AlertsButton.ImageTint = Color.White;
-        AlertsButton.Location = new Point(24, 214);
+        AlertsButton.Location = new Point(24, 193);
         AlertsButton.Margin = new Padding(4);
         AlertsButton.Name = "AlertsButton";
         AlertsButton.NormalBackground = Color.White;
@@ -523,12 +523,12 @@ partial class MainForm
         SettingsButton.HoveredImageTint = Color.White;
         SettingsButton.HoverForeColor = Color.FromArgb(140, 140, 244);
         SettingsButton.HoverOutline = Color.FromArgb(140, 140, 244);
-        SettingsButton.Image = Resources.setting;
+        SettingsButton.Image = Resources.setting__1_;
         SettingsButton.ImageAutoCenter = true;
         SettingsButton.ImageExpand = new Point(0, 0);
         SettingsButton.ImageOffset = new Point(-35, 0);
         SettingsButton.ImageTint = Color.White;
-        SettingsButton.Location = new Point(24, 255);
+        SettingsButton.Location = new Point(24, 247);
         SettingsButton.Margin = new Padding(4);
         SettingsButton.Name = "SettingsButton";
         SettingsButton.NormalBackground = Color.White;

@@ -263,20 +263,20 @@ partial class Drives
         cuiLabel4.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         cuiLabel4.ForeColor = Color.FromArgb(154, 154, 154);
         cuiLabel4.HorizontalAlignment = CuoreUI.Controls.cuiLabel.HorizontalAlignments.Center;
-        cuiLabel4.Location = new Point(70, 80);
+        cuiLabel4.Location = new Point(21, 80);
         cuiLabel4.Margin = new Padding(4, 3, 4, 3);
         cuiLabel4.Name = "cuiLabel4";
-        cuiLabel4.Size = new Size(526, 97);
+        cuiLabel4.Size = new Size(575, 97);
         cuiLabel4.TabIndex = 22;
         // 
         // cuiSeparator1
         // 
         cuiSeparator1.ForeColor = Color.FromArgb(20, 39, 78);
-        cuiSeparator1.Location = new Point(78, 57);
+        cuiSeparator1.Location = new Point(21, 57);
         cuiSeparator1.Margin = new Padding(4, 3, 4, 3);
         cuiSeparator1.Name = "cuiSeparator1";
         cuiSeparator1.SeparatorMargin = 8;
-        cuiSeparator1.Size = new Size(526, 16);
+        cuiSeparator1.Size = new Size(583, 16);
         cuiSeparator1.TabIndex = 23;
         cuiSeparator1.Thickness = 1F;
         cuiSeparator1.Vertical = false;
