@@ -16,6 +16,7 @@ public class UploadHardwareMetricsCommandHandler(
     IDriveInfoRepository driveRepository,
     IAlertRepository alertRepository,
     ISender sender,
+    IWorkstationRepository workstationRepository,
     IPushNotifiction pushNotifiction
     ) : IRequestHandler<UploadHardwareMetricsCommand>
 {
@@ -34,6 +35,7 @@ public class UploadHardwareMetricsCommandHandler(
         var batteryLevelIsMore = await alertRepository.GetByTypeAsync(AlertType.BatteryLevelIsLessThan);
         var batteryDegradationLevelIsMore = await alertRepository.GetByTypeAsync(AlertType.BatteryDegradationLevelIsLessThan);
 
+        var client =  await workstationRepository.GetWorkstationAsync(request.clientId);
         if (gpuIsMore.Enabled && request.HardwareReport.Gpu != null)
         {
             if (int.TryParse(gpuIsMore.Value, out var threshold))
@@ -41,7 +43,7 @@ public class UploadHardwareMetricsCommandHandler(
                 var current = request.HardwareReport.Gpu.AvgLoad;
                 if (current >= threshold)
                 {
-                    string message = $"We noticed that GPU usage for {request.clientId} is {current}%, which is above the defined alert threshold of {threshold}%. Please investigate the cause.";
+                    string message = $"We noticed that GPU usage for {client?.Name} is {current}%, which is above the defined alert threshold of {threshold}%. Please investigate the cause.";
                     await sender.Send(new SendNotificationCommand(message, AlertType.GpuIsMoreThan), cancellationToken);
                     pushNotifiction.Send(message);
                 }
@@ -55,7 +57,7 @@ public class UploadHardwareMetricsCommandHandler(
                 var current = request.HardwareReport.Gpu.Temperature;
                 if (current >= threshold)
                 {
-                    string message = $"We noticed that GPU temperature for {request.clientId} is {current}°C, which exceeds the defined threshold of {threshold}°C. Please check your cooling system.";
+                    string message = $"We noticed that GPU temperature for {client?.Name} is {current}°C, which exceeds the defined threshold of {threshold}°C. Please check your cooling system.";
                     await sender.Send(new SendNotificationCommand(message, AlertType.GpuTempIsMoreThan), cancellationToken);
                     pushNotifiction.Send(message);
 
@@ -70,7 +72,7 @@ public class UploadHardwareMetricsCommandHandler(
                 var current = request.HardwareReport.Cpu.AvgUsage;
                 if (current >= threshold)
                 {
-                    string message = $"CPU usage is currently {current}% for {request.clientId}, exceeding the defined threshold of {threshold}%. Investigate potential performance issues.";
+                    string message = $"CPU usage is currently {current}% for {client?.Name}, exceeding the defined threshold of {threshold}%. Investigate potential performance issues.";
                     await sender.Send(new SendNotificationCommand(message, AlertType.CpuIsMoreThan), cancellationToken);
                     pushNotifiction.Send(message);
 
@@ -85,7 +87,7 @@ public class UploadHardwareMetricsCommandHandler(
                 var current = request.HardwareReport.Cpu.Temperature;
                 if (current >= threshold)
                 {
-                    string message = $"CPU temperature has reached {current}°C for {request.clientId}, which is above the alert limit of {threshold}°C. Please ensure adequate cooling.";
+                    string message = $"CPU temperature has reached {current}°C for {client?.Name}, which is above the alert limit of {threshold}°C. Please ensure adequate cooling.";
                     await sender.Send(new SendNotificationCommand(message, AlertType.CpuTempIsMoreThan), cancellationToken);
                     pushNotifiction.Send(message);
 
@@ -100,7 +102,7 @@ public class UploadHardwareMetricsCommandHandler(
                 var current = request.HardwareReport.Ram.UsedMemory;
                 if (current >= threshold)
                 {
-                    string message = $"Memory usage is {current} MB for {request.clientId}, exceeding the defined threshold of {threshold} MB. Consider checking for memory-intensive processes.";
+                    string message = $"Memory usage is {current} MB for {client?.Name}, exceeding the defined threshold of {threshold} MB. Consider checking for memory-intensive processes.";
                     await sender.Send(new SendNotificationCommand(message, AlertType.RamIsMoreThan), cancellationToken);
                     pushNotifiction.Send(message);
 
@@ -117,7 +119,7 @@ public class UploadHardwareMetricsCommandHandler(
                     var used = drive.DriveTotalSize - drive.DriveFreeSpace;
                     if (used >= threshold)
                     {
-                        string message = $"Disk usage on drive {drive.DriveName} is {used} MB for {request.clientId}, exceeding the alert threshold of {threshold} MB. Free up some space if possible.";
+                        string message = $"Disk usage on drive {drive.DriveName} is {used} MB for {client?.Name}, exceeding the alert threshold of {threshold} MB. Free up some space if possible.";
                         await sender.Send(new SendNotificationCommand(message, AlertType.DriveIsMoreThan), cancellationToken);
                         pushNotifiction.Send(message);
                         break;
@@ -133,7 +135,7 @@ public class UploadHardwareMetricsCommandHandler(
                 var current = request.HardwareReport.Battery.ChargeLevel;
                 if (current <= threshold)
                 {
-                    string message = $"Battery level is low: {current}% for {request.clientId}. This is below the alert threshold of {threshold}%. Please connect to a power source.";
+                    string message = $"Battery level is low: {current}% for {client?.Name}. This is below the alert threshold of {threshold}%. Please connect to a power source.";
                     await sender.Send(new SendNotificationCommand(message, AlertType.BatteryLevelIsLessThan), cancellationToken);
                     pushNotifiction.Send(message);
 
@@ -148,7 +150,7 @@ public class UploadHardwareMetricsCommandHandler(
                 var current = request.HardwareReport.Battery.DegradationLevel;
                 if (current >= threshold)
                 {
-                    string message = $"Battery degradation level is {current}% for {request.clientId}, exceeding the threshold of {threshold}%. Battery health may be compromised.";
+                    string message = $"Battery degradation level is {current}% for {client?.Name}, exceeding the threshold of {threshold}%. Battery health may be compromised.";
                     await sender.Send(new SendNotificationCommand(message, AlertType.BatteryDegradationLevelIsLessThan), cancellationToken);
                     pushNotifiction.Send(message);
 

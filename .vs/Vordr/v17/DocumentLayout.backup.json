@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\user\\RiderProjects\\Vordr-common\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A7C6D414-385F-489F-9F34-A1F0B2525EC2}|src\\core\\Presentation\\Presentation.csproj|c:\\users\\user\\riderprojects\\vordr-common\\src\\core\\presentation\\slices\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7C6D414-385F-489F-9F34-A1F0B2525EC2}|src\\core\\Presentation\\Presentation.csproj|solutionrelative:src\\core\\presentation\\slices\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7C6D414-385F-489F-9F34-A1F0B2525EC2}|src\\core\\Presentation\\Presentation.csproj|c:\\users\\user\\riderprojects\\vordr-common\\src\\core\\presentation\\slices\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A7C6D414-385F-489F-9F34-A1F0B2525EC2}|src\\core\\Presentation\\Presentation.csproj|solutionrelative:src\\core\\presentation\\slices\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A7C6D414-385F-489F-9F34-A1F0B2525EC2}|src\\core\\Presentation\\Presentation.csproj|c:\\users\\user\\riderprojects\\vordr-common\\src\\core\\presentation\\controls\\alertcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7C6D414-385F-489F-9F34-A1F0B2525EC2}|src\\core\\Presentation\\Presentation.csproj|solutionrelative:src\\core\\presentation\\controls\\alertcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,26 +23,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainForm.cs",
-              "DocumentMoniker": "C:\\Users\\user\\RiderProjects\\Vordr-common\\src\\core\\Presentation\\Slices\\MainForm.cs",
-              "RelativeDocumentMoniker": "src\\core\\Presentation\\Slices\\MainForm.cs",
-              "ToolTip": "C:\\Users\\user\\RiderProjects\\Vordr-common\\src\\core\\Presentation\\Slices\\MainForm.cs",
-              "RelativeToolTip": "src\\core\\Presentation\\Slices\\MainForm.cs",
-              "ViewState": "AgIAALUAAAAAAAAAAAAwwM0AAAABAAAAAAAAAA==",
+              "Title": "AlertControl.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\user\\RiderProjects\\Vordr-common\\src\\core\\Presentation\\Controls\\AlertControl.cs",
+              "RelativeDocumentMoniker": "src\\core\\Presentation\\Controls\\AlertControl.cs",
+              "ToolTip": "C:\\Users\\user\\RiderProjects\\Vordr-common\\src\\core\\Presentation\\Controls\\AlertControl.cs [Design]",
+              "RelativeToolTip": "src\\core\\Presentation\\Controls\\AlertControl.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T19:17:48.724Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\user\\RiderProjects\\Vordr-common\\src\\core\\Presentation\\Slices\\MainForm.cs",
-              "RelativeDocumentMoniker": "src\\core\\Presentation\\Slices\\MainForm.cs",
-              "ToolTip": "C:\\Users\\user\\RiderProjects\\Vordr-common\\src\\core\\Presentation\\Slices\\MainForm.cs [Design]",
-              "RelativeToolTip": "src\\core\\Presentation\\Slices\\MainForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T19:17:46.532Z",
+              "WhenOpened": "2025-05-13T18:44:34.8Z",
               "EditorCaption": " [Design]"
             }
           ]

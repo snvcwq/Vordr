@@ -34,18 +34,23 @@ public static class DependencyInjection
         builder.Services.Configure<MonitoringOptions>(builder.Configuration.GetSection(nameof(MonitoringOptions)));
         builder.Services.Configure<MonitoringConfiguration>(builder.Configuration.GetSection(nameof(MonitoringConfiguration)));
         
+        builder.Services.AddHostedService<MonitorHardwareComponent>();
+        builder.Services.AddHostedService<MonitorHardwareData>();
+        builder.Services.AddHostedService<MonitorProcesses>();
+        
         ConfigureLogging();
         return builder;
     }
     
     public static WebApplication ScheduleMonitoring(this WebApplication app)
     {
-        var scope = app.Services.CreateScope();
+       /* var scope = app.Services.CreateScope();
         var scheduler = scope.ServiceProvider.GetRequiredService<IMonitoringScheduler>();
         scheduler.ScheduleProcessesMonitoring();
         scheduler.ScheduleHardwareComponentMonitoring();
         scheduler.ScheduleHardwareDataMonitoring();
         
+        */
         return app;
     }
     

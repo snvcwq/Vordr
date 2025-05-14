@@ -17,13 +17,15 @@ public class UploadCollectedProcessesCommandHandler(
     IProcessMetricsRepository processMetricsRepository,
     IAlertRepository alertRepository,
     ISender sender,
-    IPushNotifiction pushNotifiction
+    IPushNotifiction pushNotifiction,
+    IWorkstationRepository workstationRepository
 ) : IRequestHandler<UploadCollectedProcessesCommand>
 {
     public async Task Handle(UploadCollectedProcessesCommand request, CancellationToken cancellationToken)
     {
         StaticProcesses.UpdateData(request.ProcessList.ToList(), request.clientId);
         
+        var client =  await workstationRepository.GetWorkstationAsync(request.clientId);
         var processCpu = await alertRepository.GetByTypeAsync(AlertType.ProcessUsesCpuMoreThan);
         var processRam = await alertRepository.GetByTypeAsync(AlertType.ProcessUsesRamMoreThan);
         
@@ -32,7 +34,7 @@ public class UploadCollectedProcessesCommandHandler(
             var process = request.ProcessList.FirstOrDefault(p => p.CpuUsage >= cpuThreshold);
             if (process != null)
             {
-                var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) for {request.clientId} is using {process.CpuUsage:F2}% CPU, which exceeds the alert threshold of {cpuThreshold}%. Please investigate.";
+                var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) for {client?.Name} is using {process.CpuUsage:F2}% CPU, which exceeds the alert threshold of {cpuThreshold}%. Please investigate.";
                 await sender.Send(new SendNotificationCommand(message, AlertType.ProcessUsesCpuMoreThan), cancellationToken);
                 pushNotifiction.Send(message);
 
@@ -44,7 +46,7 @@ public class UploadCollectedProcessesCommandHandler(
             var process = request.ProcessList.FirstOrDefault(p => p.RamUsage >= ramThreshold);
             if (process != null)
             {
-                var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) for {request.clientId} is using {process.RamUsage:F2} MB RAM, which exceeds the alert threshold of {ramThreshold} MB. Please investigate.";
+                var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) for {client?.Name} is using {process.RamUsage:F2} MB RAM, which exceeds the alert threshold of {ramThreshold} MB. Please investigate.";
                 await sender.Send(new SendNotificationCommand(message, AlertType.ProcessUsesRamMoreThan), cancellationToken);
                 pushNotifiction.Send(message);
 
