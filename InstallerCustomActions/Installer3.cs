@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Configuration.Install;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -28,6 +29,7 @@ namespace MyCustomAction
                 address = AskForHostName();
             port = AskForPort();
             dbConnectionString = AskForDbConnectionString();
+            RegisterAsWindowsService();
 
             base.OnBeforeInstall(savedState);
         }
@@ -119,6 +121,22 @@ namespace MyCustomAction
             var jobj = GetAppSettingsJObject(appSettingsAddress);
             UpdateNestedJObject(jobj, "MongoDbOptions", "ConnectionString", dbConnectionString);
             UpdateAppsettings(appSettingsAddress, jobj);
+        }
+        public static void RegisterAsWindowsService()
+        {
+            string currentPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            string exePath = Path.Combine(currentPath, "Vordr.Client.WebApi.exe");
+
+            var psi = new ProcessStartInfo
+            {
+                FileName = "sc.exe",
+                Arguments = $"create VordrClient binPath= \"{exePath}\" start= auto",
+                Verb = "runas", // run as admin
+                UseShellExecute = true
+            };
+
+            Process.Start(psi);
         }
         private string GetAppsettingsAddress()
         {

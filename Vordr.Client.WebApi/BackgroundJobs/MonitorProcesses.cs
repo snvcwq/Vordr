@@ -10,7 +10,15 @@ public class MonitorProcesses(IServiceScopeFactory scopeFactory) : BackgroundSer
         {
             await using var scope = scopeFactory.CreateAsyncScope();
             var monitoringService = scope.ServiceProvider.GetRequiredService<IMonitoringService>();
-            await monitoringService.PerformProcessesMonitoring();
+            try
+            {
+                await monitoringService.PerformProcessesMonitoring();
+
+            }
+            catch (Exception)
+            {
+                
+            }            
             await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
         }
     }

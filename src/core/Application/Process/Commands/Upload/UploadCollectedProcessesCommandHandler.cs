@@ -18,7 +18,8 @@ public class UploadCollectedProcessesCommandHandler(
     IAlertRepository alertRepository,
     ISender sender,
     IPushNotifiction pushNotifiction,
-    IWorkstationRepository workstationRepository
+    IWorkstationRepository workstationRepository,
+    INotificationRepository notificationRepository
 ) : IRequestHandler<UploadCollectedProcessesCommand>
 {
     public async Task Handle(UploadCollectedProcessesCommand request, CancellationToken cancellationToken)
@@ -29,27 +30,34 @@ public class UploadCollectedProcessesCommandHandler(
         var processCpu = await alertRepository.GetByTypeAsync(AlertType.ProcessUsesCpuMoreThan);
         var processRam = await alertRepository.GetByTypeAsync(AlertType.ProcessUsesRamMoreThan);
         
-        if (processCpu.Enabled && int.TryParse(processCpu.Value, out var cpuThreshold))
+        var config =  await notificationRepository.GetAsync();
+        if (config != null && (config.EmailEnabled || config.PushNotificationEnabled))
         {
-            var process = request.ProcessList.FirstOrDefault(p => p.CpuUsage >= cpuThreshold);
-            if (process != null)
+            if (processCpu.Enabled && int.TryParse(processCpu.Value, out var cpuThreshold))
             {
-                var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) for {client?.Name} is using {process.CpuUsage:F2}% CPU, which exceeds the alert threshold of {cpuThreshold}%. Please investigate.";
-                await sender.Send(new SendNotificationCommand(message, AlertType.ProcessUsesCpuMoreThan), cancellationToken);
-                pushNotifiction.Send(message);
-
+                var process = request.ProcessList.FirstOrDefault(p => p.CpuUsage >= cpuThreshold);
+                if (process != null)
+                {
+                    var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) for {client?.Name} is using {process.CpuUsage:F2}% CPU, which exceeds the alert threshold of {cpuThreshold}%. Please investigate.";
+                    if(config.EmailEnabled)
+                        await sender.Send(new SendNotificationCommand(message, AlertType.ProcessUsesCpuMoreThan), cancellationToken);
+                    if(config.PushNotificationEnabled)
+                        pushNotifiction.Send(message, AlertType.ProcessUsesCpuMoreThan);
+                }
             }
-        }
 
-        if (processRam.Enabled && int.TryParse(processRam.Value, out var ramThreshold))
-        {
-            var process = request.ProcessList.FirstOrDefault(p => p.RamUsage >= ramThreshold);
-            if (process != null)
+            if (processRam.Enabled && int.TryParse(processRam.Value, out var ramThreshold))
             {
-                var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) for {client?.Name} is using {process.RamUsage:F2} MB RAM, which exceeds the alert threshold of {ramThreshold} MB. Please investigate.";
-                await sender.Send(new SendNotificationCommand(message, AlertType.ProcessUsesRamMoreThan), cancellationToken);
-                pushNotifiction.Send(message);
+                var process = request.ProcessList.FirstOrDefault(p => p.RamUsage >= ramThreshold);
+                if (process != null)
+                {
+                    var message = $"We noticed that process '{process.Name}' (PID: {process.Pid}) for {client?.Name} is using {process.RamUsage:F2} MB RAM, which exceeds the alert threshold of {ramThreshold} MB. Please investigate.";
+                    if(config.EmailEnabled)
+                        await sender.Send(new SendNotificationCommand(message, AlertType.ProcessUsesRamMoreThan), cancellationToken);
+                    if(config.PushNotificationEnabled)
+                        pushNotifiction.Send(message, AlertType.ProcessUsesRamMoreThan);
 
+                }
             }
         }
         var retrievedProcesses = request.ProcessList.ToList();

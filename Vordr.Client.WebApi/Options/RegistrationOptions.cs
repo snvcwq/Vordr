@@ -16,6 +16,14 @@ public class RegistrationOptions
         var port =JsonSerializer.Deserialize<WorkstationIdentifier>(jsonString)?.Port;
         return port ?? 5060;
     }
+    
+    public string? ClientName()
+    {
+        var decodedBytes = Convert.FromBase64String(Identifier);
+        var jsonString = Encoding.UTF8.GetString(decodedBytes);
+        var host =JsonSerializer.Deserialize<WorkstationIdentifier>(jsonString)?.HostName;
+        return host ?? string.Empty;
+    }
 
     public string Address()
     {

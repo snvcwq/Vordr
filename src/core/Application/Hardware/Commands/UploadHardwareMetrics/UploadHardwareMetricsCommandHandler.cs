@@ -17,7 +17,8 @@ public class UploadHardwareMetricsCommandHandler(
     IAlertRepository alertRepository,
     ISender sender,
     IWorkstationRepository workstationRepository,
-    IPushNotifiction pushNotifiction
+    IPushNotifiction pushNotifiction,
+    INotificationRepository notificationRepository
     ) : IRequestHandler<UploadHardwareMetricsCommand>
 {
     public async Task Handle(UploadHardwareMetricsCommand request, CancellationToken cancellationToken)
@@ -26,7 +27,10 @@ public class UploadHardwareMetricsCommandHandler(
         if (request.HardwareReport is null)
             return;
 
-        var gpuIsMore = await alertRepository.GetByTypeAsync(AlertType.GpuIsMoreThan);
+        var config =  await notificationRepository.GetAsync();
+        if (config != null && (config.EmailEnabled || config.PushNotificationEnabled))
+        {
+            var gpuIsMore = await alertRepository.GetByTypeAsync(AlertType.GpuIsMoreThan);
         var gpuTempIsMore = await alertRepository.GetByTypeAsync(AlertType.GpuTempIsMoreThan);
         var cpuIsMore = await alertRepository.GetByTypeAsync(AlertType.CpuIsMoreThan);
         var cpuTempIsMore = await alertRepository.GetByTypeAsync(AlertType.CpuTempIsMoreThan);
@@ -44,8 +48,10 @@ public class UploadHardwareMetricsCommandHandler(
                 if (current >= threshold)
                 {
                     string message = $"We noticed that GPU usage for {client?.Name} is {current}%, which is above the defined alert threshold of {threshold}%. Please investigate the cause.";
-                    await sender.Send(new SendNotificationCommand(message, AlertType.GpuIsMoreThan), cancellationToken);
-                    pushNotifiction.Send(message);
+                    if(config.EmailEnabled)
+                        await sender.Send(new SendNotificationCommand(message, AlertType.GpuIsMoreThan), cancellationToken);
+                    if(config.PushNotificationEnabled)
+                        pushNotifiction.Send(message, AlertType.GpuIsMoreThan);
                 }
             }
         }
@@ -58,9 +64,10 @@ public class UploadHardwareMetricsCommandHandler(
                 if (current >= threshold)
                 {
                     string message = $"We noticed that GPU temperature for {client?.Name} is {current}°C, which exceeds the defined threshold of {threshold}°C. Please check your cooling system.";
-                    await sender.Send(new SendNotificationCommand(message, AlertType.GpuTempIsMoreThan), cancellationToken);
-                    pushNotifiction.Send(message);
-
+                    if(config.EmailEnabled)
+                        await sender.Send(new SendNotificationCommand(message, AlertType.GpuTempIsMoreThan), cancellationToken);
+                    if(config.PushNotificationEnabled)
+                        pushNotifiction.Send(message, AlertType.GpuTempIsMoreThan);
                 }
             }
         }
@@ -73,9 +80,10 @@ public class UploadHardwareMetricsCommandHandler(
                 if (current >= threshold)
                 {
                     string message = $"CPU usage is currently {current}% for {client?.Name}, exceeding the defined threshold of {threshold}%. Investigate potential performance issues.";
-                    await sender.Send(new SendNotificationCommand(message, AlertType.CpuIsMoreThan), cancellationToken);
-                    pushNotifiction.Send(message);
-
+                    if(config.EmailEnabled)
+                        await sender.Send(new SendNotificationCommand(message, AlertType.CpuIsMoreThan), cancellationToken);
+                    if(config.PushNotificationEnabled)
+                        pushNotifiction.Send(message, AlertType.CpuIsMoreThan);
                 }
             }
         }
@@ -88,9 +96,10 @@ public class UploadHardwareMetricsCommandHandler(
                 if (current >= threshold)
                 {
                     string message = $"CPU temperature has reached {current}°C for {client?.Name}, which is above the alert limit of {threshold}°C. Please ensure adequate cooling.";
-                    await sender.Send(new SendNotificationCommand(message, AlertType.CpuTempIsMoreThan), cancellationToken);
-                    pushNotifiction.Send(message);
-
+                    if(config.EmailEnabled)
+                        await sender.Send(new SendNotificationCommand(message, AlertType.CpuTempIsMoreThan), cancellationToken);
+                    if(config.PushNotificationEnabled)
+                        pushNotifiction.Send(message, AlertType.CpuTempIsMoreThan);
                 }
             }
         }
@@ -103,9 +112,10 @@ public class UploadHardwareMetricsCommandHandler(
                 if (current >= threshold)
                 {
                     string message = $"Memory usage is {current} MB for {client?.Name}, exceeding the defined threshold of {threshold} MB. Consider checking for memory-intensive processes.";
-                    await sender.Send(new SendNotificationCommand(message, AlertType.RamIsMoreThan), cancellationToken);
-                    pushNotifiction.Send(message);
-
+                    if(config.EmailEnabled)
+                        await sender.Send(new SendNotificationCommand(message, AlertType.RamIsMoreThan), cancellationToken);
+                    if(config.PushNotificationEnabled)
+                        pushNotifiction.Send(message, AlertType.RamIsMoreThan);
                 }
             }
         }
@@ -120,9 +130,10 @@ public class UploadHardwareMetricsCommandHandler(
                     if (used >= threshold)
                     {
                         string message = $"Disk usage on drive {drive.DriveName} is {used} MB for {client?.Name}, exceeding the alert threshold of {threshold} MB. Free up some space if possible.";
-                        await sender.Send(new SendNotificationCommand(message, AlertType.DriveIsMoreThan), cancellationToken);
-                        pushNotifiction.Send(message);
-                        break;
+                        if(config.EmailEnabled)
+                            await sender.Send(new SendNotificationCommand(message, AlertType.DriveIsMoreThan), cancellationToken);
+                        if(config.PushNotificationEnabled)
+                            pushNotifiction.Send(message, AlertType.DriveIsMoreThan);                        break;
                     }
                 }
             }
@@ -136,9 +147,10 @@ public class UploadHardwareMetricsCommandHandler(
                 if (current <= threshold)
                 {
                     string message = $"Battery level is low: {current}% for {client?.Name}. This is below the alert threshold of {threshold}%. Please connect to a power source.";
-                    await sender.Send(new SendNotificationCommand(message, AlertType.BatteryLevelIsLessThan), cancellationToken);
-                    pushNotifiction.Send(message);
-
+                    if(config.EmailEnabled)
+                        await sender.Send(new SendNotificationCommand(message, AlertType.BatteryLevelIsLessThan), cancellationToken);
+                    if(config.PushNotificationEnabled)
+                        pushNotifiction.Send(message, AlertType.BatteryLevelIsLessThan);
                 }
             }
         }
@@ -151,13 +163,16 @@ public class UploadHardwareMetricsCommandHandler(
                 if (current >= threshold)
                 {
                     string message = $"Battery degradation level is {current}% for {client?.Name}, exceeding the threshold of {threshold}%. Battery health may be compromised.";
-                    await sender.Send(new SendNotificationCommand(message, AlertType.BatteryDegradationLevelIsLessThan), cancellationToken);
-                    pushNotifiction.Send(message);
-
+                    if(config.EmailEnabled)
+                        await sender.Send(new SendNotificationCommand(message, AlertType.BatteryDegradationLevelIsLessThan), cancellationToken);
+                    if(config.PushNotificationEnabled)
+                        pushNotifiction.Send(message, AlertType.BatteryDegradationLevelIsLessThan);
                 }
             }
         }
-
+    
+        }
+        
         var report = request.HardwareReport;
         var tasks = new List<Task>();
 

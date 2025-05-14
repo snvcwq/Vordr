@@ -10,8 +10,14 @@ public class MonitorHardwareData(IServiceScopeFactory scopeFactory) : Background
         {
             await using var scope = scopeFactory.CreateAsyncScope();
             var monitoringService = scope.ServiceProvider.GetRequiredService<IMonitoringService>();
-            await monitoringService.PerformHardwareDataMonitoring();
-            await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
+            try
+            {
+                await monitoringService.PerformHardwareDataMonitoring();
+
+            }
+            catch (Exception)
+            {
+            }            await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
         }
     }
 }

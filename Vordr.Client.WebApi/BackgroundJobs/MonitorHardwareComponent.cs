@@ -12,7 +12,14 @@ public class MonitorHardwareComponent(IServiceScopeFactory scopeFactory) : Backg
             await using var scope = scopeFactory.CreateAsyncScope();
             var monitoringService = scope.ServiceProvider.GetRequiredService<IMonitoringService>();
 
-            await monitoringService.PerformHardwareComponentMonitoring();
+            try
+            {
+                await monitoringService.PerformHardwareComponentMonitoring();
+
+            }
+            catch (Exception)
+            {
+            }
             await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
         }
     }

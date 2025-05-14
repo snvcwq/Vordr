@@ -24,7 +24,7 @@ public class LoggingTests
         var response = new TestResponse();
         var cancellationToken = CancellationToken.None;
 
-        RequestHandlerDelegate<TestResponse> next = () => Task.FromResult(response);
+        Func<Task<TestResponse>> next = () => Task.FromResult(response);
 
         // Act
         var result = await _loggingBehaviour.Handle(request, next, cancellationToken);

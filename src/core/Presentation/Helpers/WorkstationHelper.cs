@@ -13,7 +13,7 @@ public static class WorkstationHelper
         return Guid.NewGuid().ToString();
     }
 
-    public static string CreateNewWorkstationIdentifier(SocketOptions socketOptions, string clientId)
+    public static string CreateNewWorkstationIdentifier(SocketOptions socketOptions, string clientId, string hostName)
     {
         var address = GetHostIp(socketOptions);
 
@@ -21,7 +21,8 @@ public static class WorkstationHelper
         {
             ClientId = clientId,
             Address = address,
-            Port = socketOptions.Port
+            Port = socketOptions.Port,
+            HostName = hostName
         };
 
         var bytes = workstationIdentifier.JsonSerialize().ToBytes();

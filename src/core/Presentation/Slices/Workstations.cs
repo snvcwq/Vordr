@@ -29,36 +29,6 @@ public partial class Workstations : Form
             WorkstationsFlow.Controls.Add(new WorkstationControl(Sender, workstation));
     }
 
-    private async void GenerateWorkstationidentifierButton_Click(object sender, EventArgs e)
-    {
-        var clientId = WorkstationHelper.CreateNewClientId();
-        var workstation = new Workstation
-        {
-            LastModifiedUtc = DateTime.UtcNow,
-            State = WorkstationState.PendingActivation,
-            ClientId = clientId,
-            Name = WorkstationNameTextbox.Content,
-        };
-        await Sender.Send(new AddWorkstationCommand(workstation));
-        var socketOptions = ServiceScopeFactory.CreateScope().ServiceProvider.GetRequiredService<IOptions<SocketOptions>>().Value;
-        NewWorkstationIdentifier.Content = WorkstationHelper.CreateNewWorkstationIdentifier(socketOptions, clientId);
-    }
-
-    private async void GenerateWorkstationidentifierButton_Click_1(object sender, EventArgs e)
-    {
-        var clientId = WorkstationHelper.CreateNewClientId();
-        var workstation = new Workstation
-        {
-            LastModifiedUtc = DateTime.UtcNow,
-            State = WorkstationState.PendingActivation,
-            ClientId = clientId,
-            Name = WorkstationNameTextbox.Content,
-        };
-        await Sender.Send(new AddWorkstationCommand(workstation));
-        var socketOptions = ServiceScopeFactory.CreateScope().ServiceProvider.GetRequiredService<IOptions<SocketOptions>>().Value;
-        NewWorkstationIdentifier.Content = WorkstationHelper.CreateNewWorkstationIdentifier(socketOptions, clientId);
-    }
-
     private async void GenerateWorkstationidentifierButton_Click_2(object sender, EventArgs e)
     {
         var clientId = WorkstationHelper.CreateNewClientId();
@@ -71,7 +41,7 @@ public partial class Workstations : Form
         };
         await Sender.Send(new AddWorkstationCommand(workstation));
         var socketOptions = ServiceScopeFactory.CreateScope().ServiceProvider.GetRequiredService<IOptions<SocketOptions>>().Value;
-        NewWorkstationIdentifier.Content = WorkstationHelper.CreateNewWorkstationIdentifier(socketOptions, clientId);
+        NewWorkstationIdentifier.Content = WorkstationHelper.CreateNewWorkstationIdentifier(socketOptions, clientId, Name = WorkstationNameTextbox.Content);
 
     }
 }
